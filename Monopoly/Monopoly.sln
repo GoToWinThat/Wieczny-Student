@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monopoly.WebApi", "Monopoly.WebApi\Monopoly.WebApi.csproj", "{67FE6DF8-F5AA-462F-8BD4-3AEE383F3EAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monopoly.WebApi", "Monopoly.WebApi\Monopoly.WebApi.csproj", "{67FE6DF8-F5AA-462F-8BD4-3AEE383F3EAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monopoly.Core", "Monopoly.Core\Monopoly.Core.csproj", "{40F0656D-7E52-4B90-85C7-065CF8723460}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{67FE6DF8-F5AA-462F-8BD4-3AEE383F3EAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67FE6DF8-F5AA-462F-8BD4-3AEE383F3EAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67FE6DF8-F5AA-462F-8BD4-3AEE383F3EAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40F0656D-7E52-4B90-85C7-065CF8723460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40F0656D-7E52-4B90-85C7-065CF8723460}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40F0656D-7E52-4B90-85C7-065CF8723460}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40F0656D-7E52-4B90-85C7-065CF8723460}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
