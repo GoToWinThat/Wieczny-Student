@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Monopoly.WebApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApi.Models;
 
-namespace WebApi.Controllers
+namespace Monopoly.WebApi.Controllers
 {
     public class HomeController : Controller
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace WebApi.Models
+namespace Monopoly.WebApi.Models
 {
     public class ErrorViewModel
     {
