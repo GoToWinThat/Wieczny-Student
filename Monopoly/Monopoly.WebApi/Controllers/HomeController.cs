@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Monopoly.Core;
 using Monopoly.WebApi.Models;
 using System;
 using System.Collections.Generic;
@@ -23,9 +24,14 @@ namespace Monopoly.WebApi.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult MonopolyList()
         {
-            return View();
+            var model = new MonopolyVM(new List<MonopolyCard> { new MonopolyCard("a", "b", "c", "d"),
+            new MonopolyCard("a", "b", "c", "d"),
+            new MonopolyCard("a", "b", "c", "d"),
+            new MonopolyCard("a", "b", "c", "d")
+            });
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
