@@ -8,11 +8,15 @@ class PropertyField extends Component {
         this.idname = `cell${this.props.data.fieldID}name`
         this.idpositionholder = `cell${this.props.data.fieldID}positionholder`
         this.idanchor = `cell${this.props.data.fieldID}anchor`
+        if(this.props.rotate)
+            this.rotation = "cell horizontal-field"
+        else
+            this.rotation = "cell vertical-field"
     }
 
     render() {
         return (
-            <td className="cell board" id={this.id} style={{backgroundColor: `${this.props.data.color}`}}>
+            <td className={this.rotation} id={this.id} style={{backgroundColor: `${this.props.data.color}`}}>
                 <div id={this.idanchor} className="cell-anchor"></div>
                 <div id={this.idpositionholder} className="cell-position-holder"></div>
                 <div id={this.idname} className="cell-name2">{this.Hname[0]}</div>

@@ -14,11 +14,16 @@
   background-color: #cccccc;
 }
 
-.board {
-  width: 72px;
-  height: 102px;
+.horizontal-field{
+  width: 102px; 
+  height: 72px; 
   border: 1px solid black;
 }
+.vertical-field {
+  width: 72px;
+  height: 72px;
+  border: 1px solid black;
+} 
 
 .cell-anchor {
   width: 100%;

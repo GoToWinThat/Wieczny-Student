@@ -1,0 +1,7 @@
+.board-center
+{
+    width: 648px;
+    height: 648px;
+    border: 2px solid black;  
+    margin: 0;
+}

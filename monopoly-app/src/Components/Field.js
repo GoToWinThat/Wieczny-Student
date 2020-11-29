@@ -11,21 +11,21 @@ class Field extends Component {
 
     render() {
         return (
-            <Content type = {this.props.data.type} data={this.props.data}/>
+            <Content type = {this.props.data.type} data={this.props.data} rotation={this.props.rotate}/>
         );
     }
 }
 
-const Content = ({type, data}) =>{
+const Content = ({type, data, rotation}) =>{
     switch (type){
         default:
         case 'event':
             return(
-                    <EventField data={data}/>
+                    <EventField rotate={rotation} data={data}/>
             );
         case 'property' :
             return(
-                    <PropertyField data={data}/>
+                    <PropertyField rotate={rotation} data={data}/>
             );
         case 'corner':
             return(
