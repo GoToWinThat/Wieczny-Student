@@ -1,24 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import Field from './Components/Field'
+import {data} from './Data'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+        <table>
+          <tbody>
+            <tr>
+              <Field data={data[4]}/>
+              <Field data={data[0]}/>
+              <Field data={data[2]}/>
+              <Field data={data[3]}/>
+            </tr>
+            <tr>
+              <Field data={data[4]}/>
+              <Field data={data[0]}/>
+              <Field data={data[2]}/>
+              <Field data={data[3]}/>
+            </tr>
+          </tbody>
+        </table>
+      </div>
   );
 }
 
