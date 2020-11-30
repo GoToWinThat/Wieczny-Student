@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CornerField from './CornerField'
 import PropertyField from './PropertyField'
 import EventField from './EventField'
+import CompanyField from './CompanyField'
 import '../Css/Field.css'
 
 class Field extends Component {
@@ -31,6 +32,10 @@ const Content = ({type, data, rotation}) =>{
             return(
                     <CornerField data={data}/>
             );
+        case 'company':
+            return(
+                    <CompanyField rotate={rotation} data={data}/>
+            )
     }
 }
 
