@@ -1,3 +1,4 @@
+/* Roll Dice Component */
 .diceImg
 {
     max-height: 55px;
@@ -8,4 +9,15 @@
     max-height: 55px;
     padding: 0px 30px;
     margin-right: 30px;
+}
+
+/* Player Bar Component */
+.playerBox
+{
+    width: 150px;
+    display: inline-table;
+}
+.endTurnButton
+{
+    margin-left: 30px ;
 }
