@@ -1,0 +1,11 @@
+.diceImg
+{
+    max-height: 55px;
+    padding: 5px;
+}
+.throwDicesButton
+{
+    max-height: 55px;
+    padding: 0px 30px;
+    margin-right: 30px;
+}
