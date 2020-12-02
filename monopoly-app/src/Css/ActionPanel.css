@@ -1,3 +1,8 @@
+/* General */
+.yesNoButton
+{
+    margin-left: 30px ;
+}
 /* Roll Dice Component */
 .diceImg
 {
@@ -21,3 +26,23 @@
 {
     margin-left: 30px ;
 }
+/* Action Options */
+.actionsButton
+{
+    border: 2px solid black;
+    padding: 0px 50px 0px 50px;
+    margin: 10px 0px;
+    background: transparent;
+}
+
+/* Manage */
+.manageTable
+{
+    display: inline-table;
+}
+.houses
+{
+    max-height: 35px;
+    padding: 5px;
+}
+
