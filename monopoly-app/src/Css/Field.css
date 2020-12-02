@@ -5,53 +5,48 @@
   vertical-align: bottom;
   background-repeat: no-repeat;
   background-size: auto 40px;
+  overflow: hidden;
+  width: 100%;
+}
+.card-top {
+  flex-direction: column-reverse !important;
+}
+.card-botom {
+  flex-direction: column !important;
+}
+.card-left {
+  flex-direction: row-reverse !important;
+}
+.card-right {
+  flex-direction: row !important;
 }
 
-.board-corner {
-  width: 102px;
-  height: 102px;
+.card {
   border: 1px solid black;
-  background-color: #cccccc;
+  border-radius: 0;
+  margin: 0 !important;
 }
-
-.horizontal-field{
-  width: 102px; 
-  height: 72px; 
-  border: 1px solid black;
+.card-text,
+.card-title,
+.card-subtitle {
+  font-size: 0.7em;
+  margin-bottom: 0;
+  padding-top: 0.2em;
 }
-.vertical-field {
-  width: 72px;
-  height: 72px;
-  border: 1px solid black;
-} 
-
-.cell-anchor {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  bottom: 0px;
-  left: 0px;
+.card-header {
+  border-radius: 0 !important;
 }
-
-.cell-position-holder {
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  position: relative;
+.card-body {
+  padding: 0;
 }
-
-.cell-name {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  text-align: center;
-  width: 100%;
+.card-deck {
+  margin: 0;
+  flex-flow: wrap;
 }
-.cell-name2 {
-  font-size: 12px;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  text-align: center;
-  width: 100%;
+.col-1,
+.col-2 {
+  padding: 0;
+}
+.col {
+  padding: 0;
 }

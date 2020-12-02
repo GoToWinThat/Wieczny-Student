@@ -12,7 +12,7 @@ class Field extends Component {
 
     render() {
         return (
-            <Content type = {this.props.data.type} data={this.props.data} rotation={this.props.rotate}/>
+            <Content type={this.props.data.type} data={this.props.data} rotation={this.props.rotate}/>
         );
     }
 }
