@@ -9,12 +9,12 @@
 // e. has three houses,
 // f. has a hotel.
 
-// IMPORTANT: Some of the properties - "TOALETY" and "WINDA" cannot be improved 
-// so they don't have oneHousePrice and Rent attributes. In this update there 
+// IMPORTANT: Some of the properties - "TOALETY" and "WINDA" cannot be improved
+// so they don't have oneHousePrice and Rent attributes. In this update there
 // is a new type for them: companies. The player has to roll the dice and pay as much
 // money as the result of this roll (multiplied by something).
 
-// IMPORTANT (2): The rooms in the university can't have "houses", so this name is temporary. 
+// IMPORTANT (2): The rooms in the university can't have "houses", so this name is temporary.
 // It will probably become "computers", "desks" or something like this.
 
 // IMPORTANT (3): The colors need to be changed - to nicer ones, probably with using HEX codes.
@@ -265,7 +265,7 @@ let data = [
     {
         fieldID: 31,
         type: "property",
-        name: "Sala wykładowa: Aula C (CEK)",
+        name: "Sala wykładowa Aula C (CEK)",
         color: "blue",
         price: 100,
         rents: [10, 20, 30, 40, 50, 60],
@@ -274,7 +274,7 @@ let data = [
     {
         fieldID: 32,
         type: "property",
-        name: "Sala wykładowa: Aula A (CNT)",
+        name: "Sala wykładowa Aula A (CNT)",
         color: "blue",
         price: 100,
         rents: [10, 20, 30, 40, 50, 60],

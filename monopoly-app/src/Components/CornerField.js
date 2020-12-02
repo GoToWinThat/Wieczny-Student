@@ -4,19 +4,18 @@ class CornerField extends Component {
     constructor(props){
         super(props)
         this.id = `cell${this.props.data.fieldID}`
-        this.idname = `cell${this.props.data.fieldID}name`
-        this.idpositionholder = `cell${this.props.data.fieldID}positionholder`
-        this.idanchor = `cell${this.props.data.fieldID}anchor`
+        this.cardclass = `card h-100 w-100`
     }
     render() {
         return (
-            <td className="cell board-corner" id={this.id}>
-                <div id={this.idanchor} className="cell-anchor"></div>
-                <div id={this.idpositionholder} className="cell-position-holder"></div>
-                <div id={this.idname} className="cell-name">{this.props.data.name}</div>
-            </td>
+            <div className="cell" id={this.id}>
+                <div className={this.cardclass} style={{backgroundColor: `${this.props.data.color}`}}>
+                    <div className="card-body">
+                    <h1 className="card-title" style={{fontSize: `1em`, textAlign: `center`, paddingTop: `2em`}}>{this.props.data.name}</h1>
+                    </div>
+                </div>
+            </div>
         );
     }
 }
-
 export default CornerField;

@@ -3,25 +3,37 @@ import React, { Component } from 'react';
 class PropertyField extends Component {
     constructor(props){
         super(props)
-        this.Hname = this.props.data.name.split("nr")
+
         this.id = `cell${this.props.data.fieldID}`
-        this.idname = `cell${this.props.data.fieldID}name`
-        this.idpositionholder = `cell${this.props.data.fieldID}positionholder`
-        this.idanchor = `cell${this.props.data.fieldID}anchor`
-        if(this.props.rotate)
-            this.rotation = "cell horizontal-field"
-        else
-            this.rotation = "cell vertical-field"
+        this.cardclass = `card h-100 w-100 ${this.props.rotate}`
+        this.name = this.props.data.name
     }
 
+    ShortenWords(){
+        if(this.name.includes("Laboratorium"))
+            return this.name.replace("Laboratorium", "Lab.")
+        else if (this.name.includes("Sala wykładowa"))
+            return this.name.replace("Sala wykładowa", "Sala wyk.")
+        else if (this.name.includes("Pracownia fizyczna"))
+            return this.name.replace("Pracownia fizyczna", "Prac.")
+        else if (this.name.includes("Biblioteka wydziałowa"))
+            return this.name.replace("Biblioteka wydziałowa", "Bib. wydz.")
+        else if (this.name.includes("Biblioteka główna"))
+            return this.name.replace("Biblioteka główna", "Bib. głów.")
+        else
+            return this.name
+    }
     render() {
         return (
-            <td className={this.rotation} id={this.id} style={{backgroundColor: `${this.props.data.color}`}}>
-                <div id={this.idanchor} className="cell-anchor"></div>
-                <div id={this.idpositionholder} className="cell-position-holder"></div>
-                <div id={this.idname} className="cell-name2">{this.Hname[0]}</div>
-                <div id={this.idname} className="cell-name">{this.Hname[1]}</div>
-            </td>
+            <div className="cell" id={this.id}>
+                <div className={this.cardclass}>
+                    <div className="card-header" style={{backgroundColor:`${this.props.data.color}`}}></div>
+                    <div className="card-body">
+                    <div className="card-title">{this.ShortenWords()}</div>
+                    <div className="card-text">{this.props.data.price}$</div>
+                    </div>
+                </div>
+            </div>
         );
     }
 }

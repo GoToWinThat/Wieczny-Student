@@ -1,7 +1,15 @@
-.board-center
-{
-    width: 648px;
-    height: 648px;
-    border: 2px solid black;  
-    margin: 0;
+.row-top,
+.row-bottom {
+  min-height: 110px;
+  min-width: 55px;
+}
+
+.row-center {
+  min-height: 55px;
+}
+.container-fluid {
+  min-height: 800px !important;
+  min-width: 800px !important;
+  height: 80vh;
+  width: 80vw;
 }
