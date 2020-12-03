@@ -24,7 +24,7 @@ class RollDice extends Component
     render() {
         return (
             <div>
-                <button className="throwDicesButton" onClick={this.throwDices} >Roll Dice</button>
+                <button className="throwDicesButton" onClick={this.throwDices} >Rzuć Kośćmi</button>
                 <img className="diceImg" src={`/Assets/Dice/dice${this.state.roll[0]}.png`}/>
                 <img className="diceImg" src={`/Assets/Dice/dice${this.state.roll[1]}.png`}/>
             </div>

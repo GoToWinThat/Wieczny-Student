@@ -9,7 +9,7 @@ class Buy extends Component
         this.buyButton = this.buyButton.bind(this)
         this.cancelButton = this.cancelButton.bind(this)
     }
-
+    //Actions to change to corrent view
     buyButton()
     {
         this.setState({view: 'bought'})
@@ -18,6 +18,7 @@ class Buy extends Component
     {
         this.setState({view: 'cancel'})
     }
+    //Display corrent panel in render method based on state
     navigator()
     {
         let opt = this.state.view
@@ -25,27 +26,29 @@ class Buy extends Component
         if(opt==='cancel')return this.cancelView()
         if(opt==='bought')return this.bought()
     }
-
+    //Element with question to user to but property
     choiceView()
     {
         return(
             <div>
-                <span>Do you want buy  </span>
+                <span>Czy chcesz kupić  </span>
                 <span style= {{ color: this.props.field.color,fontWeight: 'bold'}} >{this.props.field.name}</span>
-                <span> for </span>
-                <span style= {{ color: 'red',fontWeight: 'bold'}} >{this.props.field.price}$</span>
+                <span> za </span>
+                <span style= {{ color: 'red',fontWeight: 'bold'}} >{this.props.field.price} ECTS</span>
                 <span>?</span>
-                <button className="yesNoButton" onClick={this.buyButton} >Yes</button>
-                <button className="yesNoButton" onClick={this.cancelButton} >No</button>
+                <button className="yesNoButton" onClick={this.buyButton} >Tak</button>
+                <button className="yesNoButton" onClick={this.cancelButton} >Nie</button>
             </div>
         )
     }
+    //Empty cancel view
     cancelView(){ return <div></div>}
+    //Confirmation massage
     bought()
     {
         return(
             <div>
-                <span>You just bought a  </span>
+                <span>Właśnie kupiłeś  </span>
                 <span style= {{ color: this.props.field.color,fontWeight: 'bold'}} >{this.props.field.name}</span>
             </div>
         )

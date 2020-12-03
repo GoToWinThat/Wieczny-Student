@@ -20,20 +20,22 @@ class ActionOptions extends Component
         }}
         this.changeView = this.changeView.bind(this)
     }
-
+    //Display corrent panel in render method based on state
     navigator()
     {
         let opt = this.state.option
         if(opt === 'buy') 
-            return <Buy field={this.state.field} backToMenu={() => this.changeView('menu')}/>;
+            return <Buy field={this.state.field}/>;
         if(opt === 'trade') return <h3>Trade</h3>;
         if(opt === 'manage') 
-            return <Manage field={this.state.field} backToMenu={() => this.changeView('menu')}/>;
+            return <Manage field={this.state.field}/>;
     }
+    //Method to change state and then change a view in navigator
     changeView(view)
     {
         this.setState({option: view}) 
     }
+    //Button panel responsible for change view with a event and current active panel
     render() {
 
         return (

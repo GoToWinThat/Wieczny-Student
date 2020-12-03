@@ -3,6 +3,12 @@
 {
     margin-left: 30px ;
 }
+span.redBold
+{
+    color: 'red';
+    font-weight: 'bold';
+}
+
 /* Roll Dice Component */
 .diceImg
 {
@@ -26,6 +32,7 @@
 {
     margin-left: 30px ;
 }
+
 /* Action Options */
 .actionsButton
 {
