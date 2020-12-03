@@ -3,6 +3,7 @@ import "../../Css/ActionPanel.css";
 import Buy from './Buy'
 import Manage from './Manage'
 import ButttonPanel from './ButtonPanel'
+import Trade from './Trade'
 
 class ActionOptions extends Component 
 {
@@ -26,7 +27,8 @@ class ActionOptions extends Component
         let opt = this.state.option
         if(opt === 'buy') 
             return <Buy field={this.state.field}/>;
-        if(opt === 'trade') return <h3>Trade</h3>;
+        if(opt === 'trade') 
+            return <Trade/>;
         if(opt === 'manage') 
             return <Manage field={this.state.field}/>;
     }

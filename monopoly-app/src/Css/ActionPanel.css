@@ -53,3 +53,28 @@ span.redBold
     padding: 5px;
 }
 
+/* Trade */
+ .tradeTable
+{
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;
+} 
+.propertyBox
+{
+    height: 1em;
+    width: 1em;
+    background: red;
+    margin-left: 10px ;
+    margin-right: 10px ;
+}
+.propertyRow
+{
+    width: fit-content;
+    display: flex;
+    justify-content: space-around;
+}  
+.tradeSection
+{
+    padding: 10px;
+}
