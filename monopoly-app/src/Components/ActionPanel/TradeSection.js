@@ -5,36 +5,9 @@ class TradeSection extends Component
 {
     constructor(props){
         super(props)
-        this.state = {
-            activePlayer: props.activePlayer,
-            playerInfo: {
-                name: 'Tomek',
-                money: 150,
-                color: 'blue',
-                properties: [
-                {
-                    fieldID: 12,
-                    type: "property",
-                    name: "Laboratorium nr 409 (MS)",
-                    color: "lightgreen",
-                    price: 100,
-                    rents: [10, 20, 30, 40, 50, 60],
-                    oneHousePrice: 10
-                },
-                {
-                    fieldID: 6,
-                    type: "property",
-                    name: "Laboratorium nr 401 (MS)",
-                    color: "lightblue",
-                    price: 100,
-                    rents: [10, 20, 30, 40, 50, 60],
-                    oneHousePrice: 10
-                },
-            ]
-            }
-        }
+        this.state = this.props.playerData;
     }
-
+    //Create List of properties based on json file and put it into a form with color tag
     createListOfFields()
     {
         var array = [];
@@ -54,6 +27,7 @@ class TradeSection extends Component
 
     render()
     {
+        //Display name, ects, list of fileds, ECTS to exchnage form
         return(
             <div class="tradeSection">
                 <span style={{fontSize: 24,color: this.state.playerInfo.color}} >{this.state.playerInfo.name}</span><tr/>

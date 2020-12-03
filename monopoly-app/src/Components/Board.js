@@ -5,6 +5,7 @@ import '../Css/Board.css'
 import RollDice from './ActionPanel/RollDice'
 import PlayerBar from './ActionPanel/PlayerBar'
 import ActionOptions from './ActionPanel/ActionOptions'
+import Auction from './ActionPanel/Auction'
 
 class Board extends Component
 {
@@ -46,7 +47,7 @@ class Board extends Component
                 </div>
                 <div className="row row-center">
                     <div className="col card-deck"><Field rotate="card-left" data={data[15]}/></div>
-                    <div className="col-8"></div>
+                    <div className="col-8"><Auction/></div>
                     <div className="col card-deck"><Field rotate="card-right" data={data[35]}/></div>
                 </div>
                 <div className="row row-center">

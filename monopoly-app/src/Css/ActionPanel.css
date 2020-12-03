@@ -58,6 +58,7 @@ span.redBold
 {
     margin-left: auto;
     margin-right: auto;
+    width: fit-content;
     border: 2px solid black;
 } 
 .propertyBox
@@ -78,3 +79,11 @@ span.redBold
 {
     padding: 10px;
 }
+
+/* Auction */
+/* .auction
+{
+    width: fit-content;
+    display: flex;
+    justify-content: space-around;
+} */
