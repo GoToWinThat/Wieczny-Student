@@ -1,16 +1,19 @@
+using FluentValidation.AspNetCore;
+using Infrastructure;
+using Infrastructure.Persistance.DatabaseContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
+using Monopoly.Core;
+using Monopoly.WebApi.Filters;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Monopoly.WebApi
 {
+    //Dodane z innego projektu
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -23,7 +26,29 @@ namespace Monopoly.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            // services.AddControllersWithViews();
+            services.AddApplication();
+            services.AddInfrastructure(Configuration);
+
+            services.AddDatabaseDeveloperPageExceptionFilter();
+
+            services.AddHttpContextAccessor();//
+            services.AddDatabaseDeveloperPageExceptionFilter();//
+
+            services.AddHealthChecks()//
+                .AddDbContextCheck<ApplicationDbContext>();//
+
+            services.AddControllersWithViews(options =>
+                options.Filters.Add<ApiExceptionFilterAttribute>())
+                    .AddFluentValidation();//
+
+            services.AddRazorPages();
+
+            // Customise default API behaviour
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -32,13 +57,15 @@ namespace Monopoly.WebApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseMigrationsEndPoint();
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseHealthChecks("/health");//
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -50,7 +77,8 @@ namespace Monopoly.WebApi
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=MonopolyHome}/{action=PostFields}");
+                endpoints.MapRazorPages();///
             });
         }
     }
