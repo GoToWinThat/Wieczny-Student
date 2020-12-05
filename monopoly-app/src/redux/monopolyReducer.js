@@ -1,11 +1,6 @@
-// TESTS WITH WEBAPI ARE REQUIRED HERE! UPDATES MIGHT NOT WORK BECAUSE OF ACTION.PAYLOAD'S ATTRIBUTES
+// UPDATE/CREATE/DELETE FUNCTIONS NEED TO BE FIXED
 
-const initialState = { 
-    eventFields: [], 
-    propertyFields: [], 
-    cornerFields: [], 
-    players: [] 
-}
+const initialState = { monopolyFields: [], players: [] }
 
 export const ActionTypes = { 
     SET_FIELDS: 'SET_FIELDS', 
@@ -34,13 +29,11 @@ export default function MonopolyReducer(state = initialState, action) {
 
         // get all the fields (property, event and corner ones) and set them in "fields" list
         case ActionTypes.SET_FIELDS:
-            return { ...state, eventFields: [...action.payload.eventFields],
-                               propertyFields: [...action.payload.propertyFields],
-                               cornerFields: [...action.payload.cornerFields] };
+            return { ...state, monopolyFields: [...action.payload.monopolyFields] };
 
         // get all the players and set them in "players" list
         case ActionTypes.SET_PLAYERS:
-            return { ...state, players: [...action.payload] };
+            return { ...state, players: [...action.payload.players] };
 
         // add player at the end of the list
         case ActionTypes.CREATE_PLAYER:
