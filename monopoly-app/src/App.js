@@ -1,12 +1,13 @@
-import React from 'react';
 import './App.css';
-import { MonopolyView } from './components/monopolyView'
+import Field from './Components/Field'
+import {data} from './Data'
+import Board from './Components/Board'
 
 function App() {
   return (
-    <div className="App">
-      <MonopolyView/>
-    </div>
+      <div className="App">
+        <Board/>
+      </div>
   );
 }
 
