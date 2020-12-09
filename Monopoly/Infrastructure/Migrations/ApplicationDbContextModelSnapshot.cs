@@ -19,6 +19,26 @@ namespace Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
+            modelBuilder.Entity("Domain.Entities.Game.PropertyFieldInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("EstatesBought")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PlayerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlayerId");
+
+                    b.ToTable("PropertyFieldInfos");
+                });
+
             modelBuilder.Entity("Domain.Entities.MonopolyField", b =>
                 {
                     b.Property<int>("Id")
@@ -26,24 +46,9 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Discriminator")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MonopolyFieldListId")
-                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -55,34 +60,27 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MonopolyFieldListId");
-
                     b.ToTable("MonopolyFields");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("MonopolyField");
                 });
 
-            modelBuilder.Entity("Domain.Entities.MonopolyFieldList", b =>
+            modelBuilder.Entity("Domain.Entities.Player", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("Cash")
+                        .HasColumnType("int");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LastModifiedBy")
+                    b.Property<string>("Nick")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("MonopolyFieldLists");
+                    b.ToTable("Players");
                 });
 
             modelBuilder.Entity("Domain.Entities.CornerField", b =>
@@ -115,25 +113,50 @@ namespace Infrastructure.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
+                    b.Property<int>("PropertyFieldInfoRef")
+                        .HasColumnType("int");
+
                     b.Property<bool>("Purschased")
                         .HasColumnType("bit");
 
                     b.Property<string>("RentCosts")
                         .HasColumnType("nvarchar(max)");
 
+                    b.HasIndex("PropertyFieldInfoRef")
+                        .IsUnique()
+                        .HasFilter("[PropertyFieldInfoRef] IS NOT NULL");
+
                     b.HasDiscriminator().HasValue("PropertyField");
                 });
 
-            modelBuilder.Entity("Domain.Entities.MonopolyField", b =>
+            modelBuilder.Entity("Domain.Entities.Game.PropertyFieldInfo", b =>
                 {
-                    b.HasOne("Domain.Entities.MonopolyFieldList", null)
-                        .WithMany("Fields")
-                        .HasForeignKey("MonopolyFieldListId");
+                    b.HasOne("Domain.Entities.Player", "Player")
+                        .WithMany("PropertyFieldInfos")
+                        .HasForeignKey("PlayerId");
+
+                    b.Navigation("Player");
                 });
 
-            modelBuilder.Entity("Domain.Entities.MonopolyFieldList", b =>
+            modelBuilder.Entity("Domain.Entities.PropertyField", b =>
                 {
-                    b.Navigation("Fields");
+                    b.HasOne("Domain.Entities.Game.PropertyFieldInfo", "PropertyFieldInfo")
+                        .WithOne("PropertyField")
+                        .HasForeignKey("Domain.Entities.PropertyField", "PropertyFieldInfoRef")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PropertyFieldInfo");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Game.PropertyFieldInfo", b =>
+                {
+                    b.Navigation("PropertyField");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Player", b =>
+                {
+                    b.Navigation("PropertyFieldInfos");
                 });
 #pragma warning restore 612, 618
         }

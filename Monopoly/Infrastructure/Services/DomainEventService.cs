@@ -1,9 +1,6 @@
 ﻿using Domain.Base;
 using Monopoly.Core.Base.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using MediatR;
@@ -26,7 +23,6 @@ namespace Infrastructure.Services
             _logger.LogInformation("Publishing domain event. Event - {event}", domainEvent.GetType().Name);
             await _mediator.Publish(GetNotificationCorrespondingToDomainEvent(domainEvent));
         }
-
         private INotification GetNotificationCorrespondingToDomainEvent(DomainEvent domainEvent)
         {
             return (INotification)Activator.CreateInstance(

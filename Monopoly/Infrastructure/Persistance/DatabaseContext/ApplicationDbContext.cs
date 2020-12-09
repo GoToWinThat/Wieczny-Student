@@ -1,11 +1,11 @@
-﻿using Domain.Base;
-using Domain.Entities;
+﻿using Domain.Entities;
+using Domain.Entities.Game;
 using Microsoft.EntityFrameworkCore;
 using Monopoly.Core.Base.Interfaces;
-using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+
 namespace Infrastructure.Persistance.DatabaseContext
 {
     public class ApplicationDbContext : DbContext, IApplicationDbContext
@@ -20,7 +20,8 @@ namespace Infrastructure.Persistance.DatabaseContext
         public DbSet<PropertyField> PropertyFields { get; set; }
         public DbSet<CornerField> CornerFields { get; set; }
         public DbSet<EventField> EventFields { get; set; }
-        public DbSet<MonopolyFieldList> MonopolyFieldLists { get; set; }
+        public DbSet<Player> Players { get; set; }
+        public DbSet<PropertyFieldInfo> PropertyFieldInfos { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -28,13 +29,11 @@ namespace Infrastructure.Persistance.DatabaseContext
 
             return result;
         }
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             base.OnModelCreating(builder);
         }
-    }
-   
+    }  
 }

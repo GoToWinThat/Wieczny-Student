@@ -6,8 +6,11 @@ namespace Monopoly.WebApi.Controllers
 {
     public class MonopolyHomeController : ApiControllerBase
     {
-        [HttpPost] //Change to get to simple check json in browser
-        public async Task<ActionResult<FieldsVm>> PostFields()
+        [HttpGet]
+        [Route("")]
+        [Route("Monopoly")]
+        [Route("Monopoly/Fields")]
+        public async Task<ActionResult<FieldsVm>> GetFields()
         {
             return await Mediator.Send(new GetMonopolyFieldsQuery());
         }

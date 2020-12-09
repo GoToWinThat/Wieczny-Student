@@ -12,11 +12,14 @@
     <PackageReference Include="NUnit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="Respawn" Version="3.3.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\Monopoly.Core\Monopoly.Core.csproj" />
+    <ProjectReference Include="..\Monopoly.WebApi\Monopoly.WebApi.csproj" />
   </ItemGroup>
 
 </Project>

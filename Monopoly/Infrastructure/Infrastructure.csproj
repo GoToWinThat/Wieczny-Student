@@ -15,8 +15,4 @@
     <ProjectReference Include="..\Monopoly.Core\Monopoly.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>

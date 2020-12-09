@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace Monopoly.Core.Base.Exceptions
 {
     public class NotFoundException : Exception

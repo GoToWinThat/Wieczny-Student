@@ -1,11 +1,8 @@
 ﻿using Domain.Base;
+using Domain.Entities.Game;
 using Domain.Enums;
 using Domain.Events;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
@@ -17,6 +14,8 @@ namespace Domain.Entities
         public int Mortage { get; set; }
         public int EstatePrice { get; set; }
         public List<int> RentCosts { get; set; }
+        public int PropertyFieldInfoRef { get; set; }
+        public PropertyFieldInfo PropertyFieldInfo { get; set; }
 
         private bool _purschased;
         public bool Purschased
