@@ -1,12 +1,11 @@
 import './App.css';
-import Field from './Components/Field'
-import {data} from './Data'
-import Board from './Components/Board'
+import {Board} from './components/Board';
+import {MonopolyView} from './components/monopolyView';
 
 function App() {
   return (
       <div className="App">
-        <Board/>
+        <MonopolyView/>
       </div>
   );
 }

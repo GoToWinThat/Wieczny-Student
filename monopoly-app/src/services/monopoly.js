@@ -1,38 +1,31 @@
 // TO DO: FIX CREATE/DELETE/UPDATE FUNCTIONS AFTER LOCALHOST WILL HAVE GOOD URLS
 
 import { ActionCreators } from "../redux/monopolyReducer";
-import * as axios from 'axios';
+//import * as axios from 'axios';
+import {data} from '../monopolyhome';
 
-const axiosInstanceFields  = axios.create({ baseURL: 'https://localhost:44358/fields'  })
-const axiosInstancePlayers = axios.create({ baseURL: 'https://localhost:44358/players' })
-
-// OPTION NUMBER 2:
-// const fieldsURL = 'https://localhost:44358/fields'
-// const playersURL = 'https://localhost:44358/players'
+//const axiosInstanceFields  = axios.create({ baseURL: 'https://localhost:44358/api/monopolyhome' })
+//const axiosInstancePlayers = axios.create({ baseURL: 'https://localhost:44358/players' })
 
 export const GetFields = async (dispatch) => {
     try {
-        const {data} = await axiosInstanceFields.get();
+        //const {data} = await axiosInstanceFields.get();
         dispatch(ActionCreators.setFields(data));
-        //axios.get(fieldsURL).then(res => { const {data} = res;
-        //    dispatch(ActionCreators.setFields(data))})
     } catch {
         console.log("Fields couldn't be set!");
     }
 }
 
+/*
 export const GetPlayers = async (dispatch) => {
     try {
         const {data} = await axiosInstancePlayers.get();
         dispatch(ActionCreators.setPlayers(data));
-        //axios.get(playersURL).then(res => { const {data} = res;
-        //    dispatch(ActionCreators.setPlayers(data))})
     } catch {
         console.log("Players couldn't be set!");
     }
 }
 
-/*
 export const CreatePlayer = async (dispatch, player) => {
     try {
         const {data} = await axiosInstance.post('', player);

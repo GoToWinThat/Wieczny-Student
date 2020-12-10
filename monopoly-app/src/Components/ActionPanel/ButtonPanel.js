@@ -1,4 +1,4 @@
-import "../../Css/ActionPanel.css";
+import "../../styles/ActionPanel.css";
 
 function ButtonPanel(props)
 {

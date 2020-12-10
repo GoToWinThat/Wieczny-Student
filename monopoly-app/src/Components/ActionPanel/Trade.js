@@ -1,4 +1,4 @@
-import "../../Css/ActionPanel.css";
+import "../../styles/ActionPanel.css";
 import React, { Component } from 'react';
 import TradeSection from "./TradeSection";
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "../../Css/ActionPanel.css";
+import "../../styles/ActionPanel.css";
 import PlayerBox from './PlayerBox';
 
 class PlayerBar extends Component 

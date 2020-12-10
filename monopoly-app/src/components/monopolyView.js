@@ -9,6 +9,10 @@ export const MonopolyView = () => {
     //const players = useSelector(state => state.monopolyReducer.players);
     const dispatch = useDispatch();
 
+    // This one shows that MonopolyView is also called twice;
+    // at first "fields" is empty, but then it gains 40 elements:
+    console.log(fields); 
+
     try {
         useEffect(() => GetFields(dispatch), [dispatch]);
         //GetPlayers(dispatch); 

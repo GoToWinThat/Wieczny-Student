@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "../../Css/ActionPanel.css";
+import "../../styles/ActionPanel.css";
 import Buy from './Buy'
 import Manage from './Manage'
 import ButttonPanel from './ButtonPanel'

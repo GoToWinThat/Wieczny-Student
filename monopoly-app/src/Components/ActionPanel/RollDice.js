@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "../../Css/ActionPanel.css";
+import "../../styles/ActionPanel.css";
 
 class RollDice extends Component 
 {
