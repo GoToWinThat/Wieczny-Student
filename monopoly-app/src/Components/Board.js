@@ -13,18 +13,14 @@ export const Board = () => {
     const fields = useSelector(state => state.monopolyReducer.monopolyFields);
     const dispatch = useDispatch();
 
-    
-    // recently it looks like Board is called twice if everything is okay,
-    // but refreshing page causes dispatch bug in which GetFields is not
-    // called at all so fields is an empty list :(
-    console.log(fields); 
-
-
     try {
         useEffect(() => GetFields(dispatch), [dispatch]);
     } catch { 
-        console.log("Couldn't call function useEffect()!") 
+        console.log("Couldn't call function useEffect()!"); 
     }
+
+    // Eliminate problem with empty "fields" list (it can be too early to render board):
+    if (fields === null || fields.length === 0) return null;
 
         return (
             <div className="container-fluid content-row">
