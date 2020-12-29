@@ -11,10 +11,10 @@ class PlayerBar extends Component
         super(props)
         //Sample JSON format
         this.state = {activePlayer: 0, players: [
-            {name: 'Tomek',color: 'blue',cash: 1500},
-            {name: 'Franek',color: 'green',cash: 1400},
-            {name: 'Alicja',color: 'red',cash: 680},
-            {name: 'Maria',color: 'orange',cash: 700}
+            {name: 'Tomek',color: 'blue',cash: 20},
+            {name: 'Franek',color: 'green',cash: 31},
+            {name: 'Alicja',color: 'red',cash: 6},
+            {name: 'Maria',color: 'orange',cash: 15}
             
         ]}
         this.endTurn = this.endTurn.bind(this) 
@@ -60,7 +60,10 @@ class PlayerBar extends Component
         return (
             <div className="playerBar">
                 {this.createBoxes()}
-                <Button className="endTurnButton" onClick={this.endTurn} >
+                <Button 
+                    className="endTurnButton" 
+                    onClick={this.endTurn}
+                    >
                     <span>Zakończ Ture</span>
                     <Clock/>
                 </Button>
