@@ -4,10 +4,12 @@ import PlayerBar from './ActionPanel/PlayerBar'
 import ActionOptions from './ActionPanel/ActionOptions'
 import Auction from './ActionPanel/Auction'
 import '../styles/Board.css'
+import {BoardCenter }from './BoardCenter';
 
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { GetFields } from '../services/monopoly';
+import { Fragment } from 'react'
 
 export const Board = () => {
     const fields = useSelector(state => state.monopolyReducer.monopolyFields);
@@ -15,14 +17,16 @@ export const Board = () => {
 
     try {
         useEffect(() => GetFields(dispatch), [dispatch]);
-    } catch { 
-        console.log("Couldn't call function useEffect()!"); 
+    } catch {
+        console.log("Couldn't call function useEffect()!");
     }
 
     // Eliminate problem with empty "fields" list (it can be too early to render board):
     if (fields === null || fields.length === 0) return null;
 
         return (
+            <Fragment>
+
             <div className="container-fluid content-row">
                 <div className="row row-top" >
                     <div className="col-2 card-deck"><Field data={fields[20]}/></div>
@@ -39,27 +43,27 @@ export const Board = () => {
                 </div>
                 <div className="row row-center">
                     <div className="col card-deck"><Field rotate="card-left" data={fields[19]}/></div>
-                    <div className="col-8"></div>
+                    <div className="col-8"><BoardCenter/></div>
                     <div className="col card-deck"><Field rotate="card-right" data={fields[31]}/></div>
                 </div>
                 <div className="row row-center">
                     <div className="col card-deck"><Field rotate="card-left" data={fields[18]}/></div>
-                    <div className="col-8"><PlayerBar/></div>
+                    <div className="col-8"></div>
                     <div className="col card-deck"><Field rotate="card-right" data={fields[32]}/></div>
                 </div>
                 <div className="row row-center">
                     <div className="col card-deck"><Field rotate="card-left" data={fields[17]}/></div>
-                    <div className="col-8"><RollDice/></div>
+                    <div className="col-8"></div>
                     <div className="col card-deck"><Field rotate="card-right" data={fields[33]}/></div>
                 </div>
                 <div className="row row-center">
                     <div className="col card-deck"><Field rotate="card-left" data={fields[16]}/></div>
-                    <div className="col-8"><ActionOptions/></div>
+                    <div className="col-8"></div>
                     <div className="col card-deck"><Field rotate="card-right" data={fields[34]}/></div>
                 </div>
                 <div className="row row-center">
                     <div className="col card-deck"><Field rotate="card-left" data={fields[15]}/></div>
-                    <div className="col-8"><Auction/></div>
+                    <div className="col-8"></div>
                     <div className="col card-deck"><Field rotate="card-right" data={fields[35]}/></div>
                 </div>
                 <div className="row row-center">
@@ -96,6 +100,6 @@ export const Board = () => {
                     <div className="col-2 card-deck"><Field data={fields[0]}/></div>
                 </div>
             </div>
-
+            </Fragment>
         );
 }
