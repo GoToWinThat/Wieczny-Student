@@ -1,3 +1,4 @@
+/* ?? wtf is wrong or static or by vh and vw*/
 .row-top,
 .row-bottom {
   min-height: 110px;
@@ -12,4 +13,9 @@
   min-width: 800px !important;
   height: 80vh;
   width: 80vw;
+}
+
+.board-center {
+  z-index: -1;
+  position: absolute;
 }
