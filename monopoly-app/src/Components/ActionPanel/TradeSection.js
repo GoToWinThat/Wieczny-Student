@@ -1,5 +1,6 @@
 import "../../styles/ActionPanel.css";
 import React, { Component } from 'react';
+import ListOfProp from "./ListOfProp";
 
 class TradeSection extends Component
 {
@@ -33,6 +34,7 @@ class TradeSection extends Component
                 <span style={{fontSize: 24,color: this.state.playerInfo.color}} >{this.state.playerInfo.name}</span><tr/>
                 <span style={{fontSize: 15}}>{this.state.playerInfo.money} ECTS</span>
                 {this.createListOfFields()}
+               
                 <input type='text' style={{maxWidth: 50}}/>
                 <span> ECTS</span>
             </div>
