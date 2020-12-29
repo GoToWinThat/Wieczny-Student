@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Pawns from './Pawns.js'
 
 class CornerField extends Component {
     constructor(props){
@@ -11,6 +12,7 @@ class CornerField extends Component {
             <div className="cell" id={this.id}>
                 <div className={this.cardclass} style={{backgroundColor: `${this.props.data.color}`}}>
                     <div className="card-body">
+                        <Pawns players={this.props.players} id={this.props.data.fieldID}/>
                     <h1 className="card-title" style={{fontSize: `1em`, textAlign: `center`, paddingTop: `2em`}}>{this.props.data.name}</h1>
                     </div>
                 </div>

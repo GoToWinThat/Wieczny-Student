@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Popover, OverlayTrigger} from 'react-bootstrap'
+import Pawns from './Pawns.js'
 
 class PropertyField extends Component {
     constructor(props){
@@ -55,10 +56,12 @@ class PropertyField extends Component {
     }
     render() {
         return (
-            <OverlayTrigger trigger="hover" placement={this.ChangePopoveRotarion()} overlay={this.popover}>
+            <OverlayTrigger trigger={["hover","focus"]} placement={this.ChangePopoveRotarion()} overlay={this.popover}>
                 <div className="cell" id={this.id}>
                     <div className={this.cardclass}>
-                        <div className="card-header" style={{backgroundColor:`${this.props.data.color}`}}></div>
+                        <div className="card-header" style={{backgroundColor:`${this.props.data.color}`}}>
+                            <Pawns players={this.props.players} id={this.props.data.fieldID}/>
+                        </div>
                         <div className="card-body">
                         <div className="card-title">{this.ShortenWords()}</div>
                         <div className="card-text">{this.props.data.price} ECTS</div>
