@@ -1,5 +1,6 @@
 import "../../styles/ActionPanel.css";
 import React, { Component } from 'react';
+import {Button} from 'react-bootstrap';
 
 class Manage extends Component
 {
@@ -38,10 +39,10 @@ class Manage extends Component
                 <span style= {{ color: this.props.field.color,fontWeight: 'bold'}} >{this.props.field.name}</span>
                 <span > : </span>
                 {this.createHouses()}
-                <button className="yesNoButton" onClick={this.addHouse}>
+                <Button className="yesNoButton" onClick={this.addHouse}>
                     <span>Kup dom za  </span>
-                    <span style= {{ color: 'red',fontWeight: 'bold'}} >{this.props.field.oneHousePrice} ECTS</span>
-                </button>
+                    <span style= {{ fontWeight: 'bold'}} >{this.props.field.oneHousePrice} ECTS</span>
+                </Button>
             </div>
         )
     }

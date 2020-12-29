@@ -32,6 +32,14 @@ span.redBold
 {
     margin-left: 30px ;
 }
+.btn-default{
+ 
+background-color: #68889E;
+ 
+color:#FFF;
+ 
+border-color: #2F3E48;
+ }
 
 /* Action Options */
 .actionsButton

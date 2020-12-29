@@ -1,4 +1,5 @@
 import "../../styles/ActionPanel.css";
+import {Button,Popover,OverlayTrigger} from 'react-bootstrap';
 
 function PlayerBox(props)
 {
@@ -18,9 +19,28 @@ function PlayerBox(props)
         background = 'transparent'
     }
     return(
-        <div className="playerBox" style={{ border: border, background: background}}>
-            <span style= {{ color: color}} > {props.player.name}:  {props.player.cash} ECTS</span>
-        </div>
+        <OverlayTrigger
+            trigger='hover'
+            placement='bottom'
+            overlay={
+                <Popover id={`popover-positioned-bottom`}>
+                    <Popover.Content>
+                        <strong>Karty</strong> Check this info.
+                        <hr/>
+                        <strong>Nieruchomości</strong> Check this info.
+                    </Popover.Content>
+                </Popover>
+            }
+            >
+            <Button 
+                className="playerBox" 
+                variant="secondary" 
+                style={{ border: border, background: background}}
+                >
+                    <span style= {{ color: color}} > {props.player.name}:  {props.player.cash} ECTS</span>
+            </Button>
+        </OverlayTrigger>
+        
     )
 
 }

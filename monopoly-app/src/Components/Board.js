@@ -37,12 +37,12 @@ export const Board = () => {
                 </div>
                 <div className="row row-center">
                     <div className="col card-deck"><Field rotate="card-left" data={fields[19]}/></div>
-                    <div className="col-8"><BoardCenter/></div>
+                    <div className="col-8"></div>
                     <div className="col card-deck"><Field rotate="card-right" data={fields[31]}/></div>
                 </div>
                 <div className="row row-center">
                     <div className="col card-deck"><Field rotate="card-left" data={fields[18]}/></div>
-                    <div className="col-8"></div>
+                    <div className="col-8"><BoardCenter/></div>
                     <div className="col card-deck"><Field rotate="card-right" data={fields[32]}/></div>
                 </div>
                 <div className="row row-center">
