@@ -1,5 +1,6 @@
 import "../../styles/ActionPanel.css";
 import React, { Component } from 'react';
+import {Button} from 'react-bootstrap';
 
 class Buy extends Component
 {
@@ -36,8 +37,8 @@ class Buy extends Component
                 <span> za </span>
                 <span style= {{ color: 'red',fontWeight: 'bold'}} >{this.props.field.price} ECTS</span>
                 <span>?</span>
-                <button className="yesNoButton" onClick={this.buyButton} >Tak</button>
-                <button className="yesNoButton" onClick={this.cancelButton} >Nie</button>
+                <Button className="yesNoButton" onClick={this.buyButton} >Tak</Button>
+                <Button className="yesNoButton" onClick={this.cancelButton} >Nie</Button>
             </div>
         )
     }

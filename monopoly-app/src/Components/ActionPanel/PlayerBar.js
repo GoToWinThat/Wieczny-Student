@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import "../../styles/ActionPanel.css";
 import Clock from './Clock';
 import PlayerBox from './PlayerBox';
+import {Button} from 'react-bootstrap';
 
 class PlayerBar extends Component 
 {
@@ -59,10 +60,10 @@ class PlayerBar extends Component
         return (
             <div className="playerBar">
                 {this.createBoxes()}
-                <button className="endTurnButton" onClick={this.endTurn} >
+                <Button className="endTurnButton" onClick={this.endTurn} >
                     <span>Zakończ Ture</span>
                     <Clock/>
-                </button>
+                </Button>
             </div>
         );
     }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import "../../styles/ActionPanel.css";
+import {Button} from 'react-bootstrap';
 
 class RollDice extends Component 
 {
@@ -24,7 +25,7 @@ class RollDice extends Component
     render() {
         return (
             <div>
-                <button className="throwDicesButton" onClick={this.throwDices} >Rzuć Kośćmi</button>
+                <Button className="throwDicesButton" onClick={this.throwDices} >Rzuć Kośćmi</Button>
                 <img className="diceImg" src={`/Assets/Dice/dice${this.state.roll[0]}.png`}/>
                 <img className="diceImg" src={`/Assets/Dice/dice${this.state.roll[1]}.png`}/>
             </div>
