@@ -1,15 +1,10 @@
 import Field from './Field'
-import RollDice from './ActionPanel/RollDice'
-import PlayerBar from './ActionPanel/PlayerBar'
-import ActionOptions from './ActionPanel/ActionOptions'
-import Auction from './ActionPanel/Auction'
 import '../styles/Board.css'
 import {BoardCenter }from './BoardCenter';
 
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { GetFields } from '../services/monopoly';
-import { Fragment } from 'react'
 
 export const Board = () => {
     const fields = useSelector(state => state.monopolyReducer.monopolyFields);
@@ -25,7 +20,6 @@ export const Board = () => {
     if (fields === null || fields.length === 0) return null;
 
         return (
-            <Fragment>
 
             <div className="container-fluid content-row">
                 <div className="row row-top" >
@@ -100,6 +94,6 @@ export const Board = () => {
                     <div className="col-2 card-deck"><Field data={fields[0]}/></div>
                 </div>
             </div>
-            </Fragment>
+
         );
 }

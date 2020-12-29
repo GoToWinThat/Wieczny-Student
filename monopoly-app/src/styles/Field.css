@@ -11,14 +11,26 @@
 .card-top {
   flex-direction: column-reverse !important;
 }
+.card-top .card-header {
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
 .card-botom {
   flex-direction: column !important;
+}
+.card-botom .card-header {
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
 .card-left {
   flex-direction: row-reverse !important;
 }
+.card-left .card-header {
+  border-left: 1px solid rgba(0, 0, 0, 0.125);
+}
 .card-right {
   flex-direction: row !important;
+}
+.card-right .card-header {
+  border-right: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 .card {
@@ -32,6 +44,7 @@
   font-size: 0.7em;
   margin-bottom: 0;
   padding-top: 0.2em;
+  justify-content: space-around;
 }
 .card-header {
   border-radius: 0 !important;
@@ -49,4 +62,11 @@
 }
 .col {
   padding: 0;
+}
+
+.card-popover {
+  height: 200px;
+  width: 150px;
+  font-size: xx-large;
+  text-align: center;
 }
