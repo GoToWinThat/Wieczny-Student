@@ -1,6 +1,5 @@
 import "../../styles/ActionPanel.css";
 import React, { Component } from 'react';
-import ListOfProp from "./ListOfProp";
 
 class TradeSection extends Component
 {

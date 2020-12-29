@@ -1,6 +1,5 @@
 import "../../styles/ActionPanel.css";
 import {Button,Popover,OverlayTrigger} from 'react-bootstrap';
-import ListOfProp from "./ListOfProp";
 
 function PlayerBox(props)
 {
