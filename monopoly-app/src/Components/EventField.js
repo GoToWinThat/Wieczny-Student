@@ -46,7 +46,7 @@ class EventField extends Component {
                 <div className="cell" id={this.id}>
                     <div className={this.cardclass}>
                         <div className="card-header" style={{backgroundColor:`${this.props.data.color}`}}>
-                        <Pawns players={this.props.players} id={this.props.data.fieldID}/>
+                            <Pawns players={this.props.players} id={this.props.data.fieldID}/>
                         </div>
                         <div className="card-body">
                             <div className="card-title" style={{paddingTop: `1.5em`}}>{this.props.data.name}</div>

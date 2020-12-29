@@ -3,7 +3,7 @@ import {Button,Popover,OverlayTrigger} from 'react-bootstrap';
 
 function PlayerBox(props)
 {
-    //Function switch color and background of a PlayerBox based on active state 
+    //Function switch color and background of a PlayerBox based on active state
     //Each player have a unique color and name
     let color,background
     let border = `2px solid ${props.player.color}`
@@ -26,11 +26,11 @@ function PlayerBox(props)
             rents: [10, 20, 30, 40, 50, 60],
             oneHousePrice: 10
         },
-        
+
     ]
     const listOfPorp = () =>{
         var array = [];
-        for (var i = 0; i < porpList.length; i++) 
+        for (var i = 0; i < porpList.length; i++)
         {
             array.push(
                 <div className="propertyRow">
@@ -54,7 +54,7 @@ function PlayerBox(props)
     }
     return(
         <OverlayTrigger
-            trigger='hover'
+            trigger={["hover","focus"]}
             placement='bottom'
             overlay={
                 <Popover id={`popover-positioned-bottom`}>
@@ -66,15 +66,15 @@ function PlayerBox(props)
                 </Popover>
             }
             >
-            <Button 
-                className="playerBox" 
-                variant="secondary" 
+            <Button
+                className="playerBox"
+                variant="secondary"
                 style={{ border: border, background: background}}
                 >
                     <span style= {{ color: color}} > {props.player.name}:  {props.player.cash} ECTS</span>
             </Button>
         </OverlayTrigger>
-        
+
     )
 
 }
