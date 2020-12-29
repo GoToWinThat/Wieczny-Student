@@ -19,7 +19,7 @@ function PlayerBox(props)
     }
     return(
         <div className="playerBox" style={{ border: border, background: background}}>
-            <span style= {{ color: color}} > {props.player.name} </span>
+            <span style= {{ color: color}} > {props.player.name}:  {props.player.cash} ECTS</span>
         </div>
     )
 

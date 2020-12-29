@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import "../../styles/ActionPanel.css";
+import Clock from './Clock';
 import PlayerBox from './PlayerBox';
 
 class PlayerBar extends Component 
@@ -9,10 +10,10 @@ class PlayerBar extends Component
         super(props)
         //Sample JSON format
         this.state = {activePlayer: 0, players: [
-            {name: 'Tomek',color: 'blue'},
-            {name: 'Franek',color: 'green'},
-            {name: 'Alicja',color: 'red'},
-            {name: 'Maria',color: 'orange'}
+            {name: 'Tomek',color: 'blue',cash: 1500},
+            {name: 'Franek',color: 'green',cash: 1400},
+            {name: 'Alicja',color: 'red',cash: 680},
+            {name: 'Maria',color: 'orange',cash: 700}
             
         ]}
         this.endTurn = this.endTurn.bind(this) 
@@ -58,7 +59,10 @@ class PlayerBar extends Component
         return (
             <div className="playerBar">
                 {this.createBoxes()}
-                <button className="endTurnButton" onClick={this.endTurn} >Zakończ Ture</button>
+                <button className="endTurnButton" onClick={this.endTurn} >
+                    <span>Zakończ Ture</span>
+                    <Clock/>
+                </button>
             </div>
         );
     }
