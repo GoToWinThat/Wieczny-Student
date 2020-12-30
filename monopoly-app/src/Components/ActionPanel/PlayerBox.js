@@ -28,6 +28,8 @@ function PlayerBox(props)
         },
 
     ]
+    const cadrsList = ["Opuść Konsultacje!","Opuść Dziekanat!"]
+
     const listOfPorp = () =>{
         var array = [];
         for (var i = 0; i < porpList.length; i++)
@@ -40,6 +42,20 @@ function PlayerBox(props)
                 </div>);
         }
         return (array)
+    }
+
+    const ListOfCards = () => 
+    {
+        var array = [];
+        for (var i = 0; i < cadrsList.length; i++) 
+        {
+            array.push(
+                <div className="d-flex">
+                    <span>{cadrsList[i]} </span>
+                    <tr/>
+                </div>);
+        }
+        return array;
     }
 
     if(props.isActive)
@@ -59,9 +75,11 @@ function PlayerBox(props)
             overlay={
                 <Popover id={`popover-positioned-bottom`}>
                     <Popover.Content>
-                        <h5>Nieruchomości</h5>
-                        <hr/>
+                        <h6>Nieruchomości</h6>
                         {listOfPorp()}
+                        <hr/>
+                        <h6>Karty</h6>
+                        {ListOfCards()}
                     </Popover.Content>
                 </Popover>
             }
