@@ -4,7 +4,7 @@
 
 // PLAYERS have own name and signature, position (on which field they are staying at the moment),
 // amount of cash, list of bought properties (each property consists of fieldID and amount of
-// bought estates (0 is no estates, 1, 2, 3 are "houses", 4 is a "hotel")) and list of collected event 
+// bought estates (0 is no estates, 1, 2, 3 are "houses", 4 is a "hotel")) and list of collected event
 // cards (only their ids, such as id of "Oświecenie na konsultacjach"). There are also attributes
 // for knowing if player can make a move in this turn.
 
@@ -456,10 +456,10 @@ export const data = {
         }
     ],
     "players": [
-        { 
+        {
             "name": "Artur",
             "cash": 1000,
-            "signature": "WashingMachine",
+            "signature": "9772",
             "color": "blue",
             "properties": [
                 { "fieldID": 2, "estateLevel": 3 },
@@ -468,43 +468,43 @@ export const data = {
             "eventCards": [
                 { "cardID": 1 }
             ],
-            "position": 1,
+            "position": 8,
             "isInJail": false,
             "turnsToWait": 0
         },
-        { 
+        {
             "name": "Łukasz",
             "cash": 1000,
-            "signature": "Car",
+            "signature": "9762",
             "color": "red",
             "properties": [
                 { "fieldID": 4, "estateLevel": 0 },
                 { "fieldID": 6, "estateLevel": 1 }
             ],
             "eventCards": [],
-            "position": 1,
+            "position": 8,
             "isInJail": false,
             "turnsToWait": 0
         },
         {
             "name": "Kamil",
             "cash": 1000,
-            "signature": "Computer",
+            "signature": "9823",
             "color": "yellow",
             "properties": [],
             "eventCards": [],
-            "position": 1,
+            "position": 8,
             "isInJail": false,
             "turnsToWait": 0
         },
         {
             "name": "Dariusz",
             "cash": 1000,
-            "signature": "Computer",
+            "signature": "9784",
             "color": "green",
             "properties": [],
             "eventCards": [],
-            "position": 1,
+            "position": 8,
             "isInJail": false,
             "turnsToWait": 0
         }

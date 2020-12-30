@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Badge } from 'react-bootstrap';
+import '../styles/Pawns.css'
 
 class Pawns extends Component {
     constructor(props){
@@ -11,7 +12,7 @@ class Pawns extends Component {
         <div className="players-pawns">
             {this.props.players.map((player,i) => {
                 if(player.position === this.props.id)
-                    return <Badge pill variant="primary" key={i} style={{backgroundColor: `${player.color}`, position: "absolute", top: `${30}px`, left: `${(i+1) * 10}px`}}>&#8203;</Badge>
+                    return <span style={{color: `${player.color}`, fontSize: "1.8em"}}>{String.fromCharCode(player.signature)}</span>
                 else
                     return null
             })}
@@ -22,11 +23,13 @@ class Pawns extends Component {
         )
     }
 }
-// {this.props.players.players.map((player,i) => {
-//     if(player.id === this.props.id)
-//         return <Badge pill variant="primary" style={{backgroundColor: `${player.color}`, position: "absolute", top: `${this.state.top}px`, left: `${this.state.left}px`}}>&#8203;</Badge>
-//     else
-//         return null
-// })}
+//balwan    radioactive     Knight      pawn        pióro
+// &#9731;  &#9762;         &#9822;     &#9823;     &#10002;
 
+//whitespace
+// &#8203;
+
+{/* <Badge pill variant="primary" key={i} style={{backgroundColor: `${player.color}`, margin: "0.3em"}}>&#9731;</Badge> */}
+
+//, position: "absolute", top: `${30}px`, left: `${(i+1) * 10}px`
 export default Pawns;

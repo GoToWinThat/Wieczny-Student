@@ -1,0 +1,8 @@
+.players-pawns {
+  top: 2px;
+  right: 2px;
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
