@@ -15,8 +15,8 @@ class TradeSection extends Component
         for (var i = 0; i < porpList.length; i++) 
         {
             array.push(
-                <div className="propertyRow">
-                    <input type='checkbox'/>
+                <div className="d-flex">
+                    <input className="mt-1 mr-2" type='checkbox'/>
                     <div className="propertyBox" style={{background: porpList[i].color }}/>
                     <span>{porpList[i].name} </span>
                     <tr/>
@@ -25,17 +25,52 @@ class TradeSection extends Component
         return array;
     }
 
+    createListOfCards()
+    {
+        var array = [];
+        var cardList = this.state.playerInfo.cards;
+        for (var i = 0; i < cardList.length; i++) 
+        {
+            array.push(
+                <div className="d-flex">
+                    <input  className="mt-1 mr-2"  type='checkbox'/>
+                    <span>{cardList[i]} </span>
+                    <tr/>
+                </div>);
+        }
+        return array;
+    }
+
+    getPlayerName() {
+        if(this.props.dropdown){
+            return(<div className="d-flex">
+                        <img className="arrow mt-2 ml-3" src={`/Assets/General/arrowLeft.svg`}/>
+                        <p className="h3 col text-center" style={{color: this.state.playerInfo.color}} >{this.state.playerInfo.name}</p>
+                        <img className="arrow mt-2 mr-3" src={`/Assets/General/arrowRight.svg`}/>
+                    </div>
+            )
+        }else{
+            return(<p className="h3 col text-center" style={{color: this.state.playerInfo.color}} >{this.state.playerInfo.name}</p>)
+        }
+
+    }
+
     render()
     {
         //Display name, ects, list of fileds, ECTS to exchnage form
         return(
-            <div class="tradeSection">
-                <span style={{fontSize: 24,color: this.state.playerInfo.color}} >{this.state.playerInfo.name}</span><tr/>
-                <span style={{fontSize: 15}}>{this.state.playerInfo.money} ECTS</span>
+            <div >
+                {this.getPlayerName()}<tr/>
+                <p className="h6 col text-center mb-3" >{this.state.playerInfo.money} ECTS</p>
+                <hr/>
                 {this.createListOfFields()}
-               
-                <input type='text' style={{maxWidth: 50}}/>
-                <span> ECTS</span>
+                <hr/>
+                {this.createListOfCards()}
+                <div className="mt-3 mb-3 col text-center">
+                    <input  type='text' style={{maxWidth: 50}}/>
+                    <span> ECTS</span>
+                </div>
+                
             </div>
         )
     }

@@ -95,3 +95,7 @@ border-color: #2F3E48;
     display: flex;
     justify-content: space-around;
 } */
+.arrow{
+    width: 10%;
+    height: 10%;
+}

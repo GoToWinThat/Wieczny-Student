@@ -17,6 +17,7 @@ function Trade() {
                 name: 'Tomek',
                 money: 150,
                 color: 'blue',
+                cards: ["Opuść Konsultacje!","Opuść Dziekanat!"],
                 properties: [
                 {
                     fieldID: 12,
@@ -47,6 +48,7 @@ function Trade() {
                 name: 'Maria',
                 money: 120,
                 color: 'orange',
+                cards: ["Opuść Konsultacje!"],
                 properties: [
                 {
                     fieldID: 19,
@@ -86,16 +88,13 @@ function Trade() {
           </Modal.Header>
           <Modal.Body>
             <tr/>
-            <table className="tradeTable">
-                <th><TradeSection playerData={state.currentPlayer}/></th>
+            <table className="d-flex justify-content-center">
+                <th><TradeSection playerData={state.currentPlayer} dropdown={false}/></th>
                 <th style={{fontSize: 30}}>&#xa0; &#x21c4; &#xa0; </th>
-                <th><TradeSection playerData={state.otherPlayer}/></th>
+                <th><TradeSection playerData={state.otherPlayer} dropdown={true}/></th>
             </table>
+            <Button className="col-2 offset-5 justify-content-center mt-2" variant="primary">Potwierdź</Button>
           </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>Wyjdź</Button>
-            <Button variant="primary">Potwierdź</Button>
-          </Modal.Footer>
         </Modal>
       </>
     );
