@@ -1,5 +1,3 @@
-// TO DO: FIX CREATE/DELETE/UPDATE FUNCTIONS AFTER LOCALHOST WILL HAVE GOOD URLS
-
 import { ActionCreators } from "../redux/monopolyReducer";
 //import * as axios from 'axios';
 import {data} from '../monopolyhome';
@@ -16,16 +14,34 @@ export const GetFields = async (dispatch) => {
     }
 }
 
-/*
 export const GetPlayers = async (dispatch) => {
     try {
-        const {data} = await axiosInstancePlayers.get();
+        //const {data} = await axiosInstancePlayers.get();
         dispatch(ActionCreators.setPlayers(data));
     } catch {
         console.log("Players couldn't be set!");
     }
 }
 
+export const GetGainCards = async (dispatch) => {
+    try {
+        //const {data} = await axiosInstancePlayers.get();
+        dispatch(ActionCreators.setGainCards(data));
+    } catch {
+        console.log("Gain Cards couldn't be set!");
+    }
+}
+
+export const GetLossCards = async (dispatch) => {
+    try {
+        //const {data} = await axiosInstancePlayers.get();
+        dispatch(ActionCreators.setLossCards(data));
+    } catch {
+        console.log("Loss Cards couldn't be set!");
+    }
+}
+
+/*
 export const CreatePlayer = async (dispatch, player) => {
     try {
         const {data} = await axiosInstance.post('', player);

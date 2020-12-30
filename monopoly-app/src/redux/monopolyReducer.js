@@ -1,9 +1,9 @@
-// UPDATE/CREATE/DELETE FUNCTIONS NEED TO BE FIXED
-
-const initialState = { monopolyFields: [], players: [] }
+const initialState = { monopolyFields: [], gainCards: [], lossCards: [], players: [] }
 
 export const ActionTypes = { 
     SET_FIELDS: 'SET_FIELDS', 
+    SET_GAINCARDS: 'SET_GAINCARDS',
+    SET_LOSSCARDS: 'SET_LOSSCARDS',
     SET_PLAYERS: 'SET_PLAYERS',
     CREATE_PLAYER: 'CREATE_PLAYER', 
     DELETE_PLAYER: 'DELETE_PLAYER',
@@ -15,7 +15,10 @@ export const ActionTypes = {
 
 export const ActionCreators = {
     setFields: payload => ({ type: ActionTypes.SET_FIELDS, payload }),
+    setGainCards: payload => ({ type: ActionTypes.SET_GAINCARDS, payload }),
+    setLossCards: payload => ({ type: ActionTypes.SET_LOSSCARDS, payload }),
     setPlayers: payload => ({ type: ActionTypes.SET_PLAYERS, payload }),
+
     createPlayer: payload => ({ type: ActionTypes.CREATE_PLAYER, payload }),
     deletePlayer: payload => ({ type: ActionTypes.DELETE_PLAYER, payload }),
     updatePlayerCash: payload => ({ type: ActionTypes.UPDATE_PLAYER_CASH, payload }),
@@ -30,6 +33,14 @@ export default function MonopolyReducer(state = initialState, action) {
         // get all the fields (property, event and corner ones) and set them in "fields" list
         case ActionTypes.SET_FIELDS:
             return { ...state, monopolyFields: [...action.payload.monopolyFields] };
+
+        // get all gain cards and set them in "gainCards" list
+        case ActionTypes.SET_GAINCARDS:
+            return { ...state, gainCards: [...action.payload.gainCards] };
+
+        // get all loss cards and set them in "lossCards" list
+        case ActionTypes.SET_LOSSCARDS:
+            return { ...state, lossCards: [...action.payload.lossCards] };
 
         // get all the players and set them in "players" list
         case ActionTypes.SET_PLAYERS:
@@ -83,6 +94,7 @@ export default function MonopolyReducer(state = initialState, action) {
                             break;
                         }
             return { ...state, players: [...state.players] }
+       
         default:
             return state;
     }

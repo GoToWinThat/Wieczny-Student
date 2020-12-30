@@ -9,8 +9,8 @@ class Pawns extends Component {
     render() {
         const pawns =
         <div className="players-pawns">
-            {this.props.players.players.map((player,i) => {
-                if(player.id === this.props.id)
+            {this.props.players.map((player,i) => {
+                if(player.position === this.props.id)
                     return <Badge pill variant="primary" key={i} style={{backgroundColor: `${player.color}`, position: "absolute", top: `${30}px`, left: `${(i+1) * 10}px`}}>&#8203;</Badge>
                 else
                     return null
