@@ -4,21 +4,22 @@ import {BoardCenter }from './BoardCenter';
 
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { GetFields } from '../services/monopoly';
+import { GetFields, GetPlayers, GetGainCards, GetLossCards } from '../services/monopoly';
 
 export const Board = () => {
     const fields = useSelector(state => state.monopolyReducer.monopolyFields);
+    const gainCards = useSelector(state => state.monopolyReducer.gainCards);
+    const lossCards = useSelector(state => state.monopolyReducer.lossCards);
+    const players = useSelector(state => state.monopolyReducer.players);
     const dispatch = useDispatch();
-    //Simple Json player position and color xD
-    const players = {players: [
-        {id: 0,color: 'blue'},
-        {id: 1,color: 'green'},
-        {id: 19,color: 'red'},
-        {id: 31,color: 'orange'}
-    ]}
 
     try {
-        useEffect(() => GetFields(dispatch), [dispatch]);
+        useEffect(() => {
+            GetFields(dispatch);
+            GetPlayers(dispatch);
+            GetGainCards(dispatch);
+            GetLossCards(dispatch);
+        }, [dispatch]);
     } catch {
         console.log("Couldn't call function useEffect()!");
     }
