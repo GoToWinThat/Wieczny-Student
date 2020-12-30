@@ -99,3 +99,12 @@ border-color: #2F3E48;
     width: 10%;
     height: 10%;
 }
+.logBox{
+    width: 55%;
+    height: 100px;
+    white-space: pre-line;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-size: small;
+    text-align: left;
+    padding-left: 2%;
+}
