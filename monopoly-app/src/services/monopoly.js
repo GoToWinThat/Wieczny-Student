@@ -41,6 +41,34 @@ export const GetLossCards = async (dispatch) => {
     }
 }
 
+export const GetDices = async (dispatch) => {
+    try {
+        //const {data} = await axiosInstancePlayers.get();
+        dispatch(ActionCreators.setDices(data));
+    } catch {
+        console.log("Dices couldn't be set!");
+    }
+}
+
+export const UpdateDices = async (dispatch, dices) => {
+    try {
+        //await axiosInstanceDices.put('', dices);
+        dispatch(ActionCreators.updateDices(dices));
+    } catch {
+        console.log("Dices couldn't be updated!");
+    }
+}
+
+export const UpdatePlayerPosition = async (dispatch, player, dices) => {
+    try {
+        //await axiosInstancePlayers.put('', player, dices);
+        dispatch(ActionCreators.updatePlayerPosition(player, dices));
+    } catch {
+        console.log("Player's position couldn't be updated!");
+    }
+}
+
+
 /*
 export const CreatePlayer = async (dispatch, player) => {
     try {

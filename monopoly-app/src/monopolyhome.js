@@ -508,5 +508,6 @@ export const data = {
             "isInJail": false,
             "turnsToWait": 0
         }
-    ]
+    ],
+    "dices": [1,1]
 }
