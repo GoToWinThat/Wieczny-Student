@@ -6,9 +6,11 @@ import { GetActivePlayerIndex, UpdateActivePlayerIndex } from '../../services/mo
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-export const PlayerBar = (players) => {
+export const PlayerBar = (data) => {
     const activePlayerIndex = useSelector(state => state.monopolyReducer.activePlayerIndex);
-    const monopolyPlayers = players.players;
+    const monopolyPlayers = data.data.players;
+    const fields = data.data.fields;
+    const cards = data.data.gainCards;
     const dispatch = useDispatch();
 
     try {
@@ -17,11 +19,10 @@ export const PlayerBar = (players) => {
         console.log("Couldn't call function useEffect()!");
     }
 
-
     let idx = -1;
     return (
         <div className="playerBar">
-            { monopolyPlayers.map(pl => <PlayerBox player={pl} isActive={++idx === activePlayerIndex}/>) }
+            { monopolyPlayers.map(pl => <PlayerBox key={pl.name} player={pl} isActive={++idx === activePlayerIndex} cards={cards} fields={fields}/>) }
             <Button className="endTurnButton" onClick={() => 
                 UpdateActivePlayerIndex(dispatch, (activePlayerIndex + 1) % monopolyPlayers.length)}>
                 <span>Zakończ turę</span>

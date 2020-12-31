@@ -4,10 +4,10 @@ import ActionOptions from './ActionPanel/ActionOptions'
 import '../styles/Board.css'
 import LogBox from './ActionPanel/LogBox'
 
-export const BoardCenter = (players) => {
+export const BoardCenter = (data) => {
     return (
         <div className="board-center">
-            <PlayerBar players={players.players}/>
+            <PlayerBar data={data.data}/>
             <ActionOptions/>
             <LogBox/>
             <RollDice/>

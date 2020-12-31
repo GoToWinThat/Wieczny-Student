@@ -462,7 +462,7 @@ export const data = {
             "signature": "9772",
             "color": "blue",
             "properties": [
-                { "fieldID": 2, "estateLevel": 3 },
+                { "fieldID": 39, "estateLevel": 3 },
                 { "fieldID": 3, "estateLevel": 4 }
             ],
             "eventCards": [
@@ -492,7 +492,10 @@ export const data = {
             "signature": "9823",
             "color": "yellow",
             "properties": [],
-            "eventCards": [],
+            "eventCards": [
+                { "cardID": 0 },
+                { "cardID": 1 }
+            ],
             "position": 8,
             "isInJail": false,
             "turnsToWait": 0

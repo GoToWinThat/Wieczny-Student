@@ -7,55 +7,52 @@ function PlayerBox(props)
     //Each player have a unique color and name
     let color,background
     let border = `2px solid ${props.player.color}`
-    const porpList = [
-        {
-            fieldID: 12,
-            type: "property",
-            name: "Laboratorium nr 409 (MS)",
-            color: "lightgreen",
-            price: 100,
-            rents: [10, 20, 30, 40, 50, 60],
-            oneHousePrice: 10
-        },
-        {
-            fieldID: 24,
-            type: "property",
-            name: "Sala nr 310 (LB)",
-            color: "purple",
-            price: 100,
-            rents: [10, 20, 30, 40, 50, 60],
-            oneHousePrice: 10
-        },
 
-    ]
-    const cadrsList = ["Opuść Konsultacje!","Opuść Dziekanat!"]
+    const listOfFields = () =>{
 
-    const listOfPorp = () =>{
-        var array = [];
-        for (var i = 0; i < porpList.length; i++)
-        {
-            array.push(
-                <div className="propertyRow">
-                    <div className="propertyBox" style={{background: porpList[i].color }}/>
-                    <span>{porpList[i].name} </span>
-                    <tr/>
-                </div>);
-        }
-        return (array)
+        var fieldArray = [];
+        if(props.player.properties.length === 0) return null;
+
+        fieldArray.push(<h6>Nieruchomości</h6>)
+        props.player.properties.map(field => 
+            fieldArray.push(
+                <div key={field.fieldID} className="propertyRow">
+                    <div className="propertyBox" style={{background: props.fields[field.fieldID].color }}/>
+                    <span>{props.fields[field.fieldID].name} </span>
+                    <br/>
+                </div>
+            ) 
+        )
+        return fieldArray;
     }
 
     const ListOfCards = () => 
     {
-        var array = [];
-        for (var i = 0; i < cadrsList.length; i++) 
-        {
-            array.push(
-                <div className="d-flex">
-                    <span>{cadrsList[i]} </span>
-                    <tr/>
-                </div>);
-        }
-        return array;
+        var cardsArray = [];
+        if(props.player.eventCards.length === 0) return null;
+
+        cardsArray.push(<h6>Karty</h6>)
+        props.player.eventCards.map(card => 
+            cardsArray.push(
+                <div key={card.cardID} className="d-flex">
+                    <span>{props.cards[card.cardID].cardName} </span>
+                    <br/>
+                </div>
+            ) 
+        )
+        return cardsArray;
+    }
+
+    const playersOwnsList = () => 
+    {   
+        let fieldsList = listOfFields()
+        let cardsList = ListOfCards()
+        if(fieldsList === null && cardsList === null ) 
+            return(<p className="text-secondary w-100 px-5"> Pusto !</p>)
+        else if(fieldsList === null || cardsList === null )
+            return(<div>{fieldsList}{cardsList}</div>)
+        else
+            return(<div>{fieldsList}<hr/>{cardsList}</div>)
     }
 
     if(props.isActive)
@@ -68,6 +65,7 @@ function PlayerBox(props)
         color = props.player.color
         background = 'transparent'
     }
+
     return(
         <OverlayTrigger
             trigger={["hover","focus"]}
@@ -75,11 +73,7 @@ function PlayerBox(props)
             overlay={
                 <Popover id={`popover-positioned-bottom`}>
                     <Popover.Content>
-                        <h6>Nieruchomości</h6>
-                        {listOfPorp()}
-                        <hr/>
-                        <h6>Karty</h6>
-                        {ListOfCards()}
+                        {playersOwnsList()}
                     </Popover.Content>
                 </Popover>
             }
