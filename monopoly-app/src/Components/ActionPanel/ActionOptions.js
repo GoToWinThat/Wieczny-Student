@@ -30,7 +30,7 @@ class ActionOptions extends Component
         if(opt === 'trade') 
             return <Trade/>;
         if(opt === 'manage') 
-            return <Manage field={this.state.field}/>;
+            return <Manage data={this.props.data}/>;
     }
     //Method to change state and then change a view in navigator
     changeView(view)
