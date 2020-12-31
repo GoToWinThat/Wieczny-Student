@@ -8,7 +8,7 @@
 // cards (only their ids, such as id of "Oświecenie na konsultacjach"). There are also attributes
 // for knowing if player can make a move in this turn.
 
-export const data = {
+export const staticData = {
     "monopolyFields": [
         {
             "fieldID": 0,
@@ -454,7 +454,10 @@ export const data = {
             "cardName": "Spóźnienie",
             "description": "Zajęcia trwały zbyt długo i odjechał Ci autobus. Tracisz kolejkę."
         }
-    ],
+    ]
+}
+
+export const dynamicData = {
     "players": [
         {
             "name": "Artur",
@@ -462,8 +465,8 @@ export const data = {
             "signature": "9772",
             "color": "blue",
             "properties": [
-                { "fieldID": 39, "estateLevel": 3 },
-                { "fieldID": 3, "estateLevel": 4 }
+                { "fieldID": 39, "estateLevel": 3, "mortgaged": false },
+                { "fieldID": 3, "estateLevel": 4, "mortgaged": false }
             ],
             "eventCards": [
                 { "cardID": 1 }
@@ -478,8 +481,8 @@ export const data = {
             "signature": "9762",
             "color": "red",
             "properties": [
-                { "fieldID": 4, "estateLevel": 0 },
-                { "fieldID": 6, "estateLevel": 1 }
+                { "fieldID": 4, "estateLevel": 0, "mortgaged": false },
+                { "fieldID": 6, "estateLevel": 1, "mortgaged": false }
             ],
             "eventCards": [],
             "position": 8,

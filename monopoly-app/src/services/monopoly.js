@@ -1,14 +1,14 @@
 import { ActionCreators } from "../redux/monopolyReducer";
-//import * as axios from 'axios';
-import {data} from '../monopolyhome';
+import { staticData, dynamicData } from '../monopolyhome';
 
-//const axiosInstanceFields  = axios.create({ baseURL: 'https://localhost:44358/api/monopolyhome' })
-//const axiosInstancePlayers = axios.create({ baseURL: 'https://localhost:44358/players' })
+//import * as axios from 'axios';
+//const axiosInstanceStaticData  = axios.create({ baseURL: 'https://localhost:44358/api/monopolyhome' })
+//const axiosInstanceDynamicData = axios.create({ baseURL: 'https://localhost:44358/api/monopolygame' })
 
 export const GetFields = async (dispatch) => {
     try {
-        //const {data} = await axiosInstanceFields.get();
-        dispatch(ActionCreators.setFields(data));
+        //const {staticData} = await axiosInstanceStaticData.get();
+        dispatch(ActionCreators.setFields(staticData));
     } catch {
         console.log("Fields couldn't be set!");
     }
@@ -16,8 +16,8 @@ export const GetFields = async (dispatch) => {
 
 export const GetPlayers = async (dispatch) => {
     try {
-        //const {data} = await axiosInstancePlayers.get();
-        dispatch(ActionCreators.setPlayers(data));
+        //const {dynamicData} = await axiosInstanceDynamicData.get();
+        dispatch(ActionCreators.setPlayers(dynamicData));
     } catch {
         console.log("Players couldn't be set!");
     }
@@ -25,8 +25,8 @@ export const GetPlayers = async (dispatch) => {
 
 export const GetGainCards = async (dispatch) => {
     try {
-        //const {data} = await axiosInstancePlayers.get();
-        dispatch(ActionCreators.setGainCards(data));
+        //const {staticData} = await axiosInstanceStaticData.get();
+        dispatch(ActionCreators.setGainCards(staticData));
     } catch {
         console.log("Gain Cards couldn't be set!");
     }
@@ -34,19 +34,17 @@ export const GetGainCards = async (dispatch) => {
 
 export const GetLossCards = async (dispatch) => {
     try {
-        //const {data} = await axiosInstancePlayers.get();
-        dispatch(ActionCreators.setLossCards(data));
+        //const {staticData} = await axiosInstanceStaticData.get();
+        dispatch(ActionCreators.setLossCards(staticData));
     } catch {
         console.log("Loss Cards couldn't be set!");
     }
 }
 
-
-
 export const GetActivePlayerIndex = async (dispatch) => {
     try {
-        //const {data} = await axiosInstanceActivePlayer.get();
-        dispatch(ActionCreators.setActivePlayerIndex(data));
+        //const {dynamicData} = await axiosInstanceDynamicData.get();
+        dispatch(ActionCreators.setActivePlayerIndex(dynamicData));
     } catch {
         console.log("ActivePlayerIndex couldn't be set!");
     }
@@ -54,18 +52,17 @@ export const GetActivePlayerIndex = async (dispatch) => {
 
 export const UpdateActivePlayerIndex = async (dispatch, activePlayerIndex) => {
     try {
-        //await axiosInstanceActivePlayer.put('', activePlayerIndex);
+        //await axiosInstanceDynamicData.put('', activePlayerIndex);
         dispatch(ActionCreators.updateActivePlayerIndex(activePlayerIndex));
     } catch {
         console.log("ActivePlayerIndex couldn't be updated!");
     }
 }
 
-
 export const GetDices = async (dispatch) => {
     try {
-        //const {data} = await axiosInstanceDices.get();
-        dispatch(ActionCreators.setDices(data));
+        //const {dynamicData} = await axiosInstanceDynamicData.get();
+        dispatch(ActionCreators.setDices(dynamicData));
     } catch {
         console.log("Dices couldn't be set!");
     }
@@ -73,7 +70,7 @@ export const GetDices = async (dispatch) => {
 
 export const UpdateDices = async (dispatch, dices) => {
     try {
-        //await axiosInstanceDices.put('', dices);
+        //await axiosInstanceDynamicData.put('', dices);
         dispatch(ActionCreators.updateDices(dices));
     } catch {
         console.log("Dices couldn't be updated!");
@@ -82,68 +79,108 @@ export const UpdateDices = async (dispatch, dices) => {
 
 export const UpdatePlayerPosition = async (dispatch, playerIndex, dices) => {
     try {
-        //await axiosInstancePlayers.put('', player, dices);
+        //await axiosInstanceDynamicData...
         dispatch(ActionCreators.updatePlayerPosition({activePlayerIndex: playerIndex, dices: dices}));
     } catch {
         console.log("Player's position couldn't be updated!");
     }
 }
 
-
-/*
-export const CreatePlayer = async (dispatch, player) => {
+export const UpdatePlayerCash = async (dispatch, playerName, deltaCash) => {
     try {
-        const {data} = await axiosInstance.post('', player);
-        dispatch(ActionCreators.createPlayer(player));
-    } catch {
-        console.log("Player couldn't be created!");
-    }
-}
-
-
-export const DeletePlayer = async (dispatch, player) => {
-    try {
-        await axiosInstancePlayers.delete(`/${player.name}`);
-        dispatch(ActionCreators.deletePlayer(player));
-    } catch {
-        console.log("Player couldn't be deleted!");
-    }
-}
-
-
-export const UpdatePlayerCash = async (dispatch, player) => {
-    try {
-        await axiosInstancePlayers.put('', player);
-        dispatch(ActionCreators.updatePlayerCash(player));
+        //await axiosInstanceDynamicData...
+        dispatch(ActionCreators.updatePlayerCash({playerName, deltaCash}));
     } catch {
         console.log("Player's cash couldn't be updated!");
     }
 }
 
-export const UpdatePlayerNewProperty = async (dispatch, player) => {
+export const CreatePlayer = async (dispatch, playerName, signature, color) => {
     try {
-        await axiosInstancePlayers.put('', player);
-        dispatch(ActionCreators.updatePlayerNewProperty(player));
+        //const {dynamicData} = await axiosInstanceDynamicData.post('', player);
+        dispatch(ActionCreators.createPlayer({playerName, signature, color}));
+    } catch {
+        console.log("Player couldn't be created!");
+    }
+}
+
+export const DeletePlayer = async (dispatch, playerName) => {
+    try {
+        //await axiosInstanceDynamicData.delete(`/${playerName}`);
+        dispatch(ActionCreators.deletePlayer(playerName));
+    } catch {
+        console.log("Player couldn't be deleted!");
+    }
+}
+
+export const UpdatePlayerNewProperty = async (dispatch, playerName, fieldID) => {
+    try {
+        //await axiosInstanceDynamicData...
+        dispatch(ActionCreators.updatePlayerNewProperty({playerName, fieldID}));
     } catch {
         console.log("Player couldn't buy new property!");
     }
 }
 
-export const UpdatePlayerDeleteProperty = async (dispatch, player) => {
+export const UpdatePlayerDeleteProperty = async (dispatch, playerName, fieldID) => {
     try {
-        await axiosInstancePlayers.delete(`/${player.name}`);
-        dispatch(ActionCreators.updatePlayerDeleteProperty(player));
+        //await axiosInstanceDynamicData...
+        dispatch(ActionCreators.updatePlayerDeleteProperty({playerName, fieldID}));
     } catch {
         console.log("Player couldn't get rid of his property!");
     }
 }
 
-export const UpdatePlayerUpdateProperty = async (dispatch, player) => {
+export const UpdatePlayerExpandProperty = async (dispatch, playerName, fieldID, deltaEstateLevel) => {
     try {
-        await axiosInstancePlayers.put('', player);
-        dispatch(ActionCreators.updatePlayerUpdateProperty(player));
+        //await axiosInstanceDynamicData...
+        dispatch(ActionCreators.updatePlayerExpandProperty({playerName, fieldID, deltaEstateLevel}));
     } catch {
-        console.log("Player's property couldn't be updated!");
+        console.log("Player's property couldn't be expanded / reduced!");
     }
 }
-*/
+
+export const UpdatePlayerMortgageProperty = async (dispatch, playerName, fieldID) => {
+    try {
+        //await axiosInstanceDynamicData...
+        dispatch(ActionCreators.updatePlayerMortgageProperty({playerName, fieldID}));
+    } catch {
+        console.log("Player's property couldn't be mortgaged / unmortgaged!");
+    }
+}
+
+export const updatePlayerNewEventCard = async (dispatch, playerName, cardID) => {
+    try {
+        //await axiosInstanceDynamicData...
+        dispatch(ActionCreators.updatePlayerNewEventCard({playerName, cardID}));
+    } catch {
+        console.log("Player couldn't get new event card!");
+    }
+}
+
+export const updatePlayerDeleteEventCard = async (dispatch, playerName, cardID) => {
+    try {
+        //await axiosInstanceDynamicData...
+        dispatch(ActionCreators.updatePlayerDeleteEventCard({playerName, cardID}));
+    } catch {
+        console.log("Player couldn't delete event card!");
+    }
+}
+
+export const updatePlayerGoToJail = async (dispatch, playerName) => {
+    try {
+        //await axiosInstanceDynamicData...
+        dispatch(ActionCreators.updatePlayerGoToJail(playerName));
+    } catch {
+        console.log("Player couldn't go to jail / go out from jail!");
+    }
+}
+
+export const updatePlayerUpdateWaitingTurns = async (dispatch, playerName, turns) => {
+    try {
+        //await axiosInstanceDynamicData...
+        dispatch(ActionCreators.updatePlayerUpdateWaitingTurns({playerName, turns}));
+    } catch {
+        console.log("Player couldn't go to jail / go out from jail!");
+    }
+}
