@@ -13,7 +13,7 @@ function PlayerBox(props)
         var fieldArray = [];
         if(props.player.properties.length === 0) return null;
 
-        fieldArray.push(<h6>Nieruchomości</h6>)
+        fieldArray.push(<h6 key={1000}>Nieruchomości</h6>)
         props.player.properties.map(field => 
             fieldArray.push(
                 <div key={field.fieldID} className="propertyRow">
@@ -31,7 +31,7 @@ function PlayerBox(props)
         var cardsArray = [];
         if(props.player.eventCards.length === 0) return null;
 
-        cardsArray.push(<h6>Karty</h6>)
+        cardsArray.push(<h6 key={2000}>Karty</h6>)
         props.player.eventCards.map(card => 
             cardsArray.push(
                 <div key={card.cardID} className="d-flex">

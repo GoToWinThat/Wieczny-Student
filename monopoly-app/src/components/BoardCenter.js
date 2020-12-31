@@ -8,7 +8,7 @@ export const BoardCenter = (data) => {
     return (
         <div className="board-center">
             <PlayerBar data={data.data}/>
-            <ActionOptions/>
+            <ActionOptions data={data.data}/>
             <LogBox/>
             <RollDice/>
         </div>

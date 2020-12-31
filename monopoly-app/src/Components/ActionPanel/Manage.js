@@ -1,51 +1,30 @@
 import "../../styles/ActionPanel.css";
 import React, { useState } from 'react';
-import {Button,Modal} from 'react-bootstrap';
+import {Button, Modal} from 'react-bootstrap';
 
 
-function Manage() {
+function Manage(props) {
+    //Initialized a players property list
+    const logInPlayerIndx = 0;
+    const logInPlayer = props.data.players[logInPlayerIndx];
+    const playersProperties = () => 
+    {
+        var fieldArray = [];
+        logInPlayer.properties.map(
+            field => fieldArray.push(props.data.fields[field.fieldID]) 
+        )
+        return fieldArray;
+    }
+
     const [show, setShow] = useState(true);
-    const [properties, setProperties] = useState([
-        {
-            fieldID: 12,
-            type: "property",
-            name: "Laboratorium nr 409 (MS)",
-            color: "lightgreen",
-            price: 100,
-            rents: [10, 20, 30, 40, 50, 60],
-            oneHousePrice: 5,
-            numOfHouses: 2
-        },
-        {
-            fieldID: 24,
-            type: "property",
-            name: "Sala nr 310 (LB)",
-            color: "purple",
-            price: 100,
-            rents: [10, 20, 30, 40, 50, 60],
-            oneHousePrice: 10,
-            numOfHouses: 1
-        },
-        {
-            fieldID: 23,
-            type: "property",
-            name: "Bibioteka Wydziałowa",
-            color: "orange",
-            price: 100,
-            rents: [10, 20, 30, 40, 50, 60],
-            oneHousePrice: 12,
-            numOfHouses: 0
-        }
-
-    ]);
-
+    const [properties, setProperties] = useState(playersProperties());
     const handleClose = () => setShow(false);
 
-    //Method whitch increment numer of houses and check if can do it
+    //Method which increment numer of houses and check if can do it
     const buyHouse = (num) =>
     {
         let array = [...properties];
-        if(array[num].numOfHouses < 5)
+        if(array[num].numOfHouses < 4)
         {
             array[num].numOfHouses += 1;
             setProperties(array);
@@ -72,14 +51,15 @@ function Manage() {
     //Method to create n number of houses icon
     const createHouses = (propNum) =>
     {
+        debugger;
         var array = [];
-        if(properties[propNum].numOfHouses > 4)
+        if(logInPlayer.properties[propNum].estateLevel > 3)
         {
             array.push( <img className="houses" src={`/Assets/Houses/redHouse.svg`}/>);
         } 
         else 
         {
-            for (var j = 0; j < properties[propNum].numOfHouses; j++) 
+            for (var j = 0; j < logInPlayer.properties[propNum].estateLevel; j++) 
             {
                 array.push( <img className="houses" src={`/Assets/Houses/greenHouse.svg`}/>);
             }
@@ -88,43 +68,51 @@ function Manage() {
         return array;
     }
 
+    //Generate table for panel
     const genPorpTable = () =>{
 
         var array = [];
-        for (var i = 0; i < properties.length; i++) 
-        {   
-            let ii = i;
+        let idx = 0
+        properties.map(field => {
+            let idx2 = idx
             array.push(
-                <div className="mb-3">
-                    <span style= {{ color: properties[i].color}} >{properties[i].name}</span>
-                    {createHouses(i)}
-                    <div style= {{ float: 'right'}}>
-                        <Button onClick={() => buyHouse(ii)} size="sm" variant="success" >+</Button>
-                        <span className="mr-2 ml-2" > {properties[i].oneHousePrice} </span>
-                        <Button onClick={() => sellHouse(ii)}  size="sm" variant="danger" className="mr-2" > - </Button> 
-                        <Button onClick={() => sellProperty(ii)}  size="sm" variant="danger"> Sprzedaj </Button>
-                    </div>
-
-                </div>
-                );
-        }
+            <tr>
+                <th scope="row" style= {{ color: field.color}}>{field.name}</th>
+                <td>{createHouses(idx)}</td>
+                <td>
+                    <Button size="sm" variant="success" onClick={() => buyHouse(idx2)}>+</Button>
+                    <span className="mr-2 ml-2" > {field.estatePrice} ECTS</span>
+                    <Button size="sm" variant="danger" onClick={() => sellHouse(idx2)}> - </Button>
+                </td>
+                <td><Button size="sm" variant="danger"> {field.mortgage} ECTS</Button></td>
+                <td><Button size="sm" variant="danger" onClick={() => sellProperty(idx2)}> {field.price} ECTS</Button></td>
+            </tr>)
+            idx++;
+        });
         return array;
     }
 
     return (
       <>
-        <Modal
-          show={show}
-          size="lg"
-          onHide={handleClose}
-          backdrop="static"
-          keyboard={false}
-        >
+        <Modal show={show} size="lg" onHide={handleClose} backdrop="static" keyboard={false} >
           <Modal.Header closeButton>
             <Modal.Title >Zarządzaj</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {genPorpTable()}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Nieruchomość</th>
+                    <th scope="col">Poziom</th>
+                    <th scope="col">Rozbuduj</th>
+                    <th scope="col">Zastaw</th>
+                    <th scope="col">Sprzedaj</th>
+                </tr>
+                </thead>
+                <tbody>
+                {genPorpTable()}
+                </tbody>
+            </table>
           </Modal.Body>
         </Modal>
       </>
