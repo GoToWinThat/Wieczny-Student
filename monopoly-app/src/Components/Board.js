@@ -1,6 +1,6 @@
 import Field from './Field'
 import '../styles/Board.css'
-import {BoardCenter }from './BoardCenter';
+import { BoardCenter } from './BoardCenter';
 
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -19,7 +19,7 @@ export const Board = () => {
             GetPlayers(dispatch);
             GetGainCards(dispatch);
             GetLossCards(dispatch);
-        }, [dispatch]);
+        }, []);
     } catch {
         console.log("Couldn't call function useEffect()!");
     }
@@ -50,7 +50,7 @@ export const Board = () => {
                 </div>
                 <div className="row row-center">
                     <div className="col card-deck"><Field players={players} rotate="card-left" data={fields[18]}/></div>
-                    <div className="col-8"><BoardCenter/></div>
+                    <div className="col-8"><BoardCenter players={players}/></div>
                     <div className="col card-deck"><Field players={players} rotate="card-right" data={fields[32]}/></div>
                 </div>
                 <div className="row row-center">

@@ -1,75 +1,32 @@
-import React, { Component } from 'react';
 import "../../styles/ActionPanel.css";
 import Clock from './Clock';
 import PlayerBox from './PlayerBox';
-import {Button} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import { GetActivePlayerIndex, UpdateActivePlayerIndex } from '../../services/monopoly';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-class PlayerBar extends Component 
-{
-    //Class use to track current active player and ending player's turn
-    constructor(props){
-        super(props)
-        //Sample JSON format
-        this.state = {activePlayer: 0, players: [
-            {name: 'Tomek',color: 'blue',cash: 20},
-            {name: 'Franek',color: 'green',cash: 31},
-            {name: 'Alicja',color: 'red',cash: 6},
-            {name: 'Maria',color: 'orange',cash: 15}
-            
-        ]}
-        this.endTurn = this.endTurn.bind(this) 
+export const PlayerBar = (players) => {
+    const activePlayerIndex = useSelector(state => state.monopolyReducer.activePlayerIndex);
+    const monopolyPlayers = players.players;
+    const dispatch = useDispatch();
+
+    try {
+        useEffect(() => { GetActivePlayerIndex(dispatch); }, [dispatch]);
+    } catch {
+        console.log("Couldn't call function useEffect()!");
     }
 
-    endTurn()
-    {
-        //Changing a state
-        this.setState(prevState => {
-            
-            //Disable current active player and activate next one in the array
-            let newActivePlayer;
 
-            if(prevState.activePlayer + 1 >= prevState.players.length)
-                newActivePlayer =  0;
-            else 
-                newActivePlayer =  prevState.activePlayer + 1;
-
-            return {activePlayer: newActivePlayer}
-          })
-    }
-
-    createBoxes()
-    {   
-        let idx = -1;
-        let active = false;
-        
-        //Map thru players to create boxes
-        const boxes = this.state.players.map(pl => 
-        {
-            //idx tracks current player in map function and activate only one of them
-            idx++;
-            if(idx === this.state.activePlayer) active = true
-            else active = false
-            return (<PlayerBox player={pl} isActive={active}/>)
-        })
-          
-        return(boxes)
-    }
-
-    render() {
-
-        return (
-            <div className="playerBar">
-                {this.createBoxes()}
-                <Button 
-                    className="endTurnButton" 
-                    onClick={this.endTurn}
-                    >
-                    <span>Zakończ Ture</span>
-                    <Clock/>
-                </Button>
-            </div>
-        );
-    }
-    
+    let idx = -1;
+    return (
+        <div className="playerBar">
+            { monopolyPlayers.map(pl => <PlayerBox player={pl} isActive={++idx === activePlayerIndex}/>) }
+            <Button className="endTurnButton" onClick={() => 
+                UpdateActivePlayerIndex(dispatch, (activePlayerIndex + 1) % monopolyPlayers.length)}>
+                <span>Zakończ turę</span>
+                <Clock/>
+            </Button>
+        </div>
+    );
 }
-export default PlayerBar;

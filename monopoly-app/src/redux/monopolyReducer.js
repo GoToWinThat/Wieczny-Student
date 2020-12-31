@@ -1,10 +1,18 @@
-const initialState = { monopolyFields: [], gainCards: [], lossCards: [], players: [] }
+const initialState = { monopolyFields: [], gainCards: [], lossCards: [], players: [], dices: [], activePlayerIndex: 0 }
 
 export const ActionTypes = { 
     SET_FIELDS: 'SET_FIELDS', 
     SET_GAINCARDS: 'SET_GAINCARDS',
     SET_LOSSCARDS: 'SET_LOSSCARDS',
     SET_PLAYERS: 'SET_PLAYERS',
+
+    SET_ACTIVE_PLAYER_INDEX: 'SET_ACTIVE_PLAYER_INDEX',
+    UPDATE_ACTIVE_PLAYER_INDEX: 'UPDATE_ACTIVE_PLAYER_INDEX',
+
+    SET_DICES: 'SET_DICES',
+    UPDATE_DICES: 'UPDATE_DICES',
+    UPDATE_PLAYER_POSITION: 'UPDATE_PLAYER_POSITION',
+
     CREATE_PLAYER: 'CREATE_PLAYER', 
     DELETE_PLAYER: 'DELETE_PLAYER',
     UPDATE_PLAYER_CASH: 'UPDATE_PLAYER_CASH',
@@ -19,9 +27,16 @@ export const ActionCreators = {
     setLossCards: payload => ({ type: ActionTypes.SET_LOSSCARDS, payload }),
     setPlayers: payload => ({ type: ActionTypes.SET_PLAYERS, payload }),
 
+    setActivePlayerIndex: payload => ({ type: ActionTypes.SET_ACTIVE_PLAYER_INDEX, payload }),
+    updateActivePlayerIndex: payload => ({ type: ActionTypes.UPDATE_ACTIVE_PLAYER_INDEX, payload }),
+
+    setDices: payload => ({ type: ActionTypes.SET_DICES, payload }),
+    updateDices: payload => ({ type: ActionTypes.UPDATE_DICES, payload }),
+
     createPlayer: payload => ({ type: ActionTypes.CREATE_PLAYER, payload }),
     deletePlayer: payload => ({ type: ActionTypes.DELETE_PLAYER, payload }),
     updatePlayerCash: payload => ({ type: ActionTypes.UPDATE_PLAYER_CASH, payload }),
+    updatePlayerPosition: payload => ({ type: ActionTypes.UPDATE_PLAYER_POSITION, payload }),
     updatePlayerNewProperty: payload => ({ type: ActionTypes.UPDATE_PLAYER_NEW_PROPERTY, payload }),
     updatePlayerDeleteProperty: payload => ({ type: ActionTypes.UPDATE_PLAYER_DELETE_PROPERTY, payload }),
     updatePlayerUpdateProperty: payload => ({ type: ActionTypes.UPDATE_PLAYER_UPDATE_PROPERTY, payload })
@@ -46,6 +61,38 @@ export default function MonopolyReducer(state = initialState, action) {
         case ActionTypes.SET_PLAYERS:
             return { ...state, players: [...action.payload.players] };
 
+
+
+        // change index of player that has a turn at the moment:
+        case ActionTypes.SET_ACTIVE_PLAYER_INDEX:
+            return { ...state, activePlayerIndex: action.payload.activePlayerIndex };
+
+        // change index of player that has a turn at the moment:
+        case ActionTypes.UPDATE_ACTIVE_PLAYER_INDEX:
+            state.activePlayerIndex = action.payload
+            return state
+
+
+
+        // get current dices view and set it in "dices" list
+        case ActionTypes.SET_DICES:
+            return { ...state, dices: [...action.payload.dices] };
+
+        // update dices:
+        case ActionTypes.UPDATE_DICES:
+            state.dices = action.payload
+            return state
+
+        // change player's position on the board
+        case ActionTypes.UPDATE_PLAYER_POSITION:
+            for (let i = 0; i < state.players.length; i++)
+                if (i === action.payload.activePlayerIndex)
+                    state.players[i].position = (state.players[i].position 
+                        + action.payload.dices[0] + action.payload.dices[1]) % 40;
+            return state
+        
+
+
         // add player at the end of the list
         case ActionTypes.CREATE_PLAYER:
             return { ...state, players: [...state.players, action.payload] };
@@ -57,7 +104,7 @@ export default function MonopolyReducer(state = initialState, action) {
                     state.players.splice(i, 1);
                     break;
                 }
-            return { ...state, players: [...state.players, action.payload] };
+            return { ...state, players: [...state.players] };
 
         // increase or decrease (if on payload there is negative number) player's cash
         case ActionTypes.UPDATE_PLAYER_CASH: 
@@ -65,7 +112,7 @@ export default function MonopolyReducer(state = initialState, action) {
                 if (state.players[i].name === action.payload.name)
                     state.players[i].cash += action.payload.cash;
             return { ...state, players: [...state.players] }
-        
+
         // add property at the end of the player's properties list
         case ActionTypes.UPDATE_PLAYER_NEW_PROPERTY:
             for (let i = 0; i < state.players.length; i++)
@@ -94,7 +141,7 @@ export default function MonopolyReducer(state = initialState, action) {
                             break;
                         }
             return { ...state, players: [...state.players] }
-       
+
         default:
             return state;
     }

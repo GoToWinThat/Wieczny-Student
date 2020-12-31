@@ -1,36 +1,31 @@
-import React, { Component } from 'react';
 import "../../styles/ActionPanel.css";
-import {Button} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { GetDices, UpdateDices, GetActivePlayerIndex, UpdatePlayerPosition } from '../../services/monopoly';
 
-class RollDice extends Component 
-{
-    constructor(props){
-        super(props)
-        this.state = {roll: [1,1]}
-        this.throwDices = this.throwDices.bind(this) 
+export const RollDice = () => {
+    const dices = useSelector(state => state.monopolyReducer.dices);
+    const activePlayerIndex = useSelector(state => state.monopolyReducer.activePlayerIndex);
+    const dispatch = useDispatch();
+
+    try {
+        useEffect(() => { GetDices(dispatch); GetActivePlayerIndex(dispatch); }, [dispatch]);
+    } catch {
+        console.log("Couldn't call function useEffect()!");
     }
 
-    throwDices()
-    {
-        //Genarate random numbers
-        var firstRoll = Math.floor(Math.random() * 6) + 1;
-        var secondRoll = Math.floor(Math.random() * 6) + 1;
+    // Eliminate problem with empty "dices" list (it can be too early to render dices):
+    if (dices === null || dices.length === 0) return null;
 
-        //Changing a state
-        this.setState({roll: [firstRoll,secondRoll]})
-
-        //To Do: Send roll state to api
-    }
-
-    render() {
-        return (
-            <div>
-                <Button className="throwDicesButton" onClick={this.throwDices} >Rzuć Kośćmi</Button>
-                <img className="diceImg" src={`/Assets/Dice/dice${this.state.roll[0]}.png`}/>
-                <img className="diceImg" src={`/Assets/Dice/dice${this.state.roll[1]}.png`}/>
-            </div>
-        );
-    }
-    
+    return (
+        <div>
+            <Button className="throwDicesButton" onClick={() => {
+                let newDiceState = [Math.floor(Math.random() * 6) + 1, Math.floor(Math.random() * 6) + 1];
+                UpdateDices(dispatch, newDiceState); 
+                UpdatePlayerPosition(dispatch, activePlayerIndex, newDiceState)}}>Rzuć kośćmi</Button>
+            <img className="diceImg" src={`/Assets/Dice/dice${dices[0]}.png`}/>
+            <img className="diceImg" src={`/Assets/Dice/dice${dices[1]}.png`}/>
+        </div>
+    );
 }
-export default RollDice;

@@ -41,6 +41,55 @@ export const GetLossCards = async (dispatch) => {
     }
 }
 
+
+
+export const GetActivePlayerIndex = async (dispatch) => {
+    try {
+        //const {data} = await axiosInstanceActivePlayer.get();
+        dispatch(ActionCreators.setActivePlayerIndex(data));
+    } catch {
+        console.log("ActivePlayerIndex couldn't be set!");
+    }
+}
+
+export const UpdateActivePlayerIndex = async (dispatch, activePlayerIndex) => {
+    try {
+        //await axiosInstanceActivePlayer.put('', activePlayerIndex);
+        dispatch(ActionCreators.updateActivePlayerIndex(activePlayerIndex));
+    } catch {
+        console.log("ActivePlayerIndex couldn't be updated!");
+    }
+}
+
+
+export const GetDices = async (dispatch) => {
+    try {
+        //const {data} = await axiosInstanceDices.get();
+        dispatch(ActionCreators.setDices(data));
+    } catch {
+        console.log("Dices couldn't be set!");
+    }
+}
+
+export const UpdateDices = async (dispatch, dices) => {
+    try {
+        //await axiosInstanceDices.put('', dices);
+        dispatch(ActionCreators.updateDices(dices));
+    } catch {
+        console.log("Dices couldn't be updated!");
+    }
+}
+
+export const UpdatePlayerPosition = async (dispatch, playerIndex, dices) => {
+    try {
+        //await axiosInstancePlayers.put('', player, dices);
+        dispatch(ActionCreators.updatePlayerPosition({activePlayerIndex: playerIndex, dices: dices}));
+    } catch {
+        console.log("Player's position couldn't be updated!");
+    }
+}
+
+
 /*
 export const CreatePlayer = async (dispatch, player) => {
     try {
