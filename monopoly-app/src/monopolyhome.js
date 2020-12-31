@@ -509,5 +509,6 @@ export const data = {
             "turnsToWait": 0
         }
     ],
-    "dices": [1,1]
+    "dices": [1,1],
+    "activePlayerIndex": 0
 }

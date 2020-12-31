@@ -1,10 +1,13 @@
-const initialState = { monopolyFields: [], gainCards: [], lossCards: [], players: [], dices: [] }
+const initialState = { monopolyFields: [], gainCards: [], lossCards: [], players: [], dices: [], activePlayerIndex: 0 }
 
 export const ActionTypes = { 
     SET_FIELDS: 'SET_FIELDS', 
     SET_GAINCARDS: 'SET_GAINCARDS',
     SET_LOSSCARDS: 'SET_LOSSCARDS',
     SET_PLAYERS: 'SET_PLAYERS',
+
+    SET_ACTIVE_PLAYER_INDEX: 'SET_ACTIVE_PLAYER_INDEX',
+    UPDATE_ACTIVE_PLAYER_INDEX: 'UPDATE_ACTIVE_PLAYER_INDEX',
 
     SET_DICES: 'SET_DICES',
     UPDATE_DICES: 'UPDATE_DICES',
@@ -23,6 +26,9 @@ export const ActionCreators = {
     setGainCards: payload => ({ type: ActionTypes.SET_GAINCARDS, payload }),
     setLossCards: payload => ({ type: ActionTypes.SET_LOSSCARDS, payload }),
     setPlayers: payload => ({ type: ActionTypes.SET_PLAYERS, payload }),
+
+    setActivePlayerIndex: payload => ({ type: ActionTypes.SET_ACTIVE_PLAYER_INDEX, payload }),
+    updateActivePlayerIndex: payload => ({ type: ActionTypes.UPDATE_ACTIVE_PLAYER_INDEX, payload }),
 
     setDices: payload => ({ type: ActionTypes.SET_DICES, payload }),
     updateDices: payload => ({ type: ActionTypes.UPDATE_DICES, payload }),
@@ -57,6 +63,17 @@ export default function MonopolyReducer(state = initialState, action) {
 
 
 
+        // change index of player that has a turn at the moment:
+        case ActionTypes.SET_ACTIVE_PLAYER_INDEX:
+            return { ...state, activePlayerIndex: action.payload.activePlayerIndex };
+
+        // change index of player that has a turn at the moment:
+        case ActionTypes.UPDATE_ACTIVE_PLAYER_INDEX:
+            state.activePlayerIndex = action.payload
+            return state
+
+
+
         // get current dices view and set it in "dices" list
         case ActionTypes.SET_DICES:
             return { ...state, dices: [...action.payload.dices] };
@@ -64,15 +81,15 @@ export default function MonopolyReducer(state = initialState, action) {
         // update dices:
         case ActionTypes.UPDATE_DICES:
             state.dices = action.payload
-            return { ...state, dices: [...state.dices] }
+            return state
 
         // change player's position on the board
         case ActionTypes.UPDATE_PLAYER_POSITION:
             for (let i = 0; i < state.players.length; i++)
-                if (state.players[i].name === action.payload.name)
+                if (i === action.payload.activePlayerIndex)
                     state.players[i].position = (state.players[i].position 
                         + action.payload.dices[0] + action.payload.dices[1]) % 40;
-            return { ...state, players: [...state.players] }
+            return state
         
 
 
