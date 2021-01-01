@@ -22,7 +22,9 @@ export const PlayerBar = (data) => {
     let idx = -1;
     return (
         <div className="playerBar">
-            { monopolyPlayers.map(pl => <PlayerBox key={pl.name} player={pl} isActive={++idx === activePlayerIndex} cards={cards} fields={fields}/>) }
+            <div className="playerBarInnerDiv">
+                { monopolyPlayers.map(pl => <PlayerBox key={pl.name} player={pl} isActive={++idx === activePlayerIndex} cards={cards} fields={fields}/>) }
+            </div>
             <Button className="endTurnButton" onClick={() => 
                 UpdateActivePlayerIndex(dispatch, (activePlayerIndex + 1) % monopolyPlayers.length)}>
                 <span>Zakończ turę</span>

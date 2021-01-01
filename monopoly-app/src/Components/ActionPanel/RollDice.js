@@ -19,13 +19,15 @@ export const RollDice = () => {
     if (dices === null || dices.length === 0) return null;
 
     return (
-        <div>
+        <div className="rollDiceComponent">
             <Button className="throwDicesButton" onClick={() => {
                 let newDiceState = [Math.floor(Math.random() * 6) + 1, Math.floor(Math.random() * 6) + 1];
                 UpdateDices(dispatch, newDiceState); 
                 UpdatePlayerPosition(dispatch, activePlayerIndex, newDiceState)}}>Rzuć kośćmi</Button>
-            <img className="diceImg" src={`/Assets/Dice/dice${dices[0]}.png`}/>
-            <img className="diceImg" src={`/Assets/Dice/dice${dices[1]}.png`}/>
+            <div className="diceImages">
+                <img className="diceImg" src={`/Assets/Dice/dice${dices[0]}.png`} alt="firstdice"/>
+                <img className="diceImg" src={`/Assets/Dice/dice${dices[1]}.png`} alt="seconddice"/>
+            </div>
         </div>
     );
 }

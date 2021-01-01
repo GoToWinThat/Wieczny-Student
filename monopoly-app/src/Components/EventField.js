@@ -16,9 +16,8 @@ class EventField extends Component {
             <Popover id="popover-card">
                 <Popover.Content>
                     <div className="card card-popover">
-                        <div className="card-header" style={{backgroundColor:`${this.props.data.color}`}}></div>
                         <div className="card-body">
-                            <div className="card-title" style={{paddingTop: `1.5em`, fontSize: `1em`}}>{this.props.data.name}</div>
+                            <div className="card-title">{this.props.data.name}</div>
                             <img className="img-eventField" src={this.img} alt="..."></img>
                         </div>
                     </div>
@@ -51,7 +50,7 @@ class EventField extends Component {
                             <Pawns players={this.props.players} id={this.props.data.fieldID}/>
                         </div>
                         <div className="card-body">
-                            <div className="card-title" style={{paddingTop: `1.5em`}}>{this.props.data.name}</div>
+                            <img className="img-eventField" src={this.img} alt="..."></img>
                         </div>
                     </div>
                 </div>

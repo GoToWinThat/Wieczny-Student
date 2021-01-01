@@ -48,7 +48,7 @@ function PlayerBox(props)
         let fieldsList = listOfFields()
         let cardsList = ListOfCards()
         if(fieldsList === null && cardsList === null ) 
-            return(<p className="text-secondary w-100 px-5"> Pusto !</p>)
+            return(<p className="text-secondary w-100 px-1">Gracz nie posiada żadnych kart i nieruchomości.</p>)
         else if(fieldsList === null || cardsList === null )
             return(<div>{fieldsList}{cardsList}</div>)
         else
@@ -81,9 +81,10 @@ function PlayerBox(props)
             <Button
                 className="playerBox"
                 variant="secondary"
-                style={{ border: border, background: background}}
-                >
-                    <span style= {{ color: color}} > {props.player.name}:  {props.player.cash} ECTS</span>
+                style={{ border: border, background: background, color: color}}>
+                    <span className="playerBoxName">{props.player.name}</span>  
+                    <br/>
+                    <span className="playerBoxCash">{props.player.cash} ECTS</span>
             </Button>
         </OverlayTrigger>
 

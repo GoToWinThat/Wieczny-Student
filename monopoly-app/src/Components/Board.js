@@ -19,9 +19,9 @@ export const Board = () => {
             GetPlayers(dispatch);
             GetGainCards(dispatch);
             GetLossCards(dispatch);
-        }, []);
+        }, [dispatch]);
     } catch {
-        console.log("Couldn't call function useEffect()!");
+        console.log("Couldn't call function useEffect() in Board.js!");
     }
 
     // Eliminate problem with empty "fields" list (it can be too early to render board):
@@ -29,18 +29,19 @@ export const Board = () => {
 
         return (
 
-            <div className="container-fluid content-row">
-                <div className="row row-top" >
+            <div className="board">
+                <BoardCenter data={{fields,gainCards,lossCards,players}}/>
+                <div className="row row-top">
                     <div className="col-2 card-deck"><Field players={players} data={fields[20]}/></div>
                     <div className="col card-deck"><Field players={players} rotate="card-top" data={fields[21]}/></div>
-                    <div className="col card-deck"><Field players={players} rotate="card-top"data={fields[22]}/></div>
-                    <div className="col card-deck"><Field players={players} rotate="card-top"data={fields[23]}/></div>
-                    <div className="col card-deck"><Field players={players} rotate="card-top"data={fields[24]}/></div>
-                    <div className="col card-deck"><Field players={players} rotate="card-top"data={fields[25]}/></div>
-                    <div className="col card-deck"><Field players={players} rotate="card-top"data={fields[26]}/></div>
-                    <div className="col card-deck"><Field players={players} rotate="card-top"data={fields[27]}/></div>
-                    <div className="col card-deck"><Field players={players} rotate="card-top"data={fields[28]}/></div>
-                    <div className="col card-deck"><Field players={players} rotate="card-top"data={fields[29]}/></div>
+                    <div className="col card-deck"><Field players={players} rotate="card-top" data={fields[22]}/></div>
+                    <div className="col card-deck"><Field players={players} rotate="card-top" data={fields[23]}/></div>
+                    <div className="col card-deck"><Field players={players} rotate="card-top" data={fields[24]}/></div>
+                    <div className="col card-deck"><Field players={players} rotate="card-top" data={fields[25]}/></div>
+                    <div className="col card-deck"><Field players={players} rotate="card-top" data={fields[26]}/></div>
+                    <div className="col card-deck"><Field players={players} rotate="card-top" data={fields[27]}/></div>
+                    <div className="col card-deck"><Field players={players} rotate="card-top" data={fields[28]}/></div>
+                    <div className="col card-deck"><Field players={players} rotate="card-top" data={fields[29]}/></div>
                     <div className="col-2 card-deck"><Field players={players} data={fields[30]}/></div>
                 </div>
                 <div className="row row-center">
@@ -50,7 +51,7 @@ export const Board = () => {
                 </div>
                 <div className="row row-center">
                     <div className="col card-deck"><Field players={players} rotate="card-left" data={fields[18]}/></div>
-                    <div className="col-8"><BoardCenter data={{fields,gainCards,players}}/></div>
+                    <div className="col-8"></div>
                     <div className="col card-deck"><Field players={players} rotate="card-right" data={fields[32]}/></div>
                 </div>
                 <div className="row row-center">
@@ -88,17 +89,17 @@ export const Board = () => {
                     <div className="col-8"></div>
                     <div className="col card-deck"><Field players={players} rotate="card-right" data={fields[39]}/></div>
                 </div>
-                <div className="row row-bottom" >
+                <div className="row row-bottom">
                     <div className="col-2 card-deck"><Field players={players} data={fields[10]}/></div>
-                    <div className="col card-deck"><Field players={players} rotate="card-botom"data={fields[9]}/></div>
-                    <div className="col card-deck"><Field players={players} rotate="card-botom"data={fields[8]}/></div>
-                    <div className="col card-deck"><Field players={players} rotate="card-botom"data={fields[7]}/></div>
-                    <div className="col card-deck"><Field players={players} rotate="card-botom"data={fields[6]}/></div>
-                    <div className="col card-deck"><Field players={players} rotate="card-botom"data={fields[5]}/></div>
-                    <div className="col card-deck"><Field players={players} rotate="card-botom"data={fields[4]}/></div>
-                    <div className="col card-deck"><Field players={players} rotate="card-botom"data={fields[3]}/></div>
-                    <div className="col card-deck"><Field players={players} rotate="card-botom"data={fields[2]}/></div>
-                    <div className="col card-deck"><Field players={players} rotate="card-botom"data={fields[1]}/></div>
+                    <div className="col card-deck"><Field players={players} rotate="card-botom" data={fields[9]}/></div>
+                    <div className="col card-deck"><Field players={players} rotate="card-botom" data={fields[8]}/></div>
+                    <div className="col card-deck"><Field players={players} rotate="card-botom" data={fields[7]}/></div>
+                    <div className="col card-deck"><Field players={players} rotate="card-botom" data={fields[6]}/></div>
+                    <div className="col card-deck"><Field players={players} rotate="card-botom" data={fields[5]}/></div>
+                    <div className="col card-deck"><Field players={players} rotate="card-botom" data={fields[4]}/></div>
+                    <div className="col card-deck"><Field players={players} rotate="card-botom" data={fields[3]}/></div>
+                    <div className="col card-deck"><Field players={players} rotate="card-botom" data={fields[2]}/></div>
+                    <div className="col card-deck"><Field players={players} rotate="card-botom" data={fields[1]}/></div>
                     <div className="col-2 card-deck"><Field players={players} data={fields[0]}/></div>
                 </div>
             </div>

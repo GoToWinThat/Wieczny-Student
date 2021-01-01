@@ -41,7 +41,7 @@ class ActionOptions extends Component
     render() {
 
         return (
-        <div>
+        <div className="actionOptions">
             <ButttonPanel changeView={this.changeView}/>
             {this.navigator()}
         </div>)

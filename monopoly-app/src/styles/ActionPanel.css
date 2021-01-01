@@ -1,54 +1,39 @@
-/* General */
-.yesNoButton
-{
-    margin-left: 30px ;
-}
-span.redBold
-{
-    color: 'red';
-    font-weight: 'bold';
-}
-
 /* Roll Dice Component */
-.diceImg
+.rollDiceComponent
 {
-    max-height: 55px;
-    padding: 5px;
-}
-.throwDicesButton
-{
-    max-height: 55px;
-    padding: 0px 30px;
-    margin-right: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Player Bar Component */
-.playerBox
+.playerBar
 {
-    width: 150px;
-    display: inline-table;
+    display: flex;
+    flex-direction: column;
+}
+.playerBarInnerDiv
+{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 }
 .endTurnButton
 {
-    margin-left: 30px ;
+    width: fit-content;
+    align-self: center;
+    margin: 1vh;
+    line-height: 50%;
 }
-.btn-default{
- 
-background-color: #68889E;
- 
-color:#FFF;
- 
-border-color: #2F3E48;
- }
+.btn-default
+{
+    background-color: #68889E;
+    border-color: #2F3E48;
+    color:#FFF;
+}
 
 /* Action Options */
-.actionsButton
-{
-    border: 2px solid black;
-    padding: 0px 50px 0px 50px;
-    margin: 10px 0px;
-    background: transparent;
-}
+.actionOptions * { line-height: 50%; }
 
 /* Manage */
 .manageTable
@@ -87,6 +72,21 @@ border-color: #2F3E48;
 {
     padding: 10px;
 }
+.arrow
+{
+    width: 10%;
+    height: 10%;
+}
+
+/* LogBox */
+.logBox
+{
+    width: 70%;
+    white-space: pre-line;
+    font-family: "Lucida Console", "Courier New", monospace;
+    text-align: left;
+    padding-left: 2%;
+}
 
 /* Auction */
 /* .auction
@@ -94,17 +94,42 @@ border-color: #2F3E48;
     width: fit-content;
     display: flex;
     justify-content: space-around;
-} */
-.arrow{
-    width: 10%;
-    height: 10%;
+} 
+*/
+
+
+/* ORIENTATION SETTINGS */
+@media(orientation: portrait)
+{
+    .boardCenter * { font-size: 2vw; }
+    .diceImg { height: 6vw; padding: 0.5vw; }
+    .diceImages { margin-left: 2.5vw; }
+    .throwDicesButton 
+    { 
+        height: 4vw; 
+        padding: 0.5vw; 
+        margin-right: 2.5vw; 
+        line-height: 50%;
+    }
+    .logBox { height: 20vw; font-size: 1.5vw; }
+    .endTurnButton { height: 4vw; padding: 0.5vw; }
+    .playerBox { padding: 0.5vw; }
+    .actionOptions .btn-group .btn { padding: 1vw; }
 }
-.logBox{
-    width: 55%;
-    height: 100px;
-    white-space: pre-line;
-    font-family: "Lucida Console", "Courier New", monospace;
-    font-size: small;
-    text-align: left;
-    padding-left: 2%;
+@media(orientation: landscape)
+{
+    .boardCenter * { font-size: 2vh; }
+    .diceImg { height: 6vh; padding: 0.5vh; }
+    .diceImages { margin-left: 2.5vh; }
+    .throwDicesButton 
+    { 
+        height: 4vh; 
+        padding: 0.5vh; 
+        margin-right: 2.5vh; 
+        line-height: 50%;
+    }
+    .logBox { height: 20vh; font-size: 1.5vh; }
+    .endTurnButton { height: 4vh; padding: 0.5vh; }
+    .playerBox { padding: 0.5vh; }
+    .actionOptions .btn-group .btn { padding: 1vh; }
 }

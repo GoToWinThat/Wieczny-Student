@@ -275,7 +275,7 @@ export const staticData = {
         {
             "fieldID": 31,
             "type": "property",
-            "name": "Sala wykładowa Aula C (CEK)",
+            "name": "Aula C (CEK)",
             "color": "blue",
             "price": 60,
             "rentCosts": [5, 30, 90, 200, 280],
@@ -285,7 +285,7 @@ export const staticData = {
         {
             "fieldID": 32,
             "type": "property",
-            "name": "Sala wykładowa Aula A (CNT)",
+            "name": "Aula A (CNT)",
             "color": "blue",
             "price": 60,
             "rentCosts": [6, 38, 92, 190, 250],
@@ -493,7 +493,7 @@ export const dynamicData = {
             "name": "Kamil",
             "cash": 1000,
             "signature": "9823",
-            "color": "yellow",
+            "color": "orange",
             "properties": [],
             "eventCards": [
                 { "cardID": 0 },

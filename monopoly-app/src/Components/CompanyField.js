@@ -10,7 +10,7 @@ class CompanyField extends Component {
         this.idpositionholder = `cell${this.props.data.fieldID}positionholder`
         this.idanchor = `cell${this.props.data.fieldID}anchor`
         this.cardclass = `card h-100 w-100 ${this.props.rotate}`
-        this.img = this.props.data.name === "Winda" ?"/Assets/Fields/shift-fill.svg": "/Assets/Fields/door-open.svg"
+        this.img = this.props.data.name === "Winda" ? "/Assets/Fields/shift-fill.svg" : "/Assets/Fields/door-open.svg"
 
         this.popoverRotare = this.props.rotate.split('-')[1]
         this.popover = (
@@ -54,7 +54,7 @@ class CompanyField extends Component {
                         <div className="card-header" style={{backgroundColor:`${this.props.data.color}`}}>
                             <Pawns players={this.props.players} id={this.props.data.fieldID}/>
                         </div>
-                        <div className="card-body">
+                        <div className="card-body" style={{justifyContent: "space-between"}}>
                             <div className="card-title">{this.props.data.name}</div>
                             <div className="card-text ">{this.props.data.price} ECTS</div>
                         </div>

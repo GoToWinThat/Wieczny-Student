@@ -1,21 +1,77 @@
-/* ?? wtf is wrong or static or by vh and vw*/
-.row-top,
-.row-bottom {
-  min-height: 120px;
-  min-width: 60px;
+.board
+{
+  position: relative;
 }
-
-.row-center {
-  min-height: 60px;
-}
-.container-fluid {
-  min-height: 800px !important;
-  min-width: 800px !important;
-  height: 80vw;
-  width: 80vw;
-}
-
-.board-center {
+.boardCenter 
+{
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   z-index: 1;
+}
+.col-8 { padding: 0 !important}
+
+@media(orientation: landscape)
+{
+  .board 
+  { 
+    width: 99vh; 
+    height: 99vh; 
+    margin-top: 0.5vh; 
+    margin-bottom: 0.5vh; 
+  }
+  .row-center 
+  { 
+    height: calc(99vh / 13); 
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  .row-top, .row-bottom 
+  { 
+    height: calc(99vh / 6.5); 
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  .boardCenter
+  {
+    width: calc(99vh / 13 * 9 - 5vh); 
+    height: calc(99vh / 13 * 9 - 5vh);
+    margin: calc(99vh / 13 * 2 + 2.5vh); 
+  }
+}
+
+@media(orientation: portrait)
+{
+  .board 
+  { 
+    width: 99vw; 
+    height: 99vw; 
+    margin-left: 0.5vw; 
+    margin-right: 0.5vw; 
+    margin-top: calc((100vh - 99vw) / 2);
+    margin-bottom: calc((100vh - 99vw) / 2);
+  }
+  .row-center 
+  { 
+    height: calc(99vw / 13); 
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  .row-top, .row-bottom 
+  { 
+    height: calc(99vw / 6.5);
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  .boardCenter
+  {
+    width: calc(99vw / 13 * 9 - 5vw); 
+    height: calc(99vw / 13 * 9 - 5vw);
+    margin: calc(99vw / 13 * 2 + 2.5vw); 
+  }
 }

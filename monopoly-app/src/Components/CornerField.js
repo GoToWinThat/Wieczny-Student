@@ -13,7 +13,7 @@ class CornerField extends Component {
                 <div className={this.cardclass} style={{backgroundColor: `${this.props.data.color}`}}>
                     <div className="card-body">
                         <Pawns players={this.props.players} id={this.props.data.fieldID}/>
-                    <h1 className="card-title" style={{fontSize: `1em`, textAlign: `center`, paddingTop: `2em`}}>{this.props.data.name}</h1>
+                    <h1 className="card-title text-uppercase">{this.props.data.name}</h1>
                     </div>
                 </div>
             </div>

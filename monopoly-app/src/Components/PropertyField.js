@@ -14,7 +14,7 @@ class PropertyField extends Component {
             <Popover id="popover-card">
                 <Popover.Content>
                     <div className="card card-popover">
-                            <div className="card-header" style={{backgroundColor:`${this.props.data.color}`, fontSize: "0.5em"}}>
+                            <div className="card-header font-weight-bold" style={{backgroundColor:`${this.props.data.color}`, fontSize: "0.6em"}}>
                                 {this.name}
                             </div>
                             <div className="card-body">
@@ -53,9 +53,9 @@ class PropertyField extends Component {
         if(this.name.includes("Laboratorium"))
             return this.name.replace("Laboratorium", "Lab.")
         else if (this.name.includes("Sala wykładowa"))
-            return this.name.replace("Sala wykładowa", "Sala wyk.")
+            return this.name.replace("Sala wykładowa", "Sala")
         else if (this.name.includes("Pracownia fizyczna"))
-            return this.name.replace("Pracownia fizyczna", "Prac.")
+            return this.name.replace("Pracownia fizyczna", "Prac. fiz.")
         else if (this.name.includes("Biblioteka wydziałowa"))
             return this.name.replace("Biblioteka wydziałowa", "Bib. wydz.")
         else if (this.name.includes("Biblioteka główna"))
@@ -71,9 +71,9 @@ class PropertyField extends Component {
                         <div className="card-header" style={{backgroundColor:`${this.props.data.color}`}}>
                             <Pawns players={this.props.players} id={this.props.data.fieldID}/>
                         </div>
-                        <div className="card-body">
-                        <div className="card-title">{this.ShortenWords()}</div>
-                        <div className="card-text">{this.props.data.price} ECTS</div>
+                        <div className="card-body" style={{justifyContent: "space-between"}}>
+                            <div className="card-title">{this.ShortenWords()}</div>
+                            <div className="card-text">{this.props.data.price} ECTS</div>
                         </div>
                     </div>
                 </div>
