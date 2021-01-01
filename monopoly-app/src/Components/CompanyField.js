@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Popover, OverlayTrigger} from 'react-bootstrap'
 import Pawns from './Pawns.js'
+import FieldIsBought from './FieldIsBought'
 
 class CompanyField extends Component {
     constructor(props){
@@ -55,6 +56,7 @@ class CompanyField extends Component {
                             <Pawns players={this.props.players} id={this.props.data.fieldID}/>
                         </div>
                         <div className="card-body" style={{justifyContent: "space-between"}}>
+                            <FieldIsBought players={this.props.players} id={this.props.data.fieldID} />
                             <div className="card-title">{this.props.data.name}</div>
                             <div className="card-text ">{this.props.data.price} ECTS</div>
                         </div>

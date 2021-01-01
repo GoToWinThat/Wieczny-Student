@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Popover, OverlayTrigger} from 'react-bootstrap'
+import FieldIsBought from './FieldIsBought'
 import Pawns from './Pawns.js'
 
 class PropertyField extends Component {
@@ -18,6 +19,7 @@ class PropertyField extends Component {
                                 {this.name}
                             </div>
                             <div className="card-body">
+
                             <div className="card-title">Cena {this.props.data.price} ECTS</div>
                                 <p className="card-text card-text-rentCost">Czynsz {this.props.data.rentCosts[0]} ECTS</p>
                                 <p className="card-text card-text-rentCost">Z jednym PC {this.props.data.rentCosts[1]} ECTS</p>
@@ -71,7 +73,10 @@ class PropertyField extends Component {
                         <div className="card-header" style={{backgroundColor:`${this.props.data.color}`}}>
                             <Pawns players={this.props.players} id={this.props.data.fieldID}/>
                         </div>
+
                         <div className="card-body" style={{justifyContent: "space-between"}}>
+                            <FieldIsBought players={this.props.players} id={this.props.data.fieldID} />
+
                             <div className="card-title">{this.ShortenWords()}</div>
                             <div className="card-text">{this.props.data.price} ECTS</div>
                         </div>
