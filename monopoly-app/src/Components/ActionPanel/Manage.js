@@ -55,13 +55,13 @@ function Manage(props) {
         var array = [];
         if(logInPlayer.properties[propNum].estateLevel > 3)
         {
-            array.push( <img className="houses" src={`/Assets/Houses/redHouse.svg`}/>);
+            array.push( <img className="houses" src={`/Assets/Houses/redHouse.svg`} alt={"..."}/>);
         } 
         else 
         {
             for (var j = 0; j < logInPlayer.properties[propNum].estateLevel; j++) 
             {
-                array.push( <img className="houses" src={`/Assets/Houses/greenHouse.svg`}/>);
+                array.push( <img className="houses" src={`/Assets/Houses/greenHouse.svg`} alt={"..."}/>);
             }
         }
         
@@ -88,6 +88,7 @@ function Manage(props) {
                 <td><Button size="sm" variant="danger" onClick={() => sellProperty(idx2)}> {field.price} ECTS</Button></td>
             </tr>)
             idx++;
+            return null;
         });
         return array;
     }
@@ -99,7 +100,7 @@ function Manage(props) {
             <Modal.Title >Zarządzaj</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <table class="table">
+            <table className="table text-center">
                 <thead>
                 <tr>
                     <th scope="col">Nieruchomość</th>

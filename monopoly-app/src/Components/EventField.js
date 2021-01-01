@@ -46,9 +46,8 @@ class EventField extends Component {
             <OverlayTrigger trigger={["hover","focus"]} placement={this.ChangePopoveRotarion()} overlay={this.popover}>
                 <div className="cell" id={this.id}>
                     <div className={this.cardclass}>
-                        <div className="card-header" style={{backgroundColor:`${this.props.data.color}`}}>
-                            <Pawns players={this.props.players} id={this.props.data.fieldID}/>
-                        </div>
+                        <Pawns players={this.props.players} id={this.props.data.fieldID}/>
+                        <div className="card-header" style={{backgroundColor:`${this.props.data.color}`}}></div>
                         <div className="card-body">
                             <img className="img-eventField" src={this.img} alt="..."></img>
                         </div>

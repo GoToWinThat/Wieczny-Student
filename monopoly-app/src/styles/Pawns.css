@@ -1,8 +1,14 @@
-.players-pawns {
-  top: 2px;
-  right: 2px;
+.players-pawns 
+{
   position: absolute;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  top: 0;
+  align-items: top;
+  justify-content: left;
 }
+.players-pawns span { font-size: 2.5em; width: 50%; }
+.card-left .players-pawns span, .card-right .players-pawns span { width: 25%; }

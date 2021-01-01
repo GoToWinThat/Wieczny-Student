@@ -54,7 +54,7 @@ class Clock extends Component {
     
     render() {
     return(
-        <span> ( {this.state.time.m}:{this.state.time.s} )</span>
+        <span> [{this.state.time.m * 60 + this.state.time.s}s]</span>
     );
     }
 }
