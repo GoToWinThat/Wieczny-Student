@@ -1,0 +1,6 @@
+.eastateLevel {
+  position: fixed;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
