@@ -22,7 +22,6 @@ function Manage(props) {
     }
     const properties = playersProperties()
     
-    //const [properties, setProperties] = useState(playersProperties());
     const handleClose = () => setShow(false);
 
     //Method which increment numer of houses and check if can do it
@@ -54,6 +53,16 @@ function Manage(props) {
         if(logInPlayer.properties[idx].mortgaged) return "success";
         else return "danger";
     }
+
+    const fieldNameColor = (idx,color) => 
+    {
+        debugger;
+        let field = logInPlayer.properties[idx];
+        if(field.mortgaged) return 'grey';
+        else return color;
+    }
+
+
     //Method to create n number of houses icon
     const createHouses = (propNum) =>
     {
@@ -70,7 +79,6 @@ function Manage(props) {
                 array.push( <img key={hKey} className="houses" src={`/Assets/Houses/greenHouse.svg`} alt={"..."}/>);
             }
         }
-        
         return array;
     }
 
@@ -83,7 +91,7 @@ function Manage(props) {
             let idx2 = idx
             array.push(
             <tr key={idx2}>
-                <th scope="row" style= {{ color: field.color}}>{field.name}</th>
+                <th scope="row" style= {{ color: fieldNameColor(idx2,field.color)}}>{field.name}</th>
                 <td>{createHouses(idx)}</td>
                 <td>
                     <Button size="sm" variant="success" onClick={() => buyHouse(field.fieldID,idx2)}>+</Button>
