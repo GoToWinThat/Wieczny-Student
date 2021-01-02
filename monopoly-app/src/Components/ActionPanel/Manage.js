@@ -28,7 +28,10 @@ function Manage(props) {
     const buyHouse = (fieldId,idx) =>
     {
         if(logInPlayer.properties[idx].estateLevel < 4)
+        {
             UpdatePlayerExpandProperty(dispatch, logInPlayer.name, fieldId, 1);
+            //UpdatePlayerCash(props.data.fields[fieldId].)
+        }
     }
 
     const sellHouse = (fieldId,idx) =>

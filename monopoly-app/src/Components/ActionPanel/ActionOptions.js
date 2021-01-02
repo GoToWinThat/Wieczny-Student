@@ -10,15 +10,7 @@ class ActionOptions extends Component
     constructor(props){
         super(props)
         //Sample JSON format
-        this.state = {option: 'menu', field: {
-            fieldID: 12,
-            type: "property",
-            name: "Laboratorium nr 409 (MS)",
-            color: "lightgreen",
-            price: 100,
-            rents: [10, 20, 30, 40, 50, 60],
-            oneHousePrice: 10
-        }}
+        this.state = {option: 'menu'}
         this.changeView = this.changeView.bind(this)
     }
     //Display corrent panel in render method based on state
@@ -26,7 +18,7 @@ class ActionOptions extends Component
     {
         let opt = this.state.option
         if(opt === 'buy') 
-            return <Buy field={this.state.field}/>;
+            return <Buy data={this.props.data}/>;
         if(opt === 'trade') 
             return <Trade/>;
         if(opt === 'manage') 
