@@ -77,10 +77,10 @@ export const UpdateDices = async (dispatch, dices) => {
     }
 }
 
-export const UpdatePlayerPosition = async (dispatch, playerIndex, dices) => {
+export const UpdatePlayerPosition = async (dispatch, playerIndex, deltaPosition) => {
     try {
         //await axiosInstanceDynamicData...
-        dispatch(ActionCreators.updatePlayerPosition({activePlayerIndex: playerIndex, dices: dices}));
+        dispatch(ActionCreators.updatePlayerPosition({activePlayerIndex: playerIndex, deltaPosition: deltaPosition}));
     } catch {
         console.log("Player's position couldn't be updated!");
     }
@@ -182,5 +182,23 @@ export const updatePlayerUpdateWaitingTurns = async (dispatch, playerName, turns
         dispatch(ActionCreators.updatePlayerUpdateWaitingTurns({playerName, turns}));
     } catch {
         console.log("Player couldn't go to jail / go out from jail!");
+    }
+}
+
+export const GetLogs = async (dispatch) => {
+    try {
+        //const {dynamicData} = await axiosInstanceDynamicData.get();
+        dispatch(ActionCreators.setLogs(dynamicData));
+    } catch {
+        console.log("Logs couldn't be set!");
+    }
+}
+
+export const AddNewLog = async (dispatch, newLog) => {
+    try {
+        //await axiosInstanceDynamicData...
+        dispatch(ActionCreators.addNewLog(newLog));
+    } catch {
+        console.log("Logs couldn't be set!");
     }
 }

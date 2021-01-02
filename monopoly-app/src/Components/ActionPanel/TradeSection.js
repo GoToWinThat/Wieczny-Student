@@ -15,11 +15,11 @@ class TradeSection extends Component
         for (var i = 0; i < porpList.length; i++) 
         {
             array.push(
-                <div className="d-flex">
+                <div className="d-flex" key={i}>
                     <input className="mt-1 mr-2" type='checkbox'/>
                     <div className="propertyBox" style={{background: porpList[i].color }}/>
                     <span>{porpList[i].name} </span>
-                    <tr/>
+                    <br/>
                 </div>);
         }
         return array;
@@ -32,10 +32,10 @@ class TradeSection extends Component
         for (var i = 0; i < cardList.length; i++) 
         {
             array.push(
-                <div className="d-flex">
-                    <input  className="mt-1 mr-2"  type='checkbox'/>
+                <div className="d-flex" key={i}>
+                    <input className="mt-1 mr-2"  type='checkbox'/>
                     <span>{cardList[i]} </span>
-                    <tr/>
+                    <br/>
                 </div>);
         }
         return array;
@@ -44,9 +44,9 @@ class TradeSection extends Component
     getPlayerName() {
         if(this.props.dropdown){
             return(<div className="d-flex">
-                        <img className="arrow mt-2 ml-3" src={`/Assets/General/arrowLeft.svg`}/>
+                        <img className="arrow mt-2 ml-3" src={`/Assets/General/arrowLeft.svg`} alt="arrow-left"/>
                         <p className="h3 col text-center" style={{color: this.state.playerInfo.color}} >{this.state.playerInfo.name}</p>
-                        <img className="arrow mt-2 mr-3" src={`/Assets/General/arrowRight.svg`}/>
+                        <img className="arrow mt-2 mr-3" src={`/Assets/General/arrowRight.svg`} alt="arrow-right"/>
                     </div>
             )
         }else{
@@ -59,8 +59,8 @@ class TradeSection extends Component
     {
         //Display name, ects, list of fileds, ECTS to exchnage form
         return(
-            <div >
-                {this.getPlayerName()}<tr/>
+            <div>
+                {this.getPlayerName()}
                 <p className="h6 col text-center mb-3" >{this.state.playerInfo.money} ECTS</p>
                 <hr/>
                 {this.createListOfFields()}

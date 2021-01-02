@@ -1,12 +1,17 @@
 import "../../styles/ActionPanel.css";
 import React, { useState } from 'react';
-import {Button, Modal} from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { Button, Modal } from 'react-bootstrap';
+import { UpdatePlayerExpandProperty, UpdatePlayerDeleteProperty, UpdatePlayerMortgageProperty, UpdatePlayerCash } from '../../services/monopoly';
 
 
 function Manage(props) {
     //Initialized a players property list
-    const logInPlayerIndx = 0;
+    const logInPlayerIndx = props.data.activePlayerIndex;
     const logInPlayer = props.data.players[logInPlayerIndx];
+    const [show, setShow] = useState(true);
+    const dispatch = useDispatch();
+
     const playersProperties = () => 
     {
         var fieldArray = [];
@@ -15,56 +20,66 @@ function Manage(props) {
         )
         return fieldArray;
     }
-
-    const [show, setShow] = useState(true);
-    const [properties, setProperties] = useState(playersProperties());
+    const properties = playersProperties()
+    
     const handleClose = () => setShow(false);
 
     //Method which increment numer of houses and check if can do it
-    const buyHouse = (num) =>
+    const buyHouse = (fieldId,idx) =>
     {
-        let array = [...properties];
-        if(array[num].numOfHouses < 4)
-        {
-            array[num].numOfHouses += 1;
-            setProperties(array);
-        }
+        if(logInPlayer.properties[idx].estateLevel < 4)
+            UpdatePlayerExpandProperty(dispatch, logInPlayer.name, fieldId, 1);
     }
 
-    const sellHouse = (num) =>
+    const sellHouse = (fieldId,idx) =>
     {
-        let array = [...properties];
-        if(array[num].numOfHouses > 0)
-        {
-            array[num].numOfHouses -= 1;
-            setProperties(array);
-        }
+        if(logInPlayer.properties[idx].estateLevel > 0)
+            UpdatePlayerExpandProperty(dispatch, logInPlayer.name, fieldId, -1);
     }
 
-    const sellProperty = (num) =>
+    const sellProperty = (fieldId) =>
     {
-        let array = [...properties];
-        array.splice(num, 1);
-        setProperties(array);
+        debugger;
+        UpdatePlayerDeleteProperty(dispatch,logInPlayer.name,fieldId);
+        UpdatePlayerCash(dispatch, logInPlayer.name, parseInt(props.data.fields[fieldId].price));
     }
+
+    const mortageProperty = (fieldId) =>
+    {
+        UpdatePlayerMortgageProperty(dispatch,logInPlayer.name,fieldId);
+    }
+
+    const mortageButtonColor = (idx) => 
+    {
+        if(logInPlayer.properties[idx].mortgaged) return "success";
+        else return "danger";
+    }
+
+    const fieldNameColor = (idx,color) => 
+    {
+        debugger;
+        let field = logInPlayer.properties[idx];
+        if (field.mortgaged) return 'grey';
+        else return color;
+    }
+
 
     //Method to create n number of houses icon
     const createHouses = (propNum) =>
     {
-        debugger;
         var array = [];
+        let hKey=`${logInPlayer.properties[propNum].name} ${propNum}`
         if(logInPlayer.properties[propNum].estateLevel > 3)
         {
-            array.push( <img className="houses" src={`/Assets/Houses/redHouse.svg`}/>);
+            array.push( <img key={hKey} className="houses" src={`/Assets/Houses/server.svg`} alt="server"/>);
         } 
         else 
         {
             for (var j = 0; j < logInPlayer.properties[propNum].estateLevel; j++) 
             {
-                array.push( <img className="houses" src={`/Assets/Houses/greenHouse.svg`}/>);
+                array.push( <img key={hKey} className="houses" src={`/Assets/Houses/computer.svg`} alt="computer"/>);
             }
         }
-        
         return array;
     }
 
@@ -76,30 +91,37 @@ function Manage(props) {
         properties.map(field => {
             let idx2 = idx
             array.push(
-            <tr>
-                <th scope="row" style= {{ color: field.color}}>{field.name}</th>
+            <tr key={idx2}>
+                <th scope="row" style= {{ color: fieldNameColor(idx2,field.color)}}>{field.name}</th>
                 <td>{createHouses(idx)}</td>
                 <td>
-                    <Button size="sm" variant="success" onClick={() => buyHouse(idx2)}>+</Button>
+                    <Button size="sm" variant="success" onClick={() => buyHouse(field.fieldID,idx2)}>+</Button>
                     <span className="mr-2 ml-2" > {field.estatePrice} ECTS</span>
-                    <Button size="sm" variant="danger" onClick={() => sellHouse(idx2)}> - </Button>
+                    <Button size="sm" variant="danger" onClick={() => sellHouse(field.fieldID,idx2)}> - </Button>
                 </td>
-                <td><Button size="sm" variant="danger"> {field.mortgage} ECTS</Button></td>
-                <td><Button size="sm" variant="danger" onClick={() => sellProperty(idx2)}> {field.price} ECTS</Button></td>
+                <td><Button size="sm" variant={mortageButtonColor(idx2)} onClick={() => mortageProperty(field.fieldID)}> {field.mortgage} ECTS</Button></td>
+                <td><Button size="sm" variant="danger" onClick={() => sellProperty(field.fieldID)}> {field.price} ECTS</Button></td>
             </tr>)
             idx++;
+            return null;
         });
         return array;
     }
 
     return (
       <>
-        <Modal show={show} size="lg" onHide={handleClose} backdrop="static" keyboard={false} >
+        <Modal 
+            show={show} 
+            size="lg" 
+            onHide={handleClose} 
+            backdrop="static" 
+            keyboard={false} 
+            centered>
           <Modal.Header closeButton>
             <Modal.Title >Zarządzaj</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <table class="table">
+            <table className="table text-center">
                 <thead>
                 <tr>
                     <th scope="col">Nieruchomość</th>
@@ -109,9 +131,7 @@ function Manage(props) {
                     <th scope="col">Sprzedaj</th>
                 </tr>
                 </thead>
-                <tbody>
-                {genPorpTable()}
-                </tbody>
+                <tbody>{genPorpTable()}</tbody>
             </table>
           </Modal.Body>
         </Modal>

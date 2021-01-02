@@ -7,7 +7,7 @@ class Pawns extends Component {
         <div className="players-pawns">
             {this.props.players.map((player,i) => {
                 if(player.position === this.props.id)
-                    return <span key={i} style={{color: `${player.color}`, fontSize: "1.8em"}}>{String.fromCharCode(player.signature)}</span>
+                    return <span key={i} style={{color: `${player.color}`}}>{String.fromCharCode(player.signature)}</span>
                 else
                     return null
             })}

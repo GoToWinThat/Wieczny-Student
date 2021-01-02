@@ -14,7 +14,7 @@ export const staticData = {
             "fieldID": 0,
             "type": "corner",
             "name": "Portiernia",
-            "color": "green"
+            "color": "seagreen"
         },
         {
             "fieldID": 1,
@@ -98,7 +98,7 @@ export const staticData = {
             "fieldID": 10,
             "type": "corner",
             "name": "Konsultacje",
-            "color": "green"
+            "color": "seagreen"
         },
         {
             "fieldID": 11,
@@ -184,7 +184,7 @@ export const staticData = {
             "fieldID": 20,
             "type": "corner",
             "name": "Stołówka studencka",
-            "color": "green"
+            "color": "seagreen"
         },
         {
             "fieldID": 21,
@@ -212,7 +212,7 @@ export const staticData = {
             "fieldID": 24,
             "type": "property",
             "name": "Sala nr 310 (LB)",
-            "color": "purple",
+            "color": "darkorchid",
             "price": 45,
             "rentCosts": [3, 18, 50, 140, 210],
             "estatePrice": 20,
@@ -230,7 +230,7 @@ export const staticData = {
             "fieldID": 26,
             "type": "property",
             "name": "Sala nr 315 (LB)",
-            "color": "purple",
+            "color": "darkorchid",
             "price": 50,
             "rentCosts": [3, 20, 60, 150, 230],
             "estatePrice": 20,
@@ -240,7 +240,7 @@ export const staticData = {
             "fieldID": 27,
             "type": "property",
             "name": "Sala nr 425 (LB)",
-            "color": "violet",
+            "color": "indianred",
             "price": 50,
             "rentCosts": [3, 14, 40, 110, 150],
             "estatePrice": 20,
@@ -250,7 +250,7 @@ export const staticData = {
             "fieldID": 28,
             "type": "property",
             "name": "Sala nr 426 (LB)",
-            "color": "violet",
+            "color": "indianred",
             "price": 50,
             "rentCosts": [3, 14, 40, 110, 150],
             "estatePrice": 20,
@@ -260,7 +260,7 @@ export const staticData = {
             "fieldID": 29,
             "type": "property",
             "name": "Sala nr 427 (LB)",
-            "color": "violet",
+            "color": "indianred",
             "price": 60,
             "rentCosts": [3, 15, 45, 120, 170],
             "estatePrice": 20,
@@ -270,13 +270,13 @@ export const staticData = {
             "fieldID": 30,
             "type": "corner",
             "name": "Dziekanat",
-            "color": "green"
+            "color": "seagreen"
         },
         {
             "fieldID": 31,
             "type": "property",
             "name": "Aula C (CEK)",
-            "color": "blue",
+            "color": "steelblue",
             "price": 60,
             "rentCosts": [5, 30, 90, 200, 280],
             "estatePrice": 40,
@@ -286,7 +286,7 @@ export const staticData = {
             "fieldID": 32,
             "type": "property",
             "name": "Aula A (CNT)",
-            "color": "blue",
+            "color": "steelblue",
             "price": 60,
             "rentCosts": [6, 38, 92, 190, 250],
             "estatePrice": 40,
@@ -296,7 +296,7 @@ export const staticData = {
             "fieldID": 33,
             "type": "property",
             "name": "Pracownia fizyczna nr 2 (CNT)",
-            "color": "blue",
+            "color": "steelblue",
             "price": 60,
             "rentCosts": [6, 40, 95, 250, 350],
             "estatePrice": 40,
@@ -465,13 +465,13 @@ export const dynamicData = {
             "signature": "9772",
             "color": "blue",
             "properties": [
-                { "fieldID": 39, "estateLevel": 3, "mortgaged": false },
+                { "fieldID": 39, "estateLevel": 0, "mortgaged": false },
                 { "fieldID": 3, "estateLevel": 4, "mortgaged": false }
             ],
             "eventCards": [
                 { "cardID": 1 }
             ],
-            "position": 8,
+            "position": 0,
             "isInJail": false,
             "turnsToWait": 0
         },
@@ -485,7 +485,7 @@ export const dynamicData = {
                 { "fieldID": 6, "estateLevel": 1, "mortgaged": false }
             ],
             "eventCards": [],
-            "position": 8,
+            "position": 0,
             "isInJail": false,
             "turnsToWait": 0
         },
@@ -494,12 +494,15 @@ export const dynamicData = {
             "cash": 1000,
             "signature": "9823",
             "color": "orange",
-            "properties": [],
+            "properties": [
+                { "fieldID": 21, "estateLevel": 1, "mortgaged": false },
+                { "fieldID": 19, "estateLevel": 3, "mortgaged": false }
+            ],
             "eventCards": [
                 { "cardID": 0 },
                 { "cardID": 1 }
             ],
-            "position": 8,
+            "position": 0,
             "isInJail": false,
             "turnsToWait": 0
         },
@@ -510,11 +513,12 @@ export const dynamicData = {
             "color": "green",
             "properties": [],
             "eventCards": [],
-            "position": 8,
+            "position": 0,
             "isInJail": false,
             "turnsToWait": 0
         }
     ],
     "dices": [1,1],
-    "activePlayerIndex": 0
+    "activePlayerIndex": 0,
+    "logs": []
 }

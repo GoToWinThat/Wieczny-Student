@@ -4,13 +4,15 @@ import { BoardCenter } from './BoardCenter';
 
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { GetFields, GetPlayers, GetGainCards, GetLossCards } from '../services/monopoly';
+import { GetFields, GetPlayers, GetGainCards, GetLossCards, GetActivePlayerIndex, GetLogs, AddNewLog } from '../services/monopoly';
 
 export const Board = () => {
     const fields = useSelector(state => state.monopolyReducer.monopolyFields);
     const gainCards = useSelector(state => state.monopolyReducer.gainCards);
     const lossCards = useSelector(state => state.monopolyReducer.lossCards);
     const players = useSelector(state => state.monopolyReducer.players);
+    const activePlayerIndex = useSelector(state => state.monopolyReducer.activePlayerIndex);
+    const logs = useSelector(state => state.monopolyReducer.logs);
     const dispatch = useDispatch();
 
     try {
@@ -19,6 +21,8 @@ export const Board = () => {
             GetPlayers(dispatch);
             GetGainCards(dispatch);
             GetLossCards(dispatch);
+            GetActivePlayerIndex(dispatch);
+            GetLogs(dispatch);
         }, [dispatch]);
     } catch {
         console.log("Couldn't call function useEffect() in Board.js!");
@@ -27,10 +31,12 @@ export const Board = () => {
     // Eliminate problem with empty "fields" list (it can be too early to render board):
     if (fields === null || fields.length === 0) return null;
 
-        return (
+    // add info about first player's turn
+    if (logs.length === 0) AddNewLog(dispatch, `Tura gracza ${players[activePlayerIndex].name}.`)
 
+        return (
             <div className="board">
-                <BoardCenter data={{fields,gainCards,lossCards,players}}/>
+                <BoardCenter data={{fields, gainCards, lossCards, players, activePlayerIndex, logs, dispatch}}/>
                 <div className="row row-top">
                     <div className="col-2 card-deck"><Field players={players} data={fields[20]}/></div>
                     <div className="col card-deck"><Field players={players} rotate="card-top" data={fields[21]}/></div>

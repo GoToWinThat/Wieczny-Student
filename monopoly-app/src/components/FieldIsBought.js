@@ -6,18 +6,14 @@ class FieldIsBought extends Component {
         const isbought =
         <div className="field-is-bought">
             {this.props.players.map((player) => {
-                return player.properties.map((property,i) => {
-                    if(property.fieldID === this.props.id)
-                        return <div className="field-is-bought" style={{backgroundColor: `${player.color}`}}></div>
-                    else
-                        return null
+                return player.properties.map((property, i) => {
+                    if (property.fieldID === this.props.id) return <div key={i} className="field-is-bought-colored" style={{backgroundColor: `${player.color}`}}/>
+                    else return null
                 })
-
             })}
         </div>
-
         return(isbought)
     }
 }
-export default FieldIsBought;
 
+export default FieldIsBought;

@@ -22,9 +22,9 @@ class CompanyField extends Component {
                             {this.props.data.name}
                         </div>
                         <div className="card-body">
-                            <div className="card-title" style={{paddingTop: `1.5em`}}>Cena {this.props.data.price} ECTS</div>
+                            <div className="card-title">Cena {this.props.data.price} ECTS</div>
                             <img className="img-eventField" src={this.img} alt="..."></img>
-                            <p className="card-text card-text-rentCost">Zastaw {this.props.data.mortgage} ECTS</p>
+                            <p className="card-text">Zastaw {this.props.data.mortgage} ECTS</p>
                         </div>
                     </div>
                 </Popover.Content>
@@ -52,9 +52,8 @@ class CompanyField extends Component {
             <OverlayTrigger trigger={["hover","focus"]} placement={this.ChangePopoveRotarion()} overlay={this.popover}>
                 <div className="cell" id={this.id} style={{backgroundColor: `${this.props.data.color}`}}>
                     <div className={this.cardclass}>
-                        <div className="card-header" style={{backgroundColor:`${this.props.data.color}`}}>
-                            <Pawns players={this.props.players} id={this.props.data.fieldID}/>
-                        </div>
+                        <Pawns players={this.props.players} id={this.props.data.fieldID}/>
+                        <div className="card-header" style={{backgroundColor:`${this.props.data.color}`}}></div>
                         <div className="card-body" style={{justifyContent: "space-between"}}>
                             <FieldIsBought players={this.props.players} id={this.props.data.fieldID} />
                             <div className="card-title">{this.props.data.name}</div>
