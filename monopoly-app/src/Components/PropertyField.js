@@ -19,9 +19,11 @@ class PropertyField extends Component {
 
                         <div className="card-header" style={{backgroundColor:`${this.props.data.color}`}}>
                             {this.name}
+
                         </div>
                         <div className="card-body">
                             <div className="card-title">Cena {this.props.data.price} ECTS</div>
+                            <PopoverEstateLevel players={this.props.players} id={this.props.data.fieldID}/>
                             <div className="card-text-details">
                                 <p>Czynsz</p>
                                 <p>{this.props.data.rentCosts[0]} ECTS</p>
@@ -88,7 +90,7 @@ class PropertyField extends Component {
     }
     render() {
         return (
-            <OverlayTrigger trigger={["click","focus"]} placement={this.ChangePopoveRotarion()} overlay={this.popover}>
+            <OverlayTrigger trigger={["hover","focus"]} placement={this.ChangePopoveRotarion()} overlay={this.popover}>
                 <div className="cell" id={this.id}>
                     <div className={this.cardclass}>
                         <Pawns players={this.props.players} id={this.props.data.fieldID}/>

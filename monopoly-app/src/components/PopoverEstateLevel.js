@@ -5,11 +5,11 @@ class PopoverEstateLevel extends Component {
     easte(estateLevel){
         const level = []
         if(estateLevel === 4){
-            level.push(<img src={`/Assets/Houses/redHouse.svg`} alt="server"/>)
+            level.push(<img src={`/Assets/Houses/server.svg`} alt="server"/>)
         }else{
 
             for (let i = 0; i < estateLevel; i++) {
-                level.push(<img src={`/Assets/Houses/greenHouse.svg`} alt="PC"/>)
+                level.push(<img src={`/Assets/Houses/computer.svg`} alt="PC"/>)
             }
         }
         return level

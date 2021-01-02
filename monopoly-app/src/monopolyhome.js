@@ -465,7 +465,7 @@ export const dynamicData = {
             "signature": "9772",
             "color": "blue",
             "properties": [
-                { "fieldID": 39, "estateLevel": 0, "mortgaged": false },
+                { "fieldID": 39, "estateLevel": 3, "mortgaged": false },
                 { "fieldID": 3, "estateLevel": 4, "mortgaged": false }
             ],
             "eventCards": [
