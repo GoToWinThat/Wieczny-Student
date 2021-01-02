@@ -465,13 +465,13 @@ export const dynamicData = {
             "signature": "9772",
             "color": "blue",
             "properties": [
-                { "fieldID": 39, "estateLevel": 3, "mortgaged": false },
+                { "fieldID": 39, "estateLevel": 0, "mortgaged": false },
                 { "fieldID": 3, "estateLevel": 4, "mortgaged": false }
             ],
             "eventCards": [
                 { "cardID": 1 }
             ],
-            "position": 1,
+            "position": 0,
             "isInJail": false,
             "turnsToWait": 0
         },
@@ -485,7 +485,7 @@ export const dynamicData = {
                 { "fieldID": 6, "estateLevel": 1, "mortgaged": false }
             ],
             "eventCards": [],
-            "position": 1,
+            "position": 0,
             "isInJail": false,
             "turnsToWait": 0
         },
@@ -494,12 +494,15 @@ export const dynamicData = {
             "cash": 1000,
             "signature": "9823",
             "color": "orange",
-            "properties": [],
+            "properties": [
+                { "fieldID": 21, "estateLevel": 1, "mortgaged": false },
+                { "fieldID": 19, "estateLevel": 3, "mortgaged": false }
+            ],
             "eventCards": [
                 { "cardID": 0 },
                 { "cardID": 1 }
             ],
-            "position": 1,
+            "position": 0,
             "isInJail": false,
             "turnsToWait": 0
         },
@@ -510,11 +513,12 @@ export const dynamicData = {
             "color": "green",
             "properties": [],
             "eventCards": [],
-            "position": 1,
+            "position": 0,
             "isInJail": false,
             "turnsToWait": 0
         }
     ],
     "dices": [1,1],
-    "activePlayerIndex": 0
+    "activePlayerIndex": 0,
+    "logs": []
 }

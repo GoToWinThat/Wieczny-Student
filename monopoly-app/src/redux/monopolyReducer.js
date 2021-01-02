@@ -1,4 +1,4 @@
-const initialState = { monopolyFields: [], gainCards: [], lossCards: [], players: [], dices: [], activePlayerIndex: null }
+const initialState = { monopolyFields: [], gainCards: [], lossCards: [], players: [], dices: [], activePlayerIndex: null, logs: [] }
 
 export const ActionTypes = { 
     SET_FIELDS: 'SET_FIELDS', 
@@ -24,6 +24,9 @@ export const ActionTypes = {
     UPDATE_PLAYER_DELETE_EVENT_CARD: 'UPDATE_PLAYER_DELETE_EVENT_CARD',
     UPDATE_PLAYER_GO_TO_JAIL: 'UPDATE_PLAYER_GO_TO_JAIL',
     UPDATE_PLAYER_UPDATE_WAITING_TURNS: 'UPDATE_PLAYER_UPDATE_WAITING_TURNS',
+
+    SET_LOGS: 'SET_LOGS',
+    ADD_NEW_LOG: 'ADD_NEW_LOG'
 }
 
 export const ActionCreators = {
@@ -49,7 +52,10 @@ export const ActionCreators = {
     updatePlayerNewEventCard: payload => ({ type: ActionTypes.UPDATE_PLAYER_NEW_EVENT_CARD, payload }),
     updatePlayerDeleteEventCard: payload => ({ type: ActionTypes.UPDATE_PLAYER_DELETE_EVENT_CARD, payload }),
     updatePlayerGoToJail: payload => ({ type: ActionTypes.UPDATE_PLAYER_GO_TO_JAIL, payload }),
-    updatePlayerUpdateWaitingTurns: payload => ({ type: ActionTypes.UPDATE_PLAYER_UPDATE_WAITING_TURNS, payload })
+    updatePlayerUpdateWaitingTurns: payload => ({ type: ActionTypes.UPDATE_PLAYER_UPDATE_WAITING_TURNS, payload }),
+
+    setLogs: payload => ({ type: ActionTypes.SET_LOGS, payload }),
+    addNewLog: payload => ({ type: ActionTypes.ADD_NEW_LOG, payload })
 }
 
 export default function MonopolyReducer(state = initialState, action) {
@@ -57,35 +63,35 @@ export default function MonopolyReducer(state = initialState, action) {
 
         // get all the fields (property, event and corner ones) and set them in "fields" list
         case ActionTypes.SET_FIELDS:
-            return { ...state, monopolyFields: [...action.payload.monopolyFields] };
+            return { ...state, monopolyFields: [...action.payload.monopolyFields] }
 
         // get all gain cards and set them in "gainCards" list
         case ActionTypes.SET_GAINCARDS:
-            return { ...state, gainCards: [...action.payload.gainCards] };
+            return { ...state, gainCards: [...action.payload.gainCards] }
 
         // get all loss cards and set them in "lossCards" list
         case ActionTypes.SET_LOSSCARDS:
-            return { ...state, lossCards: [...action.payload.lossCards] };
+            return { ...state, lossCards: [...action.payload.lossCards] }
 
         // get all the players and set them in "players" list
         case ActionTypes.SET_PLAYERS:
-            return { ...state, players: [...action.payload.players] };
+            return { ...state, players: [...action.payload.players] }
 
         // change index of player that has a turn at the moment:
         case ActionTypes.SET_ACTIVE_PLAYER_INDEX:
-            return { ...state, activePlayerIndex: action.payload.activePlayerIndex };
+            return { ...state, activePlayerIndex: action.payload.activePlayerIndex }
 
         // change index of player that has a turn at the moment:
         case ActionTypes.UPDATE_ACTIVE_PLAYER_INDEX:
-            return { ...state, activePlayerIndex: action.payload };
+            return { ...state, activePlayerIndex: action.payload }
 
         // get current dices view and set it in "dices" list
         case ActionTypes.SET_DICES:
-            return { ...state, dices: [...action.payload.dices] };
+            return { ...state, dices: [...action.payload.dices] }
 
         // update dices:
         case ActionTypes.UPDATE_DICES:
-            return { ...state, dices: action.payload };
+            return { ...state, dices: action.payload }
 
         // change player's position on the board
         case ActionTypes.UPDATE_PLAYER_POSITION:
@@ -93,9 +99,9 @@ export default function MonopolyReducer(state = initialState, action) {
             return { ...state, players: state.players.map(player => {
                 ++i;
                 if (i !== action.payload.activePlayerIndex) return player
-                return { ...player, position: (player.position + action.payload.dices[0] + action.payload.dices[1]) % state.monopolyFields.length }
+                return { ...player, position: (player.position + action.payload.deltaPosition) % state.monopolyFields.length }
                 }
-            )};
+            )}
 
         // increase or decrease (if on payload there is negative number) player's cash
         case ActionTypes.UPDATE_PLAYER_CASH: 
@@ -126,14 +132,13 @@ export default function MonopolyReducer(state = initialState, action) {
             return { ...state, 
                 players: state.players.map(player => {
                     if (player.name !== action.payload.playerName) return player
-                    return { ...player, 
-                        properties: player.properties.map(property => {
-                            if (property.fieldID !== action.payload.fieldID) return property
-                            return null 
-                        }) 
-                    }
+                    let tmp = []
+                    for (let i = 0; i < player.properties.length; i++)
+                        if (player.properties[i].fieldID !== action.payload.fieldID) 
+                            tmp.push(player.properties[i]);
+                    return { ...player, properties: [...tmp] }
                 })
-            };
+            }
 
         // update amount of computers that certain property have
         case ActionTypes.UPDATE_PLAYER_EXPAND_PROPERTY:
@@ -147,7 +152,7 @@ export default function MonopolyReducer(state = initialState, action) {
                         }) 
                     }
                 })
-            };
+            }
 
         // update state if property is mortgaged or not
         case ActionTypes.UPDATE_PLAYER_MORTGAGE_PROPERTY:
@@ -161,7 +166,7 @@ export default function MonopolyReducer(state = initialState, action) {
                         }) 
                     }
                 })
-            };
+            }
 
         // add event card to player
         case ActionTypes.UPDATE_PLAYER_NEW_EVENT_CARD:
@@ -220,14 +225,23 @@ export default function MonopolyReducer(state = initialState, action) {
                     "isInJail": false,
                     "turnsToWait": 0
                 }
-            ]};
+            ]}
 
         // delete player from the list (eg. if he logged out)
         case ActionTypes.DELETE_PLAYER:
-            return { ...state, players: state.players.map(player => {
-                if (player.name !== action.payload.playerName) return player
-                return null }) 
-            };
+            let tmp = []
+            for (let i = 0; i < state.players.length; i++)
+                if (state.players[i].name !== action.payload.playerName) 
+                    tmp.push(state.players[i]);
+            return { ...state, players: [...tmp] }
+
+
+        // get all logs and set them in "logs" list    
+        case ActionTypes.SET_LOGS:
+            return { ...state, logs: [...action.payload.logs] }
+
+        case ActionTypes.ADD_NEW_LOG:
+            return { ...state, logs: [...state.logs, action.payload] }
 
         default:
             return state;

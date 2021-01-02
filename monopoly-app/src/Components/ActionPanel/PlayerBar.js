@@ -2,22 +2,15 @@ import "../../styles/ActionPanel.css";
 import Clock from './Clock';
 import PlayerBox from './PlayerBox';
 import { Button } from 'react-bootstrap';
-import { GetActivePlayerIndex, UpdateActivePlayerIndex } from '../../services/monopoly';
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { UpdateActivePlayerIndex, AddNewLog } from '../../services/monopoly';
+import React from 'react';
 
 export const PlayerBar = (data) => {
-    const activePlayerIndex = useSelector(state => state.monopolyReducer.activePlayerIndex);
+    const activePlayerIndex = data.data.activePlayerIndex;
     const monopolyPlayers = data.data.players;
     const fields = data.data.fields;
     const cards = data.data.gainCards;
-    const dispatch = useDispatch();
-
-    try {
-        useEffect(() => { GetActivePlayerIndex(dispatch); }, [dispatch]);
-    } catch {
-        console.log("Couldn't call function useEffect()!");
-    }
+    const dispatch = data.data.dispatch;
 
     let idx = -1;
     return (
@@ -25,8 +18,10 @@ export const PlayerBar = (data) => {
             <div className="playerBarInnerDiv">
                 { monopolyPlayers.map(pl => <PlayerBox key={pl.name} player={pl} isActive={++idx === activePlayerIndex} cards={cards} fields={fields}/>) }
             </div>
-            <Button className="endTurnButton" onClick={() => 
-                UpdateActivePlayerIndex(dispatch, (activePlayerIndex + 1) % monopolyPlayers.length)}>
+            <Button className="endTurnButton" onClick={() => {
+                let nextPlayerIndex = (activePlayerIndex + 1) % monopolyPlayers.length;
+                UpdateActivePlayerIndex(dispatch, nextPlayerIndex);
+                AddNewLog(dispatch, `Tura gracza ${data.data.players[nextPlayerIndex].name}.`);}}>
                 <span>Zakończ turę</span>
                 <Clock/>
             </Button>

@@ -1,13 +1,13 @@
 import "../../styles/ActionPanel.css";
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {Button, Modal} from 'react-bootstrap';
-import { UpdatePlayerExpandProperty,UpdatePlayerDeleteProperty,UpdatePlayerMortgageProperty } from '../../services/monopoly';
+import { Button, Modal } from 'react-bootstrap';
+import { UpdatePlayerExpandProperty, UpdatePlayerDeleteProperty, UpdatePlayerMortgageProperty, UpdatePlayerCash } from '../../services/monopoly';
 
 
 function Manage(props) {
     //Initialized a players property list
-    const logInPlayerIndx = 0;
+    const logInPlayerIndx = props.data.activePlayerIndex;
     const logInPlayer = props.data.players[logInPlayerIndx];
     const [show, setShow] = useState(true);
     const dispatch = useDispatch();
@@ -28,19 +28,20 @@ function Manage(props) {
     const buyHouse = (fieldId,idx) =>
     {
         if(logInPlayer.properties[idx].estateLevel < 4)
-            UpdatePlayerExpandProperty(dispatch,logInPlayer.name,fieldId,1);
+            UpdatePlayerExpandProperty(dispatch, logInPlayer.name, fieldId, 1);
     }
 
     const sellHouse = (fieldId,idx) =>
     {
         if(logInPlayer.properties[idx].estateLevel > 0)
-            UpdatePlayerExpandProperty(dispatch,logInPlayer.name,fieldId,-1);
+            UpdatePlayerExpandProperty(dispatch, logInPlayer.name, fieldId, -1);
     }
 
     const sellProperty = (fieldId) =>
     {
         debugger;
-        //UpdatePlayerDeleteProperty(dispatch,logInPlayer.name,fieldId)
+        UpdatePlayerDeleteProperty(dispatch,logInPlayer.name,fieldId);
+        UpdatePlayerCash(dispatch, logInPlayer.name, parseInt(props.data.fields[fieldId].price));
     }
 
     const mortageProperty = (fieldId) =>
@@ -58,7 +59,7 @@ function Manage(props) {
     {
         debugger;
         let field = logInPlayer.properties[idx];
-        if(field.mortgaged) return 'grey';
+        if (field.mortgaged) return 'grey';
         else return color;
     }
 
@@ -70,13 +71,13 @@ function Manage(props) {
         let hKey=`${logInPlayer.properties[propNum].name} ${propNum}`
         if(logInPlayer.properties[propNum].estateLevel > 3)
         {
-            array.push( <img key={hKey} className="houses" src={`/Assets/Houses/redHouse.svg`} alt={"..."}/>);
+            array.push( <img key={hKey} className="houses" src={`/Assets/Houses/server.svg`} alt="server"/>);
         } 
         else 
         {
             for (var j = 0; j < logInPlayer.properties[propNum].estateLevel; j++) 
             {
-                array.push( <img key={hKey} className="houses" src={`/Assets/Houses/greenHouse.svg`} alt={"..."}/>);
+                array.push( <img key={hKey} className="houses" src={`/Assets/Houses/computer.svg`} alt="computer"/>);
             }
         }
         return array;

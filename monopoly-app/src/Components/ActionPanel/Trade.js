@@ -88,11 +88,14 @@ function Trade() {
             <Modal.Title >Handluj</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <tr/>
-            <table className="d-flex justify-content-center">
-                <th><TradeSection playerData={state.currentPlayer} dropdown={false}/></th>
-                <th style={{fontSize: 30}}>&#xa0; &#x21c4; &#xa0; </th>
-                <th><TradeSection playerData={state.otherPlayer} dropdown={true}/></th>
+            <table className="d-flex justify-content-center align-top">
+              <tbody>
+                <tr>
+                  <th><TradeSection playerData={state.currentPlayer} dropdown={false}/></th>
+                  <th style={{fontSize: 30}}>&#xa0; &#x21c4; &#xa0; </th>
+                  <th><TradeSection playerData={state.otherPlayer} dropdown={true}/></th>
+                </tr>
+              </tbody>
             </table>
             <Button className="col-2 offset-5 justify-content-center mt-2" variant="primary">Potwierdź</Button>
           </Modal.Body>
