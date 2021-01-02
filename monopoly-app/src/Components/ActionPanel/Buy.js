@@ -55,6 +55,7 @@ function Buy(props) {
           onHide={handleClose}
           backdrop="static"
           keyboard={false}
+          centered
         >
           <Modal.Header closeButton>
             <Modal.Title >Kup Nieruchomość</Modal.Title>

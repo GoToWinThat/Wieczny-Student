@@ -82,6 +82,7 @@ function Trade() {
           onHide={handleClose}
           backdrop="static"
           keyboard={false}
+          centered
         >
           <Modal.Header closeButton>
             <Modal.Title >Handluj</Modal.Title>
