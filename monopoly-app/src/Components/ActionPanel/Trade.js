@@ -4,76 +4,18 @@ import TradeSection from "./TradeSection";
 import {Modal, Button} from 'react-bootstrap';
 
 
-function Trade() {
+function Trade(props) {
     const [show, setShow] = useState(true);
-  
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
-    const [state, setState] = useState({
-        currentPlayer: {
-            activePlayer: false,
-            playerInfo: {
-                name: 'Tomek',
-                money: 150,
-                color: 'blue',
-                cards: ["Opuść Konsultacje!","Opuść Dziekanat!"],
-                properties: [
-                {
-                    fieldID: 12,
-                    type: "property",
-                    name: "Laboratorium nr 409 (MS)",
-                    color: "lightgreen",
-                    price: 100,
-                    rents: [10, 20, 30, 40, 50, 60],
-                    oneHousePrice: 10
-                },
-                {
-                    fieldID: 24,
-                    type: "property",
-                    name: "Sala nr 310 (LB)",
-                    color: "purple",
-                    price: 100,
-                    rents: [10, 20, 30, 40, 50, 60],
-                    oneHousePrice: 10
-                },
-                
-            ]
-            }
-        },
-        otherPlayer: 
-        {
-            activePlayer: true,
-            playerInfo: {
-                name: 'Maria',
-                money: 120,
-                color: 'orange',
-                cards: ["Opuść Konsultacje!"],
-                properties: [
-                {
-                    fieldID: 19,
-                    type: "property",
-                    name: "Sala nr 507 (MS)",
-                    color: "brown",
-                    price: 100,
-                    rents: [10, 20, 30, 40, 50, 60],
-                    oneHousePrice: 10
-                },
-                {
-                    fieldID: 6,
-                    type: "property",
-                    name: "Laboratorium nr 401 (MS)",
-                    color: "lightblue",
-                    price: 100,
-                    rents: [10, 20, 30, 40, 50, 60],
-                    oneHousePrice: 10
-                },
-            ]
-            }
-        }
+    const activePlayer = props.data.players[props.data.activePlayerIndex];
+    const otherPlayers = [];
+    const data = {fields: props.data.fields, cards: props.data.gainCards};
     
-    });
-  
+    props.data.players.map(player => {
+      if(player.name != activePlayer.name)
+        otherPlayers.push(player);
+    })
+
     return (
       <>
         <Modal
@@ -91,9 +33,9 @@ function Trade() {
             <table className="d-flex justify-content-center align-top">
               <tbody>
                 <tr>
-                  <th><TradeSection playerData={state.currentPlayer} dropdown={false}/></th>
+                  <th><TradeSection data={data} activePlayer={activePlayer}/></th>
                   <th style={{fontSize: 30}}>&#xa0; &#x21c4; &#xa0; </th>
-                  <th><TradeSection playerData={state.otherPlayer} dropdown={true}/></th>
+                  <th><TradeSection data={data} otherPlayers={otherPlayers}/></th>
                 </tr>
               </tbody>
             </table>

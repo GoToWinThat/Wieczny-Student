@@ -8,7 +8,7 @@ function Buy(props) {
   const activePlayer = props.data.players[props.data.activePlayerIndex];
   const currentField = props.data.fields[activePlayer.position];
   const handleClose = () => setShow(false);
-  
+
   const buyProperty = () => 
   {
     UpdatePlayerNewProperty(props.data.dispatch,activePlayer.name,currentField.fieldID);

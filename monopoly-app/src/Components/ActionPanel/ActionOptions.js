@@ -20,7 +20,7 @@ class ActionOptions extends Component
         if(opt === 'buy') 
             return <Buy data={this.props.data}/>;
         if(opt === 'trade') 
-            return <Trade/>;
+            return <Trade data={this.props.data}/>;
         if(opt === 'manage') 
             return <Manage data={this.props.data}/>;
     }

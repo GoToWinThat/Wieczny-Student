@@ -30,29 +30,35 @@ function Manage(props) {
         if(logInPlayer.properties[idx].estateLevel < 4)
         {
             UpdatePlayerExpandProperty(dispatch, logInPlayer.name, fieldId, 1);
-            //UpdatePlayerCash(props.data.fields[fieldId].)
+            UpdatePlayerCash(dispatch,logInPlayer.name, -props.data.fields[fieldId].estatePrice)
         }
     }
 
     const sellHouse = (fieldId,idx) =>
     {
         if(logInPlayer.properties[idx].estateLevel > 0)
+        {
             UpdatePlayerExpandProperty(dispatch, logInPlayer.name, fieldId, -1);
+            UpdatePlayerCash(dispatch,logInPlayer.name, props.data.fields[fieldId].estatePrice)
+        }
     }
 
     const sellProperty = (fieldId) =>
     {
-        debugger;
         UpdatePlayerDeleteProperty(dispatch,logInPlayer.name,fieldId);
         UpdatePlayerCash(dispatch, logInPlayer.name, parseInt(props.data.fields[fieldId].price));
     }
 
-    const mortageProperty = (fieldId) =>
+    const mortgageProperty = (fieldId,idx) =>
     {
+        let multiplier;
+        if(logInPlayer.properties[idx].mortgaged) multiplier = -1;
+        else multiplier = 1;
         UpdatePlayerMortgageProperty(dispatch,logInPlayer.name,fieldId);
+        UpdatePlayerCash(dispatch, logInPlayer.name, parseInt(props.data.fields[fieldId].mortgage)*multiplier);
     }
 
-    const mortageButtonColor = (idx) => 
+    const mortgageButtonColor = (idx) => 
     {
         if(logInPlayer.properties[idx].mortgaged) return "success";
         else return "danger";
@@ -60,7 +66,6 @@ function Manage(props) {
 
     const fieldNameColor = (idx,color) => 
     {
-        debugger;
         let field = logInPlayer.properties[idx];
         if (field.mortgaged) return 'grey';
         else return color;
@@ -97,12 +102,17 @@ function Manage(props) {
             <tr key={idx2}>
                 <th scope="row" style= {{ color: fieldNameColor(idx2,field.color)}}>{field.name}</th>
                 <td>{createHouses(idx)}</td>
-                <td>
-                    <Button size="sm" variant="success" onClick={() => buyHouse(field.fieldID,idx2)}>+</Button>
-                    <span className="mr-2 ml-2" > {field.estatePrice} ECTS</span>
-                    <Button size="sm" variant="danger" onClick={() => sellHouse(field.fieldID,idx2)}> - </Button>
-                </td>
-                <td><Button size="sm" variant={mortageButtonColor(idx2)} onClick={() => mortageProperty(field.fieldID)}> {field.mortgage} ECTS</Button></td>
+                {
+                    field.type === "property" ? 
+                    <td>
+                        <Button size="sm" variant="success" onClick={() => buyHouse(field.fieldID,idx2)}>+</Button>
+                        <span className="mr-2 ml-2" > {field.estatePrice} ECTS</span>
+                        <Button size="sm" variant="danger" onClick={() => sellHouse(field.fieldID,idx2)}> - </Button>
+                    </td>
+                    : 
+                    <td></td>
+                }
+                <td><Button size="sm" variant={mortgageButtonColor(idx2)} onClick={() => mortgageProperty(field.fieldID,idx2)}> {field.mortgage} ECTS</Button></td>
                 <td><Button size="sm" variant="danger" onClick={() => sellProperty(field.fieldID)}> {field.price} ECTS</Button></td>
             </tr>)
             idx++;
