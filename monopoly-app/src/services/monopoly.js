@@ -149,7 +149,7 @@ export const UpdatePlayerMortgageProperty = async (dispatch, playerName, fieldID
     }
 }
 
-export const updatePlayerNewEventCard = async (dispatch, playerName, cardID) => {
+export const UpdatePlayerNewEventCard = async (dispatch, playerName, cardID) => {
     try {
         //await axiosInstanceDynamicData...
         dispatch(ActionCreators.updatePlayerNewEventCard({playerName, cardID}));
@@ -158,7 +158,7 @@ export const updatePlayerNewEventCard = async (dispatch, playerName, cardID) => 
     }
 }
 
-export const updatePlayerDeleteEventCard = async (dispatch, playerName, cardID) => {
+export const UpdatePlayerDeleteEventCard = async (dispatch, playerName, cardID) => {
     try {
         //await axiosInstanceDynamicData...
         dispatch(ActionCreators.updatePlayerDeleteEventCard({playerName, cardID}));
@@ -167,21 +167,12 @@ export const updatePlayerDeleteEventCard = async (dispatch, playerName, cardID) 
     }
 }
 
-export const updatePlayerGoToJail = async (dispatch, playerName) => {
+export const UpdatePlayerUpdateWaitingTurns = async (dispatch, playerName, deltaTurns, isInJail) => {
     try {
         //await axiosInstanceDynamicData...
-        dispatch(ActionCreators.updatePlayerGoToJail(playerName));
+        dispatch(ActionCreators.updatePlayerUpdateWaitingTurns({playerName, deltaTurns, isInJail}));
     } catch {
-        console.log("Player couldn't go to jail / go out from jail!");
-    }
-}
-
-export const updatePlayerUpdateWaitingTurns = async (dispatch, playerName, turns) => {
-    try {
-        //await axiosInstanceDynamicData...
-        dispatch(ActionCreators.updatePlayerUpdateWaitingTurns({playerName, turns}));
-    } catch {
-        console.log("Player couldn't go to jail / go out from jail!");
+        console.log("Player's Waiting Turns couldn't be updated!");
     }
 }
 

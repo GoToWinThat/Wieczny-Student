@@ -22,7 +22,6 @@ export const ActionTypes = {
     UPDATE_PLAYER_MORTGAGE_PROPERTY: 'UPDATE_PLAYER_MORTGAGE_PROPERTY',
     UPDATE_PLAYER_NEW_EVENT_CARD: 'UPDATE_PLAYER_NEW_EVENT_CARD',
     UPDATE_PLAYER_DELETE_EVENT_CARD: 'UPDATE_PLAYER_DELETE_EVENT_CARD',
-    UPDATE_PLAYER_GO_TO_JAIL: 'UPDATE_PLAYER_GO_TO_JAIL',
     UPDATE_PLAYER_UPDATE_WAITING_TURNS: 'UPDATE_PLAYER_UPDATE_WAITING_TURNS',
 
     SET_LOGS: 'SET_LOGS',
@@ -51,7 +50,6 @@ export const ActionCreators = {
     updatePlayerMortgageProperty: payload => ({ type: ActionTypes.UPDATE_PLAYER_MORTGAGE_PROPERTY, payload }),
     updatePlayerNewEventCard: payload => ({ type: ActionTypes.UPDATE_PLAYER_NEW_EVENT_CARD, payload }),
     updatePlayerDeleteEventCard: payload => ({ type: ActionTypes.UPDATE_PLAYER_DELETE_EVENT_CARD, payload }),
-    updatePlayerGoToJail: payload => ({ type: ActionTypes.UPDATE_PLAYER_GO_TO_JAIL, payload }),
     updatePlayerUpdateWaitingTurns: payload => ({ type: ActionTypes.UPDATE_PLAYER_UPDATE_WAITING_TURNS, payload }),
 
     setLogs: payload => ({ type: ActionTypes.SET_LOGS, payload }),
@@ -193,21 +191,13 @@ export default function MonopolyReducer(state = initialState, action) {
                 })
             }
 
-        // update state if player is in jail or not
-        case ActionTypes.UPDATE_PLAYER_GO_TO_JAIL:
-            return { ...state, 
-                players: state.players.map(player => {
-                    if (player.name !== action.payload.playerName) return player
-                    return { ...player, isInJail: !player.isInJail}
-                })
-            }
-
-        // change amount of turns that the player has to wait
+        // change amount of turns that the player has to wait and update state of being in jail
         case ActionTypes.UPDATE_PLAYER_UPDATE_WAITING_TURNS:
             return { ...state, 
                 players: state.players.map(player => {
                     if (player.name !== action.payload.playerName) return player
-                    return { ...player, turnsToWait: action.payload.turns}
+                    return { ...player, isInJail: action.payload.isInJail,
+                        turnsToWait: player.turnsToWait + action.payload.deltaTurns }
                 })
             }
 
@@ -240,6 +230,7 @@ export default function MonopolyReducer(state = initialState, action) {
         case ActionTypes.SET_LOGS:
             return { ...state, logs: [...action.payload.logs] }
 
+        // add new log to "logs" list
         case ActionTypes.ADD_NEW_LOG:
             return { ...state, logs: [...state.logs, action.payload] }
 

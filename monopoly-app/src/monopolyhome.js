@@ -412,7 +412,7 @@ export const staticData = {
         {
             "cardID": 11,
             "cardName": "Zapłata rachunków",
-            "description": "Musisz zapłacić za prąd, internet i licencje programów. Za każde posiadane laboratorium płacisz 10 ECTS."
+            "description": "Musisz zapłacić za prąd, internet i licencje programów. Za każde posiadane pole płacisz 10 ECTS."
         },
         {
             "cardID": 12,
@@ -441,7 +441,7 @@ export const staticData = {
         },
         {
             "cardID": 17,
-            "cardName": "Gdybym był bogaty...",
+            "cardName": "Gdybym był bogaty",
             "description": "Uznałeś / Uznałaś, że masz za dużo ECTSów i oddajesz każdemu nietracącemu kolejki graczowi kwotę 5 ECTS."
         },
         {
@@ -468,9 +468,7 @@ export const dynamicData = {
                 { "fieldID": 39, "estateLevel": 3, "mortgaged": false },
                 { "fieldID": 3, "estateLevel": 4, "mortgaged": false }
             ],
-            "eventCards": [
-                { "cardID": 1 }
-            ],
+            "eventCards": [],
             "position": 0,
             "isInJail": false,
             "turnsToWait": 0
