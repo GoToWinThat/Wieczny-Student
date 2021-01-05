@@ -1,22 +1,23 @@
 import "../../styles/ActionPanel.css";
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { Button, Modal } from 'react-bootstrap';
-import { UpdatePlayerExpandProperty, UpdatePlayerDeleteProperty, UpdatePlayerMortgageProperty, UpdatePlayerCash } from '../../services/monopoly';
+import { UpdatePlayerExpandProperty, UpdatePlayerDeleteProperty, 
+    UpdatePlayerMortgageProperty, UpdatePlayerCash, AddNewLog } from '../../services/monopoly';
 
 
 function Manage(props) {
     //Initialized a players property list
-    const logInPlayerIndx = props.data.activePlayerIndex;
-    const logInPlayer = props.data.players[logInPlayerIndx];
+    const activePlayerIndex = props.data.activePlayerIndex;
+    const activePlayer = props.data.players[activePlayerIndex];
+    const fields = props.data.fields;
+    const dispatch = props.data.dispatch;
     const [show, setShow] = useState(true);
-    const dispatch = useDispatch();
 
     const playersProperties = () => 
     {
         var fieldArray = [];
-        logInPlayer.properties.map(
-            field => fieldArray.push(props.data.fields[field.fieldID]) 
+        activePlayer.properties.map(
+            field => fieldArray.push(props.data.fields[field.fieldID])
         )
         return fieldArray;
     }
@@ -24,50 +25,70 @@ function Manage(props) {
     
     const handleClose = () => setShow(false);
 
-    //Method which increment numer of houses and check if can do it
+    const showEstateLevel = (estateLevel) => (estateLevel < 4) ? `${estateLevel} PC` : `SERWER`;
+
+    // Incrementing amount of computers if it is possible:
     const buyHouse = (fieldId,idx) =>
     {
-        if(logInPlayer.properties[idx].estateLevel < 4)
+        if(activePlayer.properties[idx].estateLevel < 4)
         {
-            UpdatePlayerExpandProperty(dispatch, logInPlayer.name, fieldId, 1);
-            UpdatePlayerCash(dispatch,logInPlayer.name, -props.data.fields[fieldId].estatePrice)
+            AddNewLog(dispatch, `${activePlayer.name} rozbudowuje ${fields[activePlayer.properties[idx].fieldID].name}.`
+            + ` - aktualny poziom: ${showEstateLevel(activePlayer.properties[idx].estateLevel + 1)}`);
+            UpdatePlayerExpandProperty(dispatch, activePlayer.name, fieldId, 1);
+            UpdatePlayerCash(dispatch,activePlayer.name, -fields[fieldId].estatePrice);
         }
     }
 
+    // Decrementing amount of computers if it is possible:
     const sellHouse = (fieldId,idx) =>
     {
-        if(logInPlayer.properties[idx].estateLevel > 0)
+        if(activePlayer.properties[idx].estateLevel > 0)
         {
-            UpdatePlayerExpandProperty(dispatch, logInPlayer.name, fieldId, -1);
-            UpdatePlayerCash(dispatch,logInPlayer.name, props.data.fields[fieldId].estatePrice)
+            AddNewLog(dispatch, `${activePlayer.name} demontuje ${fields[activePlayer.properties[idx].fieldID].name}.`
+            + ` - aktualny poziom: ${showEstateLevel(activePlayer.properties[idx].estateLevel - 1)}`);
+            UpdatePlayerExpandProperty(dispatch, activePlayer.name, fieldId, -1);
+            UpdatePlayerCash(dispatch,activePlayer.name, fields[fieldId].estatePrice);
         }
     }
 
+    // Selling owned property:
     const sellProperty = (fieldId) =>
     {
-        UpdatePlayerDeleteProperty(dispatch,logInPlayer.name,fieldId);
-        UpdatePlayerCash(dispatch, logInPlayer.name, parseInt(props.data.fields[fieldId].price));
+        let currentField = fields[fieldId];
+        UpdatePlayerDeleteProperty(dispatch, activePlayer.name,fieldId);
+        UpdatePlayerCash(dispatch, activePlayer.name, parseInt(currentField.price));
+        AddNewLog(dispatch, `${activePlayer.name} sprzedaje ${currentField.name} za ${currentField.price} ECTS.`);
     }
 
-    const mortgageProperty = (fieldId,idx) =>
+    // Mortgaging / unmortgaging owned property:
+    const mortgageProperty = (fieldId, idx) =>
     {
         let multiplier;
-        if(logInPlayer.properties[idx].mortgaged) multiplier = -1;
-        else multiplier = 1;
-        UpdatePlayerMortgageProperty(dispatch,logInPlayer.name,fieldId);
-        UpdatePlayerCash(dispatch, logInPlayer.name, parseInt(props.data.fields[fieldId].mortgage)*multiplier);
+        let currentField = fields[fieldId];
+        if (activePlayer.properties[idx].mortgaged) 
+        {
+            AddNewLog(dispatch, `${activePlayer.name} odkupuje ${currentField.name} od banku za ${currentField.mortgage} ECTS.`);
+            multiplier = -1;
+        }
+        else 
+        {
+            AddNewLog(dispatch, `${activePlayer.name} oddaje ${currentField.name} pod zastaw za ${currentField.mortgage} ECTS.`);
+            multiplier = 1;
+        }
+        UpdatePlayerMortgageProperty(dispatch, activePlayer.name, fieldId);
+        UpdatePlayerCash(dispatch, activePlayer.name, parseInt(fields[fieldId].mortgage) * multiplier);
     }
 
     const mortgageButtonColor = (idx) => 
     {
-        if(logInPlayer.properties[idx].mortgaged) return "success";
+        if (activePlayer.properties[idx].mortgaged) return "success";
         else return "danger";
     }
 
-    const fieldNameColor = (idx,color) => 
+    const fieldNameColor = (idx, color) => 
     {
-        let field = logInPlayer.properties[idx];
-        if (field.mortgaged) return 'grey';
+        let field = activePlayer.properties[idx];
+        if (field.mortgaged) return 'gray';
         else return color;
     }
 
@@ -76,17 +97,13 @@ function Manage(props) {
     const createHouses = (propNum) =>
     {
         var array = [];
-        let hKey=`${logInPlayer.properties[propNum].name} ${propNum}`
-        if(logInPlayer.properties[propNum].estateLevel > 3)
-        {
-            array.push( <img key={hKey} className="houses" src={`/Assets/Houses/server.svg`} alt="server"/>);
-        } 
+        let hKey=`${activePlayer.properties[propNum].name} ${propNum}`
+        if (activePlayer.properties[propNum].estateLevel > 3)
+            array.push( <img key={hKey} className="houses" src={`/Assets/Houses/server.svg`} alt="server"/>); 
         else 
         {
-            for (var j = 0; j < logInPlayer.properties[propNum].estateLevel; j++) 
-            {
+            for (var j = 0; j < activePlayer.properties[propNum].estateLevel; j++) 
                 array.push( <img key={hKey} className="houses" src={`/Assets/Houses/computer.svg`} alt="computer"/>);
-            }
         }
         return array;
     }
