@@ -88,11 +88,6 @@
   display: flex;
   justify-content: space-between;
 }
-.field-is-bought div {
-  position: absolute;
-  opacity: 0.2;
-  z-index: 4;
-}
 
 /* Graphics */
 .img-eventField {

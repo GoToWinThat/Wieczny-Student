@@ -1,4 +1,4 @@
-.field-is-bought {
+/* .field-is-bought {
   position: absolute;
   top: 0;
   left: 0;
@@ -6,4 +6,23 @@
   width: 100%;
   height: 100%;
   z-index: 2;
+} */
+
+.field-is-bought-colored {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.2;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.field-is-bought > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
 }
