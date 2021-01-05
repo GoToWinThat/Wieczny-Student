@@ -18,7 +18,6 @@ class PropertyField extends Component {
         return(
             <Popover id="popover-card">
                 <Popover.Content>
-                    {console.log("HEJ")}
                     <div className="card card-popover">
 
                         <div className="card-header" style={{backgroundColor:`${this.props.data.color}`}}>

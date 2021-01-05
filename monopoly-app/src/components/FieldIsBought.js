@@ -10,7 +10,7 @@ class FieldIsBought extends Component {
 
                     if (property.fieldID === this.props.id) return  <React.Fragment key={i}>
                         <div key={i} className="field-is-bought-colored" style={{backgroundColor: `${player.color}`}}></div>
-                        {!property.mortgaged ? <img src={`/Assets/Fields/bug-fill.svg`} alt="bug"></img> : null}
+                        {property.mortgaged ? <img src={`/Assets/Fields/bug-fill.svg`} alt="bug"></img> : null}
                     </React.Fragment>
                     else return null
                 })

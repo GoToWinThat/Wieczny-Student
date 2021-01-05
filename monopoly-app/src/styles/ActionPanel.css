@@ -1,95 +1,89 @@
 /* General */
-*:active { outline: none; }
+*:active {
+  outline: none;
+}
 
 /* Roll Dice Component */
-.rollDiceComponent
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.rollDiceComponent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Player Bar Component */
-.playerBar
-{
-    display: flex;
-    flex-direction: column;
+.playerBar {
+  display: flex;
+  flex-direction: column;
 }
-.playerBarInnerDiv
-{
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
+.playerBarInnerDiv {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 }
-.endTurnButton
-{
-    width: fit-content;
-    align-self: center;
-    margin: 1vh;
-    line-height: 50%;
+.endTurnButton {
+  width: fit-content;
+  align-self: center;
+  margin: 1vh;
+  line-height: 50%;
 }
-.btn-default
-{
-    background-color: #68889E;
-    border-color: #2F3E48;
-    color:#FFF;
+.btn-default {
+  background-color: #68889e;
+  border-color: #2f3e48;
+  color: #fff;
 }
 
 /* Action Options */
-.actionOptions * { line-height: 50%; }
+.actionOptions * {
+  line-height: 50%;
+}
 
 /* Manage */
-.manageTable
-{
-    display: inline-table;
+.manageTable {
+  display: inline-table;
 }
-.houses
-{
-    max-height: 35px;
-    padding: 5px;
+.houses {
+  max-height: 35px;
+  padding: 5px;
 }
 
 /* Trade */
- .tradeTable
-{
-    margin-left: auto;
-    margin-right: auto;
-    width: fit-content;
-    border: 2px solid black;
-} 
-.propertyBox
-{
-    height: 1em;
-    width: 1em;
-    background: red;
-    margin-left: 10px ;
-    margin-right: 10px ;
+.tradeTable {
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  border: 2px solid black;
 }
-.propertyRow
-{
-    width: fit-content;
-    display: flex;
-    justify-content: space-around;
-}  
-.tradeSection
-{
-    padding: 10px;
+.propertyBox {
+  height: 1em;
+  width: 1em;
+  background: red;
+  margin-left: 10px;
+  margin-right: 10px;
 }
-.arrow
-{
-    width: 10%;
-    height: 10%;
+.propertyRow {
+  width: fit-content;
+  display: flex;
+  justify-content: space-around;
+}
+.tradeSection {
+  padding: 10px;
+}
+.arrow {
+  width: 10%;
+  height: 10%;
 }
 
 /* LogBox */
-.logBox
-{
-    width: 80%;
-    white-space: pre-line;
-    font-family: "Lucida Console", "Courier New", monospace;
-    text-align: left;
-    padding-left: 2%;
-    padding-right: 2%;
+.logBox {
+  display: flex;
+  flex-direction: column-reverse;
+
+  width: 80%;
+  white-space: pre-line;
+  font-family: "Lucida Console", "Courier New", monospace;
+  text-align: left;
+  padding-left: 2%;
+  padding-right: 2%;
 }
 
 /* Auction */
@@ -98,42 +92,71 @@
     width: fit-content;
     display: flex;
     justify-content: space-around;
-} 
+}
 */
 
-
 /* ORIENTATION SETTINGS */
-@media(orientation: portrait)
-{
-    .boardCenter * { font-size: 2vw; }
-    .diceImg { height: 6vw; padding: 0.5vw; }
-    .diceImages { margin-left: 2.5vw; }
-    .throwDicesButton 
-    { 
-        height: 4vw; 
-        padding: 0.5vw; 
-        margin-right: 2.5vw; 
-        line-height: 50%;
-    }
-    .logBox { height: 20vw; font-size: 1.5vw; }
-    .endTurnButton { height: 4vw; padding: 0.5vw; }
-    .playerBox { padding: 0.5vw; }
-    .actionOptions .btn-group .btn { padding: 1vw; }
+@media (orientation: portrait) {
+  .boardCenter * {
+    font-size: 2vw;
+  }
+  .diceImg {
+    height: 6vw;
+    padding: 0.5vw;
+  }
+  .diceImages {
+    margin-left: 2.5vw;
+  }
+  .throwDicesButton {
+    height: 4vw;
+    padding: 0.5vw;
+    margin-right: 2.5vw;
+    line-height: 50%;
+  }
+  .logBox {
+    height: 20vw;
+    font-size: 1.5vw;
+  }
+  .endTurnButton {
+    height: 4vw;
+    padding: 0.5vw;
+  }
+  .playerBox {
+    padding: 0.5vw;
+  }
+  .actionOptions .btn-group .btn {
+    padding: 1vw;
+  }
 }
-@media(orientation: landscape)
-{
-    .boardCenter * { font-size: 2vh; }
-    .diceImg { height: 6vh; padding: 0.5vh; }
-    .diceImages { margin-left: 2.5vh; }
-    .throwDicesButton 
-    { 
-        height: 4vh; 
-        padding: 0.5vh; 
-        margin-right: 2.5vh; 
-        line-height: 50%;
-    }
-    .logBox { height: 20vh; font-size: 1.5vh; }
-    .endTurnButton { height: 4vh; padding: 0.5vh; }
-    .playerBox { padding: 0.5vh; }
-    .actionOptions .btn-group .btn { padding: 1vh; }
+@media (orientation: landscape) {
+  .boardCenter * {
+    font-size: 2vh;
+  }
+  .diceImg {
+    height: 6vh;
+    padding: 0.5vh;
+  }
+  .diceImages {
+    margin-left: 2.5vh;
+  }
+  .throwDicesButton {
+    height: 4vh;
+    padding: 0.5vh;
+    margin-right: 2.5vh;
+    line-height: 50%;
+  }
+  .logBox {
+    height: 20vh;
+    font-size: 1.5vh;
+  }
+  .endTurnButton {
+    height: 4vh;
+    padding: 0.5vh;
+  }
+  .playerBox {
+    padding: 0.5vh;
+  }
+  .actionOptions .btn-group .btn {
+    padding: 1vh;
+  }
 }
