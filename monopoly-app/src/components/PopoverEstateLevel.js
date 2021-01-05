@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import '../styles/EastateLevel.css'
 class PopoverEstateLevel extends Component {
 
-    easte(estateLevel){
+    easte(estateLevel, i){
         const level = []
         if(estateLevel === 4){
-            level.push(<img src={`/Assets/Houses/server.svg`} alt="server"/>)
+            level.push(<img key={i} src={`/Assets/Houses/server.svg`} alt="server"/>)
         }else{
 
             for (let i = 0; i < estateLevel; i++) {
-                level.push(<img src={`/Assets/Houses/computer.svg`} alt="PC"/>)
+                level.push(<img key={i} src={`/Assets/Houses/computer.svg`} alt="PC"/>)
             }
         }
         return level
@@ -19,9 +19,9 @@ class PopoverEstateLevel extends Component {
         const eastateLevel =
         <div className="eastateLevel">
             {this.props.players.map((player) => {
-                return player.properties.map((property) => {
+                return player.properties.map((property, i) => {
                     if(property.fieldID === this.props.id)
-                        return this.easte(property.estateLevel)
+                        return this.easte(property.estateLevel, i)
                     else
                         return null
                 })
