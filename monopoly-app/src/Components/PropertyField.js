@@ -12,9 +12,13 @@ class PropertyField extends Component {
         this.cardclass = `card h-100 w-100 ${this.props.rotate}`
         this.name = this.props.data.name
         this.popoverRotare = this.props.rotate.split('-')[1]
-        this.popover = (
+    }
+
+    GetPopOver(){
+        return(
             <Popover id="popover-card">
                 <Popover.Content>
+                    {console.log("HEJ")}
                     <div className="card card-popover">
 
                         <div className="card-header" style={{backgroundColor:`${this.props.data.color}`}}>
@@ -90,7 +94,7 @@ class PropertyField extends Component {
     }
     render() {
         return (
-            <OverlayTrigger trigger={["hover","focus"]} placement={this.ChangePopoveRotarion()} overlay={this.popover}>
+            <OverlayTrigger trigger={["hover","focus"]} placement={this.ChangePopoveRotarion()} overlay={this.GetPopOver()}>
                 <div className="cell" id={this.id}>
                     <div className={this.cardclass}>
                         <Pawns players={this.props.players} id={this.props.data.fieldID}/>

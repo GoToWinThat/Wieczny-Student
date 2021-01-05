@@ -8,7 +8,7 @@ class FieldIsBought extends Component {
             {this.props.players.map((player) => {
                 return player.properties.map((property, i) => {
 
-                    if (property.fieldID === this.props.id) return  <React.Fragment>
+                    if (property.fieldID === this.props.id) return  <React.Fragment key={i}>
                         <div key={i} className="field-is-bought-colored" style={{backgroundColor: `${player.color}`}}></div>
                         {!property.mortgaged ? <img src={`/Assets/Fields/bug-fill.svg`} alt="bug"></img> : null}
                     </React.Fragment>
