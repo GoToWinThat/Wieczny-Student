@@ -355,12 +355,12 @@ export const staticData = {
         {
             "cardID": 0,
             "cardName": "Pierwszeństwo w dziekanacie",
-            "description": "Przy użyciu tej karty możesz od razu wyjść z dziekanatu nie tracąc żadnej kolejki. Zachowaj tę kartę lub sprzedaj za 10 ECTS."
+            "description": "Masz przy sobie bardzo ważne dokumenty. Przy użyciu tej karty możesz od razu wyjść z dziekanatu nie tracąc żadnej kolejki."
         },
         {
             "cardID": 1,
             "cardName": "Oświecenie na konsultacjach",
-            "description": "Pokazujesz się z dobrej strony już na początku konsultacji. Przy użyciu tej karty możesz od razu z nich wyjść, nie tracąc żadnej kolejki. Zachowaj tę kartę lub sprzedaj za 10 ECTS."
+            "description": "Pokazujesz się z dobrej strony już na początku konsultacji. Przy użyciu tej karty możesz od razu z nich wyjść, nie tracąc żadnej kolejki."
         },
         {
             "cardID": 2,
@@ -395,7 +395,7 @@ export const staticData = {
         {
             "cardID": 8,
             "cardName": "Znajomości na stołówce",
-            "description": "Znajomy pracujący na stołówce studenckiej obiecał Ci, że obsłuży Cię bez kolejki, więc nie musisz tam czekać. Zachowaj tę kartę lub sprzedaj za 5 ECTS."
+            "description": "Znajomy pracujący na stołówce studenckiej obiecał Ci, że obsłuży Cię bez kolejki, więc nie musisz tam czekać."
         },
         {
             "cardID": 9,
@@ -498,7 +498,8 @@ export const dynamicData = {
             ],
             "eventCards": [
                 { "cardID": 0 },
-                { "cardID": 1 }
+                { "cardID": 1 },
+                { "cardID": 8 }
             ],
             "position": 0,
             "isInJail": false,

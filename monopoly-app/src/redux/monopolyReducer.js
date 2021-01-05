@@ -184,10 +184,11 @@ export default function MonopolyReducer(state = initialState, action) {
             return { ...state, 
                 players: state.players.map(player => {
                     if (player.name !== action.payload.playerName) return player
-                    return { ...player, eventCards: player.eventCards.map(card => {
-                        if (card.cardID !== action.payload.cardID) return card
-                        return null 
-                    })}
+                    let tmp = []
+                    for (let i = 0; i < player.eventCards.length; i++)
+                        if (player.eventCards[i].cardID !== action.payload.cardID) 
+                            tmp.push(player.eventCards[i]);
+                    return { ...player, eventCards: [...tmp] }
                 })
             }
 
