@@ -21,7 +21,7 @@ function Manage(props) {
         )
         return fieldArray;
     }
-    const properties = playersProperties()
+    const properties = playersProperties();
     
     const handleClose = () => setShow(false);
 
@@ -32,8 +32,11 @@ function Manage(props) {
     {
         if(activePlayer.properties[idx].estateLevel < 4)
         {
+            // Add new log about expanding property:
             AddNewLog(dispatch, `${activePlayer.name} rozbudowuje ${fields[activePlayer.properties[idx].fieldID].name}.`
             + ` - aktualny poziom: ${showEstateLevel(activePlayer.properties[idx].estateLevel + 1)}`);
+
+            // Expand property, decrement cash:
             UpdatePlayerExpandProperty(dispatch, activePlayer.name, fieldId, 1);
             UpdatePlayerCash(dispatch,activePlayer.name, -fields[fieldId].estatePrice);
         }
@@ -44,8 +47,11 @@ function Manage(props) {
     {
         if(activePlayer.properties[idx].estateLevel > 0)
         {
+            // Add new log about "shrinking" property:
             AddNewLog(dispatch, `${activePlayer.name} demontuje ${fields[activePlayer.properties[idx].fieldID].name}.`
             + ` - aktualny poziom: ${showEstateLevel(activePlayer.properties[idx].estateLevel - 1)}`);
+
+            // "Shrink" property, increment cash:
             UpdatePlayerExpandProperty(dispatch, activePlayer.name, fieldId, -1);
             UpdatePlayerCash(dispatch,activePlayer.name, fields[fieldId].estatePrice);
         }
@@ -67,14 +73,18 @@ function Manage(props) {
         let currentField = fields[fieldId];
         if (activePlayer.properties[idx].mortgaged) 
         {
+            // Add new log about unmortgaging property:
             AddNewLog(dispatch, `${activePlayer.name} odkupuje ${currentField.name} od banku za ${currentField.mortgage} ECTS.`);
             multiplier = -1;
         }
         else 
         {
+            // Add new log about mortgaging property:
             AddNewLog(dispatch, `${activePlayer.name} oddaje ${currentField.name} pod zastaw za ${currentField.mortgage} ECTS.`);
             multiplier = 1;
         }
+
+        // Mortgage / unmortgage property, update cash:
         UpdatePlayerMortgageProperty(dispatch, activePlayer.name, fieldId);
         UpdatePlayerCash(dispatch, activePlayer.name, parseInt(fields[fieldId].mortgage) * multiplier);
     }
@@ -122,15 +132,23 @@ function Manage(props) {
                 {
                     field.type === "property" ? 
                     <td>
-                        <Button size="sm" variant="success" onClick={() => buyHouse(field.fieldID,idx2)}>+</Button>
+                        <Button size="sm" variant="success" onClick={() => buyHouse(field.fieldID,idx2)}
+                            disabled={activePlayer.properties[idx2].estateLevel === 4 
+                                || activePlayer.cash < field.estatePrice 
+                                || activePlayer.properties[idx2].mortgaged === true}> + </Button>
                         <span className="mr-2 ml-2" > {field.estatePrice} ECTS</span>
-                        <Button size="sm" variant="danger" onClick={() => sellHouse(field.fieldID,idx2)}> - </Button>
+                        <Button size="sm" variant="danger" onClick={() => sellHouse(field.fieldID,idx2)} 
+                            disabled={activePlayer.properties[idx2].estateLevel === 0
+                                || activePlayer.properties[idx2].mortgaged === true}> - </Button>
                     </td>
                     : 
                     <td></td>
                 }
-                <td><Button size="sm" variant={mortgageButtonColor(idx2)} onClick={() => mortgageProperty(field.fieldID,idx2)}> {field.mortgage} ECTS</Button></td>
-                <td><Button size="sm" variant="danger" onClick={() => sellProperty(field.fieldID)}> {field.price} ECTS</Button></td>
+                <td><Button size="sm" variant={mortgageButtonColor(idx2)} onClick={() => mortgageProperty(field.fieldID,idx2)}
+                    disabled={activePlayer.properties[idx2].estateLevel !== 0}> {field.mortgage} ECTS</Button></td>
+                <td><Button size="sm" variant="danger" onClick={() => sellProperty(field.fieldID)}
+                    disabled={activePlayer.properties[idx2].estateLevel !== 0
+                        || activePlayer.properties[idx2].mortgaged === true}> {field.price} ECTS</Button></td>
             </tr>)
             idx++;
             return null;

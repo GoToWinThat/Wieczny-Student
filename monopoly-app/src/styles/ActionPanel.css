@@ -20,11 +20,11 @@
   display: flex;
   justify-content: space-around;
 }
-.endTurnButton {
-  width: fit-content;
-  align-self: center;
-  margin: 1vh;
-  line-height: 50%;
+#endTurnButton
+{
+    width: fit-content;
+    align-self: center;
+    line-height: 50%;
 }
 .btn-default {
   background-color: #68889e;
@@ -96,67 +96,49 @@
 */
 
 /* ORIENTATION SETTINGS */
-@media (orientation: portrait) {
-  .boardCenter * {
-    font-size: 2vw;
-  }
-  .diceImg {
-    height: 6vw;
-    padding: 0.5vw;
-  }
-  .diceImages {
-    margin-left: 2.5vw;
-  }
-  .throwDicesButton {
-    height: 4vw;
-    padding: 0.5vw;
-    margin-right: 2.5vw;
-    line-height: 50%;
-  }
-  .logBox {
-    height: 20vw;
-    font-size: 1.5vw;
-  }
-  .endTurnButton {
-    height: 4vw;
-    padding: 0.5vw;
-  }
-  .playerBox {
-    padding: 0.5vw;
-  }
-  .actionOptions .btn-group .btn {
-    padding: 1vw;
-  }
+@media(orientation: portrait)
+{
+    .boardCenter * { font-size: 2vw; }
+    .diceImg { height: 6vw; padding: 0.5vw; }
+    .diceImages { margin-left: 2.5vw; }
+    .throwDicesButton 
+    { 
+        height: 4vw; 
+        padding: 0.5vw; 
+        margin-right: 2.5vw; 
+        line-height: 50%;
+    }
+    .logBox { height: 20vw; font-size: 1.5vw; }
+    #endTurnButton 
+    { 
+        height: 4vw; 
+        padding: 0.5vw; 
+        margin: 1vw;
+        padding: 0.5vw; 
+    }
+    .playerBox { padding: 0.5vw; }
+    .actionOptions .btn-group .btn { padding: 1vw; }
 }
-@media (orientation: landscape) {
-  .boardCenter * {
-    font-size: 2vh;
-  }
-  .diceImg {
-    height: 6vh;
-    padding: 0.5vh;
-  }
-  .diceImages {
-    margin-left: 2.5vh;
-  }
-  .throwDicesButton {
-    height: 4vh;
-    padding: 0.5vh;
-    margin-right: 2.5vh;
-    line-height: 50%;
-  }
-  .logBox {
-    height: 20vh;
-    font-size: 1.5vh;
-  }
-  .endTurnButton {
-    height: 4vh;
-    padding: 0.5vh;
-  }
-  .playerBox {
-    padding: 0.5vh;
-  }
-  .actionOptions .btn-group .btn {
-    padding: 1vh;
-  }
+@media(orientation: landscape)
+{
+    .boardCenter * { font-size: 2vh; }
+    .diceImg { height: 6vh; padding: 0.5vh; }
+    .diceImages { margin-left: 2.5vh; }
+    .throwDicesButton 
+    { 
+        height: 4vh; 
+        padding: 0.5vh; 
+        margin-right: 2.5vh; 
+        line-height: 50%;
+    }
+    .logBox { height: 20vh; font-size: 1.5vh; }
+    #endTurnButton 
+    { 
+        height: 4vh; 
+        padding: 0.5vh; 
+        margin: 1vh;
+        padding: 0.5vh; 
+    }
+    .playerBox { padding: 0.5vh; }
+    .actionOptions .btn-group .btn { padding: 1vh; }
 }

@@ -4,6 +4,7 @@ import PlayerBox from './PlayerBox';
 import { Button } from 'react-bootstrap';
 import { UpdateActivePlayerIndex, AddNewLog } from '../../services/monopoly';
 import React from 'react';
+import { setThrownDices } from "../../boardActions";
 
 export const PlayerBar = (data) => {
     const activePlayerIndex = data.data.activePlayerIndex;
@@ -18,10 +19,15 @@ export const PlayerBar = (data) => {
             <div className="playerBarInnerDiv">
                 { monopolyPlayers.map(pl => <PlayerBox key={pl.name} player={pl} isActive={++idx === activePlayerIndex} cards={cards} fields={fields}/>) }
             </div>
-            <Button className="endTurnButton" onClick={() => {
+            <Button id="endTurnButton" onClick={() => {
+                // Update who's turn is it now:
                 let nextPlayerIndex = (activePlayerIndex + 1) % monopolyPlayers.length;
                 UpdateActivePlayerIndex(dispatch, nextPlayerIndex);
-                AddNewLog(dispatch, `Tura gracza ${data.data.players[nextPlayerIndex].name}.`);}}>
+                AddNewLog(dispatch, `Tura gracza ${data.data.players[nextPlayerIndex].name}.`);
+
+                // Unlock "Rzuć koścmi" button:
+                setThrownDices(false);
+                }}>
                 <span>Zakończ turę</span>
                 <Clock/>
             </Button>

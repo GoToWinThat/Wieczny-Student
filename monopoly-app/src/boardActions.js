@@ -1,6 +1,10 @@
 import { AddNewLog, UpdateDices, UpdatePlayerPosition, UpdatePlayerCash, 
     UpdatePlayerUpdateWaitingTurns, UpdatePlayerNewEventCard, UpdatePlayerDeleteEventCard } from './services/monopoly';
 
+// Parameters:
+export var thrownDices = false;
+export const setThrownDices = (newValue) => thrownDices = newValue; 
+
 // Throwing dices:
 export const throwDicesEvent = (data) =>
 {
@@ -14,6 +18,7 @@ export const throwDicesEvent = (data) =>
     // Updating dices:
     let newDiceState = [Math.floor(Math.random() * 6) + 1, Math.floor(Math.random() * 6) + 1];
     UpdateDices(dispatch, newDiceState); 
+    setThrownDices(true);
 
     // Updating player position:
     let numberOnDices = newDiceState[0] + newDiceState[1];
@@ -108,6 +113,7 @@ function dealWithNewField(newField, numberOnDices, data)
             for (let i = 0; i < players.length; i++)
             {
                 if (players[i].name === activePlayer.name) continue;
+
                 for (let j = 0; j < players[i].properties.length; j++)
                 {
                     if (players[i].properties[j].fieldID === propertyID)
@@ -117,6 +123,7 @@ function dealWithNewField(newField, numberOnDices, data)
                         UpdatePlayerCash(dispatch, players[i].name, cost);
                         AddNewLog(dispatch, `${activePlayer.name} płaci graczowi ${players[i].name}` 
                         + ` kwotę ${cost} ECTS.`);
+                        break;
                     }
                 }
             }
@@ -150,6 +157,7 @@ function dealWithNewField(newField, numberOnDices, data)
                         UpdatePlayerCash(dispatch, players[i].name, cost);
                         AddNewLog(dispatch, `${activePlayer.name} płaci graczowi ${players[i].name}` 
                         + ` kwotę ${cost} ECTS.`);
+                        break;
                     }
                 }
             }

@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { throwDicesEvent } from '../../boardActions.js';
 import { GetDices } from '../../services/monopoly';
+import { thrownDices } from "../../boardActions";
 
 export const RollDice = (data) => {
     const dices = useSelector(state => state.monopolyReducer.dices);
@@ -17,7 +18,7 @@ export const RollDice = (data) => {
 
     return (
         <div className="rollDiceComponent">
-            <Button className="throwDicesButton" onClick={() => { throwDicesEvent(data); }}>Rzuć kośćmi</Button>
+            <Button id="throwDicesButton" disabled={thrownDices} onClick={() => throwDicesEvent(data)}>Rzuć kośćmi</Button>
             <div className="diceImages">
                 <img className="diceImg" src={`/Assets/Dice/dice${dices[0]}.png`} alt="firstdice"/>
                 <img className="diceImg" src={`/Assets/Dice/dice${dices[1]}.png`} alt="seconddice"/>

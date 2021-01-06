@@ -34,7 +34,7 @@ class ActionOptions extends Component
 
         return (
         <div className="actionOptions">
-            <ButtonPanel changeView={this.changeView}/>
+            <ButtonPanel data={this.props.data} changeView={this.changeView}/>
             {this.navigator()}
         </div>)
     }
