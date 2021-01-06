@@ -15,7 +15,7 @@ class CompanyField extends Component {
 
         this.popoverRotare = this.props.rotate.split('-')[1]
         this.popover = (
-            <Popover id="popover-card">
+            <Popover className="fade" id="popover-card">
                 <Popover.Content>
                     <div className="card card-popover">
                         <div className="card-header" style={{backgroundColor:`${this.props.data.color}`}}>
@@ -49,7 +49,12 @@ class CompanyField extends Component {
 
     render() {
         return (
-            <OverlayTrigger trigger={["hover","focus"]} placement={this.ChangePopoveRotarion()} overlay={this.popover}>
+            <OverlayTrigger
+                trigger={["hover","focus"]}
+                placement={this.ChangePopoveRotarion()}
+                overlay={this.popover}
+                transition={false}
+                >
                 <div className="cell" id={this.id} style={{backgroundColor: `${this.props.data.color}`}}>
                     <div className={this.cardclass}>
                         <Pawns players={this.props.players} id={this.props.data.fieldID}/>
