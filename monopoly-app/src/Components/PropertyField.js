@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import {Popover, OverlayTrigger} from 'react-bootstrap'
+import React, { Component, createRef } from 'react';
+import {Popover, OverlayTrigger, Overlay} from 'react-bootstrap'
 import FieldIsBought from './FieldIsBought'
 import Pawns from './Pawns.js'
 import PopoverEstateLevel from './PopoverEstateLevel'
@@ -16,7 +16,7 @@ class PropertyField extends Component {
 
     GetPopOver(){
         return(
-            <Popover id="popover-card">
+            <Popover className="fade" id="popover-card" >
                 <Popover.Content>
                     <div className="card card-popover">
 
@@ -91,9 +91,18 @@ class PropertyField extends Component {
         else
             return this.name
     }
+
+
+
     render() {
         return (
-            <OverlayTrigger trigger={["hover","focus"]} placement={this.ChangePopoveRotarion()} overlay={this.GetPopOver()}>
+            <OverlayTrigger
+                trigger={["hover","focus"]}
+                placement={this.ChangePopoveRotarion()}
+                overlay={this.GetPopOver()}
+                transition={false}
+            >
+
                 <div className="cell" id={this.id}>
                     <div className={this.cardclass}>
                         <Pawns players={this.props.players} id={this.props.data.fieldID}/>
@@ -109,6 +118,7 @@ class PropertyField extends Component {
             </OverlayTrigger>
         );
     }
+
 }
 
 export default PropertyField;

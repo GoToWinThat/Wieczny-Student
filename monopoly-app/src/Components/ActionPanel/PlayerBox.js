@@ -14,40 +14,40 @@ function PlayerBox(props)
         if(props.player.properties.length === 0) return null;
 
         fieldArray.push(<h6 key={1000}>Nieruchomości</h6>)
-        props.player.properties.map(field => 
+        props.player.properties.map(field =>
             fieldArray.push(
                 <div key={field.fieldID} className="propertyRow">
                     <div className="propertyBox" style={{background: props.fields[field.fieldID].color }}/>
                     <span>{props.fields[field.fieldID].name} </span>
                     <br/>
                 </div>
-            ) 
+            )
         )
         return fieldArray;
     }
 
-    const ListOfCards = () => 
+    const ListOfCards = () =>
     {
         var cardsArray = [];
         if(props.player.eventCards.length === 0) return null;
 
         cardsArray.push(<h6 key={2000}>Karty</h6>)
-        props.player.eventCards.map(card => 
+        props.player.eventCards.map(card =>
             cardsArray.push(
                 <div key={card.cardID} className="d-flex">
                     <span>{props.cards[card.cardID].cardName} </span>
                     <br/>
                 </div>
-            ) 
+            )
         )
         return cardsArray;
     }
 
-    const playersOwnsList = () => 
-    {   
+    const playersOwnsList = () =>
+    {
         let fieldsList = listOfFields()
         let cardsList = ListOfCards()
-        if(fieldsList === null && cardsList === null ) 
+        if(fieldsList === null && cardsList === null )
             return(<p className="text-secondary w-100 px-1">Gracz nie posiada żadnych kart i nieruchomości.</p>)
         else if(fieldsList === null || cardsList === null )
             return(<div>{fieldsList}{cardsList}</div>)
@@ -82,7 +82,7 @@ function PlayerBox(props)
                 className="playerBox"
                 variant="secondary"
                 style={{ border: border, background: background, color: color}}>
-                    <span className="playerBoxName">{props.player.name}</span>  
+                    <span className="playerBoxName">{props.player.name}</span>
                     <br/>
                     <span className="playerBoxCash">{props.player.cash} ECTS</span>
             </Button>
