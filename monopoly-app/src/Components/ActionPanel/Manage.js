@@ -25,6 +25,44 @@ function Manage(props) {
     
     const handleClose = () => setShow(false);
 
+
+    // Checking if player has all properties from one color - only then he/she can expand it
+    const hasAllPropertiesFromThisColor = (field) => {
+        let color = field.color;
+        let ownedProperties = 0;
+        for (let i = 0; i < properties.length; i++)
+            if (fields[properties[i].fieldID].color === color)
+                ownedProperties++;
+        
+        let totalProperties = 0;
+        for (let i = 0; i < fields.length; i++)
+            if (fields[i].color === color)
+                totalProperties++;
+
+        return ownedProperties === totalProperties;
+    }
+
+    // Checking if player has at least one computer in his fields - you can't expand 
+    // field when you don't have properties from one color so you can't also sell 
+    // property if something has already been expanded
+    const hasAnyPropertyFromThisColorOneOrMoreComputers = (field) => {
+        if (!hasAllPropertiesFromThisColor(field)) return false;
+
+        let color = field.color;
+        let thisFieldFromPlayersPropertiesList;
+        for (let i = 0; i < properties.length; i++)
+        {
+            if (properties[i].color === color)
+            {
+                thisFieldFromPlayersPropertiesList = activePlayer.properties.find(
+                    element => element.fieldID === properties[i].fieldID);
+                if (thisFieldFromPlayersPropertiesList.estateLevel > 0) return true;
+            }
+        }
+        return false;
+    }
+
+
     const showEstateLevel = (estateLevel) => (estateLevel < 4) ? `${estateLevel} PC` : `SERWER`;
 
     // Incrementing amount of computers if it is possible:
@@ -51,9 +89,9 @@ function Manage(props) {
             AddNewLog(dispatch, `${activePlayer.name} demontuje ${fields[activePlayer.properties[idx].fieldID].name}.`
             + ` - aktualny poziom: ${showEstateLevel(activePlayer.properties[idx].estateLevel - 1)}`);
 
-            // "Shrink" property, increment cash:
+            // "Shrink" property, increment cash (50% of price):
             UpdatePlayerExpandProperty(dispatch, activePlayer.name, fieldId, -1);
-            UpdatePlayerCash(dispatch,activePlayer.name, fields[fieldId].estatePrice);
+            UpdatePlayerCash(dispatch,activePlayer.name, Math.floor(fields[fieldId].estatePrice / 2));
         }
     }
 
@@ -135,19 +173,21 @@ function Manage(props) {
                         <Button size="sm" variant="success" onClick={() => buyHouse(field.fieldID,idx2)}
                             disabled={activePlayer.properties[idx2].estateLevel === 4 
                                 || activePlayer.cash < field.estatePrice 
-                                || activePlayer.properties[idx2].mortgaged === true}> + </Button>
+                                || activePlayer.properties[idx2].mortgaged === true
+                                || !hasAllPropertiesFromThisColor(field)}> + </Button>
                         <span className="mr-2 ml-2" > {field.estatePrice} ECTS</span>
                         <Button size="sm" variant="danger" onClick={() => sellHouse(field.fieldID,idx2)} 
                             disabled={activePlayer.properties[idx2].estateLevel === 0
-                                || activePlayer.properties[idx2].mortgaged === true}> - </Button>
+                                || activePlayer.properties[idx2].mortgaged === true
+                                || !hasAllPropertiesFromThisColor(field)}> - </Button>
                     </td>
                     : 
                     <td></td>
                 }
                 <td><Button size="sm" variant={mortgageButtonColor(idx2)} onClick={() => mortgageProperty(field.fieldID,idx2)}
-                    disabled={activePlayer.properties[idx2].estateLevel !== 0}> {field.mortgage} ECTS</Button></td>
+                    disabled={hasAnyPropertyFromThisColorOneOrMoreComputers(field) === true}> {field.mortgage} ECTS</Button></td>
                 <td><Button size="sm" variant="danger" onClick={() => sellProperty(field.fieldID)}
-                    disabled={activePlayer.properties[idx2].estateLevel !== 0
+                    disabled={hasAnyPropertyFromThisColorOneOrMoreComputers(field) === true
                         || activePlayer.properties[idx2].mortgaged === true}> {field.price} ECTS</Button></td>
             </tr>)
             idx++;

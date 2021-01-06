@@ -170,8 +170,7 @@ function dealWithNewField(newField, numberOnDices, data)
             switch(newField.name)
             {
                 case "Karta zysku":
-                    //Math.floor(Math.random() * gainCards.length)
-                    card = gainCards[0];
+                    card = gainCards[Math.floor(Math.random() * gainCards.length)];
                     AddNewLog(dispatch, `${activePlayer.name} otrzymuje kartę`
                     + ` ${card.cardName.toUpperCase()}.`); 
                     dealWithEventCard(data, card, numberOnDices);

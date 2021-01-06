@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
+var secondsForAction = 30;
 class Clock extends Component {
-    
     constructor() {
       super();
-      this.state = { time: {}, seconds: 30 };
+      this.state = { time: {}, seconds: secondsForAction };
       this.timer = 0;
       this.startTimer = this.startTimer.bind(this);
       this.countDown = this.countDown.bind(this);
@@ -29,7 +29,7 @@ class Clock extends Component {
     componentDidMount() {
         let timeLeftVar = this.secondsToTime(this.state.seconds);
         this.setState({ time: timeLeftVar });
-        this.startTimer()
+        this.startTimer();
     }
 
     startTimer() {
@@ -39,23 +39,28 @@ class Clock extends Component {
     }
     
     countDown() {
-    // Remove one second, set state so a re-render happens.
-    let seconds = this.state.seconds - 1;
-    this.setState({
-        time: this.secondsToTime(seconds),
-        seconds: seconds,
-    });
-    
-    // Check if we're at zero.
-    if (seconds === 0) { 
-        clearInterval(this.timer);
-    }
+        // Remove one second, set state so a re-render happens.
+        let seconds = this.state.seconds - 1;
+        this.setState({
+            time: this.secondsToTime(seconds),
+            seconds: seconds,
+        });
+        
+        // Check if we're at zero.
+        if (seconds === 0) { 
+            //clearInterval(this.timer);
+            document.getElementById("endTurnButton").click();
+            this.setState({
+                time: this.secondsToTime(secondsForAction),
+                seconds: secondsForAction,
+            });
+        }
     }
     
     render() {
-    return(
-        <span> [{this.state.time.m * 60 + this.state.time.s}s]</span>
-    );
+        return(
+            <span> [{this.state.time.m * 60 + this.state.time.s}s]</span>
+        );
     }
 }
 export default Clock;

@@ -20,6 +20,7 @@
   display: flex;
   justify-content: space-around;
 }
+.playerBox { width: 20%; }
 #endTurnButton
 {
     width: fit-content;
@@ -101,7 +102,7 @@
     .boardCenter * { font-size: 2vw; }
     .diceImg { height: 6vw; padding: 0.5vw; }
     .diceImages { margin-left: 2.5vw; }
-    .throwDicesButton 
+    #throwDicesButton 
     { 
         height: 4vw; 
         padding: 0.5vw; 
@@ -124,7 +125,7 @@
     .boardCenter * { font-size: 2vh; }
     .diceImg { height: 6vh; padding: 0.5vh; }
     .diceImages { margin-left: 2.5vh; }
-    .throwDicesButton 
+    #throwDicesButton 
     { 
         height: 4vh; 
         padding: 0.5vh; 

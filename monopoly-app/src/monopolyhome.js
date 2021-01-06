@@ -334,7 +334,7 @@ export const staticData = {
             "fieldID": 38,
             "type": "property",
             "name": "Biblioteka wydziałowa",
-            "color": "lightblue",
+            "color": "sandybrown",
             "price": 80,
             "rentCosts": [7, 30, 100, 200, 350],
             "estatePrice": 40,
@@ -344,7 +344,7 @@ export const staticData = {
             "fieldID": 39,
             "type": "property",
             "name": "Biblioteka główna",
-            "color": "lightblue",
+            "color": "sandybrown",
             "price": 80,
             "rentCosts": [10, 35, 110, 250, 400],
             "estatePrice": 40,
@@ -461,12 +461,12 @@ export const dynamicData = {
     "players": [
         {
             "name": "Artur",
-            "cash": 1000,
+            "cash": 40,
             "signature": "9772",
             "color": "blue",
             "properties": [
-                { "fieldID": 39, "estateLevel": 3, "mortgaged": false },
-                { "fieldID": 3, "estateLevel": 4, "mortgaged": false }
+                { "fieldID": 39, "estateLevel": 0, "mortgaged": false },
+                { "fieldID": 3, "estateLevel": 0, "mortgaged": false }
             ],
             "eventCards": [],
             "position": 0,
@@ -480,7 +480,7 @@ export const dynamicData = {
             "color": "red",
             "properties": [
                 { "fieldID": 4, "estateLevel": 0, "mortgaged": false },
-                { "fieldID": 6, "estateLevel": 1, "mortgaged": false }
+                { "fieldID": 6, "estateLevel": 0, "mortgaged": false }
             ],
             "eventCards": [],
             "position": 0,
