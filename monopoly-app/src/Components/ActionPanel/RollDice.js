@@ -18,7 +18,8 @@ export const RollDice = (data) => {
 
     return (
         <div className="rollDiceComponent">
-            <Button id="throwDicesButton" disabled={thrownDices} onClick={() => throwDicesEvent(data)}>Rzuć kośćmi</Button>
+            <Button id="throwDicesButton" disabled={thrownDices} 
+            onClick={() => throwDicesEvent(data)} onMouseDown={(e) => e.preventDefault()}>Rzuć kośćmi</Button>
             <div className="diceImages">
                 <img className="diceImg" src={`/Assets/Dice/dice${dices[0]}.png`} alt="firstdice"/>
                 <img className="diceImg" src={`/Assets/Dice/dice${dices[1]}.png`} alt="seconddice"/>

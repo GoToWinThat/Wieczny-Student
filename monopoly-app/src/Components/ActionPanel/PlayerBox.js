@@ -6,7 +6,7 @@ function PlayerBox(props)
     //Function switch color and background of a PlayerBox based on active state
     //Each player have a unique color and name
     let color,background
-    let border = `2px solid ${props.player.color}`
+    let border = `0.2em solid ${props.player.color}`
 
     const listOfFields = () =>{
 
@@ -81,7 +81,8 @@ function PlayerBox(props)
             <Button
                 className="playerBox"
                 variant="secondary"
-                style={{ border: border, background: background, color: color}}>
+                style={{ border: border, background: background, color: color}}
+                onMouseDown={(e) => e.preventDefault()}>
                     <span className="playerBoxName">{props.player.name}</span>
                     <br/>
                     <span className="playerBoxCash">{props.player.cash} ECTS</span>

@@ -18,7 +18,7 @@ export const PlayerBar = (data) => {
             <div className="playerBarInnerDiv">
                 { players.map(pl => <PlayerBox key={pl.name} player={pl} isActive={++idx === activePlayerIndex} cards={cards} fields={fields}/>) }
             </div>
-            <Button id="endTurnButton" onClick={() => endTurnEvent(data)}>
+            <Button id="endTurnButton" onClick={() => endTurnEvent(data)} onMouseDown={(e) => e.preventDefault()}>
                 <span>Zakończ turę</span>
                 <Clock/>
             </Button>
@@ -31,7 +31,7 @@ function endTurnEvent(data)
     const activePlayerIndex = data.data.activePlayerIndex;
     const players = data.data.players;
     const dispatch = data.data.dispatch;
-    const sayItWell = (number) => (number === 1) ? `${number} kolejkę` : `${number} kolejki`;
+    const sayItWell = (number) => (number === 1) ? `ostatnią kolejkę` : `jeszcze ${number} kolejki`;
 
     // Throw dices if it haven't happened yet:
     if (thrownDices === false)
@@ -39,17 +39,22 @@ function endTurnEvent(data)
 
     // Update who's turn is it now and waitToTurns attributes:
     var nextPlayerIndex = (activePlayerIndex + 1) % players.length;
-    while (players[nextPlayerIndex].turnsToWait > 0)
+    var waitingArray = returnWaitingArray(players);
+    while (waitingArray[nextPlayerIndex] > 0)
     {
-        UpdateActivePlayerIndex(dispatch, nextPlayerIndex);
+        // Add log about necessity of waiting:
         AddNewLog(dispatch, `Tura gracza ${players[nextPlayerIndex].name}.`);
-        AddNewLog(dispatch, `Gracz ${players[nextPlayerIndex].name} musi czekać`
-            +` jeszcze ${sayItWell(players[nextPlayerIndex].turnsToWait)}.`);
+        AddNewLog(dispatch, `Gracz ${players[nextPlayerIndex].name} czeka`
+            +` ${sayItWell(waitingArray[nextPlayerIndex])}.`);
 
+        // Update API:
         if (players[nextPlayerIndex].turnsToWait === 1) 
             UpdatePlayerUpdateWaitingTurns(dispatch, players[nextPlayerIndex].name, -1, false);
         else 
             UpdatePlayerUpdateWaitingTurns(dispatch, players[nextPlayerIndex].name, -1, players[nextPlayerIndex].isInJail);
+        
+        // Update local temporary data:
+        waitingArray[nextPlayerIndex]--;
         nextPlayerIndex = (nextPlayerIndex + 1) % players.length;
     }
     UpdateActivePlayerIndex(dispatch, nextPlayerIndex);
@@ -57,4 +62,12 @@ function endTurnEvent(data)
 
     // Unlock "Rzuć koścmi" button:
     setThrownDices(false);
+}
+
+function returnWaitingArray(players)
+{
+    let tmp = [];
+    for (let i = 0; i < players.length; i++) 
+        tmp.push(players[i].turnsToWait);
+    return tmp;
 }

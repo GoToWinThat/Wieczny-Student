@@ -8,9 +8,12 @@ function ButtonPanel(props)
     return(
       <ButtonGroup>
         <Button id="buyButton" onClick={() => props.changeView('buy')} 
-          disabled={(isAbleToBuy(props.data) === false) || (thrownDices === false)}>Kup</Button>
-        <Button id="manageButton" onClick={() => props.changeView('manage')}>Zarządzaj</Button>
-        <Button id="tradeButton" onClick={() => props.changeView('trade')}>Handluj</Button>
+          disabled={(isAbleToBuy(props.data) === false) || (thrownDices === false)}
+          onMouseDown={(e) => e.preventDefault()}>Kup</Button>
+        <Button id="manageButton" onClick={() => props.changeView('manage')}
+          onMouseDown={(e) => e.preventDefault()}>Zarządzaj</Button>
+        <Button id="tradeButton" onClick={() => props.changeView('trade')}
+          onMouseDown={(e) => e.preventDefault()}>Handluj</Button>
       </ButtonGroup>
     )
 

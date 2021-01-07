@@ -14,7 +14,7 @@ class CornerField extends Component {
                     <Pawns players={this.props.players} id={this.props.data.fieldID}/>
                     <div className="card-body">
                         <h1 className="card-title card-corner-title">{this.props.data.name}</h1>
-                        {this.props.data.fieldID === 0 ? <img src="/Assets/Fields/arrow-return-left.svg" alt="arrow"/> : null}
+                        {this.props.data.fieldID === 0 ? <img id="arrowImage" src="/Assets/Fields/arrow-return-left.svg" alt="arrow"/> : null}
                     </div>
                 </div>
             </div>

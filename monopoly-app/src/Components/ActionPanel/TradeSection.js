@@ -73,7 +73,6 @@ function TradeSection(props) {
 
     const listAll = () => 
     {
-        debugger;
         if(currentPlayer.eventCards.length === 0 && currentPlayer.properties.length === 0)
             return(<p className="text-secondary  px-1">Gracz nie posiada żadnych kart i nieruchomości.</p>);
         else 
