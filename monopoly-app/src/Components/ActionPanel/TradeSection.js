@@ -3,30 +3,45 @@ import React, { useState } from 'react';
 
 function TradeSection(props) {
 
-    var currentPlayer = {};
-    const [playerId, setPlayerId] = useState(0);
+    //Handle input form text cash field
+    const [inputcash, setInputcash] = useState(0);
+    const handleChange = ({ target }) => 
+    {
+        setInputcash(target.value);
+        selectItem("cash",target.value);
+    }
 
+    //Adding selected item to transactions in Trade function
+    const selectItem = (type,obj) =>
+    {
+        let item = undefined
+        type === "cash" ? item = Number.parseInt(obj) : 
+        type === "card" ? item = obj.cardID : 
+        item = obj.fieldID;
+
+        let id = ""
+        type ==! "cash" ? id = `${type}${props.activePlayer.name}${item}`
+        : id = `${type}${props.activePlayer.name}`
+
+        props.addTransaction({id: id, type: type,playerName: props.activePlayer.name, item: item})
+    }
+
+    //Creating header with player name
     const header = () => 
     {
-        if(props.activePlayer === undefined)
+        if(props.changable === true)
         {
-            let len = props.otherPlayers.length;
-            currentPlayer = props.otherPlayers[playerId];
-            const nextPlayer = () => {setPlayerId((playerId+1)%len)}
-            const previousPlayer = () => {setPlayerId(playerId === 0 ? len-1 : (playerId-1)%len)}
-
             return(
                 <div className="d-flex">
-                    <img className="arrow mt-2 ml-3" onClick={previousPlayer} src={`/Assets/General/arrowLeft.svg`} alt="arrow-left"/>
-                    <p className="h3 col text-center" style={{color: currentPlayer.color}} >{currentPlayer.name}</p>
-                    <img className="arrow mt-2 mr-3" onClick={nextPlayer} src={`/Assets/General/arrowRight.svg`} alt="arrow-right"/>
+                    <img className="arrow mt-2 ml-3" onClick={props.previousPlayer} src={`/Assets/General/arrowLeft.svg`} alt="arrow-left"/>
+                    <p className="h3 col text-center" style={{color: props.activePlayer.color}} >{props.activePlayer.name}</p>
+                    <img className="arrow mt-2 mr-3" onClick={props.nextPlayer} src={`/Assets/General/arrowRight.svg`} alt="arrow-right"/>
                 </div>
             )
         }
         else
         {
-            currentPlayer = props.activePlayer;
-            return(<p className="h3 col text-center" style={{color: currentPlayer.color}} >{currentPlayer.name}</p>)
+            return(<p className="h3 col text-center" style={{color: props.activePlayer.color}} >{props.activePlayer.name}</p>)
         }
 
     }
@@ -34,13 +49,13 @@ function TradeSection(props) {
     const createListOfFields = () =>
     {
         let fieldsList = [];
-        if(currentPlayer.properties.length !== 0) fieldsList.push(<hr key={2000}/>);
-        currentPlayer.properties.map( pField => 
+        if(props.activePlayer.properties.length !== 0) fieldsList.push(<hr key={2000}/>);
+        props.activePlayer.properties.map( pField => 
         {
             let field = props.data.fields[pField.fieldID]
             fieldsList.push(
                 <div className="d-flex" key={pField.fieldID}>
-                    <input className="mt-1 mr-2" type='checkbox'/>
+                    <input className="mt-1 mr-2" type='checkbox' onChange={() => selectItem("property",field)}/>
                     <div className="propertyBox mt-1" style={{background: field.color }}/>
                     <span>{field.name} </span>
                     <br/>
@@ -50,19 +65,20 @@ function TradeSection(props) {
         return fieldsList;
     }
 
+    //Creating listo of cards
     const createListOfCards = () =>
     {
         let cardsList = [];
         let idx = 0;
 
-        if(currentPlayer.eventCards.length !== 0) cardsList.push(<hr key={1000}/>);
-        currentPlayer.eventCards.map( pCard => 
+        if(props.activePlayer.eventCards.length !== 0) cardsList.push(<hr key={1000}/>);
+        props.activePlayer.eventCards.map( pCard => 
         {
             let card = props.data.cards[pCard.cardID]
             idx++;
             cardsList.push(
                 <div className="d-flex" key={idx}>
-                    <input className="mt-1 mr-2"  type='checkbox'/>
+                    <input className="mt-1 mr-2"  type='checkbox' onChange={() => selectItem("card",card)}/>
                     <span>{card.cardName} </span>
                     <br/>
                 </div>
@@ -73,7 +89,7 @@ function TradeSection(props) {
 
     const listAll = () => 
     {
-        if(currentPlayer.eventCards.length === 0 && currentPlayer.properties.length === 0)
+        if(props.activePlayer.eventCards.length === 0 && props.activePlayer.properties.length === 0)
             return(<p className="text-secondary  px-1">Gracz nie posiada żadnych kart i nieruchomości.</p>);
         else 
             return(<>{createListOfFields()}{createListOfCards()}</>);
@@ -82,10 +98,10 @@ function TradeSection(props) {
     return(
         <div>
             {header()}
-            <p className="h6 col text-center mb-3" >{currentPlayer.cash} ECTS</p>
+            <p className="h6 col text-center mb-3" >{props.activePlayer.cash} ECTS</p>
             {listAll()}
             <div className="mt-3 mb-3 col text-center">
-                <input  type='text' style={{maxWidth: 50}}/>
+                <input  type='text' style={{maxWidth: 50}} value={inputcash} onChange={handleChange}/>
                 <span> ECTS</span>
             </div>
         </div>
