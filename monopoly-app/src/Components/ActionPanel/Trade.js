@@ -1,18 +1,16 @@
 import "../../styles/ActionPanel.css";
-import React, { useState } from 'react';
+import React from 'react';
 import TradeSection from "./TradeSection";
 import {Modal, Button} from 'react-bootstrap';
 
 
 function Trade(props) {
-    const [show, setShow] = useState(true);
-    const handleClose = () => setShow(false);
     const activePlayer = props.data.players[props.data.activePlayerIndex];
     const otherPlayers = [];
     const data = {fields: props.data.fields, cards: props.data.gainCards};
     
     props.data.players.map(player => {
-      if(player.name != activePlayer.name)
+      if(player.name !== activePlayer.name)
         otherPlayers.push(player);
     })
 
@@ -22,8 +20,7 @@ function Trade(props) {
           show={props.show}
           size="lg"
           onHide={props.onHide}
-          backdrop="static"
-          keyboard={false}
+          animation={false}
           centered
         >
           <Modal.Header closeButton>

@@ -1,5 +1,5 @@
 import "../../styles/ActionPanel.css";
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { UpdatePlayerExpandProperty, UpdatePlayerDeleteProperty, 
     UpdatePlayerMortgageProperty, UpdatePlayerCash, AddNewLog } from '../../services/monopoly';
@@ -141,13 +141,15 @@ function Manage(props) {
     const createHouses = (propNum) =>
     {
         var array = [];
-        let hKey=`${activePlayer.properties[propNum].name} ${propNum}`
-        if (activePlayer.properties[propNum].estateLevel > 3)
-            array.push( <img key={hKey} className="houses" src={`/Assets/Houses/server.svg`} alt="server"/>); 
+        let field = activePlayer.properties[propNum];
+        //let hKey=`${field.fieldID} ${field.estateLevel}`
+        //debugger;
+        if (field.estateLevel > 3)
+            array.push( <img key={field.fieldID} className="houses" src={`/Assets/Houses/server.svg`} alt="server"/>); 
         else 
         {
-            for (var j = 0; j < activePlayer.properties[propNum].estateLevel; j++) 
-                array.push( <img key={hKey} className="houses" src={`/Assets/Houses/computer.svg`} alt="computer"/>);
+            for (var j = 0; j < field.estateLevel; j++) 
+                array.push( <img key={j} className="houses" src={`/Assets/Houses/computer.svg`} alt="computer"/>);
         }
         return array;
     }
@@ -159,13 +161,14 @@ function Manage(props) {
         let idx = 0
         properties.map(field => {
             let idx2 = idx
+            let fKey = `${field.fieldID} ${field.estateLevel}`
             array.push(
-            <tr key={idx2}>
-                <td scope="row" className="d-flex">
+            <tr key={fKey}>
+                <td className="d-flex">
                     <div className="propertyBox mt-1" style={{background: fieldNameColor(idx2,field.color) }}/>
                     <span style= {{ color: fieldNameColor(idx2,'black')}} >{field.name}</span> 
                 </td>
-                <td>{createHouses(idx)}</td>
+                <td>{createHouses(idx2)}</td>
                 {
                     field.type === "property" ? 
                     <td>
@@ -201,8 +204,7 @@ function Manage(props) {
             show={props.show}
             size="lg"
             onHide={props.onHide}
-            backdrop="static" 
-            keyboard={false} 
+            animation={false}
             centered>
           <Modal.Header closeButton>
             <Modal.Title >Zarządzaj: {activePlayer.cash} ECTS</Modal.Title>

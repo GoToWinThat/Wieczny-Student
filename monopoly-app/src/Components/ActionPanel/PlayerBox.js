@@ -70,6 +70,8 @@ function PlayerBox(props)
         <OverlayTrigger
             trigger={["hover","focus"]}
             placement='bottom'
+            animation={false}
+            transition={false}
             overlay={
                 <Popover id={`popover-positioned-bottom`}>
                     <Popover.Content>
