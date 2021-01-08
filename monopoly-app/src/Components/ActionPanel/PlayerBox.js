@@ -17,7 +17,7 @@ function PlayerBox(props)
         props.player.properties.map(field =>
             fieldArray.push(
                 <div key={field.fieldID} className="propertyRow">
-                    <div className="propertyBox" style={{background: props.fields[field.fieldID].color }}/>
+                    <div className="propertyBox mt-1" style={{background: props.fields[field.fieldID].color }}/>
                     <span>{props.fields[field.fieldID].name} </span>
                     <br/>
                 </div>

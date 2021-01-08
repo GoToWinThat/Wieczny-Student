@@ -161,7 +161,10 @@ function Manage(props) {
             let idx2 = idx
             array.push(
             <tr key={idx2}>
-                <th scope="row" style= {{ color: fieldNameColor(idx2,field.color)}}>{field.name}</th>
+                <td scope="row" className="d-flex">
+                    <div className="propertyBox mt-1" style={{background: fieldNameColor(idx2,field.color) }}/>
+                    <span style= {{ color: fieldNameColor(idx2,'black')}} >{field.name}</span> 
+                </td>
                 <td>{createHouses(idx)}</td>
                 {
                     field.type === "property" ? 
@@ -202,9 +205,9 @@ function Manage(props) {
             keyboard={false} 
             centered>
           <Modal.Header closeButton>
-            <Modal.Title >Zarządzaj</Modal.Title>
+            <Modal.Title >Zarządzaj: {activePlayer.cash} ECTS</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body >
             <table className="table text-center">
                 <thead>
                 <tr>

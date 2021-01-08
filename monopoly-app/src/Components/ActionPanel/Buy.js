@@ -28,14 +28,16 @@ function Buy(props) {
       <Modal.Header closeButton>
         <Modal.Title >Kup Nieruchomość</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        <div className="col text-center">
-          <span>Czy chcesz kupić  </span>
-          <span style= {{ color: currentField.color,fontWeight: 'bold'}} >{currentField.name}</span>
-          <span> za </span>
-          <span style= {{ color: 'red',fontWeight: 'bold'}} >{currentField.price} ECTS</span>
-          <span>?</span>
-          <p></p>
+      <Modal.Body >
+        <div className="col text-center ">
+          <div className="d-flex justify-content-center mb-4">
+            <span>Czy chcesz kupić  </span>
+            <div className="propertyBox mt-1" style={{background: currentField.color }}/>
+            <span>{currentField.name} za </span>
+            <span style= {{ color: 'red'}} > &nbsp;{currentField.price} ECTS</span>
+            <span>?</span>
+          </div>
+          
           <Button className="ml-5" onClick={buyProperty} >Potwierdź</Button>
         </div>
       </Modal.Body>
