@@ -7,12 +7,12 @@ function ButtonPanel(props)
     //Just display of all possible actions in ActionPanel
     return(
       <ButtonGroup>
-        <Button id="buyButton" onClick={() => props.changeView('buy')} 
+        <Button id="buyButton" onClick={() => props.openView('buy')} 
           disabled={(isAbleToBuy(props.data) === false) || (thrownDices === false)}
           onMouseDown={(e) => e.preventDefault()}>Kup</Button>
-        <Button id="manageButton" onClick={() => props.changeView('manage')}
+        <Button id="manageButton" onClick={() => props.openView('manage')}
           onMouseDown={(e) => e.preventDefault()}>Zarządzaj</Button>
-        <Button id="tradeButton" onClick={() => props.changeView('trade')}
+        <Button id="tradeButton" onClick={() => props.openView('trade')}
           onMouseDown={(e) => e.preventDefault()}>Handluj</Button>
       </ButtonGroup>
     )

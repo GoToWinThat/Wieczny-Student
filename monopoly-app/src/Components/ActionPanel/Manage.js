@@ -11,7 +11,6 @@ function Manage(props) {
     const activePlayer = props.data.players[activePlayerIndex];
     const fields = props.data.fields;
     const dispatch = props.data.dispatch;
-    const [show, setShow] = useState(true);
 
     const playersProperties = () => 
     {
@@ -23,9 +22,6 @@ function Manage(props) {
     }
     const properties = playersProperties();
     
-    const handleClose = () => setShow(false);
-
-
     // Checking if player has all properties from one color - only then he/she can expand it
     const hasAllPropertiesFromThisColor = (field) => {
         let color = field.color;
@@ -199,9 +195,9 @@ function Manage(props) {
     return (
       <>
         <Modal 
-            show={show} 
-            size="lg" 
-            onHide={handleClose} 
+            show={props.show}
+            size="lg"
+            onHide={props.onHide}
             backdrop="static" 
             keyboard={false} 
             centered>

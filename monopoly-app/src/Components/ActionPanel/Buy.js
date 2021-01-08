@@ -4,25 +4,23 @@ import {Button, Modal} from 'react-bootstrap';
 import { UpdatePlayerNewProperty, UpdatePlayerCash, AddNewLog } from '../../services/monopoly';
 
 function Buy(props) {
-  const [show, setShow] = useState(true);
   const activePlayer = props.data.players[props.data.activePlayerIndex];
   const currentField = props.data.fields[activePlayer.position];
   const dispatch = props.data.dispatch;
-  const handleClose = () => setShow(false);
 
   const buyProperty = () => 
   {
     UpdatePlayerNewProperty(dispatch, activePlayer.name, currentField.fieldID);
     UpdatePlayerCash(dispatch, activePlayer.name, -currentField.price);
     AddNewLog(dispatch, `${activePlayer.name} kupuje ${currentField.name} za ${currentField.price} ECTS.`);
-    handleClose();
+    props.onHide();
   }
 
   return (
     <Modal
-      show={show}
+      show={props.show}
       size="lg"
-      onHide={handleClose}
+      onHide={props.onHide}
       backdrop="static"
       keyboard={false}
       centered

@@ -19,9 +19,9 @@ function Trade(props) {
     return (
       <>
         <Modal
-          show={show}
+          show={props.show}
           size="lg"
-          onHide={handleClose}
+          onHide={props.onHide}
           backdrop="static"
           keyboard={false}
           centered
