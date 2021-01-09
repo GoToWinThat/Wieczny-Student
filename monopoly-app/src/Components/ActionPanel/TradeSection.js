@@ -7,14 +7,17 @@ function TradeSection(props) {
     const [inputcash, setInputcash] = useState(0);
     const handleChange = ({ target }) => 
     {
+        if(props.activePlayer.cash > target.value)
+        {
         setInputcash(target.value);
         selectItem("cash",target.value);
+        }
+        else setInputcash(props.activePlayer.cash);
     }
 
     //Adding selected item to transactions in Trade function
     const selectItem = (type,obj) =>
     {
-        //debugger;
         let item = undefined
         type === "cash" ? item = Number.parseInt(obj) : 
         type === "card" ? item = obj.cardID : 
@@ -23,7 +26,6 @@ function TradeSection(props) {
         let id = ""
         type === "cash" ? id = `${type}${props.activePlayer.name}` : id = `${type}${props.activePlayer.name}${item}`
         
-
         props.addTransaction({id: id, type: type,playerName: props.activePlayer.name, item: item})
     }
 
@@ -54,9 +56,12 @@ function TradeSection(props) {
         props.activePlayer.properties.map( pField => 
         {
             let field = props.data.fields[pField.fieldID]
+            let disabledInput = false;
+            if(pField.mortgaged === true || pField.estateLevel > 0) disabledInput = true;
+            
             fieldsList.push(
                 <div className="d-flex" key={pField.fieldID}>
-                    <input className="mt-1 mr-2" type='checkbox' onChange={() => selectItem("property",field)}/>
+                    <input className="mt-1 mr-2" type='checkbox' onChange={() => selectItem("property",field)} disabled={disabledInput}/>
                     <div className="propertyBox mt-1" style={{background: field.color }}/>
                     <span>{field.name} </span>
                     <br/>

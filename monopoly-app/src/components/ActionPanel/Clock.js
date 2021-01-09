@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from 'react-bootstrap';
 
 var secondsForAction = 30;
 class Clock extends Component {
@@ -8,6 +9,7 @@ class Clock extends Component {
       this.timer = 0;
       this.startTimer = this.startTimer.bind(this);
       this.countDown = this.countDown.bind(this);
+      this.resetClock = this.resetClock.bind(this);
     }
   
     secondsToTime(secs){
@@ -56,10 +58,22 @@ class Clock extends Component {
             });
         }
     }
+
+    resetClock()
+    {
+        this.setState({
+            time: this.secondsToTime(secondsForAction),
+            seconds: secondsForAction,
+        });
+        this.props.endTurnEvent();
+    }
     
     render() {
         return(
-            <span> [{this.state.time.m * 60 + this.state.time.s}s]</span>
+            <Button id="endTurnButton" onClick={this.resetClock} onMouseDown={(e) => e.preventDefault()}>
+                <span>Zakończ turę [{this.state.time.m * 60 + this.state.time.s}s]</span>
+            </Button>
+            
         );
     }
 }

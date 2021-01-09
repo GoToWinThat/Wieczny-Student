@@ -18,10 +18,7 @@ export const PlayerBar = (data) => {
             <div className="playerBarInnerDiv">
                 { players.map(pl => <PlayerBox key={pl.name} player={pl} isActive={++idx === activePlayerIndex} cards={cards} fields={fields}/>) }
             </div>
-            <Button id="endTurnButton" onClick={() => endTurnEvent(data)} onMouseDown={(e) => e.preventDefault()}>
-                <span>Zakończ turę</span>
-                <Clock/>
-            </Button>
+            <Clock endTurnEvent={() => endTurnEvent(data)}/>
         </div>
     );
 }
