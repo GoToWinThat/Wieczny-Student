@@ -47,6 +47,12 @@ function Trade(props) {
       : (tradePlayerIdx-1))
   }
 
+  const closeWindow = () =>
+  {
+    setTransactionState([]);
+    props.onHide();
+  }
+
   //Execute all transaction and update store
   const exchange = () => 
   {
@@ -71,17 +77,15 @@ function Trade(props) {
         UpdatePlayerDeleteEventCard(dispatch,t.playerName,t.item);
         UpdatePlayerNewEventCard(dispatch,secondPlayer.name,t.item)
       }
-
     })
-    setTransactionState([]);
-    props.onHide();
+    closeWindow()
   }
 
   return (
     <Modal
       show={props.show}
       size="lg"
-      onHide={props.onHide}
+      onHide={closeWindow}
       animation={false}
       centered
     >

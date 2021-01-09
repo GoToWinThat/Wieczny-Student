@@ -14,14 +14,15 @@ function TradeSection(props) {
     //Adding selected item to transactions in Trade function
     const selectItem = (type,obj) =>
     {
+        //debugger;
         let item = undefined
         type === "cash" ? item = Number.parseInt(obj) : 
         type === "card" ? item = obj.cardID : 
         item = obj.fieldID;
 
         let id = ""
-        type ==! "cash" ? id = `${type}${props.activePlayer.name}${item}`
-        : id = `${type}${props.activePlayer.name}`
+        type === "cash" ? id = `${type}${props.activePlayer.name}` : id = `${type}${props.activePlayer.name}${item}`
+        
 
         props.addTransaction({id: id, type: type,playerName: props.activePlayer.name, item: item})
     }
