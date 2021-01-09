@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import TradeSection from "./TradeSection";
 import {Modal, Button} from 'react-bootstrap';
 import { UpdatePlayerDeleteProperty, UpdatePlayerCash,UpdatePlayerDeleteEventCard,
-  UpdatePlayerNewEventCard,UpdatePlayerNewProperty} from '../../services/monopoly';
+  UpdatePlayerNewEventCard,UpdatePlayerNewProperty,AddNewLog} from '../../services/monopoly';
 
 function Trade(props) {
   const dispatch = props.data.dispatch;
@@ -56,6 +56,7 @@ function Trade(props) {
   //Execute all transaction and update store
   const exchange = () => 
   {
+    AddNewLog(dispatch, `Doszło do wymiany między ${activePlayer.name} i ${otherPlayers[tradePlayerIdx].name}.`);
     transactionState.forEach(t =>{
       
       let secondPlayer = undefined;
@@ -66,16 +67,19 @@ function Trade(props) {
       {
         UpdatePlayerCash(dispatch,t.playerName,-t.item);
         UpdatePlayerCash(dispatch,secondPlayer.name,t.item);
+        AddNewLog(dispatch, `- ${t.playerName} dostał ${t.item} ECTS`);
       }
       if(t.type === "property") 
       {
         UpdatePlayerDeleteProperty(dispatch,t.playerName,t.item);
         UpdatePlayerNewProperty(dispatch,secondPlayer.name,t.item);
+        AddNewLog(dispatch, `- ${t.playerName} posiada teraz ${data.fields[t.item].name}`);
       }
       if(t.type === "card")
       {
         UpdatePlayerDeleteEventCard(dispatch,t.playerName,t.item);
         UpdatePlayerNewEventCard(dispatch,secondPlayer.name,t.item)
+        AddNewLog(dispatch, `- ${t.playerName} posiada teraz ${data.cards[t.item].cardName}`);
       }
     })
     closeWindow()
