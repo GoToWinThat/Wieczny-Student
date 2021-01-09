@@ -14,6 +14,7 @@ function Trade(props) {
   props.data.players.map(player => {
     if(player.name !== activePlayer.name)
       otherPlayers.push(player);
+    return null;
   })
 
   const [tradePlayerIdx, setTradePlayerIdx] = useState(0);
@@ -29,6 +30,7 @@ function Trade(props) {
         setTransactionState(transactionState.filter(t => t !== element));
         element.type !== "cash" ? add = false : add = true;
       }
+      return null; 
     });
     if(add) setTransactionState(oldArray => [...oldArray, trans])
   }
@@ -56,7 +58,8 @@ function Trade(props) {
   //Execute all transaction and update store
   const exchange = () => 
   {
-    AddNewLog(dispatch, `Doszło do wymiany między ${activePlayer.name} i ${otherPlayers[tradePlayerIdx].name}.`);
+    if (transactionState.length > 0)
+      AddNewLog(dispatch, `Doszło do wymiany między ${activePlayer.name} i ${otherPlayers[tradePlayerIdx].name}:`);
     transactionState.forEach(t =>{
       
       let secondPlayer = undefined;
@@ -67,19 +70,19 @@ function Trade(props) {
       {
         UpdatePlayerCash(dispatch,t.playerName,-t.item);
         UpdatePlayerCash(dispatch,secondPlayer.name,t.item);
-        AddNewLog(dispatch, `- ${t.playerName} dostał ${t.item} ECTS`);
+        AddNewLog(dispatch, `- ${secondPlayer.name} otrzymał ${t.item} ECTS`);
       }
-      if(t.type === "property") 
+      else if(t.type === "property") 
       {
         UpdatePlayerDeleteProperty(dispatch,t.playerName,t.item);
         UpdatePlayerNewProperty(dispatch,secondPlayer.name,t.item);
-        AddNewLog(dispatch, `- ${t.playerName} posiada teraz ${data.fields[t.item].name}`);
+        AddNewLog(dispatch, `- ${secondPlayer.name} posiada teraz pole ${data.fields[t.item].name}`);
       }
-      if(t.type === "card")
+      else //if(t.type === "card")
       {
         UpdatePlayerDeleteEventCard(dispatch,t.playerName,t.item);
         UpdatePlayerNewEventCard(dispatch,secondPlayer.name,t.item)
-        AddNewLog(dispatch, `- ${t.playerName} posiada teraz ${data.cards[t.item].cardName}`);
+        AddNewLog(dispatch, `- ${secondPlayer.name} posiada teraz kartę ${data.cards[t.item].cardName}`);
       }
     })
     closeWindow()
@@ -88,27 +91,27 @@ function Trade(props) {
   return (
     <Modal
       show={props.show}
-      size="lg"
       onHide={closeWindow}
       animation={false}
       centered
+      id="tradeModal"
     >
-      <Modal.Header closeButton>
+      <Modal.Header closeButton onMouseDown={(e) => e.preventDefault()}>
         <Modal.Title>Handluj</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <table className="d-flex justify-content-center ">
+        <table className="d-flex">
           <tbody>
             <tr className="align-top">
-              <th>
+              <th className="tradePlayerColumn">
                 <TradeSection 
                   data={data} 
                   activePlayer={activePlayer} 
                   changable={false}
                   addTransaction={addTransaction}/>
               </th>
-              <th style={{fontSize: 30}}>&#xa0; &#x21c4; &#xa0; </th>
-              <th>
+              <th className="tradeArrowColumn">&#x21c4;</th>
+              <th className="tradePlayerColumn">
                 <TradeSection 
                   data={data} 
                   activePlayer={otherPlayers[tradePlayerIdx]} 
@@ -120,7 +123,8 @@ function Trade(props) {
             </tr>
           </tbody>
         </table>
-        <Button onClick={exchange} className="col-2 offset-5 justify-content-center mt-2" variant="primary">Potwierdź</Button>
+        <Button onClick={exchange} className="confirmButton" variant="primary"
+          onMouseDown={(e) => e.preventDefault()}>Potwierdź</Button>
       </Modal.Body>
     </Modal>
   );

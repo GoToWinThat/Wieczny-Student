@@ -16,7 +16,6 @@
 }
 
 
-/* ORIENTATION SETTINGS */
 @media (orientation: portrait) {
   /* PLAYERS' COLORS ON THE FIELDS */
   .card-top .field-is-bought-colored {
@@ -28,7 +27,7 @@
   .card-botom .field-is-bought-colored {
     height: calc(99vw / 6.5 - 2.3vw);
     width: 100%;
-    top: 2.2vw;
+    top: 2.1vw;
     left: 0;
   }
   .card-left .field-is-bought-colored {

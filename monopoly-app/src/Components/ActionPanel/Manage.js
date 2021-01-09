@@ -142,8 +142,6 @@ function Manage(props) {
     {
         var array = [];
         let field = activePlayer.properties[propNum];
-        //let hKey=`${field.fieldID} ${field.estateLevel}`
-        //debugger;
         if (field.estateLevel > 3)
             array.push( <img key={field.fieldID} className="houses" src={`/Assets/Houses/server.svg`} alt="server"/>); 
         else 
@@ -164,33 +162,39 @@ function Manage(props) {
             let fKey = `${field.fieldID} ${field.estateLevel}`
             array.push(
             <tr key={fKey}>
-                <td className="d-flex">
-                    <div className="propertyBox mt-1" style={{background: fieldNameColor(idx2,field.color) }}/>
-                    <span style= {{ color: fieldNameColor(idx2,'black')}} >{field.name}</span> 
+                <td className="text-left">
+                    <div className="d-flex">
+                        <div className="propertyBox" style={{background: fieldNameColor(idx2,field.color) }}/>
+                        <span style= {{ color: fieldNameColor(idx2,'black')}} >{field.name}</span> 
+                    </div>
                 </td>
                 <td>{createHouses(idx2)}</td>
                 {
                     field.type === "property" ? 
-                    <td>
-                        <Button size="sm" variant="success" onClick={() => buyHouse(field.fieldID,idx2)}
+                    <td className="manageExpandCell">
+                        <Button variant="success" onClick={() => buyHouse(field.fieldID,idx2)}
                             disabled={activePlayer.properties[idx2].estateLevel === 4 
                                 || activePlayer.cash < field.estatePrice 
                                 || activePlayer.properties[idx2].mortgaged === true
-                                || !hasAllPropertiesFromThisColor(field)}> + </Button>
-                        <span className="mr-2 ml-2" > {field.estatePrice} ECTS</span>
-                        <Button size="sm" variant="danger" onClick={() => sellHouse(field.fieldID,idx2)} 
+                                || !hasAllPropertiesFromThisColor(field)}
+                                onMouseDown={(e) => e.preventDefault()}> + </Button>
+                        <span>{field.estatePrice} ECTS</span>
+                        <Button variant="danger" onClick={() => sellHouse(field.fieldID,idx2)} 
                             disabled={activePlayer.properties[idx2].estateLevel === 0
                                 || activePlayer.properties[idx2].mortgaged === true
-                                || !hasAllPropertiesFromThisColor(field)}> - </Button>
+                                || !hasAllPropertiesFromThisColor(field)}
+                                onMouseDown={(e) => e.preventDefault()}> - </Button>
                     </td>
                     : 
                     <td></td>
                 }
-                <td><Button size="sm" variant={mortgageButtonColor(idx2)} onClick={() => mortgageProperty(field.fieldID,idx2)}
-                    disabled={hasAnyPropertyFromThisColorOneOrMoreComputers(field) === true}> {field.mortgage} ECTS</Button></td>
-                <td><Button size="sm" variant="danger" onClick={() => sellProperty(field.fieldID)}
+                <td><Button variant={mortgageButtonColor(idx2)} onClick={() => mortgageProperty(field.fieldID,idx2)}
+                    disabled={hasAnyPropertyFromThisColorOneOrMoreComputers(field) === true}
+                    onMouseDown={(e) => e.preventDefault()}> {field.mortgage} ECTS</Button></td>
+                <td><Button variant="danger" onClick={() => sellProperty(field.fieldID)}
                     disabled={hasAnyPropertyFromThisColorOneOrMoreComputers(field) === true
-                        || activePlayer.properties[idx2].mortgaged === true}> {field.price} ECTS</Button></td>
+                        || activePlayer.properties[idx2].mortgaged === true}
+                        onMouseDown={(e) => e.preventDefault()}> {field.price} ECTS</Button></td>
             </tr>)
             idx++;
             return null;
@@ -202,22 +206,21 @@ function Manage(props) {
       <>
         <Modal 
             show={props.show}
-            size="lg"
             onHide={props.onHide}
             animation={false}
-            centered>
-          <Modal.Header closeButton>
-            <Modal.Title >Zarządzaj: {activePlayer.cash} ECTS</Modal.Title>
+            id="manageModal">
+          <Modal.Header closeButton onMouseDown={(e) => e.preventDefault()}>
+            <Modal.Title>Zarządzaj (masz: {activePlayer.cash} ECTS)</Modal.Title>
           </Modal.Header>
           <Modal.Body >
             <table className="table text-center">
                 <thead>
                 <tr>
-                    <th scope="col">Nieruchomość</th>
-                    <th scope="col">Poziom</th>
-                    <th scope="col">Rozbuduj</th>
-                    <th scope="col">Zastaw</th>
-                    <th scope="col">Sprzedaj</th>
+                    <th id="manageColumn1" scope="col">Nieruchomość</th>
+                    <th id="manageColumn2" scope="col">Poziom</th>
+                    <th id="manageColumn3" scope="col">Rozbuduj</th>
+                    <th id="manageColumn4" scope="col">Zastaw</th>
+                    <th id="manageColumn5" scope="col">Sprzedaj</th>
                 </tr>
                 </thead>
                 <tbody>{genPorpTable()}</tbody>
