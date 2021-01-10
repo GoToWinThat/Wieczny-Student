@@ -12,7 +12,11 @@ function TradeSection(props) {
         setInputcash(target.value);
         selectItem("cash",target.value);
         }
-        else setInputcash(props.activePlayer.cash);
+        else  
+        {
+            setInputcash(props.activePlayer.cash);
+            selectItem("cash",props.activePlayer.cash);
+        }
     }
 
     //Adding selected item to transactions in Trade function
