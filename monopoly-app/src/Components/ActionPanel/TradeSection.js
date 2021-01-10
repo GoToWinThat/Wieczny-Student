@@ -39,16 +39,16 @@ function TradeSection(props) {
         if(props.changable === true)
         {
             return(
-                <div className="d-flex">
-                    <img className="arrow mt-2 ml-3" onClick={props.previousPlayer} src={`/Assets/General/arrowLeft.svg`} alt="arrow-left"/>
-                    <p className="h3 col text-center" style={{color: props.activePlayer.color}} >{props.activePlayer.name}</p>
-                    <img className="arrow mt-2 mr-3" onClick={props.nextPlayer} src={`/Assets/General/arrowRight.svg`} alt="arrow-right"/>
+                <div className="playerNameWithArrows">
+                    <img className="arrow" onClick={props.previousPlayer} src={`/Assets/General/arrowLeft.svg`} alt="arrow-left"/>
+                    <p className="h3" style={{color: props.activePlayer.color}} >{props.activePlayer.name}</p>
+                    <img className="arrow" onClick={props.nextPlayer} src={`/Assets/General/arrowRight.svg`} alt="arrow-right"/>
                 </div>
             )
         }
         else
         {
-            return(<p className="h3 col text-center" style={{color: props.activePlayer.color}} >{props.activePlayer.name}</p>)
+            return(<p className="h3 col" style={{color: props.activePlayer.color}} >{props.activePlayer.name}</p>)
         }
 
     }
@@ -65,12 +65,14 @@ function TradeSection(props) {
             
             fieldsList.push(
                 <div className="d-flex" key={pField.fieldID}>
-                    <input className="mt-1 mr-2" type='checkbox' onChange={() => selectItem("property",field)} disabled={disabledInput}/>
-                    <div className="propertyBox mt-1" style={{background: field.color }}/>
-                    <span>{field.name} </span>
+                    <input type='checkbox' onChange={() => selectItem("property",field)} disabled={disabledInput}/>
+                    <div className="propertyBox" style={{background: field.color}}/>
+                    <span>{field.name}</span>
                     <br/>
                 </div>
             )
+
+            return null;
         })
         return fieldsList;
     }
@@ -88,11 +90,13 @@ function TradeSection(props) {
             idx++;
             cardsList.push(
                 <div className="d-flex" key={idx}>
-                    <input className="mt-1 mr-2"  type='checkbox' onChange={() => selectItem("card",card)}/>
-                    <span>{card.cardName} </span>
+                    <input type="checkbox" onChange={() => selectItem("card",card)}/>
+                    <span>{card.cardName}</span>
                     <br/>
                 </div>
             )
+
+            return null;
         })
         return cardsList;
     }
@@ -100,7 +104,7 @@ function TradeSection(props) {
     const listAll = () => 
     {
         if(props.activePlayer.eventCards.length === 0 && props.activePlayer.properties.length === 0)
-            return(<p className="text-secondary  px-1">Gracz nie posiada żadnych kart i nieruchomości.</p>);
+            return(<p className="text-secondary">Gracz nie posiada żadnych kart i nieruchomości.</p>);
         else 
             return(<>{createListOfFields()}{createListOfCards()}</>);
     }
@@ -108,10 +112,10 @@ function TradeSection(props) {
     return(
         <div>
             {header()}
-            <p className="h6 col text-center mb-3" >{props.activePlayer.cash} ECTS</p>
+            <p className="h6 col" >{props.activePlayer.cash} ECTS</p>
             {listAll()}
-            <div className="mt-3 mb-3 col text-center">
-                <input  type='text' style={{maxWidth: 50}} value={inputcash} onChange={handleChange}/>
+            <div className="tradeCashChangeDiv">
+                <input type="text" value={inputcash} onChange={handleChange}/>
                 <span> ECTS</span>
             </div>
         </div>

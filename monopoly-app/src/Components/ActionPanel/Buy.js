@@ -1,5 +1,5 @@
 import "../../styles/ActionPanel.css";
-import React, { useState } from 'react';
+import React from 'react';
 import {Button, Modal} from 'react-bootstrap';
 import { UpdatePlayerNewProperty, UpdatePlayerCash, AddNewLog } from '../../services/monopoly';
 
@@ -19,26 +19,30 @@ function Buy(props) {
   return (
     <Modal
       show={props.show}
-      size="lg"
       onHide={props.onHide}
       backdrop="static"
       keyboard={false}
-      centered
+      id="buyModal"
     >
-      <Modal.Header closeButton>
-        <Modal.Title >Kup Nieruchomość</Modal.Title>
+      <Modal.Header closeButton onMouseDown={(e) => e.preventDefault()}>
+        <Modal.Title >Kup nieruchomość</Modal.Title>
       </Modal.Header>
       <Modal.Body >
-        <div className="col text-center ">
-          <div className="d-flex justify-content-center mb-4">
-            <span>Czy chcesz kupić  </span>
-            <div className="propertyBox mt-1" style={{background: currentField.color }}/>
-            <span>{currentField.name} za </span>
-            <span style= {{ color: 'red'}} > &nbsp;{currentField.price} ECTS</span>
-            <span>?</span>
-          </div>
-          
-          <Button className="ml-5" onClick={buyProperty} >Potwierdź</Button>
+        <div className="col text-center">
+          <div id="buyQuestion">
+            <span>Czy chcesz kupić</span>
+            <span>
+              <span className="propertyBox" style={{background: currentField.color}}/>
+              {currentField.name}
+            </span>
+            <span>
+              <span>&nbsp;za</span>
+              <span style={{ color: 'red', fontWeight: 'bold'}}>&nbsp;{currentField.price} ECTS</span>
+              <span>?</span>
+            </span>
+          </div> 
+          <Button className="confirmButton" onClick={buyProperty}
+            onMouseDown={(e) => e.preventDefault()}>Potwierdź</Button>
         </div>
       </Modal.Body>
     </Modal>

@@ -12,3 +12,6 @@ html, body
   display: flex;
   justify-content: center;
 }
+
+.btn { border: 0; }
+.btn-group * { margin: 0 !important; }

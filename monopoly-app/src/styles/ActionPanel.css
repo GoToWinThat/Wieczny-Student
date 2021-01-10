@@ -1,150 +1,436 @@
 /* General */
-*:active {
-  outline: none;
+@media(orientation: portrait)
+{
+  .boardCenter * { font-size: 2vw; }
+}
+@media(orientation: landscape)
+{
+  .boardCenter * { font-size: 2vh; }
 }
 
+
+
 /* Roll Dice Component */
-.rollDiceComponent {
+.rollDiceComponent 
+{
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#throwDicesButton { border-radius: 0.5em; }
+#throwDicesButton { line-height: 50%; }
+@media(orientation: portrait)
+{
+  .diceImg { height: 6vw; padding: 0.5vw; }
+  .diceImages { margin-left: 2.5vw; }
+  #throwDicesButton 
+  { 
+      height: 4vw; 
+      margin-right: 2.5vw; 
+      border-radius: 1vw;
+      padding: 0.5vw 1.5vw;
+  }
+}
+@media(orientation: landscape)
+{
+  .diceImg { height: 6vh; padding: 0.5vh; }
+  .diceImages { margin-left: 2.5vh; }
+  #throwDicesButton 
+  { 
+      height: 4vh; 
+      margin-right: 2.5vh; 
+      border-radius: 1vh;
+      padding: 0.5vh 1.5vh;
+  }
+}
+
+
 
 /* Player Bar Component */
-.playerBar {
-  display: flex;
-  flex-direction: column;
-}
-.playerBarInnerDiv {
+.playerBar { display: flex; flex-direction: column; }
+.playerBarInnerDiv 
+{
   width: 100%;
   display: flex;
   justify-content: space-around;
 }
-.playerBox { width: 20%; border-radius: 0.5em; }
+.playerBox { width: 20%; }
 #endTurnButton
 {
-    width: fit-content;
-    align-self: center;
-    line-height: 50%;
-    border-radius: 0.5em;
+  width: fit-content;
+  align-self: center;
+  line-height: 50%;
 }
 .btn-default {
   background-color: #68889e;
   border-color: #2f3e48;
   color: #fff;
 }
-
-/* Action Options */
-.actionOptions * {
-  line-height: 50%;
-}
-
-/* Manage */
-.manageTable {
-  display: inline-table;
-}
-.houses {
-  max-height: 35px;
-  padding: 5px;
-}
-
-/* Trade */
-.tradeTable {
-  margin-left: auto;
-  margin-right: auto;
-  width: fit-content;
-  border: 2px solid black;
-}
-.propertyBox {
-  height: 1em;
-  width: 1em;
-  background: red;
-  margin-left: 10px;
-  margin-right: 10px;
-}
 .propertyRow {
   width: fit-content;
   display: flex;
   justify-content: space-around;
 }
-.tradeSection {
-  padding: 10px;
+@media(orientation: portrait)
+{
+  #endTurnButton 
+  { 
+      height: 4vw; 
+      margin: 1vw;
+      border-radius: 1vw;
+      padding: 0.5vw 1.5vw;
+  }
+  .playerBox { padding: 0.5vw; border-radius: 1vw; }
 }
-.arrow {
-  width: 10%;
-  height: 10%;
+@media(orientation: landscape)
+{
+  #endTurnButton 
+  { 
+      height: 4vh; 
+      margin: 1vh;
+      padding: 0.5vh; 
+      border-radius: 1vh;
+      padding: 0.5vh 1.5vh;
+  }
+  .playerBox { padding: 0.5vh; border-radius: 1vh; }
 }
+
+
+
+/* Action Options */
+.actionOptions * { line-height: 50%; border: 0; }
+.close 
+{ 
+  width: fit-content !important; 
+  margin: 0 !important; 
+  padding: 0 !important;
+}
+.modal { display: flex !important; align-items: center; }
+.modal * { vertical-align: middle;}
+.modal-dialog { max-width: 95vw; }
+.modal-header { border-radius: 0; }
+.modal-body { display: flex; flex-direction: column; align-items: center; }
+.modal-content { border: none; border-radius: 1vh; }
+@media(orientation: portrait)
+{     
+  .actionOptions .btn-group .btn { padding: 1.5vw 1.5vw; }
+  .modal-dialog { font-size: 2vw; } 
+  .modal-title { font-size: 4vw; }
+  .modal-header { padding: 3vw; border-bottom: 0.1vw solid #dee2e6; }
+  .modal button { padding: 0 2vw; height: 100%; }
+  .close { font-size: 3vw !important; }
+}
+@media(orientation: landscape) and (max-height: 600px)
+{     
+  .actionOptions .btn-group .btn { padding: 1.5vh 1.5vh; }
+  .modal-dialog { width: 150vh; font-size: 3vh; } 
+  .modal-title { font-size: 6vh; }
+  .modal-header { padding: 3vh; border-bottom: 0.1vh solid #dee2e6; }
+  .modal button { padding: 0 3vh; height: 100%; }
+  .close { font-size: 4.5vh !important; }
+}
+@media(orientation: landscape) and (min-height: 600px) /* MAINLY PCS*/
+{     
+  .actionOptions .btn-group .btn { padding: 1.5vh 1.5vh; }
+  .modal-dialog { width: 100vh; font-size: 2vh; } 
+  .modal-title { font-size: 3.5vh; }
+  .modal-header { padding: 3vh; border-bottom: 0.1vh solid #dee2e6; }
+  .modal button { padding: 0 3vh; height: 100%; }
+  .close { font-size: 4.5vh !important; }
+}
+
+
+
+/* Buy */
+#buyQuestion * { display: inline-block; vertical-align: bottom; }
+#buyModal .propertyBox 
+{
+  height: 1em;
+  width: 0.5em;
+  margin-left: 0.3em;
+  margin-right: 0.3em;
+  margin-bottom: 0.1em;
+  vertical-align: text-bottom;
+}
+@media(orientation: portrait)
+{
+  #buyModal .modal-body { padding: 3vw; }     
+  #buyQuestion * { font-size: 3vw !important; }
+  #buyQuestion { margin-bottom: 5vw; width: 95vw; }
+  #buyModal .confirmButton { border-radius: 2vw; font-size: 3vw !important; }
+}
+@media(orientation: landscape) and (max-height: 600px)
+{     
+  #buyQuestion * { font-size: 3.5vh !important; }
+  #buyQuestion { margin-bottom: 5vh; }
+  #buyModal .confirmButton { border-radius: 2vh; font-size: 3.5vh !important; }
+}
+@media(orientation: landscape) and (min-height: 600px) /* MAINLY PCS*/
+{     
+  #buyQuestion * { font-size: 2.5vh !important; }
+  #buyQuestion { margin-bottom: 5vh; }
+  #buyModal .confirmButton { border-radius: 2vh; font-size: 2.5vh !important; }
+}
+
+
+
+
+/* Manage */
+#manageModal .table td, #manageModal .table th { border-top: none; }
+#manageModal .table tr * { vertical-align: middle !important; }
+#manageModal .table { margin-bottom: 1vh; }
+#manageModal .modal-body { padding: 0; }  
+#manageColumn1 { width: 15em; }
+#manageColumn2 { width: 6em; }
+#manageColumn3 { width: 10em; }
+#manageColumn4 { width: 8em; }
+#manageColumn5 { width: 8em; }
+.propertyBox 
+{
+  height: 1em;
+  width: 0.5em;
+  margin-left: 0.3em;
+  margin-right: 0.3em;
+  margin-top: 0.2em;
+  vertical-align: text-bottom;
+}
+@media (orientation: portrait)
+{ 
+  #manageModal .table th { border-bottom: 0.1vw solid #dee2e6; }
+  #manageModal button 
+  { 
+    font-size: 2vw; 
+    padding: 0.5vw 2vw; 
+    height: 100%; 
+    width: 100%; 
+  }
+  .houses { height: 2vw; padding: 0 0.2vw; }
+
+  .manageExpandCell button 
+  { 
+    width: 20% !important; 
+    padding: 0.5vw 0 !important; 
+  }
+  .manageExpandCell span { padding: 0 0.5vw !important; }
+
+  #manageModal .table td, #manageModal .table th { padding: 2vw; }
+}
+
+@media (orientation: landscape) and (max-height: 600px)
+{ 
+  #manageModal .table th { border-bottom: 0.1vh solid #dee2e6; }
+  #manageModal button 
+  { 
+    font-size: 3vh; 
+    padding: 0.5vh 2vh; 
+    height: 100%; 
+    width: 100%; 
+  }
+  .houses { height: 3.5vh; padding: 0 0.2vh; }
+
+  .manageExpandCell button 
+  { 
+    width: 20% !important; 
+    padding: 0.5vh 0 !important; 
+  }
+  .manageExpandCell span { padding: 0 0.5vh !important; }
+
+  #manageModal .table td, #manageModal .table th { padding: 2vh; }
+}
+@media (orientation: landscape) and (min-height: 600px) /* MAINLY PCS*/
+{ 
+  #manageModal .table th { border-bottom: 0.1vh solid #dee2e6; }
+  #manageModal button 
+  { 
+    font-size: 2vh; 
+    padding: 0.5vh 0.5vh; 
+    height: 100%; 
+    width: 100%; 
+  }
+  .houses { height: 3.5vh; padding: 0 0.2vh; }
+
+  .manageExpandCell button 
+  { 
+    width: 20% !important; 
+    padding: 0.5vh 0 !important; 
+  }
+  .manageExpandCell span { padding: 0 0.5vh !important; }
+
+  #manageModal .table td, #manageModal .table th { padding: 2vh; }
+}
+
+
+
+
+/* Trade */
+#tradeModal .modal-body { padding: 3%; }  
+#tradeModal th { text-align: center; font-weight: normal; }
+#tradeModal span { text-align: left; }
+.playerNameWithArrows 
+{ 
+  display: inline-flex; 
+  justify-content: space-between;
+  width: 100%; 
+}
+.arrow 
+{ 
+  width: 10%; 
+  height: 10%; 
+  margin-top: auto; 
+}
+@media(orientation: portrait)
+{
+  .tradePlayerColumn { width: 42.5vw; vertical-align: top; }
+  .tradeArrowColumn { width: 10vw; font-size: 4vw; }
+  #tradeModal p.h3 { font-size: 4vw; margin-bottom: 1vw; }
+  #tradeModal p.h6 { font-size: 3vw; margin-bottom: 1vw; }
+  #tradeModal hr 
+  { 
+    border-top: 0.1vw solid rgba(0,0,0,.1); 
+    margin-top: 3vw;
+    margin-bottom: 3vw;
+  }
+  #tradeModal .confirmButton 
+  { 
+    border-radius: 2vw; 
+    font-size: 2.5vw !important; 
+  }
+  #tradeModal input[type="checkbox"] 
+  { 
+    height: 1.1em;
+    width: 1.1em;
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+    margin-top: 0.2em;
+    vertical-align: text-bottom;
+    border-width: 0.1vw;
+  }
+  #tradeModal input[type="text"] 
+  { 
+    height: 4vw;
+    width: 8vw;
+    border-width: 0.1vw;
+    padding: 0;
+    margin-right: 0.5vw;
+    text-align: center;
+  }
+  .tradeCashChangeDiv { margin: 2vw 0; }
+}
+@media(orientation: landscape) and (max-height: 600px)
+{
+  .tradePlayerColumn { width: 42.5vw; vertical-align: top; }
+  .tradeArrowColumn { width: 10vw; font-size: 4vh; }
+  #tradeModal p.h3 { font-size: 5vh; margin-bottom: 1vh; }
+  #tradeModal p.h6 { font-size: 3vh; margin-bottom: 1vh; }
+  #tradeModal hr 
+  { 
+    border-top: 0.1vh solid rgba(0,0,0,.1); 
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+  }
+  #tradeModal .confirmButton 
+  { 
+    border-radius: 2vh; 
+    font-size: 3vh !important; 
+  }
+  #tradeModal input[type="checkbox"] 
+  { 
+    height: 1em;
+    width: 1em;
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+    margin-top: 0.2em;
+    vertical-align: text-bottom;
+    border-width: 0.1vh;
+  }
+  #tradeModal input[type="text"] 
+  { 
+    height: 4vh;
+    width: 8vh;
+    border-width: 0.1vh;
+    margin-right: 0.5vh;
+    text-align: center;
+  }
+  .tradeCashChangeDiv { margin: 2vh 0; }
+}
+@media(orientation: landscape) and (min-height: 600px) /* MAINLY PCS*/
+{
+  .tradePlayerColumn { width: 42.5vh; vertical-align: top; }
+  .tradeArrowColumn { width: 10vh; font-size: 4vh; }
+  #tradeModal p.h3 { font-size: 4vh; margin-bottom: 1vh; }
+  #tradeModal p.h6 { font-size: 2vh; margin-bottom: 1vh; }
+  #tradeModal hr 
+  { 
+    border-top: 0.1vh solid rgba(0,0,0,.1); 
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+  }
+  #tradeModal .confirmButton 
+  { 
+    border-radius: 2vh; 
+    font-size: 2.5vh !important; 
+  }
+  #tradeModal input[type="checkbox"] 
+  { 
+    height: 1em;
+    width: 1em;
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+    margin-top: 0.2em;
+    vertical-align: text-bottom;
+    border-width: 0.1vh;
+  }
+  #tradeModal input[type="text"] 
+  { 
+    height: 3vh;
+    width: 8vh;
+    border-width: 0.1vh;
+    margin-right: 0.5vh;
+    text-align: center;
+  }
+  .tradeCashChangeDiv { margin: 2vh 0; }
+}
+
 
 /* LogBox */
 .logBox {
   display: flex;
   flex-direction: column-reverse;
 
-  width: 80%;
+  width: 90%;
   white-space: pre-line;
   font-family: "Lucida Console", "Courier New", monospace;
   text-align: left;
   padding-left: 2%;
   padding-right: 2%;
-  border: 0.1em solid black;
-  border-radius: 0.2em;
   margin: 0;
 }
-
-/* Auction */
-/* .auction
-{
-    width: fit-content;
-    display: flex;
-    justify-content: space-around;
-}
-*/
-
-/* ORIENTATION SETTINGS */
 @media(orientation: portrait)
 {
-    .boardCenter * { font-size: 2vw; }
-    .diceImg { height: 6vw; padding: 0.5vw; }
-    .diceImages { margin-left: 2.5vw; }
-    #throwDicesButton 
-    { 
-        height: 4vw; 
-        padding: 0.5vw; 
-        margin-right: 2.5vw; 
-        line-height: 50%;
-    }
-    .logBox { height: 20vw; font-size: 1.5vw; }
-    #endTurnButton 
-    { 
-        height: 4vw; 
-        padding: 0.5vw; 
-        margin: 1vw;
-        padding: 0.5vw; 
-    }
-    .playerBox { padding: 0.5vw; }
-    .actionOptions .btn-group .btn { padding: 1vw; }
+  .logBox 
+  { 
+    height: 20vw; 
+    font-size: 2vw; 
+    border: 0.1vw solid black;
+    border-radius: 0.5vw;
+  }
 }
-@media(orientation: landscape)
+@media(orientation: landscape) and (max-height: 600px)
 {
-    .boardCenter * { font-size: 2vh; }
-    .diceImg { height: 6vh; padding: 0.5vh; }
-    .diceImages { margin-left: 2.5vh; }
-    #throwDicesButton 
-    { 
-        height: 4vh; 
-        padding: 0.5vh; 
-        margin-right: 2.5vh; 
-        line-height: 50%;
-    }
-    .logBox { height: 20vh; font-size: 1.5vh; }
-    #endTurnButton 
-    { 
-        height: 4vh; 
-        padding: 0.5vh; 
-        margin: 1vh;
-        padding: 0.5vh; 
-    }
-    .playerBox { padding: 0.5vh; }
-    .actionOptions .btn-group .btn { padding: 1vh; }
+  .logBox 
+  { 
+    height: 20vh; 
+    font-size: 2vh; 
+    border: 0.1vh solid black;
+    border-radius: 0.5vh;
+  }
+}
+@media(orientation: landscape) and (min-height: 600px)
+{
+  .logBox 
+  { 
+    height: 20vh; 
+    font-size: 1.5vh; 
+    border: 0.1vh solid black;
+    border-radius: 0.5vh;
+  }
 }
