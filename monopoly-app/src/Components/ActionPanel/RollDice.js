@@ -2,9 +2,8 @@ import "../../styles/ActionPanel.css";
 import { Button } from 'react-bootstrap';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { throwDicesEvent } from '../../boardActions.js';
-import { GetDices } from '../../services/monopoly';
-import { thrownDices } from "../../boardActions";
+import { GetDices } from '../../services/monopolyService';
+import { thrownDices, throwDicesEvent } from '../../gameplay/fieldActions';
 
 export const RollDice = (data) => {
     const dices = useSelector(state => state.monopolyReducer.dices);

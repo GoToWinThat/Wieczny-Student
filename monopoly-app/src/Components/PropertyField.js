@@ -1,5 +1,5 @@
-import React, { Component, createRef } from 'react';
-import {Popover, OverlayTrigger, Overlay} from 'react-bootstrap'
+import React, { Component } from 'react';
+import {Popover, OverlayTrigger } from 'react-bootstrap'
 import FieldIsBought from './FieldIsBought'
 import Pawns from './Pawns.js'
 import PopoverEstateLevel from './PopoverEstateLevel'

@@ -6,9 +6,6 @@ import CompanyField from './CompanyField'
 import '../styles/Field.css'
 
 class Field extends Component {
-    constructor(props){
-        super(props)
-    }
     render() {
         return (
             <Content players={this.props.players} type={this.props.data.type} data={this.props.data} rotation={this.props.rotate}/>

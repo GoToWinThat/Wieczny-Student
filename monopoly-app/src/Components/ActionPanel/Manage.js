@@ -2,7 +2,7 @@ import "../../styles/ActionPanel.css";
 import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { UpdatePlayerExpandProperty, UpdatePlayerDeleteProperty, 
-    UpdatePlayerMortgageProperty, UpdatePlayerCash, AddNewLog } from '../../services/monopoly';
+    UpdatePlayerMortgageProperty, UpdatePlayerCash, AddNewLog } from '../../services/monopolyService';
 
 
 function Manage(props) {

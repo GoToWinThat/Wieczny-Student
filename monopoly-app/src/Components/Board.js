@@ -4,7 +4,8 @@ import { BoardCenter } from './BoardCenter';
 
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { GetFields, GetPlayers, GetGainCards, GetLossCards, GetActivePlayerIndex, GetLogs, AddNewLog } from '../services/monopoly';
+import { GetFields, GetPlayers, GetGainCards, GetLossCards, 
+    GetActivePlayerIndex, GetLogs, AddNewLog } from '../services/monopolyService';
 
 export const Board = () => {
     const fields = useSelector(state => state.monopolyReducer.monopolyFields);

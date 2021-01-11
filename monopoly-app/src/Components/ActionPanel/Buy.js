@@ -1,7 +1,7 @@
 import "../../styles/ActionPanel.css";
 import React from 'react';
 import {Button, Modal} from 'react-bootstrap';
-import { UpdatePlayerNewProperty, UpdatePlayerCash, AddNewLog } from '../../services/monopoly';
+import { UpdatePlayerNewProperty, UpdatePlayerCash, AddNewLog } from '../../services/monopolyService';
 
 function Buy(props) {
   const activePlayer = props.data.players[props.data.activePlayerIndex];

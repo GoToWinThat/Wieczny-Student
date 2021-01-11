@@ -471,11 +471,12 @@ export const dynamicData = {
             "eventCards": [],
             "position": 0,
             "isInJail": false,
-            "turnsToWait": 0
+            "turnsToWait": 0,
+            "isBankrupt": false
         },
         {
             "name": "Łukasz",
-            "cash": 1000,
+            "cash": 500,
             "signature": "9762",
             "color": "red",
             "properties": [
@@ -485,11 +486,12 @@ export const dynamicData = {
             "eventCards": [],
             "position": 0,
             "isInJail": false,
-            "turnsToWait": 0
+            "turnsToWait": 0,
+            "isBankrupt": false
         },
         {
             "name": "Kamil",
-            "cash": 1000,
+            "cash": 500,
             "signature": "9823",
             "color": "orange",
             "properties": [
@@ -497,24 +499,24 @@ export const dynamicData = {
                 { "fieldID": 19, "estateLevel": 3, "mortgaged": false }
             ],
             "eventCards": [
-                { "cardID": 0 },
-                { "cardID": 1 },
-                { "cardID": 8 }
+                { "cardID": 0 }
             ],
             "position": 0,
             "isInJail": false,
-            "turnsToWait": 0
+            "turnsToWait": 0,
+            "isBankrupt": false
         },
         {
             "name": "Dariusz",
-            "cash": 1000,
+            "cash": 500,
             "signature": "9784",
             "color": "green",
             "properties": [],
             "eventCards": [],
             "position": 0,
             "isInJail": false,
-            "turnsToWait": 0
+            "turnsToWait": 0,
+            "isBankrupt": false
         }
     ],
     "dices": [1,1],

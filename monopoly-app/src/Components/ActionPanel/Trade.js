@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import TradeSection from "./TradeSection";
 import {Modal, Button} from 'react-bootstrap';
 import { UpdatePlayerDeleteProperty, UpdatePlayerCash,UpdatePlayerDeleteEventCard,
-  UpdatePlayerNewEventCard,UpdatePlayerNewProperty,AddNewLog} from '../../services/monopoly';
+  UpdatePlayerNewEventCard,UpdatePlayerNewProperty,AddNewLog} from '../../services/monopolyService';
 
 function Trade(props) {
   const dispatch = props.data.dispatch;

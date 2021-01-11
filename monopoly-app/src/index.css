@@ -1,8 +1,16 @@
 html, body 
 {
-  /* prevents scrolling */
+  /* these two lines below prevents scrolling,
+     but if the address bar is always shown, 
+     the font is for some reason too big; 
+     what is more, the landscape view is 
+     partially hidden by the address bar */
+
+  /*
   height: 100%;
   overflow: hidden;
+  */
+
   margin: 0;
   padding: 0;
 

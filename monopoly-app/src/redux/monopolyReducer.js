@@ -207,14 +207,15 @@ export default function MonopolyReducer(state = initialState, action) {
             return { ...state, players: [...state.players, 
                 {
                     "name": action.payload.playerName,
-                    "cash": 1000,
+                    "cash": 500,
                     "signature": action.payload.signature,
                     "color": action.payload.color,
                     "properties": [],
                     "eventCards": [],
                     "position": 0,
                     "isInJail": false,
-                    "turnsToWait": 0
+                    "turnsToWait": 0,
+                    "isBankrupt": false
                 }
             ]}
 

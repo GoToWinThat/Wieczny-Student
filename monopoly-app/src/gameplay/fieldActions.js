@@ -1,5 +1,5 @@
 import { AddNewLog, UpdateDices, UpdatePlayerPosition, UpdatePlayerCash, 
-    UpdatePlayerUpdateWaitingTurns, UpdatePlayerNewEventCard, UpdatePlayerDeleteEventCard } from './services/monopoly';
+    UpdatePlayerUpdateWaitingTurns, UpdatePlayerNewEventCard, UpdatePlayerDeleteEventCard } from '../services/monopolyService';
 
 // Parameters:
 export var thrownDices = false;

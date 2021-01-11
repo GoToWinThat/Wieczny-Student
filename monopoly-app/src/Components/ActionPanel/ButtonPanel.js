@@ -1,6 +1,6 @@
 import "../../styles/ActionPanel.css";
 import { Button, ButtonGroup } from 'react-bootstrap';
-import { thrownDices } from "../../boardActions";
+import { thrownDices } from "../../gameplay/fieldActions";
 
 function ButtonPanel(props)
 {
