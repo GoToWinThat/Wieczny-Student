@@ -5,8 +5,7 @@ function PlayerBox(props)
 {
     //Function switch color and background of a PlayerBox based on active state
     //Each player have a unique color and name
-    let color,background
-    let border = `0.2em solid ${props.player.color}`
+    let color,background,border
 
     const listOfFields = () =>{
 
@@ -55,16 +54,26 @@ function PlayerBox(props)
             return(<div>{fieldsList}<hr/>{cardsList}</div>)
     }
 
-    if(props.isActive)
+    if(props.player.isBankrupt)
+    {
+        color = 'gray'
+        background = 'transparent'
+        border = `0.2em solid gray`
+    }
+    else if(props.isActive)
     {
         color = 'white'
         background = props.player.color
+        border = `0.2em solid ${props.player.color}`
     }
     else
     {
         color = props.player.color
         background = 'transparent'
+        border = `0.2em solid ${props.player.color}`
     }
+
+    const playerBoxCash = () => props.player.isBankrupt ? "*Bankrupt*" : `${props.player.cash}  ECTS`
 
     return(
         <OverlayTrigger
@@ -87,7 +96,7 @@ function PlayerBox(props)
                 onMouseDown={(e) => e.preventDefault()}>
                     <span className="playerBoxName">{props.player.name}</span>
                     <br/>
-                    <span className="playerBoxCash">{props.player.cash} ECTS</span>
+                    <span className="playerBoxCash">{playerBoxCash()}</span>
             </Button>
         </OverlayTrigger>
 

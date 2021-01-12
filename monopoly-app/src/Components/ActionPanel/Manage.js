@@ -3,6 +3,7 @@ import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { UpdatePlayerExpandProperty, UpdatePlayerDeleteProperty, 
     UpdatePlayerMortgageProperty, UpdatePlayerCash, AddNewLog } from '../../services/monopolyService';
+import {endTurnEvent} from '../../gameplay/turnActions';
 
 
 function Manage(props) {
@@ -11,6 +12,7 @@ function Manage(props) {
     const activePlayer = props.data.players[activePlayerIndex];
     const fields = props.data.fields;
     const dispatch = props.data.dispatch;
+    var isCashNegative = activePlayer.cash >= 0 ? true : false;
 
     const playersProperties = () => 
     {
@@ -202,14 +204,30 @@ function Manage(props) {
         return array;
     }
 
+    const bankruptMode = () =>
+    {
+        return <Button variant="secondary" className="mt-2 mb-2" onClick={Bankrupt}>! Bankrupt !</Button>
+    }
+    const isModalOpen = () =>
+    {
+        if(isCashNegative) return props.show
+        else return true;
+    }
+    const Bankrupt = () => 
+    {
+        //set isBankrupt true, close modal, next turn
+        endTurnEvent(props)
+    }
+
     return (
       <>
         <Modal 
-            show={props.show}
+            show={isModalOpen()}
             onHide={props.onHide}
             animation={false}
+            backdrop='static'
             id="manageModal">
-          <Modal.Header closeButton onMouseDown={(e) => e.preventDefault()}>
+          <Modal.Header closeButton={isCashNegative} onMouseDown={(e) => e.preventDefault()}>
             <Modal.Title>Zarządzaj (masz: {activePlayer.cash} ECTS)</Modal.Title>
           </Modal.Header>
           <Modal.Body >
@@ -226,6 +244,7 @@ function Manage(props) {
                 <tbody>{genPorpTable()}</tbody>
             </table>
           </Modal.Body>
+          {isCashNegative ? null : bankruptMode()}
         </Modal>
       </>
     );

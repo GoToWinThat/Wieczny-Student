@@ -20,8 +20,7 @@ function Buy(props) {
     <Modal
       show={props.show}
       onHide={props.onHide}
-      backdrop="static"
-      keyboard={false}
+      animation={false}
       id="buyModal"
     >
       <Modal.Header closeButton onMouseDown={(e) => e.preventDefault()}>
