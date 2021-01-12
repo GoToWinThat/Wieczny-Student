@@ -7,6 +7,7 @@ import { LogBox } from './ActionPanel/LogBox'
 export const BoardCenter = (data) => {
     return (
         <div className="boardCenter">
+
             <PlayerBar data={data.data}/>
             <ActionOptions data={data.data}/>
             <LogBox data={data.data}/>

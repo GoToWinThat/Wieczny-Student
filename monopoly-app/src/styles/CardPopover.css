@@ -1,0 +1,13 @@
+.popover-card-alert {
+  display: flex;
+  position: absolute;
+  z-index: 100;
+  left: 50%;
+  top: 20%;
+}
+
+.popover-toast-card-alert {
+  position: relative;
+  left: -50%;
+  top: -50%;
+}

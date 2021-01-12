@@ -4,8 +4,9 @@ import { BoardCenter } from './BoardCenter';
 
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { GetFields, GetPlayers, GetGainCards, GetLossCards, 
+import { GetFields, GetPlayers, GetGainCards, GetLossCards,
     GetActivePlayerIndex, GetLogs, AddNewLog } from '../services/monopolyService';
+import { CardPopover} from './ActionPanel/CardPopover'
 
 export const Board = () => {
     const fields = useSelector(state => state.monopolyReducer.monopolyFields);
@@ -37,6 +38,7 @@ export const Board = () => {
 
         return (
             <div className="board">
+                <CardPopover/>
                 <BoardCenter data={{fields, gainCards, lossCards, players, activePlayerIndex, logs, dispatch}}/>
                 <div className="row row-top">
                     <div className="col-2 card-deck"><Field players={players} data={fields[20]}/></div>

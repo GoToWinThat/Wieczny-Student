@@ -1,9 +1,14 @@
-import { AddNewLog, UpdateDices, UpdatePlayerPosition, UpdatePlayerCash, 
+import { AddNewLog, UpdateDices, UpdatePlayerPosition, UpdatePlayerCash,
     UpdatePlayerUpdateWaitingTurns, UpdatePlayerNewEventCard, UpdatePlayerDeleteEventCard } from '../services/monopolyService';
 
 // Parameters:
 export var thrownDices = false;
-export const setThrownDices = (newValue) => thrownDices = newValue; 
+export const setThrownDices = (newValue) => thrownDices = newValue;
+export var CARD = {
+    card: {cardName: "Karta name",
+    description: "description"},
+    show: false
+}
 
 // Throwing dices:
 export const throwDicesEvent = (data) =>
@@ -17,7 +22,7 @@ export const throwDicesEvent = (data) =>
 
     // Updating dices:
     let newDiceState = [Math.floor(Math.random() * 6) + 1, Math.floor(Math.random() * 6) + 1];
-    UpdateDices(dispatch, newDiceState); 
+    UpdateDices(dispatch, newDiceState);
     setThrownDices(true);
 
     // Updating player position:
@@ -55,7 +60,7 @@ function dealWithNewField(newField, numberOnDices, data)
 
     switch(newField.type)
     {
-        // If it is a corner field, you'll lose some turns 
+        // If it is a corner field, you'll lose some turns
         // unless you have special card.
         case "corner":
             switch(newField.name)
@@ -73,7 +78,7 @@ function dealWithNewField(newField, numberOnDices, data)
                     UpdatePlayerUpdateWaitingTurns(dispatch, activePlayer.name, 2, true);
                     AddNewLog(dispatch, `${activePlayer.name} traci 2 kolejki i dostęp do telefonu!`);
                     return;
-                
+
                 case "Stołówka studencka":
                     for(let i = 0; i < activePlayer.eventCards.length; i++)
                     {
@@ -87,7 +92,7 @@ function dealWithNewField(newField, numberOnDices, data)
                     UpdatePlayerUpdateWaitingTurns(dispatch, activePlayer.name, 2, false);
                     AddNewLog(dispatch, `${activePlayer.name} traci 2 kolejki!`);
                     return;
-        
+
                 case "Dziekanat":
                     for(let i = 0; i < activePlayer.eventCards.length; i++)
                     {
@@ -101,12 +106,12 @@ function dealWithNewField(newField, numberOnDices, data)
                     UpdatePlayerUpdateWaitingTurns(dispatch, activePlayer.name, 3, true);
                     AddNewLog(dispatch, `${activePlayer.name} traci 3 kolejki i dostęp do telefonu!`);
                     return;
-                
+
                 default:
                     return;
             }
-        
-        // If it is a property field that other player owns, 
+
+        // If it is a property field that other player owns,
         // you'll have to pay him some ECTS points.
         case "property":
             let propertyID = newField.fieldID;
@@ -121,7 +126,7 @@ function dealWithNewField(newField, numberOnDices, data)
                         let cost = newField.rentCosts[players[i].properties[j].estateLevel];
                         UpdatePlayerCash(dispatch, activePlayer.name, -cost);
                         UpdatePlayerCash(dispatch, players[i].name, cost);
-                        AddNewLog(dispatch, `${activePlayer.name} płaci graczowi ${players[i].name}` 
+                        AddNewLog(dispatch, `${activePlayer.name} płaci graczowi ${players[i].name}`
                         + ` kwotę ${cost} ECTS.`);
                         break;
                     }
@@ -130,7 +135,7 @@ function dealWithNewField(newField, numberOnDices, data)
             return;
 
         // If it is a company field that other player owns,
-        // you'll have to pay him some ECTS points - the more fields 
+        // you'll have to pay him some ECTS points - the more fields
         // with the same name he have, the more you'll have to pay.
         // It also depends on the number on your dices.
         case "company":
@@ -155,7 +160,7 @@ function dealWithNewField(newField, numberOnDices, data)
                         let cost = numberOnDices * Math.pow(3, ownedCompanies - 1);
                         UpdatePlayerCash(dispatch, activePlayer.name, -cost);
                         UpdatePlayerCash(dispatch, players[i].name, cost);
-                        AddNewLog(dispatch, `${activePlayer.name} płaci graczowi ${players[i].name}` 
+                        AddNewLog(dispatch, `${activePlayer.name} płaci graczowi ${players[i].name}`
                         + ` kwotę ${cost} ECTS.`);
                         break;
                     }
@@ -172,17 +177,17 @@ function dealWithNewField(newField, numberOnDices, data)
                 case "Karta zysku":
                     card = gainCards[Math.floor(Math.random() * gainCards.length)];
                     AddNewLog(dispatch, `${activePlayer.name} otrzymuje kartę`
-                    + ` ${card.cardName.toUpperCase()}.`); 
+                    + ` ${card.cardName.toUpperCase()}.`);
                     dealWithEventCard(data, card, numberOnDices);
                     return;
-                
+
                 case "Karta straty":
                     card = lossCards[Math.floor(Math.random() * lossCards.length)];
                     AddNewLog(dispatch, `${activePlayer.name} otrzymuje kartę`
-                    + ` ${card.cardName.toUpperCase()}.`); 
+                    + ` ${card.cardName.toUpperCase()}.`);
                     dealWithEventCard(data, card, numberOnDices);
                     return;
-                
+
                 default:
                     return;
             }
@@ -202,9 +207,14 @@ function dealWithEventCard(data, card, numberOnDices)
     const fields = data.data.fields;
     const dispatch = data.data.dispatch;
 
-    // Pop-up with cardName and description shows; 
+    // Pop-up with cardName and description shows;
     // if cardID is 0, 1 or 8 there is also opportunity to sell it.
     // There also should be "OK" button on it and then code from below will be launched.
+
+    //Darek => if u find another way to pass this data or how in this function store this data in store
+    //fell free to do this or let me know
+    CARD.card = card;
+    CARD.show = true;
 
     var newPosition, currentPosition, anotherNewField;
     switch(card.cardName)
@@ -222,7 +232,7 @@ function dealWithEventCard(data, card, numberOnDices)
             }
             UpdatePlayerNewEventCard(dispatch, activePlayer.name, card.cardID);
             return;
-        
+
         case "Oświecenie na konsultacjach":
             for(let i = 0; i < activePlayer.eventCards.length; i++)
             {
@@ -251,7 +261,7 @@ function dealWithEventCard(data, card, numberOnDices)
         case "Urodziny":
             for (let i = 0; i < players.length; i++)
             {
-                if (players[i].name === activePlayer.name 
+                if (players[i].name === activePlayer.name
                     || players[i].isInJail === true) continue;
                 UpdatePlayerCash(dispatch, players[i].name, -5);
                 UpdatePlayerCash(dispatch, activePlayer.name, 5);
@@ -292,7 +302,7 @@ function dealWithEventCard(data, card, numberOnDices)
             anotherNewField = fields[newPosition];
             AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
             dealWithNewField(anotherNewField, 0, data);
-            return; 
+            return;
 
         case "Zapłata rachunków":
             for (let i = 0; i < activePlayer.properties.length; i++)
@@ -310,7 +320,7 @@ function dealWithEventCard(data, card, numberOnDices)
             anotherNewField = fields[newPosition];
             AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
             dealWithNewField(anotherNewField, 0, data);
-            return; 
+            return;
 
         case "Douczanie się":
             newPosition = fields.find(field => field.name === "Konsultacje").fieldID;
@@ -319,7 +329,7 @@ function dealWithEventCard(data, card, numberOnDices)
             anotherNewField = fields[newPosition];
             AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
             dealWithNewField(anotherNewField, 0, data);
-            return; 
+            return;
 
         case "Głód":
             newPosition = fields.find(field => field.name === "Stołówka studencka").fieldID;
@@ -328,7 +338,7 @@ function dealWithEventCard(data, card, numberOnDices)
             anotherNewField = fields[newPosition];
             AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
             dealWithNewField(anotherNewField, 0, data);
-            return; 
+            return;
 
         case "Spłata pożyczki":
             UpdatePlayerCash(dispatch, activePlayer.name, -20);
@@ -337,7 +347,7 @@ function dealWithEventCard(data, card, numberOnDices)
         case "Gdybym był bogaty":
             for (let i = 0; i < players.length; i++)
             {
-                if (players[i].name === activePlayer.name 
+                if (players[i].name === activePlayer.name
                     || players[i].isInJail === true) continue;
                 UpdatePlayerCash(dispatch, players[i].name, 5);
                 UpdatePlayerCash(dispatch, activePlayer.name, -5);
@@ -348,7 +358,7 @@ function dealWithEventCard(data, card, numberOnDices)
             UpdatePlayerCash(dispatch, activePlayer.name, -5);
             return;
 
-        case "Spóźnienie": 
+        case "Spóźnienie":
             UpdatePlayerUpdateWaitingTurns(dispatch, activePlayer.name, 1, false);
             return;
 
