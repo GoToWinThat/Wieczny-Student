@@ -2,7 +2,8 @@ import "../../styles/ActionPanel.css";
 import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { UpdatePlayerExpandProperty, UpdatePlayerDeleteProperty, 
-    UpdatePlayerMortgageProperty, UpdatePlayerCash, AddNewLog } from '../../services/monopolyService';
+    UpdatePlayerMortgageProperty, UpdatePlayerCash, 
+    UpdatePlayerUpdateBankrupt, AddNewLog } from '../../services/monopolyService';
 import {endTurnEvent} from '../../gameplay/turnActions';
 
 
@@ -206,17 +207,19 @@ function Manage(props) {
 
     const bankruptMode = () =>
     {
-        return <Button variant="secondary" className="mt-2 mb-2" onClick={Bankrupt}>! Bankrupt !</Button>
+        return <Button id="bankruptButton" variant="secondary" 
+            onClick={Bankrupt} onMouseDown={(e) => e.preventDefault()}>ZBANKRUTUJ</Button>
     }
     const isModalOpen = () =>
     {
-        if(isCashNegative) return props.show
+        if (isCashNegative) return props.show
         else return true;
     }
     const Bankrupt = () => 
     {
         //set isBankrupt true, close modal, next turn
-        endTurnEvent(props)
+        UpdatePlayerUpdateBankrupt(dispatch, activePlayer.name);
+        endTurnEvent(props);
     }
 
     return (

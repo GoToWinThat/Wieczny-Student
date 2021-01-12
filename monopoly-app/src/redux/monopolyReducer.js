@@ -23,6 +23,7 @@ export const ActionTypes = {
     UPDATE_PLAYER_NEW_EVENT_CARD: 'UPDATE_PLAYER_NEW_EVENT_CARD',
     UPDATE_PLAYER_DELETE_EVENT_CARD: 'UPDATE_PLAYER_DELETE_EVENT_CARD',
     UPDATE_PLAYER_UPDATE_WAITING_TURNS: 'UPDATE_PLAYER_UPDATE_WAITING_TURNS',
+    UPDATE_PLAYER_UPDATE_BANKRUPT: 'UPDATE_PLAYER_UPDATE_BANKRUPT',
 
     SET_LOGS: 'SET_LOGS',
     ADD_NEW_LOG: 'ADD_NEW_LOG'
@@ -51,6 +52,7 @@ export const ActionCreators = {
     updatePlayerNewEventCard: payload => ({ type: ActionTypes.UPDATE_PLAYER_NEW_EVENT_CARD, payload }),
     updatePlayerDeleteEventCard: payload => ({ type: ActionTypes.UPDATE_PLAYER_DELETE_EVENT_CARD, payload }),
     updatePlayerUpdateWaitingTurns: payload => ({ type: ActionTypes.UPDATE_PLAYER_UPDATE_WAITING_TURNS, payload }),
+    updatePlayerUpdateBankrupt: payload => ({ type: ActionTypes.UPDATE_PLAYER_UPDATE_BANKRUPT, payload }),
 
     setLogs: payload => ({ type: ActionTypes.SET_LOGS, payload }),
     addNewLog: payload => ({ type: ActionTypes.ADD_NEW_LOG, payload })
@@ -199,6 +201,15 @@ export default function MonopolyReducer(state = initialState, action) {
                     if (player.name !== action.payload.playerName) return player
                     return { ...player, isInJail: action.payload.isInJail,
                         turnsToWait: player.turnsToWait + action.payload.deltaTurns }
+                })
+            }
+
+        // change player's bankrupt status:
+        case ActionTypes.UPDATE_PLAYER_UPDATE_BANKRUPT:
+            return { ...state, 
+                players: state.players.map(player => {
+                    if (player.name !== action.payload) return player
+                    return { ...player, isBankrupt: true }
                 })
             }
 

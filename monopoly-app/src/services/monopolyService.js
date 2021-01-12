@@ -176,6 +176,16 @@ export const UpdatePlayerUpdateWaitingTurns = async (dispatch, playerName, delta
     }
 }
 
+export const UpdatePlayerUpdateBankrupt = async (dispatch, playerName) => {
+    try {
+        console.log("xd");
+        //await axiosInstanceDynamicData.put('UpdatePlayerUpdateBankrupt',  playerName);
+        dispatch(ActionCreators.updatePlayerUpdateBankrupt(playerName));
+    } catch {
+        console.log("Player's Bankrupt Status couldn't be updated!");
+    }
+}
+
 export const GetLogs = async (dispatch) => {
     try {
         //const {dynamicData} = await axiosInstanceDynamicData.get();

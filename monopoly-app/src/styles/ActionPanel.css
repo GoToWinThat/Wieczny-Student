@@ -117,7 +117,7 @@
   .modal-dialog { font-size: 2vw; } 
   .modal-title { font-size: 4vw; }
   .modal-header { padding: 3vw; border-bottom: 0.1vw solid #dee2e6; }
-  .modal button { padding: 0 2vw; height: 100%; }
+  .modal button { padding: 0 2vw; height: 100%; border-radius: 0.5vw; }
   .close { font-size: 3vw !important; }
 }
 @media(orientation: landscape) and (max-height: 600px)
@@ -126,7 +126,7 @@
   .modal-dialog { width: 150vh; font-size: 3vh; } 
   .modal-title { font-size: 6vh; }
   .modal-header { padding: 3vh; border-bottom: 0.1vh solid #dee2e6; }
-  .modal button { padding: 0 3vh; height: 100%; }
+  .modal button { padding: 0 3vh; height: 100%; border-radius: 0.5vh;  }
   .close { font-size: 4.5vh !important; }
 }
 @media(orientation: landscape) and (min-height: 600px) /* MAINLY PCS*/
@@ -135,7 +135,7 @@
   .modal-dialog { width: 100vh; font-size: 2vh; } 
   .modal-title { font-size: 3.5vh; }
   .modal-header { padding: 3vh; border-bottom: 0.1vh solid #dee2e6; }
-  .modal button { padding: 0 3vh; height: 100%; }
+  .modal button { padding: 0 3vh; height: 100%; border-radius: 0.5vh; }
   .close { font-size: 4.5vh !important; }
 }
 
@@ -179,12 +179,13 @@
 #manageModal .table td, #manageModal .table th { border-top: none; }
 #manageModal .table tr * { vertical-align: middle !important; }
 #manageModal .table { margin-bottom: 1vh; }
-#manageModal .modal-body { padding: 0; }  
+#manageModal .modal-body { padding: 0; }
 #manageColumn1 { width: 15em; }
 #manageColumn2 { width: 6em; }
 #manageColumn3 { width: 10em; }
 #manageColumn4 { width: 8em; }
 #manageColumn5 { width: 8em; }
+#bankruptButton { width: fit-content !important; margin: 1vh auto; }
 .propertyBox 
 {
   height: 1em;
@@ -214,6 +215,8 @@
   .manageExpandCell span { padding: 0 0.5vw !important; }
 
   #manageModal .table td, #manageModal .table th { padding: 2vw; }
+
+  #bankruptButton { border-radius: 0.5vw; font-size: 2vw !important; }
 }
 
 @media (orientation: landscape) and (max-height: 600px)
@@ -236,6 +239,8 @@
   .manageExpandCell span { padding: 0 0.5vh !important; }
 
   #manageModal .table td, #manageModal .table th { padding: 2vh; }
+
+  #bankruptButton { border-radius: 0.5vh; font-size: 3vh !important; }
 }
 @media (orientation: landscape) and (min-height: 600px) /* MAINLY PCS*/
 { 
@@ -243,7 +248,7 @@
   #manageModal button 
   { 
     font-size: 2vh; 
-    padding: 0.5vh 0.5vh; 
+    padding: 0.5vh 2vh; 
     height: 100%; 
     width: 100%; 
   }
@@ -257,6 +262,8 @@
   .manageExpandCell span { padding: 0 0.5vh !important; }
 
   #manageModal .table td, #manageModal .table th { padding: 2vh; }
+
+  #bankruptButton { border-radius: 0.5vh; font-size: 2vh !important; }
 }
 
 

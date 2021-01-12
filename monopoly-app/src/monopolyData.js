@@ -461,7 +461,7 @@ export const dynamicData = {
     "players": [
         {
             "name": "Artur",
-            "cash": -40,
+            "cash": 40,
             "signature": "9772",
             "color": "blue",
             "properties": [
@@ -516,7 +516,7 @@ export const dynamicData = {
             "position": 0,
             "isInJail": false,
             "turnsToWait": 0,
-            "isBankrupt": true
+            "isBankrupt": false
         }
     ],
     "dices": [1,1],
