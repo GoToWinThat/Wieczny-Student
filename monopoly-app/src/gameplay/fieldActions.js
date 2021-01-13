@@ -113,12 +113,16 @@ function dealWithNewField(newField, numberOnDices, data)
             let propertyID = newField.fieldID;
             for (let i = 0; i < players.length; i++)
             {
+                // Ignore current player:
                 if (players[i].name === activePlayer.name) continue;
 
                 for (let j = 0; j < players[i].properties.length; j++)
                 {
                     if (players[i].properties[j].fieldID === propertyID)
                     {
+                        // Ignore if field is mortgaged:
+                        if (players[i].properties[j].mortgaged === true) break;
+
                         let cost = newField.rentCosts[players[i].properties[j].estateLevel];
                         UpdatePlayerCash(dispatch, activePlayer.name, -cost);
                         UpdatePlayerCash(dispatch, players[i].name, cost);
@@ -139,11 +143,17 @@ function dealWithNewField(newField, numberOnDices, data)
             let companyName = newField.name;
             for (let i = 0; i < players.length; i++)
             {
+                // Ignore current player:
                 if (players[i].name === activePlayer.name) continue;
+
                 for (let j = 0; j < players[i].properties.length; j++)
                 {
                     if (players[i].properties[j].fieldID === companyID)
                     {
+                        // Ignore if field is mortgaged:
+                        if (players[i].properties[j].mortgaged === true) break;
+
+                        // Count how many companies with this name player have:
                         let ownedCompanies = 0;
                         for (let k = 0; k < players[i].properties.length; k++)
                         {
@@ -252,7 +262,8 @@ function dealWithEventCard(data, card, numberOnDices)
             for (let i = 0; i < players.length; i++)
             {
                 if (players[i].name === activePlayer.name
-                    || players[i].isInJail === true) continue;
+                    || players[i].isInJail === true
+                    || players[i].isBankrupt === true) continue;
                 UpdatePlayerCash(dispatch, players[i].name, -5);
                 UpdatePlayerCash(dispatch, activePlayer.name, 5);
             }
@@ -338,7 +349,8 @@ function dealWithEventCard(data, card, numberOnDices)
             for (let i = 0; i < players.length; i++)
             {
                 if (players[i].name === activePlayer.name
-                    || players[i].isInJail === true) continue;
+                    || players[i].isInJail === true
+                    || players[i].isBankrupt === true) continue;
                 UpdatePlayerCash(dispatch, players[i].name, 5);
                 UpdatePlayerCash(dispatch, activePlayer.name, -5);
             }

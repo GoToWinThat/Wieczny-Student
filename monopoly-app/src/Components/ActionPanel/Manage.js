@@ -61,6 +61,26 @@ function Manage(props) {
         return false;
     }
 
+    // Checking if player has at least one field mortgaged - you can't expand 
+    // field when you don't have properties from one color; mortgaged property is
+    // not yours for now
+    const isAnyPropertyFromThisColorMortgaged = (field) => {
+        if (!hasAllPropertiesFromThisColor(field)) return false;
+
+        let color = field.color;
+        let thisFieldFromPlayersPropertiesList;
+        for (let i = 0; i < properties.length; i++)
+        {
+            if (properties[i].color === color)
+            {
+                thisFieldFromPlayersPropertiesList = activePlayer.properties.find(
+                    element => element.fieldID === properties[i].fieldID);
+                if (thisFieldFromPlayersPropertiesList.mortgaged === true) return true;
+            }
+        }
+        return false;
+    }
+
 
     const showEstateLevel = (estateLevel) => (estateLevel < 4) ? `${estateLevel} PC` : `SERWER`;
 
@@ -179,7 +199,8 @@ function Manage(props) {
                             disabled={activePlayer.properties[idx2].estateLevel === 4 
                                 || activePlayer.cash < field.estatePrice 
                                 || activePlayer.properties[idx2].mortgaged === true
-                                || !hasAllPropertiesFromThisColor(field)}
+                                || !hasAllPropertiesFromThisColor(field)
+                                || isAnyPropertyFromThisColorMortgaged(field) === true}
                                 onMouseDown={(e) => e.preventDefault()}> + </Button>
                         <span>{field.estatePrice} ECTS</span>
                         <Button variant="danger" onClick={() => sellHouse(field.fieldID,idx2)} 
@@ -192,8 +213,10 @@ function Manage(props) {
                     <td></td>
                 }
                 <td><Button variant={mortgageButtonColor(idx2)} onClick={() => mortgageProperty(field.fieldID,idx2)}
-                    disabled={hasAnyPropertyFromThisColorOneOrMoreComputers(field) === true}
-                    onMouseDown={(e) => e.preventDefault()}> {field.mortgage} ECTS</Button></td>
+                    disabled={hasAnyPropertyFromThisColorOneOrMoreComputers(field) === true 
+                        || (activePlayer.cash < field.mortgage 
+                        &&  activePlayer.properties[idx2].mortgaged === true)}
+                        onMouseDown={(e) => e.preventDefault()}> {field.mortgage} ECTS</Button></td>
                 <td><Button variant="danger" onClick={() => sellProperty(field.fieldID)}
                     disabled={hasAnyPropertyFromThisColorOneOrMoreComputers(field) === true
                         || activePlayer.properties[idx2].mortgaged === true}
