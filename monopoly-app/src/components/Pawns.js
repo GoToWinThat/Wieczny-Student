@@ -6,7 +6,7 @@ class Pawns extends Component {
         const pawns =
         <div className="players-pawns">
             {this.props.players.map((player,i) => {
-                if(player.position === this.props.id)
+                if(player.position === this.props.id && player.isBankrupt === false)
                     return <span key={i} style={{color: `${player.color}`}}>{String.fromCharCode(player.signature)}</span>
                 else
                     return null

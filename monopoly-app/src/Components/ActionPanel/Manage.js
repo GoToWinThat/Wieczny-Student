@@ -3,7 +3,7 @@ import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { UpdatePlayerExpandProperty, UpdatePlayerDeleteProperty, 
     UpdatePlayerMortgageProperty, UpdatePlayerCash, 
-    UpdatePlayerUpdateBankrupt, AddNewLog } from '../../services/monopolyService';
+    UpdatePlayerUpdateBankrupt, AddNewLog, UpdatePlayerDeleteEventCard } from '../../services/monopolyService';
 import {endTurnEvent} from '../../gameplay/turnActions';
 
 
@@ -240,7 +240,15 @@ function Manage(props) {
     }
     const Bankrupt = () => 
     {
-        //set isBankrupt true, close modal, next turn
+        // Removing properties and cards:
+        for (let i = 0; i < activePlayer.properties.length; i++)
+            UpdatePlayerDeleteProperty(dispatch, activePlayer.name, activePlayer.properties[i].fieldID);
+        for (let i = 0; i < activePlayer.eventCards.length; i++)
+            UpdatePlayerDeleteEventCard(dispatch, activePlayer.name, activePlayer.eventCards[i].cardID);
+
+        // set isBankrupt true, inform about bankrupting, close modal, next turn,
+        // prevent moving the pawn (if player bankrupted not in his turn, he will not throw dices,
+        // so they will be thrown automatically in endTurnEvent)
         UpdatePlayerUpdateBankrupt(dispatch, activePlayer.name);
         endTurnEvent(props);
     }

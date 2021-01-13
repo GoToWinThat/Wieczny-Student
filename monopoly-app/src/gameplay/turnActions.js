@@ -44,6 +44,9 @@ export const endTurnEvent = (data) =>
     UpdateActivePlayerIndex(dispatch, nextPlayerIndex);
     AddNewLog(dispatch, `Tura gracza ${players[nextPlayerIndex].name}.`);
     setThrownDices(false);
+
+    // Check if this player won:
+    GameOver(dispatch, players, nextPlayerIndex);
 }
 
 // Making "waiting array" for automatic updating players' "turnsToWait" attributes:
@@ -53,4 +56,19 @@ function returnWaitingArray(players)
     for (let i = 0; i < players.length; i++) 
         tmp.push(players[i].turnsToWait);
     return tmp;
+}
+
+// Checking if current player is a winner:
+function GameOver(dispatch, players, nextPlayerIndex)
+{
+    let tmp = 0;
+    for (let i = 0; i < players.length; i++) 
+        if (players[i].cash >= 0) 
+            tmp++;
+    
+    if (tmp === 1)
+    {
+        AddNewLog(dispatch, `Wygrywa gracz ${players[nextPlayerIndex].name}.`);
+        // change "gameOver" to "true", block all buttons, etc.
+    }
 }

@@ -12,7 +12,7 @@ function Trade(props) {
   const otherPlayers = [];
 
   props.data.players.map(player => {
-    if(player.name !== activePlayer.name)
+    if(player.name !== activePlayer.name && player.isBankrupt !== true)
       otherPlayers.push(player);
     return null;
   })
