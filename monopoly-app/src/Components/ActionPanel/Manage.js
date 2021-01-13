@@ -1,4 +1,4 @@
-import "../../styles/ActionPanel.css";
+import "../../styles/Modals.css";
 import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { UpdatePlayerExpandProperty, UpdatePlayerDeleteProperty, 

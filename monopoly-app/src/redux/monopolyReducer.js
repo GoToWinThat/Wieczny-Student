@@ -1,4 +1,6 @@
-const initialState = { monopolyFields: [], gainCards: [], lossCards: [], players: [], dices: [], activePlayerIndex: null, logs: [] }
+const initialState = { monopolyFields: [], gainCards: [], 
+    lossCards: [], players: [], dices: [], activePlayerIndex: null, 
+    logs: [], currentCard: { cardName: "", description: ""} }
 
 export const ActionTypes = { 
     SET_FIELDS: 'SET_FIELDS', 
@@ -26,7 +28,10 @@ export const ActionTypes = {
     UPDATE_PLAYER_UPDATE_BANKRUPT: 'UPDATE_PLAYER_UPDATE_BANKRUPT',
 
     SET_LOGS: 'SET_LOGS',
-    ADD_NEW_LOG: 'ADD_NEW_LOG'
+    ADD_NEW_LOG: 'ADD_NEW_LOG',
+
+    // LOCAL ONLY - THERE IS NO NECESSITY TO IMPLEMENT IT IN API:
+    UPDATE_CURRENT_CARD: 'UPDATE_CURRENT_CARD'
 }
 
 export const ActionCreators = {
@@ -55,7 +60,9 @@ export const ActionCreators = {
     updatePlayerUpdateBankrupt: payload => ({ type: ActionTypes.UPDATE_PLAYER_UPDATE_BANKRUPT, payload }),
 
     setLogs: payload => ({ type: ActionTypes.SET_LOGS, payload }),
-    addNewLog: payload => ({ type: ActionTypes.ADD_NEW_LOG, payload })
+    addNewLog: payload => ({ type: ActionTypes.ADD_NEW_LOG, payload }),
+
+    updateCurrentEventCard: payload => ({ type: ActionTypes.UPDATE_CURRENT_CARD, payload })
 }
 
 export default function MonopolyReducer(state = initialState, action) {
@@ -83,7 +90,7 @@ export default function MonopolyReducer(state = initialState, action) {
 
         // change index of player that has a turn at the moment:
         case ActionTypes.UPDATE_ACTIVE_PLAYER_INDEX:
-            return { ...state, activePlayerIndex: action.payload }
+            return { ...state, activePlayerIndex: action.payload.activePlayerIndex }
 
         // get current dices view and set it in "dices" list
         case ActionTypes.SET_DICES:
@@ -91,7 +98,7 @@ export default function MonopolyReducer(state = initialState, action) {
 
         // update dices:
         case ActionTypes.UPDATE_DICES:
-            return { ...state, dices: action.payload }
+            return { ...state, dices: action.payload.dices }
 
         // change player's position on the board
         case ActionTypes.UPDATE_PLAYER_POSITION:
@@ -208,7 +215,7 @@ export default function MonopolyReducer(state = initialState, action) {
         case ActionTypes.UPDATE_PLAYER_UPDATE_BANKRUPT:
             return { ...state, 
                 players: state.players.map(player => {
-                    if (player.name !== action.payload) return player
+                    if (player.name !== action.payload.playerName) return player
                     return { ...player, isBankrupt: true }
                 })
             }
@@ -245,7 +252,12 @@ export default function MonopolyReducer(state = initialState, action) {
 
         // add new log to "logs" list
         case ActionTypes.ADD_NEW_LOG:
-            return { ...state, logs: [...state.logs, action.payload] }
+            return { ...state, logs: [...state.logs, action.payload.newLog] }
+
+        // local function setting current event card:
+        case ActionTypes.UPDATE_CURRENT_CARD:
+            return { ...state, currentCard: { cardName: action.payload.cardName, 
+                description: action.payload.description} }
 
         default:
             return state;

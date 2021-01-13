@@ -1,0 +1,261 @@
+/* Action Options */
+.modal { display: flex !important; align-items: center; }
+.modal * { vertical-align: middle;}
+.modal-open { padding: 0 !important; }
+.modal-dialog { max-width: 95vw; margin: auto; }
+.modal-header { border-radius: 0; }
+.modal-body { display: flex; flex-direction: column; align-items: center; }
+.modal-content { border: none; border-radius: 1vh; }
+.close 
+{ 
+  width: fit-content !important; 
+  margin: 0 !important; 
+  padding: 0 !important;
+}
+.propertyBox 
+{
+  height: 1em;
+  width: 0.5em;
+  margin-left: 0.3em;
+  margin-right: 0.3em;
+  margin-top: 0.2em;
+  vertical-align: text-bottom;
+}
+
+@media(orientation: portrait)
+{     
+  .modal-dialog { font-size: 2vw; } 
+  .modal-title { font-size: 4vw; }
+  .modal-header { padding: 3vw; border-bottom: 0.1vw solid #dee2e6; }
+  .modal button { padding: 0 2vw; height: 100%; border-radius: 0.5vw; }
+  .close { font-size: 3vw !important; }
+}
+
+@media(orientation: landscape) and (max-height: 600px)
+{     
+  .modal-dialog { width: 150vh; font-size: 3vh; } 
+  .modal-title { font-size: 6vh; }
+  .modal-header { padding: 3vh; border-bottom: 0.1vh solid #dee2e6; }
+  .modal button { padding: 0 3vh; height: 100%; border-radius: 0.5vh;  }
+  .close { font-size: 4.5vh !important; }
+}
+
+@media(orientation: landscape) and (min-height: 600px) /* MAINLY PCS*/
+{     
+  .modal-dialog { width: 100vh; font-size: 2vh; } 
+  .modal-title { font-size: 3.5vh; }
+  .modal-header { padding: 3vh; border-bottom: 0.1vh solid #dee2e6; }
+  .modal button { padding: 0 3vh; height: 100%; border-radius: 0.5vh; }
+  .close { font-size: 4.5vh !important; }
+}
+
+
+
+/* Buy */
+#buyQuestion * { display: inline-block; vertical-align: bottom; }
+#buyModal .propertyBox { margin-bottom: 0.1em; }
+
+@media(orientation: portrait)
+{
+  #buyModal .modal-body { padding: 3vw; }     
+  #buyQuestion * { font-size: 3vw !important; }
+  #buyQuestion { margin-bottom: 5vw; width: 95vw; }
+  #buyModal .confirmButton { border-radius: 2vw; font-size: 3vw !important; }
+}
+
+@media(orientation: landscape) and (max-height: 600px)
+{     
+  #buyQuestion * { font-size: 3.5vh !important; }
+  #buyQuestion { margin-bottom: 5vh; }
+  #buyModal .confirmButton { border-radius: 2vh; font-size: 3.5vh !important; }
+}
+
+@media(orientation: landscape) and (min-height: 600px) /* MAINLY PCS*/
+{     
+  #buyQuestion * { font-size: 2.5vh !important; }
+  #buyQuestion { margin-bottom: 5vh; }
+  #buyModal .confirmButton { border-radius: 2vh; font-size: 2.5vh !important; }
+}
+
+
+
+/* Manage */
+#manageModal .table td, #manageModal .table th { border-top: none; }
+#manageModal .table tr * { vertical-align: middle !important; }
+#manageModal .table { margin-bottom: 1vh; }
+#manageModal .modal-body { padding: 0; }
+#manageModal button { height: 100%; width: 100%; }
+#bankruptButton { width: fit-content !important; margin: 1vh auto; }
+
+#manageColumn1 { width: 15em; }
+#manageColumn2 { width: 6em; }
+#manageColumn3 { width: 10em; }
+#manageColumn4 { width: 8em; }
+#manageColumn5 { width: 8em; }
+
+@media (orientation: portrait)
+{ 
+  #manageModal .table th { border-bottom: 0.1vw solid #dee2e6; }
+  #manageModal .table td, #manageModal .table th { padding: 2vw; }
+  .houses { height: 2vw; padding: 0 0.2vw; }
+  
+  #manageModal button { font-size: 2vw; padding: 0.5vw 2vw; }
+  .manageExpandCell button { width: 20% !important; padding: 0.5vw 0 !important; }
+  .manageExpandCell span { padding: 0 0.5vw !important; }
+  #bankruptButton { border-radius: 0.5vw; font-size: 2vw !important; }
+}
+
+@media (orientation: landscape) and (max-height: 600px)
+{ 
+  #manageModal .table th { border-bottom: 0.1vh solid #dee2e6; }
+  #manageModal .table td, #manageModal .table th { padding: 2vh; }
+  .houses { height: 3.5vh; padding: 0 0.2vh; }
+
+  #manageModal button { font-size: 3vh; padding: 0.5vh 2vh; }
+  .manageExpandCell button { width: 20% !important; padding: 0.5vh 0 !important; }
+  .manageExpandCell span { padding: 0 0.5vh !important; }
+  #bankruptButton { border-radius: 0.5vh; font-size: 3vh !important; }
+}
+
+@media (orientation: landscape) and (min-height: 600px) /* MAINLY PCS*/
+{ 
+  #manageModal .table th { border-bottom: 0.1vh solid #dee2e6; }
+  #manageModal .table td, #manageModal .table th { padding: 2vh; }
+  .houses { height: 3.5vh; padding: 0 0.2vh; }
+
+  #manageModal button { font-size: 2vh; padding: 0.5vh 2vh; }
+  .manageExpandCell button { width: 20% !important; padding: 0.5vh 0 !important; }
+  .manageExpandCell span { padding: 0 0.5vh !important; }
+  #bankruptButton { border-radius: 0.5vh; font-size: 2vh !important; }
+}
+
+
+
+/* Trade */
+#tradeModal .modal-body { padding: 3%; }  
+#tradeModal th { text-align: center; font-weight: normal; }
+#tradeModal span { text-align: left; }
+
+.playerNameWithArrows 
+{ 
+  display: inline-flex; 
+  justify-content: space-between;
+  width: 100%; 
+}
+.arrow { width: 10%; height: 10%; margin-top: auto; }
+
+@media(orientation: portrait)
+{
+  .tradePlayerColumn { width: 42.5vw; vertical-align: top; }
+  .tradeArrowColumn { width: 10vw; font-size: 4vw; }
+  #tradeModal p.h3 { font-size: 4vw; margin-bottom: 1vw; }
+  #tradeModal p.h6 { font-size: 3vw; margin-bottom: 1vw; }
+  .noProperties { margin-bottom: 3vw; }
+  #tradeModal hr 
+  { 
+    border-top: 0.1vw solid rgba(0,0,0,.1); 
+    margin-top: 3vw;
+    margin-bottom: 3vw;
+  }
+  #tradeModal .confirmButton { border-radius: 2vw; font-size: 2.5vw !important; }
+
+  #tradeModal input[type="checkbox"] 
+  { 
+    height: 1.1em;
+    width: 1.1em;
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+    margin-top: 0.2em;
+    vertical-align: text-bottom;
+    border-width: 0.1vw;
+  }
+
+  #tradeModal input[type="text"] 
+  { 
+    height: 4vw;
+    width: 8vw;
+    border-width: 0.1vw;
+    padding: 0;
+    margin-right: 0.5vw;
+    text-align: center;
+  }
+  .tradeCashChangeDiv { margin: 2vw 0; }
+}
+
+@media(orientation: landscape) and (max-height: 600px)
+{
+  .tradePlayerColumn { width: 42.5vw; vertical-align: top; }
+  .tradeArrowColumn { width: 10vw; font-size: 4vh; }
+  #tradeModal p.h3 { font-size: 5vh; margin-bottom: 1vh; }
+  #tradeModal p.h6 { font-size: 3vh; margin-bottom: 1vh; }
+  .noProperties { margin-bottom: 3vh; }
+  #tradeModal hr 
+  { 
+    border-top: 0.1vh solid rgba(0,0,0,.1); 
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+  }
+  #tradeModal .confirmButton 
+  { 
+    border-radius: 2vh; 
+    font-size: 3vh !important; 
+  }
+  #tradeModal input[type="checkbox"] 
+  { 
+    height: 1em;
+    width: 1em;
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+    margin-top: 0.2em;
+    vertical-align: text-bottom;
+    border-width: 0.1vh;
+  }
+  #tradeModal input[type="text"] 
+  { 
+    height: 4vh;
+    width: 8vh;
+    border-width: 0.1vh;
+    margin-right: 0.5vh;
+    text-align: center;
+  }
+  .tradeCashChangeDiv { margin: 2vh 0; }
+}
+
+@media(orientation: landscape) and (min-height: 600px) /* MAINLY PCS*/
+{
+  .tradePlayerColumn { width: 42.5vh; vertical-align: top; }
+  .tradeArrowColumn { width: 10vh; font-size: 4vh; }
+  #tradeModal p.h3 { font-size: 4vh; margin-bottom: 1vh; }
+  #tradeModal p.h6 { font-size: 2vh; margin-bottom: 1vh; }
+  .noProperties { margin-bottom: 3vh; }
+  #tradeModal hr 
+  { 
+    border-top: 0.1vh solid rgba(0,0,0,.1); 
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+  }
+  #tradeModal .confirmButton 
+  { 
+    border-radius: 2vh; 
+    font-size: 2.5vh !important; 
+  }
+  #tradeModal input[type="checkbox"] 
+  { 
+    height: 1em;
+    width: 1em;
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+    margin-top: 0.2em;
+    vertical-align: text-bottom;
+    border-width: 0.1vh;
+  }
+  #tradeModal input[type="text"] 
+  { 
+    height: 3vh;
+    width: 8vh;
+    border-width: 0.1vh;
+    margin-right: 0.5vh;
+    text-align: center;
+  }
+  .tradeCashChangeDiv { margin: 2vh 0; }
+}

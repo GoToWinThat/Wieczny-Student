@@ -1,14 +1,10 @@
 import { AddNewLog, UpdateDices, UpdatePlayerPosition, UpdatePlayerCash,
-    UpdatePlayerUpdateWaitingTurns, UpdatePlayerNewEventCard, UpdatePlayerDeleteEventCard } from '../services/monopolyService';
+    UpdatePlayerUpdateWaitingTurns, UpdatePlayerNewEventCard, 
+    UpdatePlayerDeleteEventCard, UpdateCurrentEventCard } from '../services/monopolyService';
 
 // Parameters:
 export var thrownDices = false;
 export const setThrownDices = (newValue) => thrownDices = newValue;
-export var CARD = {
-    card: {cardName: "Karta name",
-    description: "description"},
-    show: false
-}
 
 // Throwing dices:
 export const throwDicesEvent = (data) =>
@@ -207,14 +203,8 @@ function dealWithEventCard(data, card, numberOnDices)
     const fields = data.data.fields;
     const dispatch = data.data.dispatch;
 
-    // Pop-up with cardName and description shows;
-    // if cardID is 0, 1 or 8 there is also opportunity to sell it.
-    // There also should be "OK" button on it and then code from below will be launched.
-
-    //Darek => if u find another way to pass this data or how in this function store this data in store
-    //fell free to do this or let me know
-    CARD.card = card;
-    CARD.show = true;
+    // Pop-up with cardName and description shows:
+    UpdateCurrentEventCard(dispatch, card);
 
     var newPosition, currentPosition, anotherNewField;
     switch(card.cardName)

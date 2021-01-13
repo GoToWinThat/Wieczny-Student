@@ -1,4 +1,4 @@
-import "../../styles/ActionPanel.css";
+import "../../styles/Modals.css";
 import React, { useState } from 'react';
 import TradeSection from "./TradeSection";
 import {Modal, Button} from 'react-bootstrap';

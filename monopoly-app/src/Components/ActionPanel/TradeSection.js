@@ -104,7 +104,7 @@ function TradeSection(props) {
     const listAll = () => 
     {
         if(props.activePlayer.eventCards.length === 0 && props.activePlayer.properties.length === 0)
-            return(<p className="text-secondary">Gracz nie posiada żadnych kart i nieruchomości.</p>);
+            return(<p className="noProperties text-secondary">Gracz nie posiada żadnych kart i nieruchomości.</p>);
         else 
             return(<>{createListOfFields()}{createListOfCards()}</>);
     }

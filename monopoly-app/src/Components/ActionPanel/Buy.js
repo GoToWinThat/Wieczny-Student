@@ -1,6 +1,6 @@
-import "../../styles/ActionPanel.css";
+import "../../styles/Modals.css";
 import React from 'react';
-import {Button, Modal} from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import { UpdatePlayerNewProperty, UpdatePlayerCash, AddNewLog } from '../../services/monopolyService';
 
 function Buy(props) {

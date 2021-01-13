@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../styles/EastateLevel.css'
+import '../styles/Field.css'
 class PopoverEstateLevel extends Component {
 
     easte(estateLevel, i){

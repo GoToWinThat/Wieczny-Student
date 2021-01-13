@@ -19,6 +19,7 @@ html, body
     sans-serif;
   display: flex;
   justify-content: center;
+  text-align: center;
 }
 
 .btn { border: 0; }
