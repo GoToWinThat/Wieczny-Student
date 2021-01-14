@@ -17,7 +17,10 @@ export const CardPopover = () =>
             show={currentCard.cardName !== ""}
             onClose={() => UpdateCurrentEventCard(dispatch, { cardName: "", description: ""})}
             transition={false}
-            onMouseDown={(e) => e.preventDefault()}>
+            onMouseDown={(e) => e.preventDefault()}
+            delay={8000}
+            autohide
+            >
                 <Toast.Header>
                     <strong>Otrzymujesz kartę:</strong>
                 </Toast.Header>
