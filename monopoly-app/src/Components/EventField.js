@@ -13,7 +13,7 @@ class EventField extends Component {
         this.popoverRotare = this.props.rotate.split('-')[1]
         this.img = this.props.data.name === "Karta zysku" ?"/Assets/Fields/wifi.svg": "/Assets/Fields/wifi-off.svg"
         this.popover = (
-            <Popover className="fade" id="popover-card">
+            <Popover className="fieldPopover fade" id="popover-card">
                 <Popover.Content>
                     <div className="card card-popover">
                         <div className="card-body">

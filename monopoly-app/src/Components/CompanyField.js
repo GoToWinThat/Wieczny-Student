@@ -15,7 +15,7 @@ class CompanyField extends Component {
 
         this.popoverRotare = this.props.rotate.split('-')[1]
         this.popover = (
-            <Popover className="fade" id="popover-card">
+            <Popover className="fieldPopover fade" id="popover-card">
                 <Popover.Content>
                     <div className="card card-popover">
                         <div className="card-header" style={{backgroundColor:`${this.props.data.color}`}}>

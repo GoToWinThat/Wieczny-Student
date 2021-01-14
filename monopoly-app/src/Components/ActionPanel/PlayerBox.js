@@ -16,8 +16,8 @@ function PlayerBox(props)
         props.player.properties.map(field =>
             fieldArray.push(
                 <div key={field.fieldID} className="propertyRow">
-                    <div className="propertyBox mt-1" style={{background: props.fields[field.fieldID].color }}/>
-                    <span>{props.fields[field.fieldID].name} </span>
+                    <div className="propertyBox" style={{background: props.fields[field.fieldID].color }}/>
+                    <p>{props.fields[field.fieldID].name} </p>
                     <br/>
                 </div>
             )
@@ -34,7 +34,7 @@ function PlayerBox(props)
         props.player.eventCards.map(card =>
             cardsArray.push(
                 <div key={card.cardID} className="d-flex">
-                    <span>{props.cards[card.cardID].cardName} </span>
+                    <p>{props.cards[card.cardID].cardName} </p>
                     <br/>
                 </div>
             )
@@ -47,7 +47,7 @@ function PlayerBox(props)
         let fieldsList = listOfFields()
         let cardsList = ListOfCards()
         if(fieldsList === null && cardsList === null )
-            return(<p className="text-secondary w-100 px-1">Gracz nie posiada żadnych kart i nieruchomości.</p>)
+            return(<p className="text-secondary">Gracz nie posiada żadnych kart i nieruchomości.</p>)
         else if(fieldsList === null || cardsList === null )
             return(<div>{fieldsList}{cardsList}</div>)
         else
@@ -82,7 +82,7 @@ function PlayerBox(props)
             animation={false}
             transition={false}
             overlay={
-                <Popover id={`popover-positioned-bottom`}>
+                <Popover className="playerBoxPopover">
                     <Popover.Content>
                         {playersOwnsList()}
                     </Popover.Content>

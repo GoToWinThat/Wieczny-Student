@@ -16,7 +16,7 @@ class PropertyField extends Component {
 
     GetPopOver(){
         return(
-            <Popover className="fade" id="popover-card" >
+            <Popover className="fieldPopover fade" id="popover-card" >
                 <Popover.Content>
                     <div className="card card-popover">
 

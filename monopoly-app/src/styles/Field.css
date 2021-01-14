@@ -67,14 +67,9 @@
 
 
 
-/* Card popover (NOT RESPONSIVE) */
-.card-popover 
-{
-  height: 220px;
-  width: 150px;
-  font-size: 1.4em;
-  text-align: center;
-}
+/* Card popover (important: the border is not responsive) */
+.card-popover { text-align: center; }
+
 .card-popover .card-header 
 {
   height: 20%;
@@ -82,27 +77,49 @@
   padding-bottom: 0;
   margin: 0;
 
-  font-size: 0.6em;
   font-weight: bold;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
-.card-popover .card-body 
-{
-  display: flex;
-  justify-content: space-around;
-}
+
+.card-popover .card-body { display: flex; justify-content: space-around; }
 .card-text-details 
-{
-  font-size: 0.55em;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+{ 
+  width: 100%; 
+  display: flex; 
+  justify-content: space-between; 
+  padding: 0 1%;
 }
-.eastateLevel 
+.eastateLevel { display: flex; justify-content: center; }
+
+@media(orientation: portrait) 
 {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  .fieldPopover { border-radius: 3vw; max-width: 35vw; }
+  .fieldPopover .popover-body { padding: 2vw 2.5vw; }
+  .card-popover { height: 40vw; width: 30vw; font-size: 3vw; }
+
+  .card-popover .card-header { font-size: 2.5vw; }
+  .card-text-details { font-size: 2vw; }
+  .eastateLevel * { padding: 1%; width: 3vw; }
+}
+@media(orientation: landscape) and (max-height: 600px) 
+{
+  .fieldPopover { border-radius: 3vh; max-width: 35vh; }
+  .fieldPopover .popover-body { padding: 2vh 2.5vh; }
+  .card-popover { height: 40vh; width: 30vh; font-size: 3vh; }
+  
+  .card-popover .card-header { font-size: 2.5vh; }
+  .card-text-details { font-size: 2vh; }
+  .eastateLevel * { padding: 1%; width: 3vh; }
+}
+@media(orientation: landscape) and (min-height: 600px) /* mainly PCs */
+{
+  .fieldPopover { border-radius: 2.25vh; max-width: 26vh; }
+  .fieldPopover .popover-body { padding: 1.5vh 1.75vh; }
+  .card-popover { height: 30vh; width: 22.5vh; font-size: 2.25vh; }
+  
+  .card-popover .card-header { font-size: 1.75vh; }
+  .card-text-details { font-size: 1.5vh; }
+  .eastateLevel * { padding: 1%; width: 2.25vh; }
 }

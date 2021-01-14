@@ -54,12 +54,6 @@
   display: flex;
   justify-content: space-around;
 }
-.propertyRow {
-  display: flex;
-  width: fit-content;
-  justify-content: space-around;
-}
-
 #endTurnButton
 {
   width: fit-content;
@@ -69,6 +63,7 @@
 
 @media(orientation: portrait)
 {
+  .playerBox { padding: 0.5vw; border-radius: 1vw; width: 20%; }
   #endTurnButton 
   { 
       height: 4vw; 
@@ -76,16 +71,11 @@
       border-radius: 1vw;
       padding: 0.5vw 1.5vw;
   }
-  .playerBox 
-  { 
-    padding: 0.5vw; 
-    border-radius: 1vw; 
-    width: 20%; 
-  }
 }
 
 @media(orientation: landscape)
 {
+  .playerBox { padding: 0.5vh; border-radius: 1vh; width: 20%; }
   #endTurnButton 
   { 
       height: 4vh; 
@@ -93,14 +83,57 @@
       border-radius: 1vh;
       padding: 0.5vh 1.5vh;
   }
-  .playerBox 
-  { 
-    padding: 0.5vh; 
-    border-radius: 1vh; 
-    width: 20%; 
-  }
 }
 
+
+
+/* Player Box Popover (popover border is not responsive) */
+.playerBoxPopover { font-size: 0; }
+.playerBoxPopover * { margin: 0; padding: 0; }
+.playerBoxPopover p { text-align: center; }
+.propertyRow { display: flex; align-items: center; }
+@media(orientation: portrait) 
+{
+  .playerBoxPopover { border-radius: 1vw; padding: 2vw; max-width: 39vw; }
+  .playerBoxPopover .popover-body { width: 35vw; }
+  .playerBoxPopover p  { font-size: 2.5vw; }
+  .playerBoxPopover h6 { font-size: 3vw; margin-bottom: 1vw; }
+  .playerBoxPopover hr 
+  { 
+    border-top: 0.1vw solid rgba(0,0,0,.1); 
+    margin-top: 1vw; 
+    margin-bottom: 1vw;
+  }
+  .propertyRow .propertyBox { height: 2.5vw; width: 1vw; margin-right: 1vw; }
+}
+@media(orientation: landscape) and (max-height: 600px) 
+{
+  .playerBoxPopover { border-radius: 1vh; padding: 2vh; max-width: 39vh; }
+  .playerBoxPopover .popover-body { width: 35vh; }
+  .playerBoxPopover p  { font-size: 2.5vh; }
+  .playerBoxPopover h6 { font-size: 3vh; margin-bottom: 1vh; }
+  .playerBoxPopover hr 
+  { 
+    border-top: 0.1vh solid rgba(0,0,0,.1); 
+    margin-top: 1vh; 
+    margin-bottom: 1vh;
+  }
+  .propertyRow .propertyBox { height: 2.5vh; width: 1vh; margin-right: 1vh; }
+}
+@media(orientation: landscape) and (min-height: 600px) /* mainly PCs */
+{
+  .playerBoxPopover { border-radius: 0.75vh; padding: 1.5vh; max-width: 30vh; }
+  .playerBoxPopover .popover-body { width: 27vh; }
+  .playerBoxPopover p  { font-size: 1.75vh; }
+  .playerBoxPopover h6 { font-size: 2.25vh; margin-bottom: 0.75vh; }
+  .playerBoxPopover hr 
+  { 
+    border-top: 0.075vh solid rgba(0,0,0,.1); 
+    margin-top: 0.75vh; 
+    margin-bottom: 0.75vh;
+  }
+  .propertyRow .propertyBox { height: 1.75vh; width: 0.75vh; margin-right: 0.75vh; }
+}
 
 
 /* Action Options Component */
