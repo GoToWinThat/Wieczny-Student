@@ -29,7 +29,6 @@ function Manage(props) {
       else return true;
   }
 
-
   return (
     <Modal
       show={isModalOpen()}
@@ -63,7 +62,7 @@ function Manage(props) {
       <Button
         id="bankruptButton"
         variant="secondary"
-        onClick={() => bankrupt(props,activePlayer)}
+        onClick={() => bankrupt(dispatch,activePlayer,fields,props)}
         onMouseDown={(e) => e.preventDefault()}
       >
         ZBANKRUTUJ
