@@ -1,61 +1,50 @@
-import "../../Css/ActionPanel.css";
-import React, { Component } from 'react';
+import "../../styles/Modals.css";
+import React from 'react';
+import { Button, Modal } from 'react-bootstrap';
+import { UpdatePlayerNewProperty, UpdatePlayerCash, AddNewLog } from '../../services/monopolyService';
 
-class Buy extends Component
-{
-    constructor(props){
-        super(props)
-        this.state = {view: 'choice'}
-        this.buyButton = this.buyButton.bind(this)
-        this.cancelButton = this.cancelButton.bind(this)
-    }
-    //Actions to change to corrent view
-    buyButton()
-    {
-        this.setState({view: 'bought'})
-    }
-    cancelButton()
-    {
-        this.setState({view: 'cancel'})
-    }
-    //Display corrent panel in render method based on state
-    navigator()
-    {
-        let opt = this.state.view
-        if(opt==='choice')return this.choiceView()
-        if(opt==='cancel')return this.cancelView()
-        if(opt==='bought')return this.bought()
-    }
-    //Element with question to user to but property
-    choiceView()
-    {
-        return(
-            <div>
-                <span>Czy chcesz kupić  </span>
-                <span style= {{ color: this.props.field.color,fontWeight: 'bold'}} >{this.props.field.name}</span>
-                <span> za </span>
-                <span style= {{ color: 'red',fontWeight: 'bold'}} >{this.props.field.price} ECTS</span>
-                <span>?</span>
-                <button className="yesNoButton" onClick={this.buyButton} >Tak</button>
-                <button className="yesNoButton" onClick={this.cancelButton} >Nie</button>
-            </div>
-        )
-    }
-    //Empty cancel view
-    cancelView(){ return <div></div>}
-    //Confirmation massage
-    bought()
-    {
-        return(
-            <div>
-                <span>Właśnie kupiłeś  </span>
-                <span style= {{ color: this.props.field.color,fontWeight: 'bold'}} >{this.props.field.name}</span>
-            </div>
-        )
-    }
-    render()
-    {
-        return(<div>{this.navigator()}</div>)
-    }
+function Buy(props) {
+  const activePlayer = props.data.players[props.data.activePlayerIndex];
+  const currentField = props.data.fields[activePlayer.position];
+  const dispatch = props.data.dispatch;
+
+  const buyProperty = () => 
+  {
+    UpdatePlayerNewProperty(dispatch, activePlayer.name, currentField.fieldID);
+    UpdatePlayerCash(dispatch, activePlayer.name, -currentField.price);
+    AddNewLog(dispatch, `${activePlayer.name} kupuje ${currentField.name} za ${currentField.price} ECTS.`);
+    props.onHide();
+  }
+
+  return (
+    <Modal
+      show={props.show}
+      onHide={props.onHide}
+      animation={false}
+      id="buyModal"
+    >
+      <Modal.Header closeButton onMouseDown={(e) => e.preventDefault()}>
+        <Modal.Title >Kup nieruchomość</Modal.Title>
+      </Modal.Header>
+      <Modal.Body >
+        <div className="col text-center">
+          <div id="buyQuestion">
+            <span>Czy chcesz kupić</span>
+            <span>
+              <span className="propertyBox" style={{background: currentField.color}}/>
+              {currentField.name}
+            </span>
+            <span>
+              <span>&nbsp;za</span>
+              <span style={{ color: 'red', fontWeight: 'bold'}}>&nbsp;{currentField.price} ECTS</span>
+              <span>?</span>
+            </span>
+          </div> 
+          <Button className="confirmButton" onClick={buyProperty}
+            onMouseDown={(e) => e.preventDefault()}>Potwierdź</Button>
+        </div>
+      </Modal.Body>
+    </Modal>
+  );
 }
 export default Buy;

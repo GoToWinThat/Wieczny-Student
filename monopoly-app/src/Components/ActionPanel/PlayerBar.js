@@ -1,67 +1,22 @@
-import React, { Component } from 'react';
-import "../../Css/ActionPanel.css";
+import "../../styles/ActionPanel.css";
+import React from 'react';
+import Clock from './Clock';
 import PlayerBox from './PlayerBox';
+import {endTurnEvent} from '../../gameplay/turnActions';
 
-class PlayerBar extends Component 
-{
-    //Class use to track current active player and ending player's turn
-    constructor(props){
-        super(props)
-        //Sample JSON format
-        this.state = {activePlayer: 0, players: [
-            {name: 'Tomek',color: 'blue'},
-            {name: 'Franek',color: 'green'},
-            {name: 'Alicja',color: 'red'},
-            {name: 'Maria',color: 'orange'}
-            
-        ]}
-        this.endTurn = this.endTurn.bind(this) 
-    }
+export const PlayerBar = (data) => {
+    const activePlayerIndex = data.data.activePlayerIndex;
+    const players = data.data.players;
+    const fields = data.data.fields;
+    const cards = data.data.gainCards;
 
-    endTurn()
-    {
-        //Changing a state
-        this.setState(prevState => {
-            
-            //Disable current active player and activate next one in the array
-            let newActivePlayer;
-
-            if(prevState.activePlayer + 1 >= prevState.players.length)
-                newActivePlayer =  0;
-            else 
-                newActivePlayer =  prevState.activePlayer + 1;
-
-            return {activePlayer: newActivePlayer}
-          })
-    }
-
-    createBoxes()
-    {   
-        let idx = -1;
-        let active = false;
-        
-        //Map thru players to create boxes
-        const boxes = this.state.players.map(pl => 
-        {
-            //idx tracks current player in map function and activate only one of them
-            idx++;
-            if(idx === this.state.activePlayer) active = true
-            else active = false
-            return (<PlayerBox player={pl} isActive={active}/>)
-        })
-          
-        return(boxes)
-    }
-
-    render() {
-
-        return (
-            <div className="playerBar">
-                {this.createBoxes()}
-                <button className="endTurnButton" onClick={this.endTurn} >Zakończ Ture</button>
+    let idx = -1;
+    return (
+        <div className="playerBar">
+            <div className="playerBarInnerDiv">
+                { players.map(pl => <PlayerBox key={pl.name} player={pl} isActive={++idx === activePlayerIndex} cards={cards} fields={fields}/>) }
             </div>
-        );
-    }
-    
+            <Clock endTurnEvent={() => endTurnEvent(data)}/>
+        </div>
+    );
 }
-export default PlayerBar;

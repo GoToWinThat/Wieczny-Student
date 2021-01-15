@@ -1,26 +1,105 @@
-import "../../Css/ActionPanel.css";
+import "../../styles/ActionPanel.css";
+import {Button,Popover,OverlayTrigger} from 'react-bootstrap';
 
 function PlayerBox(props)
 {
-    //Function switch color and background of a PlayerBox based on active state 
+    //Function switch color and background of a PlayerBox based on active state
     //Each player have a unique color and name
-    let color,background
-    let border = `2px solid ${props.player.color}`
+    let color,background,border
 
-    if(props.isActive)
+    const listOfFields = () =>{
+
+        var fieldArray = [];
+        if(props.player.properties.length === 0) return null;
+
+        fieldArray.push(<h6 key={1000}>Nieruchomości</h6>)
+        props.player.properties.map(field =>
+            fieldArray.push(
+                <div key={field.fieldID} className="propertyRow">
+                    <div className="propertyBox" style={{background: props.fields[field.fieldID].color }}/>
+                    <p>{props.fields[field.fieldID].name} </p>
+                    <br/>
+                </div>
+            )
+        )
+        return fieldArray;
+    }
+
+    const ListOfCards = () =>
+    {
+        var cardsArray = [];
+        if(props.player.eventCards.length === 0) return null;
+
+        cardsArray.push(<h6 key={2000}>Karty</h6>)
+        props.player.eventCards.map(card =>
+            cardsArray.push(
+                <div key={card.cardID} className="d-flex">
+                    <p>{props.cards[card.cardID].cardName} </p>
+                    <br/>
+                </div>
+            )
+        )
+        return cardsArray;
+    }
+
+    const playersOwnsList = () =>
+    {
+        let fieldsList = listOfFields()
+        let cardsList = ListOfCards()
+        if(fieldsList === null && cardsList === null )
+            return(<p className="text-secondary">Gracz nie posiada żadnych kart i nieruchomości.</p>)
+        else if(fieldsList === null || cardsList === null )
+            return(<div>{fieldsList}{cardsList}</div>)
+        else
+            return(<div>{fieldsList}<hr/>{cardsList}</div>)
+    }
+
+    if(props.player.isBankrupt)
+    {
+        color = 'gray'
+        background = 'transparent'
+        border = `0.2em solid gray`
+    }
+    else if(props.isActive)
     {
         color = 'white'
         background = props.player.color
+        border = `0.2em solid ${props.player.color}`
     }
     else
     {
         color = props.player.color
         background = 'transparent'
+        border = `0.2em solid ${props.player.color}`
     }
+
+    const playerBoxCash = () => props.player.isBankrupt ? "*Bankrupt*" : `${props.player.cash}  ECTS`
+
     return(
-        <div className="playerBox" style={{ border: border, background: background}}>
-            <span style= {{ color: color}} > {props.player.name} </span>
-        </div>
+        <OverlayTrigger
+            trigger={["hover","focus"]}
+            placement='bottom'
+            animation={false}
+            transition={false}
+            overlay={
+                <Popover className="playerBoxPopover">
+                    <Popover.Content>
+                        {playersOwnsList()}
+                    </Popover.Content>
+                </Popover>
+            }
+            >
+            <Button
+                className="playerBox"
+                variant="secondary"
+                style={{ border: border, background: background, color: color}}
+                onMouseDown={(e) => e.preventDefault()}>
+                    <span className="playerBoxName">{props.player.name}</span>
+                    <br/>
+                    <span className="playerBoxCash">{playerBoxCash()}</span>
+            </Button>
+        </OverlayTrigger>
+
     )
 
 }

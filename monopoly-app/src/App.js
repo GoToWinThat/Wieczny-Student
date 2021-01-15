@@ -1,14 +1,19 @@
 import './App.css';
-import Field from './Components/Field'
-import {data} from './Data'
-import Board from './Components/Board'
+import {BrowserRouter,Route, Switch} from 'react-router-dom'
+import {Game} from './pages/Game'
+import {Config} from './pages/Config'
 
 function App() {
   return (
-      <div className="App">
-        <Board/>
-      </div>
+
+      <BrowserRouter>
+        <div className="App">
+          <Route path="/" exact component={Config}/>
+          <Route path='/game' exact component={Game}/>
+        </div>
+      </BrowserRouter>
   );
 }
+
 
 export default App;
