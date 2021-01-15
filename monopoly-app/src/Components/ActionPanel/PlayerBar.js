@@ -16,7 +16,7 @@ export const PlayerBar = (data) => {
             <div className="playerBarInnerDiv">
                 { players.map(pl => <PlayerBox key={pl.name} player={pl} isActive={++idx === activePlayerIndex} cards={cards} fields={fields}/>) }
             </div>
-            <Clock endTurnEvent={() => endTurnEvent(data)}/>
+            <Clock typeOfClock="turnClock" endTurnEvent={() => endTurnEvent(data)}/>
         </div>
     );
 }
