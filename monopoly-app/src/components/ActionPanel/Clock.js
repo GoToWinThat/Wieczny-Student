@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
+import "../../styles/GameClock.css";
 
-var secondsForAction = 30;
+var secondsForAction = 30; var secondsForGame = 60 * 20;
+
 class Clock extends Component {
     constructor() {
       super();
@@ -29,8 +31,10 @@ class Clock extends Component {
       return obj;
     }
     componentDidMount() {
-        let timeLeftVar = this.secondsToTime(this.state.seconds);
-        this.setState({ time: timeLeftVar });
+        if (this.props.typeOfClock === "gameClock")
+             this.setState({ time: this.secondsToTime(secondsForGame), seconds: secondsForGame });
+        else this.setState({ time: this.secondsToTime(secondsForAction), seconds: secondsForAction });
+        
         this.startTimer();
     }
 
@@ -49,18 +53,14 @@ class Clock extends Component {
         });
         
         // Check if we're at zero.
-        if (seconds === 0) { 
-            //clearInterval(this.timer);
-            document.getElementById("endTurnButton").click();
-            this.setState({
-                time: this.secondsToTime(secondsForAction),
-                seconds: secondsForAction,
-            });
+        if (seconds === 0) 
+        {
+            if (this.props.typeOfClock === "turnClock") this.resetClock();
+            else clearInterval(this.timer);
         }
     }
 
-    resetClock()
-    {
+    resetClock() {
         this.setState({
             time: this.secondsToTime(secondsForAction),
             seconds: secondsForAction,
@@ -69,11 +69,16 @@ class Clock extends Component {
     }
     
     render() {
-        return(
-            <Button id="endTurnButton" onClick={this.resetClock} onMouseDown={(e) => e.preventDefault()}>
-                <span>Zakończ turę [{this.state.time.m * 60 + this.state.time.s}s]</span>
-            </Button>
-            
+        if (this.props.typeOfClock === "turnClock")
+            return(
+                <Button id="endTurnButton" onClick={this.resetClock} onMouseDown={(e) => e.preventDefault()}>
+                    <span>Zakończ turę [{this.state.time.m * 60 + this.state.time.s}s]</span>
+                </Button>    
+            );
+        else return(
+            <div id="gameClock">
+                <p>{('0'+this.state.time.m).slice(-2)}:{('0'+this.state.time.s).slice(-2)}</p>
+            </div>
         );
     }
 }
