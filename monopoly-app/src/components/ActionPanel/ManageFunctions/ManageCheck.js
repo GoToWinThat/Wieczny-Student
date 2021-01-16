@@ -55,3 +55,18 @@ export const isAnyPropertyFromThisColorMortgaged = ( field, fields, properties, 
   }
   return false;
 }
+
+export const hasAnyComputer = (activePlayer) => 
+{
+    let result = false;
+    activePlayer.properties.forEach(field => {
+        if(field.estateLevel > 0) result = true;
+    })
+    return result;
+}
+
+export const hasAnyProperties = (activePlayer) => 
+{
+    if(activePlayer.properties.length > 0) return true;
+    return false;
+}

@@ -1,10 +1,16 @@
 import { UpdatePlayerUpdateBankrupt,UpdatePlayerDeleteProperty,UpdatePlayerDeleteEventCard, AddNewLog, UpdatePlayerExpandProperty,UpdatePlayerCash,UpdatePlayerMortgageProperty } from "../../../services/monopolyService";
 import { endTurnEvent } from "../../../gameplay/turnActions";
+import {hasAnyComputer,hasAnyProperties } from "./ManageCheck"
 
-export const bankrupt = (dispatch,activePlayer,fields,props) => 
+export const surrender = (dispatch,activePlayer,data) =>
+{
+    bankrupt(dispatch,activePlayer)
+    endTurnEvent(data)
+}
+
+export const bankrupt = (dispatch,activePlayer) => 
 {
 
-    //if(canPreventBankrupt(dispatch,activePlayer,fields)) return;
     // Removing properties and cards:
     for (let i = 0; i < activePlayer.properties.length; i++)
         UpdatePlayerDeleteProperty(dispatch, activePlayer.name, activePlayer.properties[i].fieldID);
@@ -16,10 +22,9 @@ export const bankrupt = (dispatch,activePlayer,fields,props) =>
     // so they will be thrown automatically in endTurnEvent)
     AddNewLog(dispatch,`${activePlayer.name} właśnie zbankrutował !!!`)
     UpdatePlayerUpdateBankrupt(dispatch, activePlayer.name);
-    endTurnEvent(props);
 }
 
-const canPreventBankrupt = (dispatch,activePlayer,fields) => 
+export const canPreventBankrupt = (dispatch,activePlayer,fields) => 
 {
     var cash = activePlayer.cash;
     if(hasAnyComputer(activePlayer)) cash = sellComputers(dispatch,activePlayer,fields,cash);
@@ -31,20 +36,6 @@ const canPreventBankrupt = (dispatch,activePlayer,fields) =>
     else return false;
 }
 
-const hasAnyComputer = (activePlayer) => 
-{
-    let result = false;
-    activePlayer.properties.forEach(field => {
-        if(field.estateLevel > 0) result = true;
-    })
-    return result;
-}
-
-const hasAnyProperties = (activePlayer) => 
-{
-    if(activePlayer.properties.length > 0) return true;
-    return false;
-}
 
 const isMortgageEnough = (activePlayer,fields) =>
 {
@@ -113,3 +104,4 @@ const getFieldOfId = (id,fields) =>
     fields.forEach(field => field.fieldID === id ? result = field : null)
     return result;
 }
+

@@ -1,5 +1,6 @@
 import { UpdateActivePlayerIndex, AddNewLog, UpdatePlayerUpdateWaitingTurns } from '../services/monopolyService';
 import { setThrownDices, thrownDices, throwDicesEvent } from "./fieldActions";
+import {canPreventBankrupt,bankrupt} from '../components/ActionPanel/ManageFunctions/ManageBankrupt'
 
 export const endTurnEvent = (data) =>
 {
@@ -7,6 +8,10 @@ export const endTurnEvent = (data) =>
     const players = data.data.players;
     const dispatch = data.data.dispatch;
     const sayItWell = (number) => (number === 1) ? `ostatnią kolejkę` : `jeszcze ${number} kolejki`;
+
+    //Check if player is bancrupt
+    if(!canPreventBankrupt(dispatch,players[activePlayerIndex],data.data.fields)) 
+        bankrupt(dispatch,players[activePlayerIndex])
 
     // Throw dices if it haven't happened yet:
     if (thrownDices === false)

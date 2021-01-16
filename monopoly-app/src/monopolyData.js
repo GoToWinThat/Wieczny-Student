@@ -461,7 +461,7 @@ export const dynamicData = {
     "players": [
         {
             "name": "Artur",
-            "cash": 40,
+            "cash": -40,
             "signature": "9772",
             "color": "blue",
             "properties": [
