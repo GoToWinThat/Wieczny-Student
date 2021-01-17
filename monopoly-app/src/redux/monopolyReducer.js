@@ -82,11 +82,11 @@ export default function MonopolyReducer(state = initialState, action) {
 
         // get all the players and set them in "players" list
         case ActionTypes.SET_PLAYERS:
-            return { ...state, players: [...action.payload.players] }
+            return { ...state, players: [...action.payload.monopolyPlayers] }
 
         // change index of player that has a turn at the moment:
         case ActionTypes.SET_ACTIVE_PLAYER_INDEX:
-            return { ...state, activePlayerIndex: action.payload.activePlayerIndex }
+            return { ...state, activePlayerIndex: action.payload }
 
         // change index of player that has a turn at the moment:
         case ActionTypes.UPDATE_ACTIVE_PLAYER_INDEX:
