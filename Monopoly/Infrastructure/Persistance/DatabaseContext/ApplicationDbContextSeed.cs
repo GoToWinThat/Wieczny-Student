@@ -660,16 +660,20 @@ namespace Infrastructure.Persistance.DatabaseContext
             context.GameInfo.Add(new GameInfo { ActivePlayerIndex = 1 }); ;
             context.Dices.Add(new Dices { DiceValues = new List<int> { 1, 1 } });
             await context.SaveChangesAsync();
-            if(context.PropertyFieldInfos.Any()&&context.MonopolyFields.Any())
+            if(context.PropertyFieldInfos.Any())
             {
-                int i = 0;
-                foreach(var infos in context.PropertyFieldInfos)
-                {
-                    infos.PropertyField = (PropertyField)context.MonopolyFields.Where(f => f.MonopolyID == i).First();
-                }
+
+                 for(int k=1;k<= context.PropertyFieldInfos.Count();k++)
+                 {
+                     var curr = context.PropertyFieldInfos.SingleOrDefault(i=>i.Id==k);
+                     curr.PropertyFieldId = curr.PropertyField.Id;
+                 }
             }
+
+
+            await context.SaveChangesAsync();
             //Do testowania
-            if(context.Players.Any())
+            if (context.Players.Any())
             {
                 context.Cards.First().Player= context.Players.First();
                 context.Cards.OrderBy(c=>c.Id).Last().Player = context.Players.First();

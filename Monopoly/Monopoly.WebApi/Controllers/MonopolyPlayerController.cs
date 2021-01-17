@@ -1,8 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Monopoly.Core.UseCases.MonopolyPlayers.Commands.DeleteLoggedPlayer;
 using Monopoly.Core.UseCases.MonopolyPlayers.Commands.LogNewPlayer;
+using Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerAddEventCard;
 using Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerCash;
+using Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerDeleteEventCard;
+using Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerDeleteProperty;
+using Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerExpandProperty;
+using Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerMortgageProperty;
+using Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerNewProperty;
 using Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerPosition;
+using Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerUpdateBankrupt;
+using Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerUpdateWaitingTurns;
 using System.Threading.Tasks;
 
 namespace Monopoly.WebApi.Controllers
@@ -40,12 +48,63 @@ namespace Monopoly.WebApi.Controllers
             return NoContent();
         }
 
-        /*[HttpPut]
+        [HttpPut]
         [Route("UpdatePlayerNewProperty")]
         public async Task<ActionResult> UpdatePlayerNewProperty(UpdatePlayerNewPropertyCommand command)
         {
             await Mediator.Send(command);
             return NoContent();
-        }*/
+        }
+        [HttpDelete]
+        [Route("UpdatePlayerDeleteProperty")]
+        public async Task<ActionResult> UpdatePlayerDeleteProperty(UpdatePlayerDeletePropertyCommand command)
+        {
+            await Mediator.Send(command);
+            return NoContent();
+        }
+        [HttpDelete]
+        [Route("UpdatePlayerExpandProperty")]
+        public async Task<ActionResult> UpdatePlayerExpandProperty(UpdatePlayerExpandPropertyCommand command)
+        {
+            await Mediator.Send(command);
+            return NoContent();
+        }
+        [HttpDelete]
+        [Route("UpdatePlayerMortgageProperty")]
+        public async Task<ActionResult> UpdatePlayerMortgageProperty(UpdatePlayerMortgagePropertyCommand command)
+        {
+            await Mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpPut]
+        [Route("UpdatePlayerAddEventCard")]
+        public async Task<ActionResult> UpdatePlayerBankrupt(UpdatePlayerAddEventCardCommand command)
+        {
+            await Mediator.Send(command);
+            return NoContent();
+        }
+        [HttpDelete]
+        [Route("UpdatePlayerDeleteEventCard")]
+        public async Task<ActionResult> UpdatePlayeraDeleteEventCard(UpdatePlayerDeleteEventCardCommand command)
+        {
+            await Mediator.Send(command);
+            return NoContent();
+        }
+        [HttpPut]
+        [Route("UpdatePlayerWaitingsTurns")]
+        public async Task<ActionResult> UpdatePlayerBankrupt(UpdatePlayerWaitingsTurnsCommand command)
+        {
+            await Mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpPut]
+        [Route("UpdatePlayerBankrupt")]
+        public async Task<ActionResult> UpdatePlayerBankrupt(UpdatePlayerBankruptCommand command)
+        {
+            await Mediator.Send(command);
+            return NoContent();
+        }
     }
 }

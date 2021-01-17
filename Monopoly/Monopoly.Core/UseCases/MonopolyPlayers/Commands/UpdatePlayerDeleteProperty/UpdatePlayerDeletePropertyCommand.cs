@@ -4,30 +4,33 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Monopoly.Core.Base.Exceptions;
 using Monopoly.Core.Base.Interfaces;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerNewProperty
+namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerDeleteProperty
 {
-    public class UpdatePlayerNewPropertyCommand : IRequest
+     public class UpdatePlayerDeletePropertyCommand : IRequest
     {
         public string Name { get; set; }
         public int FieldId { get; set; }
     }
-    public class UpdatePlayerNewPropertyCommandHandler : IRequestHandler<UpdatePlayerNewPropertyCommand>
+    public class UpdatePlayerDeletePropertyCommandHandler : IRequestHandler<UpdatePlayerDeletePropertyCommand>
     {
         private IApplicationDbContext _context;
 
-        public UpdatePlayerNewPropertyCommandHandler(IApplicationDbContext context)
+        public UpdatePlayerDeletePropertyCommandHandler(IApplicationDbContext context)
         {
             _context = context;
         }
-        public async Task<Unit> Handle(UpdatePlayerNewPropertyCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(UpdatePlayerDeletePropertyCommand request, CancellationToken cancellationToken)
         {
             var entityPlayer = await _context.Players.Where(p => p.Name == request.Name).FirstAsync();
             var entityFields = await _context.PropertyFieldInfos.Where(p => p.PropertyField.MonopolyID == request.FieldId).FirstAsync();
-            
+
             if (entityPlayer == null)
             {
                 throw new NotFoundException(nameof(Player), request.Name);
@@ -37,7 +40,8 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerNewPropert
                 throw new NotFoundException(nameof(PropertyFieldInfo), request.FieldId);
             }
 
-            entityFields.Player = entityPlayer;
+            entityFields.Player = null;
+            entityFields.PlayerId = null;
 
             await _context.SaveChangesAsync(cancellationToken);
             return Unit.Value;
