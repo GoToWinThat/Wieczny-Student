@@ -73,7 +73,7 @@ function PlayerBox(props)
         border = `0.2em solid ${props.player.color}`
     }
 
-    const playerBoxCash = () => props.player.isBankrupt ? "*Bankrupt*" : `${props.player.cash}  ECTS`
+    const playerBoxCash = () => props.player.isBankrupt ? "*BANKRUT*" : `${props.player.cash}  ECTS`
 
     return(
         <OverlayTrigger
