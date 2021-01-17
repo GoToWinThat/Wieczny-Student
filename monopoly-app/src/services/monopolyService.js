@@ -1,16 +1,18 @@
 import { ActionCreators } from "../redux/monopolyReducer";
 import { staticData, dynamicData } from '../monopolyData';
 
-//import * as axios from 'axios';
-//const axiosInstanceStaticData  = axios.create({ baseURL: 'https://localhost:44358/api/monopolyhome' })
-//const axiosInstanceDynamicData = axios.create({ baseURL: 'https://localhost:44358/api/monopolygame' })
+import * as axios from 'axios';
+const axiosInstanceStaticData  = axios.create({ baseURL: 'https://localhost:5001/api/monopolygame/fields' })
+const axiosInstanceDynamicData = axios.create({ baseURL: 'https://localhost:44358/api/monopolygame' })
 
 export const GetFields = async (dispatch) => {
-    try {
-        //const {staticData} = await axiosInstanceStaticData.get();
-        dispatch(ActionCreators.setFields(staticData));
-    } catch {
-        console.log("Fields couldn't be set!");
+    try 
+    {
+        const staticData1 = await axiosInstanceStaticData.get();
+        dispatch(ActionCreators.setFields(staticData1.data));
+    } catch (err){
+
+        console.log("noehj" + err);
     }
 }
 

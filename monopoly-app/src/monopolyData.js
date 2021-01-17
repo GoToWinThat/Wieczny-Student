@@ -464,12 +464,9 @@ export const dynamicData = {
             "cash": 40,
             "signature": "9772",
             "color": "blue",
-            "properties": [
-                { "fieldID": 39, "estateLevel": 0, "mortgaged": false },
-                { "fieldID": 3, "estateLevel": 0, "mortgaged": false }
-            ],
+            "properties": [],
             "eventCards": [],
-            "position": 0,
+            "position": 1,
             "isInJail": false,
             "turnsToWait": 0,
             "isBankrupt": false
@@ -479,12 +476,9 @@ export const dynamicData = {
             "cash": 500,
             "signature": "9762",
             "color": "red",
-            "properties": [
-                { "fieldID": 4, "estateLevel": 0, "mortgaged": false },
-                { "fieldID": 6, "estateLevel": 0, "mortgaged": false }
-            ],
+            "properties": [],
             "eventCards": [],
-            "position": 0,
+            "position": 1,
             "isInJail": false,
             "turnsToWait": 0,
             "isBankrupt": false
@@ -494,14 +488,11 @@ export const dynamicData = {
             "cash": 20,
             "signature": "9823",
             "color": "orange",
-            "properties": [
-                { "fieldID": 21, "estateLevel": 1, "mortgaged": false },
-                { "fieldID": 19, "estateLevel": 3, "mortgaged": false }
-            ],
+            "properties": [],
             "eventCards": [
                 { "cardID": 0 }
             ],
-            "position": 0,
+            "position": 1,
             "isInJail": false,
             "turnsToWait": 0,
             "isBankrupt": false
@@ -513,7 +504,7 @@ export const dynamicData = {
             "color": "green",
             "properties": [],
             "eventCards": [],
-            "position": 0,
+            "position": 1,
             "isInJail": false,
             "turnsToWait": 0,
             "isBankrupt": false

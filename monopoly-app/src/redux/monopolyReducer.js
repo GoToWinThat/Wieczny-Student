@@ -70,7 +70,7 @@ export default function MonopolyReducer(state = initialState, action) {
 
         // get all the fields (property, event and corner ones) and set them in "fields" list
         case ActionTypes.SET_FIELDS:
-            return { ...state, monopolyFields: [...action.payload.monopolyFields] }
+            return { ...state, monopolyFields: [...action.payload.monopolyFields].sort((a,b) => a.fieldID - b.fieldID) }
 
         // get all gain cards and set them in "gainCards" list
         case ActionTypes.SET_GAINCARDS:
