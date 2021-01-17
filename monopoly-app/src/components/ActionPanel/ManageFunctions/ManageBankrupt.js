@@ -81,7 +81,6 @@ const sellFields = (dispatch,activePlayer,fields,cash) =>
 
 const mortgageFields = (dispatch,activePlayer,fields,cash) => 
 {
-    debugger;
     activePlayer.properties.forEach(field => {
 
         if(cash < 0) {
