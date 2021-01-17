@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Monopoly.Core;
 using Monopoly.WebApi.Filters;
+using Monopoly.WebApi.Hubs;
 using Newtonsoft.Json.Converters;
 
 namespace Monopoly.WebApi
@@ -50,11 +51,15 @@ namespace Monopoly.WebApi
                 options.AddPolicy(name: AllowPolicy,
                     builder =>
                     {
-                        builder.WithOrigins("*")
+                        builder
                         .AllowAnyHeader()
-                        .AllowAnyMethod();
-                    });
+                        .AllowAnyMethod()
+                        .AllowCredentials()
+                        .SetIsOriginAllowed(_ => true);
             });
+            });
+
+            services.AddSignalR();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -78,7 +83,10 @@ namespace Monopoly.WebApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<MonopolyHub>("/monopolyhub");
             });
+
+            
 
         }
     }

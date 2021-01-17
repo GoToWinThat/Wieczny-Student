@@ -8,12 +8,11 @@ namespace Domain.Entities
 {
     public class PropertyField : MonopolyField, IHasDomainEvent
     {
-        public PropertyField() { Type = MonopolyFieldType.Property; }
-        public PropertyColor Color { get; set; }
+        public PropertyField() { Type = MonopolyFieldType.property; }
         public int Price { get; set; }
-        public int Mortage { get; set; }
-        public int EstatePrice { get; set; }
         public List<int> RentCosts { get; set; }
+        public int EstatePrice { get; set; }
+        public int Mortage { get; set; }
         public int PropertyFieldInfoRef { get; set; }
         public PropertyFieldInfo PropertyFieldInfo { get; set; }
 

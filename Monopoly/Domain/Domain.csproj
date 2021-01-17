@@ -5,8 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Exceptions\" />
-    <Folder Include="ValueObjects\" />
+    <Compile Remove="Exceptions\**" />
+    <Compile Remove="ValueObjects\**" />
+    <EmbeddedResource Remove="Exceptions\**" />
+    <EmbeddedResource Remove="ValueObjects\**" />
+    <None Remove="Exceptions\**" />
+    <None Remove="ValueObjects\**" />
   </ItemGroup>
 
 </Project>

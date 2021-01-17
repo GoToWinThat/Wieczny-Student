@@ -7,5 +7,6 @@ namespace Domain.Entities
         public int Id { get; set; }
         public MonopolyFieldType Type { get; init;  }
         public string Name { get; set; }
+        public MonopolyColor Color { get; set; }
     }
 }

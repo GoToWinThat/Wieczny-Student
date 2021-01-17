@@ -13,5 +13,8 @@ namespace Monopoly.Core.UseCases.MonopolyFields.Queries.GetFields.Dto
 
         [JsonProperty(Order = int.MinValue)]
         public string Name { get; set; }
+
+        [JsonProperty(Order = int.MinValue)]
+        public MonopolyColor Color { get; set; }
     }
 }

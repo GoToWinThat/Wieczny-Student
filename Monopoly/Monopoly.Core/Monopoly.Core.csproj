@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="UseCases\MonopolyFields\Commands\**" />
+    <EmbeddedResource Remove="UseCases\MonopolyFields\Commands\**" />
+    <None Remove="UseCases\MonopolyFields\Commands\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="FluentValidation" Version="9.3.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="9.3.0" />
@@ -18,7 +24,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCases\MonopolyFields\Commands\" />
+    <Folder Include="UseCases\MonopolyLogs\Commands\AddLog\" />
+    <Folder Include="UseCases\MonopolyLogs\Queries\GetLogs\" />
+    <Folder Include="UseCases\MonopolyPlayers\Commands\LogPlayer\" />
+    <Folder Include="UseCases\MonopolyPlayers\Commands\UpdatePlayerUpdateBankrupt\" />
+    <Folder Include="UseCases\MonopolyPlayers\Commands\UpdatePlayerUpdateWaitingTurns\" />
+    <Folder Include="UseCases\MonopolyPlayers\Commands\UpdatePlayerDeleteEventCard\" />
+    <Folder Include="UseCases\MonopolyPlayers\Commands\UpdatePlayerNewEventCard\" />
+    <Folder Include="UseCases\MonopolyPlayers\Commands\UpdatePlayerMortgageProperty\" />
+    <Folder Include="UseCases\MonopolyPlayers\Commands\UpdatePlayerExpandProperty\" />
+    <Folder Include="UseCases\MonopolyPlayers\Commands\UpdatePlayerDeleteProperty\" />
+    <Folder Include="UseCases\MonopolyPlayers\Commands\UpdatePlayerNewProperty\" />
+    <Folder Include="UseCases\MonopolyPlayers\Commands\UpdatePlayerCash\" />
+    <Folder Include="UseCases\MonopolyPlayers\Commands\UpdatePlayerPosition\" />
   </ItemGroup>
 
 </Project>
