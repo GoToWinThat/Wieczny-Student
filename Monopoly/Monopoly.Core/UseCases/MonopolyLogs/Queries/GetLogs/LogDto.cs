@@ -13,9 +13,9 @@ namespace Monopoly.Core.UseCases.MonopolyLogs.Queries.GetLogs
         public int Id { get; set; }
         public string LogInfo { get; set; }
 
-        public  static void Mapping(MappingProfile profile)
+        public static void Mapping(MappingProfile profile)
         {
-            profile.CreateMap<LogDto, Log>()
+            profile.CreateMap<Log, LogDto>()
                 .ForMember(d => d.Id, s => s.MapFrom(d => d.Id))
                 .ForMember(d => d.LogInfo, s => s.MapFrom(d => d.LogInfo));
         }

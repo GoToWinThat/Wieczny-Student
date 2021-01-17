@@ -9,6 +9,7 @@ namespace Domain.Entities.Cards
     public class Card
     {
         public int Id { get; set; }
+        public int CardIdNumber { get; set; }
         public string Type { get; set; }
         public string CardName { get; set; }
         public string Description { get; set; }

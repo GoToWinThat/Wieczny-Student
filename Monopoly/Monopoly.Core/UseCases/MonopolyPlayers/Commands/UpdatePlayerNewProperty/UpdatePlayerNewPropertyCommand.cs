@@ -38,6 +38,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerNewPropert
             }
 
             entityFields.Player = entityPlayer;
+            entityFields.PlayerId = entityPlayer.Id;
 
             await _context.SaveChangesAsync(cancellationToken);
             return Unit.Value;

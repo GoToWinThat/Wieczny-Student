@@ -12,21 +12,21 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerUpdateWaitingTurns
 {
-    public class UpdatePlayerWaitingsTurnsCommand : IRequest
+    public class UpdatePlayerWaitingTurnsCommand : IRequest
     {
         public string Name { get; set; }
         public int DeltaTurns { get; set; }
         public bool IsInJail { get; set; }
     }
-    public class UpdatePlayerWaitingsTurnsCommandHandler : IRequestHandler<UpdatePlayerWaitingsTurnsCommand>
+    public class UpdatePlayerWaitingTurnsCommandHandler : IRequestHandler<UpdatePlayerWaitingTurnsCommand>
     {
         private IApplicationDbContext _context;
 
-        public UpdatePlayerWaitingsTurnsCommandHandler(IApplicationDbContext context)
+        public UpdatePlayerWaitingTurnsCommandHandler(IApplicationDbContext context)
         {
             _context = context;
         }
-        public async Task<Unit> Handle(UpdatePlayerWaitingsTurnsCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(UpdatePlayerWaitingTurnsCommand request, CancellationToken cancellationToken)
         {
             var entity = await _context.Players.Where(p => p.Name == request.Name).FirstAsync();
 

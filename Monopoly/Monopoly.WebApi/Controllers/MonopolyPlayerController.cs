@@ -62,14 +62,14 @@ namespace Monopoly.WebApi.Controllers
             await Mediator.Send(command);
             return NoContent();
         }
-        [HttpDelete]
+        [HttpPut]
         [Route("UpdatePlayerExpandProperty")]
         public async Task<ActionResult> UpdatePlayerExpandProperty(UpdatePlayerExpandPropertyCommand command)
         {
             await Mediator.Send(command);
             return NoContent();
         }
-        [HttpDelete]
+        [HttpPut]
         [Route("UpdatePlayerMortgageProperty")]
         public async Task<ActionResult> UpdatePlayerMortgageProperty(UpdatePlayerMortgagePropertyCommand command)
         {
@@ -79,21 +79,21 @@ namespace Monopoly.WebApi.Controllers
 
         [HttpPut]
         [Route("UpdatePlayerAddEventCard")]
-        public async Task<ActionResult> UpdatePlayerBankrupt(UpdatePlayerAddEventCardCommand command)
+        public async Task<ActionResult> UpdatePlayerAddEventCard(UpdatePlayerAddEventCardCommand command)
         {
             await Mediator.Send(command);
             return NoContent();
         }
         [HttpDelete]
         [Route("UpdatePlayerDeleteEventCard")]
-        public async Task<ActionResult> UpdatePlayeraDeleteEventCard(UpdatePlayerDeleteEventCardCommand command)
+        public async Task<ActionResult> UpdatePlayerDeleteEventCard(UpdatePlayerDeleteEventCardCommand command)
         {
             await Mediator.Send(command);
             return NoContent();
         }
         [HttpPut]
         [Route("UpdatePlayerWaitingsTurns")]
-        public async Task<ActionResult> UpdatePlayerBankrupt(UpdatePlayerWaitingsTurnsCommand command)
+        public async Task<ActionResult> UpdatePlayerWaitingTurns(UpdatePlayerWaitingTurnsCommand command)
         {
             await Mediator.Send(command);
             return NoContent();

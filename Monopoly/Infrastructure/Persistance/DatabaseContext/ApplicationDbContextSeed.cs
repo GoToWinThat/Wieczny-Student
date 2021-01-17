@@ -484,60 +484,70 @@ namespace Infrastructure.Persistance.DatabaseContext
                     new GainCard 
                     { 
                         Type="Gain", 
+                        CardIdNumber=0,
                         CardName= "Pierwszeństwo w dziekanacie",
                         Description= "Masz przy sobie bardzo ważne dokumenty. Przy użyciu tej karty możesz od razu wyjść z dziekanatu nie tracąc żadnej kolejki."
                     },
                     new GainCard
                     {
                         Type = "Gain",
+                        CardIdNumber = 1,
                         CardName = "Oświecenie na konsultacjach",
                         Description = "Pokazujesz się z dobrej strony już na początku konsultacji. Przy użyciu tej karty możesz od razu z nich wyjść, nie tracąc żadnej kolejki."
                     },
                     new GainCard
                     {
                         Type = "Gain",
+                        CardIdNumber =2,
                         CardName = "Wygrana w konkursie",
                         Description = "Reprezentujesz uczelnię na konkursie i wygrywasz go. Prowadzący postanowili zaliczyć Ci cały semestr. Otrzymujesz 50 ECTS."
                     },
                     new GainCard
                     {
                         Type = "Gain",
+                        CardIdNumber =3,
                         CardName = "ECTSobranie",
                         Description = "Grozi Ci warunek, więc jak zwykle wybierasz się na poszukiwanie ECTSów w lesie. Udaje Ci się znaleźć aż 30 ECTS!"
                     },
                     new GainCard
                     {
                         Type = "Gain",
+                        CardIdNumber =4,
                         CardName = "Miss RMS / Mister RMS",
                         Description = "Zyskałaś tytuł najpiękniejszej studentki / zyskałeś tytuł najprzystojniejszego studenta! Otrzymujesz w nagrodę 10 ECTS."
                     },
                     new GainCard
                     {
                         Type = "Gain",
+                        CardIdNumber =5,
                         CardName = "Urodziny",
                         Description = "Masz urodziny i pozostali gracze życzą Ci zdania studiów. Dostajesz od każdego z nich 5 ECTS w prezencie."
                     },
                     new GainCard
                     {
                         Type = "Gain",
+                        CardIdNumber =6,
                         CardName = "Wyróżnienie przez dziekana",
                         Description = "Za wyróżnianie się w nauce dziekan uznał, że zasługujesz na 100 ECTS - właśnie tyle wpływa na Twoje konto."
                     },
                     new GainCard
                     {
                         Type = "Gain",
+                        CardIdNumber =7,
                         CardName = "Szczęśliwy traf",
                         Description = "Samorząd Wydziału zorganizował grę losową, w której do wygrania było 20 ECTS. Udało Ci się je wygrać!"
                     },
                     new GainCard
                     {
                         Type = "Gain",
+                        CardIdNumber =8,
                         CardName = "Znajomości na stołówce",
                         Description = "Znajomy pracujący na stołówce studenckiej obiecał Ci, że obsłuży Cię bez kolejki, więc nie musisz tam czekać."
                     },
                     new GainCard
                     {
                         Type = "Gain",
+                        CardIdNumber =9,
                         CardName = "O, pinć ECTSów!",
                         Description = "Idziesz sobie po korytarzu aż nagle zauważasz, że na podłodze leży 5 ECTSów. Nikogo w pobliżu nie ma, więc bierzesz je dla siebie."
                     });
@@ -549,60 +559,70 @@ namespace Infrastructure.Persistance.DatabaseContext
                     new LossCard
                     {
                         Type="Loss",
-                        CardName= "Zapomniany klucz",
+                        CardIdNumber =10,
+                        CardName = "Zapomniany klucz",
                         Description= "Prowadzący zapomniał zabrać klucza z portierni. Poprosił Cię o zejście na dół i przyniesienie go. Wracasz na pole PORTIERNIA."
                     },
                     new LossCard
                     {
                         Type = "Loss",
+                        CardIdNumber =11,
                         CardName = "Zapłata rachunków",
                         Description = "Musisz zapłacić za prąd, internet i licencje programów. Za każde posiadane pole płacisz 10 ECTS."
                     },
                     new LossCard
                     {
                         Type = "Loss",
+                        CardIdNumber =12,
                         CardName = "Warunek",
                         Description = "W tym semestrze nie szło Ci zbyt dobrze w nauce i musisz zapłacić za zaliczenie warunkowe. Płacisz 30 ECTS."
                     },
                     new LossCard
                     {
                         Type = "Loss",
+                        CardIdNumber =13,
                         CardName = "Formalności",
                         Description = "Zaszła potrzeba wyjaśnienia przez Ciebie pewnej sytuacji. Niezwłocznie się udajesz się na pole DZIEKANAT."
                     },
                     new LossCard
                     {
                         Type = "Loss",
+                        CardIdNumber =14,
                         CardName = "Douczanie się",
                         Description = "Niestety materiał na wykładzie okazał się być zbyt trudny i musisz udać się na pole KONSULTACJE."
                     },
                     new LossCard
                     {
                         Type = "Loss",
+                        CardIdNumber =15,
                         CardName = "Głód",
                         Description = "Dopadł Cię głód. Niezwłocznie udajesz się na pole STOŁÓWKA STUDENCKA."
                     },
                     new LossCard
                     {
                         Type = "Loss",
+                        CardIdNumber =16,
                         CardName = "Spłata pożyczki",
                         Description = "W poprzednim semestrze znajomy pomógł Ci, pożyczając pewną sumę ECTSów. Teraz musisz mu wszystko oddać. Płacisz 20 ECTS."
                     },
                     new LossCard
                     {
                         Type = "Loss",
+                        CardIdNumber =17,
                         CardName = "Gdybym był bogaty",
                         Description = "Uznałeś / Uznałaś, że masz za dużo ECTSów i oddajesz każdemu nietracącemu kolejki graczowi kwotę 5 ECTS."
                     },
                     new LossCard
                     {
                         Type = "Loss",
+                        CardIdNumber =18,
                         CardName = "Dziura w kieszeni",
                         Description = "Niedawno zarobione pieniądze wkładasz do kieszeni. Niestety ta okazuje się posiadać dziurę w sobie. Tracisz 5 ECTS."
                     },
                     new LossCard
                     {
                         Type = "Loss",
+                        CardIdNumber =19,
                         CardName = "Spóźnienie",
                         Description = "Zajęcia trwały zbyt długo i odjechał Ci autobus. Tracisz kolejkę."                   
                     }
@@ -610,6 +630,7 @@ namespace Infrastructure.Persistance.DatabaseContext
             }
             if(!context.Players.Any())
             {
+                //imie dla testow
                 context.Players.AddRange(
                     new Player
                     {
@@ -617,9 +638,10 @@ namespace Infrastructure.Persistance.DatabaseContext
                         Signature="0000",
                         Color=MonopolyColor.blue,
                         Position=0,
+                        Name="Artur",
                         IsInJail=false,
                         TurnsToWait=0,
-                        IsBrankrupt=false,
+                        IsBankrupt=false,
                         IsLogged=false,
                     },
                     new Player
@@ -628,9 +650,10 @@ namespace Infrastructure.Persistance.DatabaseContext
                         Signature = "1111",
                         Color = MonopolyColor.red,
                         Position = 0,
+                        Name = "Artur",
                         IsInJail = false,
                         TurnsToWait = 0,
-                        IsBrankrupt = false,
+                        IsBankrupt = false,
                         IsLogged = false
                     },
                     new Player
@@ -639,9 +662,10 @@ namespace Infrastructure.Persistance.DatabaseContext
                         Signature = "2222",
                         Color = MonopolyColor.orange,
                         Position = 0,
+                        Name = "Artur",
                         IsInJail = false,
                         TurnsToWait = 0,
-                        IsBrankrupt = false,
+                        IsBankrupt = false,
                         IsLogged = false
                     },
                     new Player
@@ -650,26 +674,47 @@ namespace Infrastructure.Persistance.DatabaseContext
                         Signature = "3333",
                         Color = MonopolyColor.green,
                         Position = 0,
+                        Name = "Artur",
                         IsInJail = false,
                         TurnsToWait = 0,
-                        IsBrankrupt = false,
+                        IsBankrupt = false,
                         IsLogged = false
                     }
                     );
             }
-            context.GameInfo.Add(new GameInfo { ActivePlayerIndex = 1 }); ;
-            context.Dices.Add(new Dices { DiceValues = new List<int> { 1, 1 } });
+
+            if (!context.GameInfo.Any())
+            {
+                context.GameInfo.Add(new GameInfo { ActivePlayerIndex = 0, GameStarted = false }); ;
+            }
+            if (!context.Dices.Any())
+            {
+                context.Dices.Add(new Dices { DiceValues = new List<int> { 1, 1 } });
+            }
+            if(!context.Logs.Any())
+            {
+                context.Logs.Add(new Log { LogInfo = "Zaczynamy gre" });
+            }
+
+
             await context.SaveChangesAsync();
             if(context.PropertyFieldInfos.Any())
             {
-
-                 for(int k=1;k<= context.PropertyFieldInfos.Count();k++)
-                 {
-                     var curr = context.PropertyFieldInfos.SingleOrDefault(i=>i.Id==k);
-                     curr.PropertyFieldId = curr.PropertyField.Id;
-                 }
+                if(context.GameInfo.FirstOrDefault().GameStarted==false)
+                {
+                    for (int k = 1; k <= context.PropertyFieldInfos.Count(); k++)
+                    {
+                        var curr = context.PropertyFieldInfos.SingleOrDefault(p => p.Id == k);
+                        curr.PropertyFieldId = curr.PropertyField.Id;
+                        /*curr.Player = context.Players.FirstOrDefault();
+                        curr.PlayerId= context.Players.FirstOrDefault().Id;*/
+                    }
+                }
             }
-
+            if(context.GameInfo.Any())
+            {
+                context.GameInfo.FirstOrDefault().GameStarted = true;
+            }
 
             await context.SaveChangesAsync();
             //Do testowania
@@ -679,6 +724,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                 context.Cards.OrderBy(c=>c.Id).Last().Player = context.Players.First();
             }
             //Do testowania
+
+
             await context.SaveChangesAsync();
         }
     }

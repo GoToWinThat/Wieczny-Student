@@ -73,6 +73,7 @@ namespace Monopoly.WebApi.Controllers
         [Route("Logs")]
         public async Task<ActionResult<LogsVm>> GetLogs()
         {
+            
             return await Mediator.Send(new GetLogsQuery());
         }
         [HttpPost]

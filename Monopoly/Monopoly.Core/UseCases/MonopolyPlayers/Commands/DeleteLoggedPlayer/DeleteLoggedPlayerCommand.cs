@@ -39,10 +39,11 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.DeleteLoggedPlayer
                 Cash = 1000,
                 Signature = "0000",
                 Color = MonopolyColor.blue,
+                Name="",
                 Position = 0,
                 IsInJail = false,
                 TurnsToWait = 0,
-                IsBrankrupt = false,
+                IsBankrupt = false,
                 IsLogged = false,
             };
 

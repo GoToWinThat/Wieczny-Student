@@ -10,5 +10,6 @@ namespace Domain.Entities.Game
     {
         public int Id { get; set; }
         public int ActivePlayerIndex { get; set; }
+        public bool GameStarted { get; set; }
     }
 }

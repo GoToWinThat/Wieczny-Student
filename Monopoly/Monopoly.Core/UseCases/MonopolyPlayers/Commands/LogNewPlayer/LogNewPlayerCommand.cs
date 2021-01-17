@@ -15,9 +15,9 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.LogNewPlayer
 {
     public class LogNewPlayerCommand : IRequest
     {
-        public string Name { get; set; }
-        public string Signature { get; set; }
-        public MonopolyColor Color { get; set; }
+        public string Name { get; set; }//artur
+        public string Signature { get; set; }//1
+        public MonopolyColor Color { get; set; }//red
     }
     public class LogNewPlayerCommandHandler : IRequestHandler<LogNewPlayerCommand>
     {
@@ -39,6 +39,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.LogNewPlayer
             entity.Name = request.Name;
             entity.Signature = request.Signature;
             entity.Color = request.Color;
+            entity.IsLogged = true;
 
             await _context.SaveChangesAsync(cancellationToken);
             return Unit.Value;

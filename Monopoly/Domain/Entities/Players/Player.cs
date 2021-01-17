@@ -17,7 +17,7 @@ namespace Domain.Entities
         public int Position { get; set; }
         public bool IsInJail { get; set; }
         public int TurnsToWait { get; set; }
-        public bool IsBrankrupt { get; set; }
+        public bool IsBankrupt { get; set; }
         public bool IsLogged { get; set; }
     }
 }

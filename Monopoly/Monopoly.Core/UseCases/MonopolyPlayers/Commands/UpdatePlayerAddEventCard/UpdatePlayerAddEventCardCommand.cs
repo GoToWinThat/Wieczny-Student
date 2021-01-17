@@ -16,7 +16,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerAddEventCa
     public class UpdatePlayerAddEventCardCommand : IRequest
     {
         public string PlayerName { get; set; }
-        public string CardName { get; set; }
+        public int CardId { get; set; }
     }
     public class UpdatePlayerAddEventCardCommandHandler : IRequestHandler<UpdatePlayerAddEventCardCommand>
     {
@@ -29,14 +29,14 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerAddEventCa
         public async Task<Unit> Handle(UpdatePlayerAddEventCardCommand request, CancellationToken cancellationToken)
         {
             var entityPlayer = await _context.Players.Where(p => p.Name == request.PlayerName).FirstAsync();
-            var entityCard = await _context.Cards.Where(p => p.CardName == request.CardName).FirstAsync();
+            var entityCard = await _context.Cards.Where(p => p.CardIdNumber == request.CardId).FirstAsync();
             if (entityPlayer == null)
             {
                 throw new NotFoundException(nameof(Player), request.PlayerName);
             }
             if (entityCard == null)
             {
-                throw new NotFoundException(nameof(Card), request.CardName);
+                throw new NotFoundException(nameof(Card), request.CardId);
             }
 
             entityPlayer.Cards.Add(entityCard);
