@@ -17,7 +17,8 @@ export const throwDicesEvent = (data) =>
     const sayItWell = (number) => (number < 5) ? `${number} oczka` : `${number} oczek`;
 
     // Updating dices:
-    let newDiceState = [Math.floor(Math.random() * 6) + 1, Math.floor(Math.random() * 6) + 1];
+    //Math.floor(Math.random() * 6) + 1, Math.floor(Math.random() * 6) + 1
+    let newDiceState = [4,4];
     UpdateDices(dispatch, newDiceState);
     setThrownDices(true);
 
@@ -188,7 +189,8 @@ function dealWithNewField(newField, numberOnDices, data)
                     return;
 
                 case "Karta straty":
-                    card = lossCards[Math.floor(Math.random() * lossCards.length)];
+                    //Math.floor(Math.random() * lossCards.length)
+                    card = lossCards[0];
                     AddNewLog(dispatch, `${activePlayer.name} otrzymuje kartę`
                     + ` ${card.cardName.toUpperCase()}.`);
                     dealWithEventCard(data, card, numberOnDices);
@@ -297,12 +299,14 @@ function dealWithEventCard(data, card, numberOnDices)
 
         // LOSS CARDS:
         case "Zapomniany klucz":
-            newPosition = fields.find(field => field.name === "Portiernia").fieldID;
-            currentPosition = (activePlayer.position + numberOnDices) % fields.length;
-            UpdatePlayerPosition(dispatch, activePlayerIndex, newPosition - currentPosition);
-            anotherNewField = fields[newPosition];
-            AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
-            dealWithNewField(anotherNewField, 0, data);
+            setTimeout(() => {
+                newPosition = fields.find(field => field.name === "Portiernia").fieldID;
+                currentPosition = (activePlayer.position + numberOnDices) % fields.length;
+                UpdatePlayerPosition(dispatch, activePlayerIndex, newPosition - currentPosition);
+                anotherNewField = fields[newPosition];
+                AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
+                dealWithNewField(anotherNewField, 0, data);
+            }, 1000)
             return;
 
         case "Zapłata rachunków":
@@ -315,30 +319,36 @@ function dealWithEventCard(data, card, numberOnDices)
             return;
 
         case "Formalności":
-            newPosition = fields.find(field => field.name === "Dziekanat").fieldID;
-            currentPosition = (activePlayer.position + numberOnDices) % fields.length;
-            UpdatePlayerPosition(dispatch, activePlayerIndex, newPosition - currentPosition);
-            anotherNewField = fields[newPosition];
-            AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
-            dealWithNewField(anotherNewField, 0, data);
+            setTimeout(() => {
+                newPosition = fields.find(field => field.name === "Dziekanat").fieldID;
+                currentPosition = (activePlayer.position + numberOnDices) % fields.length;
+                UpdatePlayerPosition(dispatch, activePlayerIndex, newPosition - currentPosition);
+                anotherNewField = fields[newPosition];
+                AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
+                dealWithNewField(anotherNewField, 0, data); 
+            }, 1000)
             return;
 
         case "Douczanie się":
-            newPosition = fields.find(field => field.name === "Konsultacje").fieldID;
-            currentPosition = (activePlayer.position + numberOnDices) % fields.length;
-            UpdatePlayerPosition(dispatch, activePlayerIndex, newPosition - currentPosition);
-            anotherNewField = fields[newPosition];
-            AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
-            dealWithNewField(anotherNewField, 0, data);
+            setTimeout(() => {
+                newPosition = fields.find(field => field.name === "Konsultacje").fieldID;
+                currentPosition = (activePlayer.position + numberOnDices) % fields.length;
+                UpdatePlayerPosition(dispatch, activePlayerIndex, newPosition - currentPosition);
+                anotherNewField = fields[newPosition];
+                AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
+                dealWithNewField(anotherNewField, 0, data);
+            }, 1000)
             return;
 
         case "Głód":
-            newPosition = fields.find(field => field.name === "Stołówka studencka").fieldID;
-            currentPosition = (activePlayer.position + numberOnDices) % fields.length;
-            UpdatePlayerPosition(dispatch, activePlayerIndex, newPosition - currentPosition);
-            anotherNewField = fields[newPosition];
-            AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
-            dealWithNewField(anotherNewField, 0, data);
+            setTimeout(() => {
+                newPosition = fields.find(field => field.name === "Stołówka studencka").fieldID;
+                currentPosition = (activePlayer.position + numberOnDices) % fields.length;
+                UpdatePlayerPosition(dispatch, activePlayerIndex, newPosition - currentPosition);
+                anotherNewField = fields[newPosition];
+                AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
+                dealWithNewField(anotherNewField, 0, data);
+            }, 1000)
             return;
 
         case "Spłata pożyczki":
