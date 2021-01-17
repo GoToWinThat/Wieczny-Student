@@ -30,8 +30,8 @@ export const Board = () => {
     }
 
     // Eliminate problem with empty lists (it can be too early to render board):
-    if (fields === null || fields.length === 0 || players === null 
-        || gainCards === null || lossCards === null || activePlayerIndex === null) 
+    if (fields.length === 0 || players.length === 0 || gainCards.length === 0 
+        || lossCards.length === 0 || activePlayerIndex === null) 
         return null;
 
     return (
