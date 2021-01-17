@@ -17,13 +17,11 @@ namespace Monopoly.Core.UseCases.MonopolyFields.Queries.GetFields.Dto
         [JsonProperty(Order = -5)]
         public int Mortage { get; set; }
 
-
-
         public static void Mapping(MappingProfile profile)
         {
             profile.CreateMap<PropertyField, PropertyFieldDto>()
                 .ForMember(d => d.Type, opt => opt.MapFrom(s => s.Type))
-                .ForMember(d => d.FieldID, opt => opt.MapFrom(s => s.Id))
+                 .ForMember(d => d.FieldID, opt => opt.MapFrom(s => s.MonopolyID))
                 .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name))
                 .ForMember(d => d.Color, opt => opt.MapFrom(s => s.Color))
                 .ForMember(d => d.Price, opt => opt.MapFrom(s => s.Price))

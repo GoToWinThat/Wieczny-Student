@@ -12,6 +12,11 @@ namespace Infrastructure.Persistance.Configuration
                 .HasMany(o => o.PropertyFieldInfos)
                 .WithOne(p => p.Player)
                 .HasForeignKey(p => p.PlayerId);
+            builder
+                .HasMany(o => o.Cards)
+                .WithOne(p => p.Player)
+                .HasForeignKey(p => p.PlayerId);
+
             builder.Property(p => p.Signature)
                 .HasMaxLength(40)
                 .IsRequired();

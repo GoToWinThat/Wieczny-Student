@@ -12,5 +12,7 @@ namespace Domain.Entities.Cards
         public string Type { get; set; }
         public string CardName { get; set; }
         public string Description { get; set; }
+        public int? PlayerId { get; set; }
+        public Player Player { get; set; }
     }
 }

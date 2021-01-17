@@ -16,7 +16,7 @@ namespace Infrastructure.Persistance.DatabaseContext
             {
                 context.MonopolyFields.AddRange(
 
-                        new CornerField { Name = "Portiernia", Color = MonopolyColor.seagreen },
+                        new CornerField { Name = "Portiernia", Color = MonopolyColor.seagreen, MonopolyID=0},
 
                         new PropertyField
                         {
@@ -27,19 +27,21 @@ namespace Infrastructure.Persistance.DatabaseContext
                             EstatePrice = 10,
                             Mortage = 6,
                             Purschased = false,
+                            MonopolyID = 1,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
                             }
                         },
 
-                        new EventField { Name = "Karta zysku", Color = MonopolyColor.white },
+                        new EventField { Name = "Karta zysku", Color = MonopolyColor.white,MonopolyID =2  },
 
                         new PropertyField
                         {
                             Name = "Laboratorium nr 309 (MS)",
                             Color = MonopolyColor.lightpink,
                             Price = 15,
+                            MonopolyID = 3,
                             RentCosts = new List<int> { 1, 4, 12, 36, 90 },
                             EstatePrice = 10,
                             Mortage = 6,
@@ -56,6 +58,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                             Type= MonopolyFieldType.company,
                             Color = MonopolyColor.lightpink,
                             Price = 40,
+                            MonopolyID = 4,
                             RentCosts = new List<int> { 0 },
                             EstatePrice = 0,
                             Mortage = 20,
@@ -72,6 +75,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                             Type = MonopolyFieldType.company,
                             Color = MonopolyColor.yellow,
                             Price = 50,
+                            MonopolyID = 5,
                             RentCosts = new List<int> { 0 },
                             EstatePrice = 0,
                             Mortage = 20,
@@ -87,6 +91,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                             Name = "Laboratorium nr 401 (MS)",
                             Color = MonopolyColor.lightblue,
                             Price = 20,
+                            MonopolyID = 6,
                             RentCosts = new List<int> { 3, 12, 35, 90, 150 },
                             EstatePrice = 20,
                             Mortage = 15,
@@ -102,6 +107,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                             Name = "Sala wykładowa nr 402 (MS)",
                             Color = MonopolyColor.lightblue,
                             Price = 35,
+                            MonopolyID = 7,
                             RentCosts = new List<int> { 3, 16, 44, 160, 200 },
                             EstatePrice = 20,
                             Mortage = 20,
@@ -112,13 +118,14 @@ namespace Infrastructure.Persistance.DatabaseContext
                             }
                         },
 
-                        new EventField { Name = "Karta starty", Color = MonopolyColor.white },
+                        new EventField { Name = "Karta straty", Color = MonopolyColor.white, MonopolyID = 8 },
 
                         new PropertyField
                         {
                             Name = "Laboratorium nr 406 (MS)",
                             Color = MonopolyColor.lightgreen,
                             Price = 22,
+                            MonopolyID = 9,
                             RentCosts = new List<int> { 1, 6, 18, 54, 90 },
                             EstatePrice = 10,
                             Mortage = 10,
@@ -129,13 +136,14 @@ namespace Infrastructure.Persistance.DatabaseContext
                             }
                         },
 
-                        new CornerField { Name = "Konsultacje", Color = MonopolyColor.seagreen },
+                        new CornerField { Name = "Konsultacje", Color = MonopolyColor.seagreen, MonopolyID = 10 },
 
                         new PropertyField
                         {
                             Name = "Sala wykładowa nr 408 (MS)",
                             Color = MonopolyColor.lightgreen,
                             Price = 30,
+                            MonopolyID =11,
                             RentCosts = new List<int> { 2, 8, 20, 60, 100 },
                             EstatePrice = 10,
                             Mortage = 12,
@@ -151,6 +159,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                             Name = "Laboratorium nr 409 (MS)",
                             Color = MonopolyColor.lightgreen,
                             Price = 35,
+                            MonopolyID =12,
                             RentCosts = new List<int> { 3, 10, 25, 70, 125 },
                             EstatePrice = 20,
                             Mortage = 15,
@@ -161,13 +170,14 @@ namespace Infrastructure.Persistance.DatabaseContext
                             }
                         },
 
-                        new EventField { Name = "Karta zysku", Color = MonopolyColor.white },
+                        new EventField { Name = "Karta zysku", Color = MonopolyColor.white, MonopolyID = 13 },
 
                         new PropertyField
                         {
                             Name = "Laboratorium nr 412 (MS)",
                             Color = MonopolyColor.lightgray,
                             Price = 35,
+                            MonopolyID =14,
                             RentCosts = new List<int> { 1, 12, 22, 100, 120 },
                             EstatePrice = 20,
                             Mortage = 14,
@@ -184,6 +194,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                             Type = MonopolyFieldType.company,
                             Color = MonopolyColor.yellow,
                             Price = 50,
+                            MonopolyID =15,
                             RentCosts = new List<int> { 0 },
                             EstatePrice = 0,
                             Mortage = 20,
@@ -193,13 +204,14 @@ namespace Infrastructure.Persistance.DatabaseContext
                                 EstateLevel = 0,
                             }
                         },
-                        new EventField { Name = "Karta straty", Color = MonopolyColor.white },
+                        new EventField { Name = "Karta straty", Color = MonopolyColor.white, MonopolyID = 16 },
 
                         new PropertyField
                         {
                             Name = "Laboratorium nr 415 (MS)",
                             Color = MonopolyColor.lightgray,
                             Price = 39,
+                            MonopolyID =17,
                             RentCosts = new List<int> { 2, 12, 22, 100, 130 },
                             EstatePrice = 20,
                             Mortage = 14,
@@ -214,6 +226,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                             Name = "Laboratorium nr 416 (MS)",
                             Color = MonopolyColor.lightgray,
                             Price = 42,
+                            MonopolyID =18,
                             RentCosts = new List<int> { 3, 15, 25, 100, 150 },
                             EstatePrice = 20,
                             Mortage = 14,
@@ -229,6 +242,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                             Name = "Sala nr 507 (MS)",
                             Color = MonopolyColor.brown,
                             Price = 42,
+                            MonopolyID =19,
                             RentCosts = new List<int> { 3, 15, 45, 110, 180 },
                             EstatePrice = 20,
                             Mortage = 22,
@@ -238,13 +252,14 @@ namespace Infrastructure.Persistance.DatabaseContext
                                 EstateLevel = 0,
                             }
                         },
-                        new CornerField { Name = "Stołówka studencka", Color = MonopolyColor.seagreen },
+                        new CornerField { Name = "Stołówka studencka", Color = MonopolyColor.seagreen, MonopolyID =20 },
                         
                         new PropertyField
                         {
                             Name = "Laboratorium nr 510 (MS)",
                             Color = MonopolyColor.brown,
                             Price = 42,
+                            MonopolyID =21,
                             RentCosts = new List<int> { 3, 15, 45, 110, 180 },
                             EstatePrice = 20,
                             Mortage = 22,
@@ -254,14 +269,15 @@ namespace Infrastructure.Persistance.DatabaseContext
                                 EstateLevel = 0,
                             }
                         },
-                        new EventField { Name = "Karta zysku", Color = MonopolyColor.white },
-                        new EventField { Name = "Karta straty", Color = MonopolyColor.white },
+                        new EventField { Name = "Karta zysku", Color = MonopolyColor.white, MonopolyID = 22},
+                        new EventField { Name = "Karta straty", Color = MonopolyColor.white, MonopolyID = 23 },
                         
                         new PropertyField
                         {
                             Name = "Sala nr 310 (LB)",
                             Color = MonopolyColor.darkorchid,
                             Price = 45,
+                            MonopolyID =24,
                             RentCosts = new List<int> { 3, 18, 50, 140, 210 },
                             EstatePrice = 20,
                             Mortage = 25,
@@ -278,6 +294,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                             Type = MonopolyFieldType.company,
                             Color = MonopolyColor.yellow,
                             Price = 50,
+                            MonopolyID =25,
                             RentCosts = new List<int> { 0 },
                             EstatePrice = 0,
                             Mortage = 20,
@@ -293,6 +310,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                             Name = "Sala nr 315 (LB)",
                             Color = MonopolyColor.darkorchid,
                             Price = 50,
+                            MonopolyID =26,
                             RentCosts = new List<int> { 3, 20, 60, 150, 230 },
                             EstatePrice = 20,
                             Mortage = 25,
@@ -307,6 +325,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                             Name = "Sala nr 425 (LB)",
                             Color = MonopolyColor.indianred,
                             Price = 50,
+                            MonopolyID =27,
                             RentCosts = new List<int> { 3, 14, 40, 110, 150 },
                             EstatePrice = 20,
                             Mortage = 18,
@@ -321,6 +340,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                             Name = "Sala nr 426 (LB)",
                             Color = MonopolyColor.indianred,
                             Price = 50,
+                            MonopolyID =28,
                             RentCosts = new List<int> { 3, 14, 40, 110, 150 },
                             EstatePrice = 20,
                             Mortage = 18,
@@ -335,6 +355,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                             Name = "Sala nr 427 (LB)",
                             Color = MonopolyColor.indianred,
                             Price = 60,
+                            MonopolyID =29,
                             RentCosts = new List<int> { 3, 15, 45, 120, 170 },
                             EstatePrice = 20,
                             Mortage = 30,
@@ -345,13 +366,14 @@ namespace Infrastructure.Persistance.DatabaseContext
                             }
                         },
 
-                        new CornerField { Name = "Dziekanat", Color = MonopolyColor.seagreen },
+                        new CornerField { Name = "Dziekanat", Color = MonopolyColor.seagreen, MonopolyID = 30 },
                         
                         new PropertyField
                         {
                             Name = "Aula C (CEK)",
                             Color = MonopolyColor.steelblue,
                             Price = 60,
+                            MonopolyID =31,
                             RentCosts = new List<int> { 5, 30, 90, 200, 280 },
                             EstatePrice = 40,
                             Mortage = 30,
@@ -366,6 +388,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                             Name = "Aula A (CNT)",
                             Color = MonopolyColor.steelblue,
                             Price = 60,
+                            MonopolyID =32,
                             RentCosts = new List<int> { 6, 38, 92, 190, 250 },
                             EstatePrice = 40,
                             Mortage = 27,
@@ -380,6 +403,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                             Name = "Pracownia fizyczna nr 2 (CNT)",
                             Color = MonopolyColor.steelblue,
                             Price = 60,
+                            MonopolyID =33,
                             RentCosts = new List<int> { 6, 40, 95, 250, 350 },
                             EstatePrice = 40,
                             Mortage = 27,
@@ -389,13 +413,14 @@ namespace Infrastructure.Persistance.DatabaseContext
                                 EstateLevel = 0,
                             }
                         },
-                        new EventField { Name = "Karta straty", Color = MonopolyColor.white },
+                        new EventField { Name = "Karta straty", Color = MonopolyColor.white, MonopolyID = 34 },
                         new PropertyField
                         {
                             Name = "Toalety",
                             Type = MonopolyFieldType.company,
                             Color = MonopolyColor.yellow,
                             Price = 50,
+                            MonopolyID =35,
                             RentCosts = new List<int> { 0 },
                             EstatePrice = 0,
                             Mortage = 20,
@@ -411,6 +436,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                             Type = MonopolyFieldType.company,
                             Color = MonopolyColor.orange,
                             Price = 40,
+                            MonopolyID =36,
                             RentCosts = new List<int> { 0 },
                             EstatePrice = 0,
                             Mortage = 20,
@@ -420,12 +446,13 @@ namespace Infrastructure.Persistance.DatabaseContext
                                 EstateLevel = 0,
                             }
                         },
-                        new EventField { Name = "Karta zysku", Color = MonopolyColor.white },
+                        new EventField { Name = "Karta zysku", Color = MonopolyColor.white, MonopolyID = 37 },
                         new PropertyField
                         {
                             Name = "Biblioteka wydziałowa",
                             Color = MonopolyColor.sandybrown,
                             Price = 80,
+                            MonopolyID =38,
                             RentCosts = new List<int> { 7, 30, 100, 200, 350 },
                             EstatePrice = 40,
                             Mortage = 35,
@@ -440,6 +467,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                             Name = "Pracownia fizyczna nr 2 (CNT)",
                             Color = MonopolyColor.steelblue,
                             Price = 80,
+                            MonopolyID =39,
                             RentCosts = new List<int> { 10, 35, 110, 250, 400 },
                             EstatePrice = 40,
                             Mortage = 45,
@@ -450,9 +478,9 @@ namespace Infrastructure.Persistance.DatabaseContext
                             }
                         });      
             }
-            if(!context.GainCards.Any())
+            if(!context.Cards.Any())
             {
-                context.GainCards.AddRange(
+                context.Cards.AddRange(
                     new GainCard 
                     { 
                         Type="Gain", 
@@ -515,9 +543,9 @@ namespace Infrastructure.Persistance.DatabaseContext
                     });
 
             }
-            if (!context.LossCards.Any())
+            if (!context.Cards.Any())
             {
-                context.LossCards.AddRange(
+                context.Cards.AddRange(
                     new LossCard
                     {
                         Type="Loss",
@@ -576,7 +604,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                     {
                         Type = "Loss",
                         CardName = "Spóźnienie",
-                        Description = "Zajęcia trwały zbyt długo i odjechał Ci autobus. Tracisz kolejkę."
+                        Description = "Zajęcia trwały zbyt długo i odjechał Ci autobus. Tracisz kolejkę."                   
                     }
                     );
             }
@@ -591,7 +619,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                         Position=0,
                         IsInJail=false,
                         TurnsToWait=0,
-                        IsBrankrupt=false
+                        IsBrankrupt=false,
+                        IsLogged=false,
                     },
                     new Player
                     {
@@ -601,7 +630,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                         Position = 0,
                         IsInJail = false,
                         TurnsToWait = 0,
-                        IsBrankrupt = false
+                        IsBrankrupt = false,
+                        IsLogged = false
                     },
                     new Player
                     {
@@ -611,7 +641,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                         Position = 0,
                         IsInJail = false,
                         TurnsToWait = 0,
-                        IsBrankrupt = false
+                        IsBrankrupt = false,
+                        IsLogged = false
                     },
                     new Player
                     {
@@ -621,17 +652,29 @@ namespace Infrastructure.Persistance.DatabaseContext
                         Position = 0,
                         IsInJail = false,
                         TurnsToWait = 0,
-                        IsBrankrupt = false
+                        IsBrankrupt = false,
+                        IsLogged = false
                     }
                     );
             }
             context.GameInfo.Add(new GameInfo { ActivePlayerIndex = 1 }); ;
             context.Dices.Add(new Dices { DiceValues = new List<int> { 1, 1 } });
             await context.SaveChangesAsync();
+            if(context.PropertyFieldInfos.Any()&&context.MonopolyFields.Any())
+            {
+                int i = 0;
+                foreach(var infos in context.PropertyFieldInfos)
+                {
+                    infos.PropertyField = (PropertyField)context.MonopolyFields.Where(f => f.MonopolyID == i).First();
+                }
+            }
+            //Do testowania
             if(context.Players.Any())
             {
-                context.PropertyFieldInfos.First().Player = context.Players.First();
+                context.Cards.First().Player= context.Players.First();
+                context.Cards.OrderBy(c=>c.Id).Last().Player = context.Players.First();
             }
+            //Do testowania
             await context.SaveChangesAsync();
         }
     }
