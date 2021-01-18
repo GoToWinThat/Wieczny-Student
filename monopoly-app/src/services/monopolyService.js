@@ -114,7 +114,7 @@ export const UpdatePlayerCash = async (dispatch, playerName, deltaCash) => {
 export const UpdatePlayerWaitingTurns = async (dispatch, playerName, deltaTurns, isInJail) => {
     try {
         axios.put(axiosPlayerURL + 'UpdatePlayerWaitingsTurns', 
-            {"playerName": playerName, "deltaTurns": deltaTurns, "isInJail": isInJail}).then(
+            {"name": playerName, "deltaTurns": deltaTurns, "isInJail": isInJail}).then(
             dispatch(ActionCreators.updatePlayerWaitingTurns({playerName, deltaTurns, isInJail})));
     } catch { console.log("Player's Waiting Turns couldn't be updated!"); }
 }
