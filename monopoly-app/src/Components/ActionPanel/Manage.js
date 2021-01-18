@@ -3,7 +3,7 @@ import React from "react";
 import { Button, Modal } from "react-bootstrap";
 import { generateTableOfFields } from "./ManageFunctions/ManageTable";
 import "../../styles/Modals.css";
-import {bankrupt} from './ManageFunctions/ManageBankrupt'
+import {surrender} from './ManageFunctions/ManageBankrupt'
 
 
 function Manage(props) {
@@ -62,7 +62,7 @@ function Manage(props) {
       <Button
         id="bankruptButton"
         variant="secondary"
-        onClick={() => bankrupt(dispatch,activePlayer,fields,props)}
+        onClick={() => surrender(dispatch,activePlayer,props)}
         onMouseDown={(e) => e.preventDefault()}
       >
         ZBANKRUTUJ

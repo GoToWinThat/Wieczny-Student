@@ -1,5 +1,5 @@
 import { AddNewLog, UpdateDices, UpdatePlayerPosition, UpdatePlayerCash,
-    UpdatePlayerUpdateWaitingTurns, UpdatePlayerNewEventCard, 
+    UpdatePlayerWaitingTurns, UpdatePlayerAddEventCard, 
     UpdatePlayerDeleteEventCard, UpdateCurrentEventCard } from '../services/monopolyService';
 
 // Parameters:
@@ -71,7 +71,7 @@ function dealWithNewField(newField, numberOnDices, data)
                             return;
                         }
                     }
-                    UpdatePlayerUpdateWaitingTurns(dispatch, activePlayer.name, 2, true);
+                    UpdatePlayerWaitingTurns(dispatch, activePlayer.name, 2, true);
                     AddNewLog(dispatch, `${activePlayer.name} traci 2 kolejki i dostęp do telefonu!`);
                     return;
 
@@ -85,7 +85,7 @@ function dealWithNewField(newField, numberOnDices, data)
                             return;
                         }
                     }
-                    UpdatePlayerUpdateWaitingTurns(dispatch, activePlayer.name, 2, false);
+                    UpdatePlayerWaitingTurns(dispatch, activePlayer.name, 2, false);
                     AddNewLog(dispatch, `${activePlayer.name} traci 2 kolejki!`);
                     return;
 
@@ -99,7 +99,7 @@ function dealWithNewField(newField, numberOnDices, data)
                             return;
                         }
                     }
-                    UpdatePlayerUpdateWaitingTurns(dispatch, activePlayer.name, 3, true);
+                    UpdatePlayerWaitingTurns(dispatch, activePlayer.name, 3, true);
                     AddNewLog(dispatch, `${activePlayer.name} traci 3 kolejki i dostęp do telefonu!`);
                     return;
 
@@ -230,7 +230,7 @@ function dealWithEventCard(data, card, numberOnDices)
                     return;
                 }
             }
-            UpdatePlayerNewEventCard(dispatch, activePlayer.name, card.cardID);
+            UpdatePlayerAddEventCard(dispatch, activePlayer.name, card.cardID);
             return;
 
         case "Oświecenie na konsultacjach":
@@ -243,7 +243,7 @@ function dealWithEventCard(data, card, numberOnDices)
                     return;
                 }
             }
-            UpdatePlayerNewEventCard(dispatch, activePlayer.name, card.cardID);
+            UpdatePlayerAddEventCard(dispatch, activePlayer.name, card.cardID);
             return;
 
         case "Wygrana w konkursie":
@@ -287,7 +287,7 @@ function dealWithEventCard(data, card, numberOnDices)
                     return;
                 }
             }
-            UpdatePlayerNewEventCard(dispatch, activePlayer.name, card.cardID);
+            UpdatePlayerAddEventCard(dispatch, activePlayer.name, card.cardID);
             return;
 
         case "O, pinć ECTSów!":
@@ -297,12 +297,14 @@ function dealWithEventCard(data, card, numberOnDices)
 
         // LOSS CARDS:
         case "Zapomniany klucz":
-            newPosition = fields.find(field => field.name === "Portiernia").fieldID;
-            currentPosition = (activePlayer.position + numberOnDices) % fields.length;
-            UpdatePlayerPosition(dispatch, activePlayerIndex, newPosition - currentPosition);
-            anotherNewField = fields[newPosition];
-            AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
-            dealWithNewField(anotherNewField, 0, data);
+            setTimeout(() => {
+                newPosition = fields.find(field => field.name === "Portiernia").fieldID;
+                currentPosition = (activePlayer.position + numberOnDices) % fields.length;
+                UpdatePlayerPosition(dispatch, activePlayerIndex, newPosition - currentPosition);
+                anotherNewField = fields[newPosition];
+                AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
+                dealWithNewField(anotherNewField, 0, data);
+            }, 1000)
             return;
 
         case "Zapłata rachunków":
@@ -315,30 +317,36 @@ function dealWithEventCard(data, card, numberOnDices)
             return;
 
         case "Formalności":
-            newPosition = fields.find(field => field.name === "Dziekanat").fieldID;
-            currentPosition = (activePlayer.position + numberOnDices) % fields.length;
-            UpdatePlayerPosition(dispatch, activePlayerIndex, newPosition - currentPosition);
-            anotherNewField = fields[newPosition];
-            AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
-            dealWithNewField(anotherNewField, 0, data);
+            setTimeout(() => {
+                newPosition = fields.find(field => field.name === "Dziekanat").fieldID;
+                currentPosition = (activePlayer.position + numberOnDices) % fields.length;
+                UpdatePlayerPosition(dispatch, activePlayerIndex, newPosition - currentPosition);
+                anotherNewField = fields[newPosition];
+                AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
+                dealWithNewField(anotherNewField, 0, data); 
+            }, 1000)
             return;
 
         case "Douczanie się":
-            newPosition = fields.find(field => field.name === "Konsultacje").fieldID;
-            currentPosition = (activePlayer.position + numberOnDices) % fields.length;
-            UpdatePlayerPosition(dispatch, activePlayerIndex, newPosition - currentPosition);
-            anotherNewField = fields[newPosition];
-            AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
-            dealWithNewField(anotherNewField, 0, data);
+            setTimeout(() => {
+                newPosition = fields.find(field => field.name === "Konsultacje").fieldID;
+                currentPosition = (activePlayer.position + numberOnDices) % fields.length;
+                UpdatePlayerPosition(dispatch, activePlayerIndex, newPosition - currentPosition);
+                anotherNewField = fields[newPosition];
+                AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
+                dealWithNewField(anotherNewField, 0, data);
+            }, 1000)
             return;
 
         case "Głód":
-            newPosition = fields.find(field => field.name === "Stołówka studencka").fieldID;
-            currentPosition = (activePlayer.position + numberOnDices) % fields.length;
-            UpdatePlayerPosition(dispatch, activePlayerIndex, newPosition - currentPosition);
-            anotherNewField = fields[newPosition];
-            AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
-            dealWithNewField(anotherNewField, 0, data);
+            setTimeout(() => {
+                newPosition = fields.find(field => field.name === "Stołówka studencka").fieldID;
+                currentPosition = (activePlayer.position + numberOnDices) % fields.length;
+                UpdatePlayerPosition(dispatch, activePlayerIndex, newPosition - currentPosition);
+                anotherNewField = fields[newPosition];
+                AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
+                dealWithNewField(anotherNewField, 0, data);
+            }, 1000)
             return;
 
         case "Spłata pożyczki":
@@ -361,7 +369,7 @@ function dealWithEventCard(data, card, numberOnDices)
             return;
 
         case "Spóźnienie":
-            UpdatePlayerUpdateWaitingTurns(dispatch, activePlayer.name, 1, false);
+            UpdatePlayerWaitingTurns(dispatch, activePlayer.name, 1, false);
             return;
 
         default:
