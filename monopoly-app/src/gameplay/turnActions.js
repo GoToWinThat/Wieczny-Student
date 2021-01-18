@@ -1,6 +1,6 @@
-import { UpdateActivePlayerIndex, AddNewLog, UpdatePlayerUpdateWaitingTurns } from '../services/monopolyService';
+import { UpdateActivePlayerIndex, AddNewLog, UpdatePlayerWaitingTurns } from '../services/monopolyService';
 import { setThrownDices, thrownDices, throwDicesEvent } from "./fieldActions";
-import {canPreventBankrupt,bankrupt} from '../components/ActionPanel/ManageFunctions/ManageBankrupt'
+import { canPreventBankrupt, bankrupt } from '../components/ActionPanel/ManageFunctions/ManageBankrupt'
 
 export const endTurnEvent = (data) =>
 {
@@ -33,9 +33,9 @@ export const endTurnEvent = (data) =>
 
             // Update API:
             if (players[nextPlayerIndex].turnsToWait === 1) 
-                UpdatePlayerUpdateWaitingTurns(dispatch, players[nextPlayerIndex].name, -1, false);
+                UpdatePlayerWaitingTurns(dispatch, players[nextPlayerIndex].name, -1, false);
             else 
-                UpdatePlayerUpdateWaitingTurns(dispatch, players[nextPlayerIndex].name, -1, players[nextPlayerIndex].isInJail);
+                UpdatePlayerWaitingTurns(dispatch, players[nextPlayerIndex].name, -1, players[nextPlayerIndex].isInJail);
             
             // Update local temporary data:
             waitingArray[nextPlayerIndex]--;

@@ -1,5 +1,5 @@
 import { AddNewLog, UpdateDices, UpdatePlayerPosition, UpdatePlayerCash,
-    UpdatePlayerUpdateWaitingTurns, UpdatePlayerNewEventCard, 
+    UpdatePlayerWaitingTurns, UpdatePlayerAddEventCard, 
     UpdatePlayerDeleteEventCard, UpdateCurrentEventCard } from '../services/monopolyService';
 
 // Parameters:
@@ -17,8 +17,7 @@ export const throwDicesEvent = (data) =>
     const sayItWell = (number) => (number < 5) ? `${number} oczka` : `${number} oczek`;
 
     // Updating dices:
-    //Math.floor(Math.random() * 6) + 1, Math.floor(Math.random() * 6) + 1
-    let newDiceState = [4,4];
+    let newDiceState = [Math.floor(Math.random() * 6) + 1, Math.floor(Math.random() * 6) + 1];
     UpdateDices(dispatch, newDiceState);
     setThrownDices(true);
 
@@ -72,7 +71,7 @@ function dealWithNewField(newField, numberOnDices, data)
                             return;
                         }
                     }
-                    UpdatePlayerUpdateWaitingTurns(dispatch, activePlayer.name, 2, true);
+                    UpdatePlayerWaitingTurns(dispatch, activePlayer.name, 2, true);
                     AddNewLog(dispatch, `${activePlayer.name} traci 2 kolejki i dostęp do telefonu!`);
                     return;
 
@@ -86,7 +85,7 @@ function dealWithNewField(newField, numberOnDices, data)
                             return;
                         }
                     }
-                    UpdatePlayerUpdateWaitingTurns(dispatch, activePlayer.name, 2, false);
+                    UpdatePlayerWaitingTurns(dispatch, activePlayer.name, 2, false);
                     AddNewLog(dispatch, `${activePlayer.name} traci 2 kolejki!`);
                     return;
 
@@ -100,7 +99,7 @@ function dealWithNewField(newField, numberOnDices, data)
                             return;
                         }
                     }
-                    UpdatePlayerUpdateWaitingTurns(dispatch, activePlayer.name, 3, true);
+                    UpdatePlayerWaitingTurns(dispatch, activePlayer.name, 3, true);
                     AddNewLog(dispatch, `${activePlayer.name} traci 3 kolejki i dostęp do telefonu!`);
                     return;
 
@@ -189,8 +188,7 @@ function dealWithNewField(newField, numberOnDices, data)
                     return;
 
                 case "Karta straty":
-                    //Math.floor(Math.random() * lossCards.length)
-                    card = lossCards[0];
+                    card = lossCards[Math.floor(Math.random() * lossCards.length)];
                     AddNewLog(dispatch, `${activePlayer.name} otrzymuje kartę`
                     + ` ${card.cardName.toUpperCase()}.`);
                     dealWithEventCard(data, card, numberOnDices);
@@ -232,7 +230,7 @@ function dealWithEventCard(data, card, numberOnDices)
                     return;
                 }
             }
-            UpdatePlayerNewEventCard(dispatch, activePlayer.name, card.cardID);
+            UpdatePlayerAddEventCard(dispatch, activePlayer.name, card.cardID);
             return;
 
         case "Oświecenie na konsultacjach":
@@ -245,7 +243,7 @@ function dealWithEventCard(data, card, numberOnDices)
                     return;
                 }
             }
-            UpdatePlayerNewEventCard(dispatch, activePlayer.name, card.cardID);
+            UpdatePlayerAddEventCard(dispatch, activePlayer.name, card.cardID);
             return;
 
         case "Wygrana w konkursie":
@@ -289,7 +287,7 @@ function dealWithEventCard(data, card, numberOnDices)
                     return;
                 }
             }
-            UpdatePlayerNewEventCard(dispatch, activePlayer.name, card.cardID);
+            UpdatePlayerAddEventCard(dispatch, activePlayer.name, card.cardID);
             return;
 
         case "O, pinć ECTSów!":
@@ -371,7 +369,7 @@ function dealWithEventCard(data, card, numberOnDices)
             return;
 
         case "Spóźnienie":
-            UpdatePlayerUpdateWaitingTurns(dispatch, activePlayer.name, 1, false);
+            UpdatePlayerWaitingTurns(dispatch, activePlayer.name, 1, false);
             return;
 
         default:

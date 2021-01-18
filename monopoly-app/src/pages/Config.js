@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Button, FormGroup, Form, FormControl, FormLabel } from 'react-bootstrap'
-import { GetPlayers, CreatePlayer } from '../services/monopolyService'
+import { GetPlayers, CreatePlayer, UpdatePlayerReadiness } from '../services/monopolyService'
 import { useSelector, useDispatch } from 'react-redux'
 import '../styles/Config.css'
 
 export const Config = () => {
     const history = useHistory()
+    const amIReady = () => { return players.filter((player) => player.name === nickname)[0].isReady }
     const [nickname , setNickname] = useState("")
     const [color, setColor] = useState("#000000")
     const [signature, setSignature] = useState("")
@@ -19,16 +20,17 @@ export const Config = () => {
 
     const NewPlayer = () => {
         CreatePlayer(dispatch, nickname, signature, color);
+        //setTimeout(() => 
+        //    GetPlayers(dispatch), 1000); // temporary solution; API should send new list after each update
         setConfirmed(true);
     }
 
     const GetReady = () => {
-        // change isReady state, wait until other players get ready...
+        UpdatePlayerReadiness(dispatch, nickname);
+
         // if all players are ready, API sends gameState="running" 
         // and the line below is called...
-
-
-        history.push({ pathname: "/game" })
+        //history.push({ pathname: "/game" })
     }
 
     return(
@@ -36,7 +38,8 @@ export const Config = () => {
             <div id="currentPlayers">
                 <p id="currentPlayersTitle">OBECNI GRACZE</p>
                 <div id="currentPlayersList">
-                    {(players.length > 0) ? players.map((player, i) => 
+                    {(players.filter((player) => player.isLogged === true).length > 0) 
+                    ? players.filter((player) => player.isLogged === true).map((player, i) => 
                         <div key={i} style={{color: `${player.color}`, 
                              border: `solid ${player.isReady === true ? "green" : "white"}`}}>
                         <span>{String.fromCharCode(player.signature)}</span>
@@ -106,8 +109,8 @@ export const Config = () => {
                 onClick={()=> {NewPlayer()}} onMouseDown={(e) => e.preventDefault()}
                 disabled={nickname === "" || signature === ""}>Zatwierdź</Button>
             <Button id="ConfigReadyButton" hidden={!confirmed} onClick={()=> {GetReady()}} 
-                 onMouseDown={(e) => e.preventDefault()}>Gotowy do gry</Button>
+                onMouseDown={(e) => e.preventDefault()} variant={amIReady() ? "danger" : "success"}>
+                {amIReady() ? "Niegotowy" : "Gotowy"}</Button>
         </div>
     )
 }
-

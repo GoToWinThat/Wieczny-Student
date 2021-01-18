@@ -1,6 +1,8 @@
-import { UpdatePlayerUpdateBankrupt,UpdatePlayerDeleteProperty,UpdatePlayerDeleteEventCard, AddNewLog, UpdatePlayerExpandProperty,UpdatePlayerCash,UpdatePlayerMortgageProperty } from "../../../services/monopolyService";
+import { UpdatePlayerBankrupt, UpdatePlayerDeleteProperty, 
+    UpdatePlayerDeleteEventCard, AddNewLog, UpdatePlayerExpandProperty, 
+    UpdatePlayerCash, UpdatePlayerMortgageProperty } from "../../../services/monopolyService";
 import { endTurnEvent } from "../../../gameplay/turnActions";
-import {hasAnyComputer,hasAnyProperties } from "./ManageCheck"
+import { hasAnyComputer, hasAnyProperties } from "./ManageCheck"
 
 export const surrender = (dispatch,activePlayer,data) =>
 {
@@ -10,18 +12,14 @@ export const surrender = (dispatch,activePlayer,data) =>
 
 export const bankrupt = (dispatch,activePlayer) => 
 {
-
     // Removing properties and cards:
     for (let i = 0; i < activePlayer.properties.length; i++)
         UpdatePlayerDeleteProperty(dispatch, activePlayer.name, activePlayer.properties[i].fieldID);
     for (let i = 0; i < activePlayer.eventCards.length; i++)
         UpdatePlayerDeleteEventCard(dispatch, activePlayer.name, activePlayer.eventCards[i].cardID);
 
-    // set isBankrupt true, inform about bankrupting, close modal, next turn,
-    // prevent moving the pawn (if player bankrupted not in his turn, he will not throw dices,
-    // so they will be thrown automatically in endTurnEvent)
-    AddNewLog(dispatch,`${activePlayer.name} właśnie zbankrutował !!!`)
-    UpdatePlayerUpdateBankrupt(dispatch, activePlayer.name);
+    AddNewLog(dispatch,`${activePlayer.name} bankrutuje!`)
+    UpdatePlayerBankrupt(dispatch, activePlayer.name);
 }
 
 export const canPreventBankrupt = (dispatch,activePlayer,fields) => 

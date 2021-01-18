@@ -1,6 +1,7 @@
 const initialState = { monopolyFields: [], gainCards: [], 
     lossCards: [], players: [], dices: [], activePlayerIndex: null, 
-    logs: [], currentCard: { cardName: "", description: ""} }
+    logs: [], gameState: "config", myIndex: null,
+    currentCard: { cardName: "", description: ""} }
 
 export const ActionTypes = { 
     SET_FIELDS: 'SET_FIELDS', 
@@ -13,19 +14,22 @@ export const ActionTypes = {
 
     SET_DICES: 'SET_DICES',
     UPDATE_DICES: 'UPDATE_DICES',
-    UPDATE_PLAYER_POSITION: 'UPDATE_PLAYER_POSITION',
 
     CREATE_PLAYER: 'CREATE_PLAYER', 
-    DELETE_PLAYER: 'DELETE_PLAYER',
+
     UPDATE_PLAYER_CASH: 'UPDATE_PLAYER_CASH',
+    UPDATE_PLAYER_POSITION: 'UPDATE_PLAYER_POSITION',
+    UPDATE_PLAYER_WAITING_TURNS: 'UPDATE_PLAYER_WAITING_TURNS',
+    UPDATE_PLAYER_BANKRUPT: 'UPDATE_PLAYER_BANKRUPT',
+    UPDATE_PLAYER_READINESS: 'UPDATE_PLAYER_READINESS',
+
     UPDATE_PLAYER_NEW_PROPERTY: 'UPDATE_PLAYER_NEW_PROPERTY',
     UPDATE_PLAYER_DELETE_PROPERTY: 'UPDATE_PLAYER_DELETE_PROPERTY',
     UPDATE_PLAYER_EXPAND_PROPERTY: 'UPDATE_PLAYER_EXPAND_PROPERTY',
     UPDATE_PLAYER_MORTGAGE_PROPERTY: 'UPDATE_PLAYER_MORTGAGE_PROPERTY',
-    UPDATE_PLAYER_NEW_EVENT_CARD: 'UPDATE_PLAYER_NEW_EVENT_CARD',
+
+    UPDATE_PLAYER_ADD_EVENT_CARD: 'UPDATE_PLAYER_ADD_EVENT_CARD',
     UPDATE_PLAYER_DELETE_EVENT_CARD: 'UPDATE_PLAYER_DELETE_EVENT_CARD',
-    UPDATE_PLAYER_UPDATE_WAITING_TURNS: 'UPDATE_PLAYER_UPDATE_WAITING_TURNS',
-    UPDATE_PLAYER_UPDATE_BANKRUPT: 'UPDATE_PLAYER_UPDATE_BANKRUPT',
 
     SET_LOGS: 'SET_LOGS',
     ADD_NEW_LOG: 'ADD_NEW_LOG',
@@ -45,19 +49,22 @@ export const ActionCreators = {
 
     setDices: payload => ({ type: ActionTypes.SET_DICES, payload }),
     updateDices: payload => ({ type: ActionTypes.UPDATE_DICES, payload }),
-    updatePlayerPosition: payload => ({ type: ActionTypes.UPDATE_PLAYER_POSITION, payload }),
 
     createPlayer: payload => ({ type: ActionTypes.CREATE_PLAYER, payload }),
-    deletePlayer: payload => ({ type: ActionTypes.DELETE_PLAYER, payload }),
+
     updatePlayerCash: payload => ({ type: ActionTypes.UPDATE_PLAYER_CASH, payload }),
+    updatePlayerPosition: payload => ({ type: ActionTypes.UPDATE_PLAYER_POSITION, payload }),
+    updatePlayerWaitingTurns: payload => ({ type: ActionTypes.UPDATE_PLAYER_WAITING_TURNS, payload }),
+    updatePlayerBankrupt: payload => ({ type: ActionTypes.UPDATE_PLAYER_BANKRUPT, payload }),
+    updatePlayerReadiness: payload => ({ type: ActionTypes.UPDATE_PLAYER_READINESS, payload }),
+
     updatePlayerNewProperty: payload => ({ type: ActionTypes.UPDATE_PLAYER_NEW_PROPERTY, payload }),
     updatePlayerDeleteProperty: payload => ({ type: ActionTypes.UPDATE_PLAYER_DELETE_PROPERTY, payload }),
     updatePlayerExpandProperty: payload => ({ type: ActionTypes.UPDATE_PLAYER_EXPAND_PROPERTY, payload }),
     updatePlayerMortgageProperty: payload => ({ type: ActionTypes.UPDATE_PLAYER_MORTGAGE_PROPERTY, payload }),
-    updatePlayerNewEventCard: payload => ({ type: ActionTypes.UPDATE_PLAYER_NEW_EVENT_CARD, payload }),
+
+    updatePlayerAddEventCard: payload => ({ type: ActionTypes.UPDATE_PLAYER_ADD_EVENT_CARD, payload }),
     updatePlayerDeleteEventCard: payload => ({ type: ActionTypes.UPDATE_PLAYER_DELETE_EVENT_CARD, payload }),
-    updatePlayerUpdateWaitingTurns: payload => ({ type: ActionTypes.UPDATE_PLAYER_UPDATE_WAITING_TURNS, payload }),
-    updatePlayerUpdateBankrupt: payload => ({ type: ActionTypes.UPDATE_PLAYER_UPDATE_BANKRUPT, payload }),
 
     setLogs: payload => ({ type: ActionTypes.SET_LOGS, payload }),
     addNewLog: payload => ({ type: ActionTypes.ADD_NEW_LOG, payload }),
@@ -84,6 +91,8 @@ export default function MonopolyReducer(state = initialState, action) {
         case ActionTypes.SET_PLAYERS:
             return { ...state, players: [...action.payload.monopolyPlayers] }
 
+
+
         // change index of player that has a turn at the moment:
         case ActionTypes.SET_ACTIVE_PLAYER_INDEX:
             return { ...state, activePlayerIndex: action.payload }
@@ -92,6 +101,8 @@ export default function MonopolyReducer(state = initialState, action) {
         case ActionTypes.UPDATE_ACTIVE_PLAYER_INDEX:
             return { ...state, activePlayerIndex: action.payload.activePlayerIndex }
 
+
+
         // get current dices view and set it in "dices" list
         case ActionTypes.SET_DICES:
             return { ...state, dices: [...action.payload.dices] }
@@ -99,6 +110,38 @@ export default function MonopolyReducer(state = initialState, action) {
         // update dices:
         case ActionTypes.UPDATE_DICES:
             return { ...state, dices: action.payload.dices }
+
+
+
+        // add player at the end of the list
+        case ActionTypes.CREATE_PLAYER:
+            return { ...state, players: [...state.players, 
+                {
+                    "name": action.payload.playerName,
+                    "cash": 500,
+                    "signature": action.payload.signature,
+                    "color": action.payload.color,
+                    "properties": [],
+                    "eventCards": [],
+                    "position": 0,
+                    "isInJail": false,
+                    "turnsToWait": 0,
+                    "isBankrupt": false,
+                    "isReady": false,
+                    "isLogged": true
+                }
+            ]}
+
+
+
+        // increase or decrease (if on payload there is negative number) player's cash
+        case ActionTypes.UPDATE_PLAYER_CASH: 
+            return { ...state, 
+                players: state.players.map(player => {
+                    if (player.name !== action.payload.playerName) return player
+                    return { ...player, cash: player.cash + action.payload.deltaCash }
+                })
+            }
 
         // change player's position on the board
         case ActionTypes.UPDATE_PLAYER_POSITION:
@@ -110,14 +153,34 @@ export default function MonopolyReducer(state = initialState, action) {
                 }
             )}
 
-        // increase or decrease (if on payload there is negative number) player's cash
-        case ActionTypes.UPDATE_PLAYER_CASH: 
+        // change amount of turns that the player has to wait and update state of being in jail
+        case ActionTypes.UPDATE_PLAYER_WAITING_TURNS:
             return { ...state, 
                 players: state.players.map(player => {
                     if (player.name !== action.payload.playerName) return player
-                    return { ...player, cash: player.cash + action.payload.deltaCash }
+                    return { ...player, isInJail: action.payload.isInJail,
+                        turnsToWait: player.turnsToWait + action.payload.deltaTurns }
                 })
             }
+
+        // change player's bankrupt status:
+        case ActionTypes.UPDATE_PLAYER_BANKRUPT:
+            return { ...state, 
+                players: state.players.map(player => {
+                    if (player.name !== action.payload.playerName) return player
+                    return { ...player, isBankrupt: true }
+                })
+            }
+
+        case ActionTypes.UPDATE_PLAYER_READINESS:
+            return { ...state,                 
+                players: state.players.map(player => {
+                    if (player.name !== action.payload.playerName) return player
+                    return { ...player, isReady: !player.isReady }
+                })
+            }
+
+
 
         // add property at the end of the player's properties list
         case ActionTypes.UPDATE_PLAYER_NEW_PROPERTY:
@@ -175,8 +238,10 @@ export default function MonopolyReducer(state = initialState, action) {
                 })
             }
 
+
+
         // add event card to player
-        case ActionTypes.UPDATE_PLAYER_NEW_EVENT_CARD:
+        case ActionTypes.UPDATE_PLAYER_ADD_EVENT_CARD:
             return { ...state, 
                 players: state.players.map(player => {
                     if (player.name !== action.payload.playerName) return player
@@ -201,42 +266,7 @@ export default function MonopolyReducer(state = initialState, action) {
                 })
             }
 
-        // change amount of turns that the player has to wait and update state of being in jail
-        case ActionTypes.UPDATE_PLAYER_UPDATE_WAITING_TURNS:
-            return { ...state, 
-                players: state.players.map(player => {
-                    if (player.name !== action.payload.playerName) return player
-                    return { ...player, isInJail: action.payload.isInJail,
-                        turnsToWait: player.turnsToWait + action.payload.deltaTurns }
-                })
-            }
 
-        // change player's bankrupt status:
-        case ActionTypes.UPDATE_PLAYER_UPDATE_BANKRUPT:
-            return { ...state, 
-                players: state.players.map(player => {
-                    if (player.name !== action.payload.playerName) return player
-                    return { ...player, isBankrupt: true }
-                })
-            }
-
-        // add player at the end of the list
-        case ActionTypes.CREATE_PLAYER:
-            return { ...state, players: [...state.players, 
-                {
-                    "name": action.payload.playerName,
-                    "cash": 500,
-                    "signature": action.payload.signature,
-                    "color": action.payload.color,
-                    "properties": [],
-                    "eventCards": [],
-                    "position": 0,
-                    "isInJail": false,
-                    "turnsToWait": 0,
-                    "isBankrupt": false,
-                    "isReady": false
-                }
-            ]}
 
         // get all logs and set them in "logs" list    
         case ActionTypes.SET_LOGS:
@@ -247,10 +277,14 @@ export default function MonopolyReducer(state = initialState, action) {
             return { ...state, logs: [...state.logs, 
                 {"id": state.logs.length + 1, "logInfo": action.payload.newLog}] }
 
+
+
         // local function setting current event card:
         case ActionTypes.UPDATE_CURRENT_CARD:
             return { ...state, currentCard: { cardName: action.payload.cardName, 
                 description: action.payload.description} }
+
+
 
         default:
             return state;

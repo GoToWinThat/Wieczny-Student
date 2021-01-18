@@ -2,8 +2,8 @@ import "../../styles/Modals.css";
 import React, { useState } from 'react';
 import TradeSection from "./TradeSection";
 import {Modal, Button} from 'react-bootstrap';
-import { UpdatePlayerDeleteProperty, UpdatePlayerCash,UpdatePlayerDeleteEventCard,
-  UpdatePlayerNewEventCard,UpdatePlayerNewProperty,AddNewLog} from '../../services/monopolyService';
+import { UpdatePlayerDeleteProperty, UpdatePlayerCash, UpdatePlayerDeleteEventCard,
+  UpdatePlayerAddEventCard, UpdatePlayerNewProperty, AddNewLog } from '../../services/monopolyService';
 
 function Trade(props) {
   const dispatch = props.data.dispatch;
@@ -81,7 +81,7 @@ function Trade(props) {
       else //if(t.type === "card")
       {
         UpdatePlayerDeleteEventCard(dispatch,t.playerName,t.item);
-        UpdatePlayerNewEventCard(dispatch,secondPlayer.name,t.item)
+        UpdatePlayerAddEventCard(dispatch,secondPlayer.name,t.item)
         AddNewLog(dispatch, `- ${secondPlayer.name} posiada teraz kartę ${data.cards[t.item].cardName}`);
       }
     })
