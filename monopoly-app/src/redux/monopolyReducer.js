@@ -1,6 +1,6 @@
 const initialState = { monopolyFields: [], gainCards: [], 
     lossCards: [], players: [], dices: [], activePlayerIndex: null, 
-    logs: [], gameState: "config", myIndex: null,
+    logs: [], gameState: "config", myIndex: null, clocks: [30, 1200],
     currentCard: { cardName: "", description: ""} }
 
 export const ActionTypes = { 
@@ -8,6 +8,7 @@ export const ActionTypes = {
     SET_GAINCARDS: 'SET_GAINCARDS',
     SET_LOSSCARDS: 'SET_LOSSCARDS',
     SET_PLAYERS: 'SET_PLAYERS',
+    SET_MY_INDEX: 'SET_MY_INDEX',
 
     SET_ACTIVE_PLAYER_INDEX: 'SET_ACTIVE_PLAYER_INDEX',
     UPDATE_ACTIVE_PLAYER_INDEX: 'UPDATE_ACTIVE_PLAYER_INDEX',
@@ -43,6 +44,7 @@ export const ActionCreators = {
     setGainCards: payload => ({ type: ActionTypes.SET_GAINCARDS, payload }),
     setLossCards: payload => ({ type: ActionTypes.SET_LOSSCARDS, payload }),
     setPlayers: payload => ({ type: ActionTypes.SET_PLAYERS, payload }),
+    setMyIndex: payload => ({ type: ActionTypes.SET_MY_INDEX, payload }),
 
     setActivePlayerIndex: payload => ({ type: ActionTypes.SET_ACTIVE_PLAYER_INDEX, payload }),
     updateActivePlayerIndex: payload => ({ type: ActionTypes.UPDATE_ACTIVE_PLAYER_INDEX, payload }),
@@ -90,6 +92,10 @@ export default function MonopolyReducer(state = initialState, action) {
         // get all the players and set them in "players" list
         case ActionTypes.SET_PLAYERS:
             return { ...state, players: [...action.payload.monopolyPlayers] }
+
+        // get index value of user in "players" list
+        case ActionTypes.SET_MY_INDEX:
+            return { ...state, myIndex: action.payload }
 
 
 

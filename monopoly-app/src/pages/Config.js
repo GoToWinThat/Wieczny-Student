@@ -7,7 +7,6 @@ import '../styles/Config.css'
 
 export const Config = () => {
     const history = useHistory()
-    const amIReady = () => { return players.filter((player) => player.name === nickname)[0].isReady }
     const [nickname , setNickname] = useState("")
     const [color, setColor] = useState("#000000")
     const [signature, setSignature] = useState("")
@@ -17,6 +16,13 @@ export const Config = () => {
     const dispatch = useDispatch();
     try { useEffect(() => { GetPlayers(dispatch); }, [dispatch]); } 
     catch { console.log("Couldn't call function GetPlayers in Config.js!"); }
+
+    const amIReady = () => { 
+        try { return players.filter((player) => player.name === nickname)[0].isReady; } 
+        catch { return false; } 
+    }
+
+    const isMyNickUnavailable = () => { return players.filter((player) => player.name === nickname).length > 0 }
 
     const NewPlayer = () => {
         CreatePlayer(dispatch, nickname, signature, color);
@@ -107,7 +113,7 @@ export const Config = () => {
 
             <Button id="ConfigConfirmButton" hidden={confirmed} 
                 onClick={()=> {NewPlayer()}} onMouseDown={(e) => e.preventDefault()}
-                disabled={nickname === "" || signature === ""}>Zatwierdź</Button>
+                disabled={nickname === "" || signature === "" || isMyNickUnavailable()}>Zatwierdź</Button>
             <Button id="ConfigReadyButton" hidden={!confirmed} onClick={()=> {GetReady()}} 
                 onMouseDown={(e) => e.preventDefault()} variant={amIReady() ? "danger" : "success"}>
                 {amIReady() ? "Niegotowy" : "Gotowy"}</Button>

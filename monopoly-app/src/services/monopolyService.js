@@ -168,7 +168,8 @@ export const CreatePlayer = async (dispatch, playerName, signature, color) => {
     try {
         axios.post(axiosPlayerURL + 'LogNewPlayer', 
             {"name": playerName, "signature": signature, "color": "black"}).then(
-            dispatch(ActionCreators.createPlayer({playerName, signature, color})));
+            tmp => dispatch(ActionCreators.setMyIndex(tmp.data)));
+        dispatch(ActionCreators.createPlayer({playerName, signature, color})); // API will send player list, so maybe it should be commented...
     } catch { console.log("Player couldn't be created!"); }
 }
 
