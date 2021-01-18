@@ -33,6 +33,24 @@ export const GetLossCards = async (dispatch) => {
     } catch { console.log("Loss Cards couldn't be set!"); }
 }
 
+
+
+export const GetGameState = async (dispatch) => {
+    try {
+        axios.get(axiosGameURL + 'gamestate').then(
+            tmp => dispatch(ActionCreators.setGameState(tmp.data)));
+    } catch { console.log("Game State couldn't be set!"); }
+}
+
+export const GetMyIndex = async (dispatch) => {
+    try {
+        axios.get(axiosPlayerURL + 'myindex').then(
+            tmp => dispatch(ActionCreators.setMyIndex(tmp.data)));
+    } catch { console.log("My Index couldn't be set!"); }
+}
+
+
+
 export const GetActivePlayerIndex = async (dispatch) => {
     try {
         axios.get(axiosGameURL + 'activeplayerindex').then(
@@ -48,6 +66,8 @@ export const UpdateActivePlayerIndex = async (dispatch, activePlayerIndex) => {
     } catch { console.log("ActivePlayerIndex couldn't be updated!"); }
 }
 
+
+
 export const GetDices = async (dispatch) => {
     try {
         axios.get(axiosGameURL + 'dices').then(
@@ -61,6 +81,19 @@ export const UpdateDices = async (dispatch, dices) => {
             dispatch(ActionCreators.updateDices({dices})));
     } catch { console.log("Dices couldn't be updated!"); }
 }
+
+
+
+export const CreatePlayer = async (dispatch, playerName, signature, color) => {
+    try {
+        axios.post(axiosPlayerURL + 'LogNewPlayer', 
+            {"name": playerName, "signature": signature, "color": "black"}).then(
+            tmp => dispatch(ActionCreators.setMyIndex(tmp.data)));
+        dispatch(ActionCreators.createPlayer({playerName, signature, color})); // API will send player list, so maybe it should be commented...
+    } catch { console.log("Player couldn't be created!"); }
+}
+
+
 
 export const UpdatePlayerPosition = async (dispatch, activePlayerIndex, deltaPosition) => {
     try {
@@ -77,6 +110,40 @@ export const UpdatePlayerCash = async (dispatch, playerName, deltaCash) => {
             dispatch(ActionCreators.updatePlayerCash({playerName, deltaCash})));
     } catch { console.log("Player's cash couldn't be updated!"); }
 }
+
+export const UpdatePlayerWaitingTurns = async (dispatch, playerName, deltaTurns, isInJail) => {
+    try {
+        axios.put(axiosPlayerURL + 'UpdatePlayerWaitingsTurns', 
+            {"playerName": playerName, "deltaTurns": deltaTurns, "isInJail": isInJail}).then(
+            dispatch(ActionCreators.updatePlayerWaitingTurns({playerName, deltaTurns, isInJail})));
+    } catch { console.log("Player's Waiting Turns couldn't be updated!"); }
+}
+
+export const UpdatePlayerBankrupt = async (dispatch, playerName) => {
+    try {
+        axios.put(axiosPlayerURL + 'UpdatePlayerBankrupt', 
+            {"name": playerName}).then(
+            dispatch(ActionCreators.updatePlayerBankrupt({playerName})));
+    } catch { console.log("Player's Bankrupt Status couldn't be updated!"); }
+}
+
+export const UpdatePlayerReadiness = async (dispatch, playerName) => {
+    try {
+        axios.put(axiosPlayerURL + 'UpdatePlayerReadiness', 
+            {"name": playerName}).then(
+            dispatch(ActionCreators.updatePlayerReadiness({playerName})));
+    } catch { console.log("Player's Readiness Status couldn't be updated!"); }
+}
+
+export const UpdatePlayerThrownDices = async (dispatch, playerName) => {
+    try {
+        axios.put(axiosPlayerURL + 'UpdatePlayerThrownDices', 
+            {"name": playerName}).then(
+            dispatch(ActionCreators.updatePlayerThrownDices({playerName})));
+    } catch { console.log("Player's ThrownDices Status couldn't be updated!"); }
+}
+
+
 
 export const UpdatePlayerNewProperty = async (dispatch, playerName, fieldID) => {
     try {
@@ -110,6 +177,8 @@ export const UpdatePlayerMortgageProperty = async (dispatch, playerName, fieldID
     } catch { console.log("Player's property couldn't be mortgaged / unmortgaged!"); }
 }
 
+
+
 export const UpdatePlayerAddEventCard = async (dispatch, playerName, cardID) => {
     try {
         axios.put(axiosPlayerURL + 'UpdatePlayerAddEventCard', 
@@ -126,29 +195,7 @@ export const UpdatePlayerDeleteEventCard = async (dispatch, playerName, cardID) 
     } catch { console.log("Player couldn't delete event card!"); }
 }
 
-export const UpdatePlayerWaitingTurns = async (dispatch, playerName, deltaTurns, isInJail) => {
-    try {
-        axios.put(axiosPlayerURL + 'UpdatePlayerWaitingsTurns', 
-            {"playerName": playerName, "deltaTurns": deltaTurns, "isInJail": isInJail}).then(
-            dispatch(ActionCreators.updatePlayerWaitingTurns({playerName, deltaTurns, isInJail})));
-    } catch { console.log("Player's Waiting Turns couldn't be updated!"); }
-}
 
-export const UpdatePlayerBankrupt = async (dispatch, playerName) => {
-    try {
-        axios.put(axiosPlayerURL + 'UpdatePlayerBankrupt', 
-            {"name": playerName}).then(
-            dispatch(ActionCreators.updatePlayerBankrupt({playerName})));
-    } catch { console.log("Player's Bankrupt Status couldn't be updated!"); }
-}
-
-export const UpdatePlayerReadiness = async (dispatch, playerName) => {
-    try {
-        axios.put(axiosPlayerURL + 'UpdatePlayerReadiness', 
-            {"name": playerName}).then(
-            dispatch(ActionCreators.updatePlayerReadiness({playerName})));
-    } catch { console.log("Player's Readiness Status couldn't be updated!"); }
-}
 
 export const GetLogs = async (dispatch) => {
     try {
@@ -164,14 +211,7 @@ export const AddNewLog = async (dispatch, newLog) => {
     } catch { console.log("Logs couldn't be updated!"); }
 }
 
-export const CreatePlayer = async (dispatch, playerName, signature, color) => {
-    try {
-        axios.post(axiosPlayerURL + 'LogNewPlayer', 
-            {"name": playerName, "signature": signature, "color": "black"}).then(
-            tmp => dispatch(ActionCreators.setMyIndex(tmp.data)));
-        dispatch(ActionCreators.createPlayer({playerName, signature, color})); // API will send player list, so maybe it should be commented...
-    } catch { console.log("Player couldn't be created!"); }
-}
+
 
 // LOCAL:
 export const UpdateCurrentEventCard = async (dispatch, eventCard) => {

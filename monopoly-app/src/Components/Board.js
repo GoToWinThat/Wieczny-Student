@@ -25,14 +25,11 @@ export const Board = () => {
             GetActivePlayerIndex(dispatch);
             GetLogs(dispatch);
         }, [dispatch]);
-    } catch {
-        console.log("Couldn't call function useEffect() in Board.js!");
-    }
+    } catch { console.log("Couldn't call function useEffect() in Board.js!"); }
 
     // Eliminate problem with empty lists (it can be too early to render board):
     if (fields.length === 0 || players.length === 0 || gainCards.length === 0 
-        || lossCards.length === 0 || activePlayerIndex === null) 
-        return null;
+        || lossCards.length === 0 || activePlayerIndex === null) return null;
 
     return (
         <div className="board">

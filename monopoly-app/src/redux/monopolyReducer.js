@@ -1,6 +1,6 @@
 const initialState = { monopolyFields: [], gainCards: [], 
     lossCards: [], players: [], dices: [], activePlayerIndex: null, 
-    logs: [], gameState: "config", myIndex: null, clocks: [30, 1200],
+    logs: [], myIndex: null, gameState: "config", turnClock: 30, gameClock: 1200,
     currentCard: { cardName: "", description: ""} }
 
 export const ActionTypes = { 
@@ -8,7 +8,9 @@ export const ActionTypes = {
     SET_GAINCARDS: 'SET_GAINCARDS',
     SET_LOSSCARDS: 'SET_LOSSCARDS',
     SET_PLAYERS: 'SET_PLAYERS',
+
     SET_MY_INDEX: 'SET_MY_INDEX',
+    SET_GAME_STATE: 'SET_GAME_STATE',
 
     SET_ACTIVE_PLAYER_INDEX: 'SET_ACTIVE_PLAYER_INDEX',
     UPDATE_ACTIVE_PLAYER_INDEX: 'UPDATE_ACTIVE_PLAYER_INDEX',
@@ -23,6 +25,7 @@ export const ActionTypes = {
     UPDATE_PLAYER_WAITING_TURNS: 'UPDATE_PLAYER_WAITING_TURNS',
     UPDATE_PLAYER_BANKRUPT: 'UPDATE_PLAYER_BANKRUPT',
     UPDATE_PLAYER_READINESS: 'UPDATE_PLAYER_READINESS',
+    UPDATE_PLAYER_THROWN_DICES: 'UPDATE_PLAYER_THROWN_DICES',
 
     UPDATE_PLAYER_NEW_PROPERTY: 'UPDATE_PLAYER_NEW_PROPERTY',
     UPDATE_PLAYER_DELETE_PROPERTY: 'UPDATE_PLAYER_DELETE_PROPERTY',
@@ -44,7 +47,9 @@ export const ActionCreators = {
     setGainCards: payload => ({ type: ActionTypes.SET_GAINCARDS, payload }),
     setLossCards: payload => ({ type: ActionTypes.SET_LOSSCARDS, payload }),
     setPlayers: payload => ({ type: ActionTypes.SET_PLAYERS, payload }),
+
     setMyIndex: payload => ({ type: ActionTypes.SET_MY_INDEX, payload }),
+    setGameState: payload => ({ type: ActionTypes.SET_GAME_STATE, payload }),
 
     setActivePlayerIndex: payload => ({ type: ActionTypes.SET_ACTIVE_PLAYER_INDEX, payload }),
     updateActivePlayerIndex: payload => ({ type: ActionTypes.UPDATE_ACTIVE_PLAYER_INDEX, payload }),
@@ -59,6 +64,7 @@ export const ActionCreators = {
     updatePlayerWaitingTurns: payload => ({ type: ActionTypes.UPDATE_PLAYER_WAITING_TURNS, payload }),
     updatePlayerBankrupt: payload => ({ type: ActionTypes.UPDATE_PLAYER_BANKRUPT, payload }),
     updatePlayerReadiness: payload => ({ type: ActionTypes.UPDATE_PLAYER_READINESS, payload }),
+    updatePlayerThrownDices: payload => ({ type: ActionTypes.UPDATE_PLAYER_THROWN_DICES, payload}),
 
     updatePlayerNewProperty: payload => ({ type: ActionTypes.UPDATE_PLAYER_NEW_PROPERTY, payload }),
     updatePlayerDeleteProperty: payload => ({ type: ActionTypes.UPDATE_PLAYER_DELETE_PROPERTY, payload }),
@@ -93,10 +99,18 @@ export default function MonopolyReducer(state = initialState, action) {
         case ActionTypes.SET_PLAYERS:
             return { ...state, players: [...action.payload.monopolyPlayers] }
 
+
+
         // get index value of user in "players" list
         case ActionTypes.SET_MY_INDEX:
             return { ...state, myIndex: action.payload }
 
+        // get current state of game - is it running yet 
+        // and how much time is it to end of turn of active player and end of game
+        case ActionTypes.SET_GAME_STATE:
+            return { ...state, gameState: action.payload.gameState, 
+                               turnClock: action.payload.turnClock, 
+                               gameClock: action.payload.gameClock }
 
 
         // change index of player that has a turn at the moment:
@@ -178,11 +192,21 @@ export default function MonopolyReducer(state = initialState, action) {
                 })
             }
 
+        // change player's readiness status:
         case ActionTypes.UPDATE_PLAYER_READINESS:
             return { ...state,                 
                 players: state.players.map(player => {
                     if (player.name !== action.payload.playerName) return player
                     return { ...player, isReady: !player.isReady }
+                })
+            }
+
+        // change player's thrown_dices status:
+        case ActionTypes.UPDATE_PLAYER_THROWN_DICES:
+            return { ...state,                 
+                players: state.players.map(player => {
+                    if (player.name !== action.payload.playerName) return player
+                    return { ...player, thrownDices: !player.thrownDices }
                 })
             }
 
