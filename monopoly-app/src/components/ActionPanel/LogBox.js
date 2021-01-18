@@ -6,7 +6,7 @@ export const LogBox = (data) =>
     return(
         <div className="d-flex justify-content-center">
             <p className="logBox overflow-auto border-dark">
-                {logs.map(log => log + "\n")}
+                {logs.map(log => log.logInfo + "\n")}
             </p>
         </div>
     )

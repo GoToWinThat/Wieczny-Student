@@ -82,11 +82,11 @@ export default function MonopolyReducer(state = initialState, action) {
 
         // get all the players and set them in "players" list
         case ActionTypes.SET_PLAYERS:
-            return { ...state, players: [...action.payload.players] }
+            return { ...state, players: [...action.payload.monopolyPlayers] }
 
         // change index of player that has a turn at the moment:
         case ActionTypes.SET_ACTIVE_PLAYER_INDEX:
-            return { ...state, activePlayerIndex: action.payload.activePlayerIndex }
+            return { ...state, activePlayerIndex: action.payload }
 
         // change index of player that has a turn at the moment:
         case ActionTypes.UPDATE_ACTIVE_PLAYER_INDEX:
@@ -238,22 +238,14 @@ export default function MonopolyReducer(state = initialState, action) {
                 }
             ]}
 
-        // delete player from the list (eg. if he logged out)
-        case ActionTypes.DELETE_PLAYER:
-            let tmp = []
-            for (let i = 0; i < state.players.length; i++)
-                if (state.players[i].name !== action.payload.playerName) 
-                    tmp.push(state.players[i]);
-            return { ...state, players: [...tmp] }
-
-
         // get all logs and set them in "logs" list    
         case ActionTypes.SET_LOGS:
             return { ...state, logs: [...action.payload.logs] }
 
         // add new log to "logs" list
         case ActionTypes.ADD_NEW_LOG:
-            return { ...state, logs: [...state.logs, action.payload.newLog] }
+            return { ...state, logs: [...state.logs, 
+                {"id": state.logs.length + 1, "logInfo": action.payload.newLog}] }
 
         // local function setting current event card:
         case ActionTypes.UPDATE_CURRENT_CARD:
