@@ -1,49 +1,12 @@
-import React, { Component } from 'react';
 import {SignalRHubConfiguration} from './SignalRHubConfiguration.js';
-import {
-    JsonHubProtocol,
-    HubConnectionState,
-    HubConnectionBuilder,
-    HubConnection,
-    LogLevel,
-    HttpTransportType
-  } from '@microsoft/signalr';
+import { useDispatch } from 'react-redux';
 
-class SignalRHubConnector extends Component {
-  constructor(props) {
-    super(props);
+const SignalRHubConnector = () => {
+  const dispatch = useDispatch();
+  const hubConnection = SignalRHubConfiguration('https://localhost:44358/monopolyhub', dispatch)
+  setTimeout(() => hubConnection.invoke('GetPlayers', "xd").catch(err => console.error(err)), 1000)
 
-    this.state = {
-      nick: 'nie',
-      message: '',
-      messages: [],
-      hubConnection: '',
-    };
-
-
-  }
-  componentDidMount = () => {
-
-   /* this.setState({hubConnection:setupSignalRConnection('http://localhost:5001/monopolyhub')},
-    ()=>{
-      this.state.hubConnection
-      .on(
-        'ReceiveMessage', (receivedMessage) => 
-        {
-        const text = `${receivedMessage}`;
-        const messages = this.state.messages.concat([text]);
-        this.setState({ messages });
-        }
-        );
-    });*/
-    this.setState({hubConnection:setupSignalRConnection('https://localhost:5001/monopolyhub')})
-  };
-  sendMessage = () => {
-      console.log("no hej")
-    this.state.hubConnection
-      .invoke('ReceiveMessage', this.state.nick)
-      .catch(err => console.error(err));      
-  };
+  return null
 }
 
 export default SignalRHubConnector;
