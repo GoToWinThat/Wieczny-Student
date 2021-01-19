@@ -17,7 +17,7 @@ namespace Domain.Entities
         public bool IsBankrupt { get; set; }
         public bool IsLogged { get; set; }
         public bool IsReady { get; set; }
-        public List<int> ThrownDices { get; set; }
+        public bool ThrownDices { get; set; }
         public ICollection<PropertyFieldInfo> PropertyFieldInfos { get; set; }
         public ICollection<Card> Cards { get; set; }
     }

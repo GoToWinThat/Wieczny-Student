@@ -23,6 +23,10 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdateActivePlayerInde
         public async Task<Unit> Handle(UpdateActivePlayerIndexCommand request, CancellationToken cancellationToken)
         {
             var entity = await _context.GameInfo.FirstOrDefaultAsync();
+            //zmiana na false thrown dices
+            //Jezeli indeks nalezy do bota
+            //if BOT - islogged
+
 
             if (entity == null)
             {
@@ -30,6 +34,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdateActivePlayerInde
             }
 
             entity.ActivePlayerIndex = request.Index;
+            MonopolyAI.MonopolyAI.ProcessBot(entity.ActivePlayerIndex,cancellationToken);
 
             await _context.SaveChangesAsync(cancellationToken);
             return Unit.Value;

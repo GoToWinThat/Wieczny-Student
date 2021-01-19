@@ -25,9 +25,4 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UseCases\MonopolyPlayers\Commands\UpdatePlayerReadiness\" />
-    <Folder Include="UseCases\MonopolyPlayers\Commands\UpdatePlayerThrownDices\" />
-  </ItemGroup>
-
 </Project>

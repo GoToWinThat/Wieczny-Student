@@ -8,6 +8,7 @@ using Monopoly.Core.UseCases.MonopolyGame.GetGameState;
 using Monopoly.Core.UseCases.MonopolyLogs.Commands.AddLog;
 using Monopoly.Core.UseCases.MonopolyLogs.Queries.GetLogs;
 using Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdateActivePlayerIndex;
+using Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerReadiness;
 using Monopoly.Core.UseCases.MonopolyPlayers.Queries.GetActivePlayer;
 using Monopoly.Core.UseCases.MonopolyPlayers.Queries.GetPlayers;
 using System.Threading.Tasks;
@@ -89,6 +90,14 @@ namespace Monopoly.WebApi.Controllers
         public async Task<ActionResult<GameStateVm>> GetGameState()
         {
             return await Mediator.Send(new GetGameStateQuery());
+        }
+
+        [HttpPut]
+        [Route("UpdatePlayerReadiness")]
+        public async Task<ActionResult> UpdatePlayerReadiness(UpdatePlayerReadinessCommand command)
+        {
+            await Mediator.Send(command);
+            return NoContent();
         }
     }
 }

@@ -24,6 +24,7 @@ namespace Monopoly.Core.UseCases.MonopolyDices.Commands.UpdateDices
         public async Task<Unit> Handle(UpdateDicesCommand request, CancellationToken cancellationToken)
         {
             var entity = await _context.Dices.FirstOrDefaultAsync();
+            //zmiana na danym graczu propercji throwndices na true
 
             if (entity == null)
             {

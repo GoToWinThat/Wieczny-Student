@@ -19,7 +19,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Queries.GetPlayers.Dto
         public bool IsBankrupt { get; set; }
         public bool IsLogged { get; set; }
         public bool IsReady { get; set; }
-        public List<int> ThrownDices { get; set; }
+        public bool ThrownDices { get; set; }
         public ICollection<PropertyFieldInfoDto> Properties { get; set; }
         public ICollection<EventCardDto> EventCards { get; set; }
 

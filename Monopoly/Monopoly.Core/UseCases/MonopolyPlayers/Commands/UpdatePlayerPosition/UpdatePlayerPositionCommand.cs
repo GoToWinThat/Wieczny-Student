@@ -14,7 +14,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerPosition
      {
         public int ActivePlayerIndex { get; set; }
         public int DeltaPosition { get; set; }
-    }
+     }
     public class UpdatePlayerPositionCommandHandler : IRequestHandler<UpdatePlayerPositionCommand>
     {
         private IApplicationDbContext _context;
@@ -27,12 +27,16 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerPosition
         {
             var entity = await _context.Players.Where(p => p.Id == request.ActivePlayerIndex+1).FirstAsync();
 
+ 
+
             if (entity == null)
             {
                 throw new NotFoundException(nameof(Player), request.ActivePlayerIndex + 1);
             }
 
             entity.Position = (entity.Position+request.DeltaPosition)%40;
+
+            MonopolyAI.MonopolyAI.TriggedByNewPostion(entity.Position);
 
             await _context.SaveChangesAsync(cancellationToken);
             return Unit.Value;

@@ -24,12 +24,6 @@ namespace Infrastructure.Persistance.Configuration
                 .HasMany(o => o.Cards)
                 .WithMany(p => p.Players);
 
-            var ListConverter = new ValueConverter<List<int>, string>
-                   (v => string.Join(";", v), v => v.Split(new[] { ';' })
-                  .Select(x => Int32.Parse(x))
-                  .ToList());
-
-            builder.Property(nameof(Player.ThrownDices)).HasConversion(ListConverter);
 
             builder.Property(p => p.Signature)
                 .HasMaxLength(40)
