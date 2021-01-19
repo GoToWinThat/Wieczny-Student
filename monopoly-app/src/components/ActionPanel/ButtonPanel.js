@@ -1,6 +1,5 @@
 import "../../styles/ActionPanel.css";
 import { Button, ButtonGroup } from 'react-bootstrap';
-import { thrownDices } from "../../gameplay/fieldActions";
 
 function ButtonPanel(props)
 {
@@ -8,11 +7,15 @@ function ButtonPanel(props)
     return(
       <ButtonGroup>
         <Button id="buyButton" onClick={() => props.openView('buy')} 
-          disabled={(isAbleToBuy(props.data) === false) || (thrownDices === false)}
+          disabled={(isAbleToBuy(props.data) === false) 
+            || (props.data.players[props.data.myIndex].thrownDices === false) 
+            || (props.data.activePlayerIndex !== props.data.myIndex)}
           onMouseDown={(e) => e.preventDefault()}>Kup</Button>
         <Button id="manageButton" onClick={() => props.openView('manage')}
+          disabled={props.data.activePlayerIndex !== props.data.myIndex}
           onMouseDown={(e) => e.preventDefault()}>Zarządzaj</Button>
         <Button id="tradeButton" onClick={() => props.openView('trade')}
+          disabled={props.data.activePlayerIndex !== props.data.myIndex}
           onMouseDown={(e) => e.preventDefault()}>Handluj</Button>
       </ButtonGroup>
     )

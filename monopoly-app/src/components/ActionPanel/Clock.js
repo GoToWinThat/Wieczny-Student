@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import "../../styles/GameClock.css";
 
-var secondsForAction = 30; var secondsForGame = 60 * 20;
+var secondsForAction = 5; var secondsForGame = 60 * 20;
 
 class Clock extends Component {
     constructor() {
@@ -71,7 +71,8 @@ class Clock extends Component {
     render() {
         if (this.props.typeOfClock === "turnClock")
             return(
-                <Button id="endTurnButton" onClick={this.resetClock} onMouseDown={(e) => e.preventDefault()}>
+                <Button id="endTurnButton" onClick={this.resetClock} onMouseDown={(e) => e.preventDefault()}
+                    disabled={this.props.data.data.myIndex !== this.props.data.data.activePlayerIndex}>
                     <span>Zakończ turę [{this.state.time.m * 60 + this.state.time.s}s]</span>
                 </Button>    
             );

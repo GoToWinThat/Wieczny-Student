@@ -2,9 +2,6 @@ import { AddNewLog, UpdateDices, UpdatePlayerPosition, UpdatePlayerCash,
     UpdatePlayerWaitingTurns, UpdatePlayerAddEventCard, 
     UpdatePlayerDeleteEventCard, UpdateCurrentEventCard } from '../services/monopolyService';
 
-// Parameters:
-export var thrownDices = false;
-export const setThrownDices = (newValue) => thrownDices = newValue;
 
 // Throwing dices:
 export const throwDicesEvent = (data) =>
@@ -19,7 +16,6 @@ export const throwDicesEvent = (data) =>
     // Updating dices:
     let newDiceState = [Math.floor(Math.random() * 6) + 1, Math.floor(Math.random() * 6) + 1];
     UpdateDices(dispatch, newDiceState);
-    setThrownDices(true);
 
     // Updating player position:
     let numberOnDices = newDiceState[0] + newDiceState[1];

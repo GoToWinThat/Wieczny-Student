@@ -134,14 +134,6 @@ export const UpdatePlayerReadiness = async (dispatch, playerName) => {
     } catch { console.log("Player's Readiness Status couldn't be updated!"); }
 }
 
-export const UpdatePlayerThrownDices = async (dispatch, playerName) => {
-    try {
-        axios.put(axiosPlayerURL + 'UpdatePlayerThrownDices', 
-            {"name": playerName}).then(
-            dispatch(ActionCreators.updatePlayerThrownDices({playerName})));
-    } catch { console.log("Player's ThrownDices Status couldn't be updated!"); }
-}
-
 
 
 export const UpdatePlayerNewProperty = async (dispatch, playerName, fieldID) => {

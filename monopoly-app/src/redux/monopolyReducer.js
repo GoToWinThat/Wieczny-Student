@@ -1,6 +1,6 @@
 const initialState = { monopolyFields: [], gainCards: [], 
     lossCards: [], players: [], dices: [], activePlayerIndex: null, 
-    logs: [], myIndex: null, gameState: "config", turnClock: 30, gameClock: 1200,
+    logs: [], myIndex: 0, gameState: "config", turnClock: 30, gameClock: 1200,
     currentCard: { cardName: "", description: ""} }
 
 export const ActionTypes = { 
@@ -23,7 +23,6 @@ export const ActionTypes = {
     UPDATE_PLAYER_WAITING_TURNS: 'UPDATE_PLAYER_WAITING_TURNS',
     UPDATE_PLAYER_BANKRUPT: 'UPDATE_PLAYER_BANKRUPT',
     UPDATE_PLAYER_READINESS: 'UPDATE_PLAYER_READINESS',
-    UPDATE_PLAYER_THROWN_DICES: 'UPDATE_PLAYER_THROWN_DICES',
 
     UPDATE_PLAYER_NEW_PROPERTY: 'UPDATE_PLAYER_NEW_PROPERTY',
     UPDATE_PLAYER_DELETE_PROPERTY: 'UPDATE_PLAYER_DELETE_PROPERTY',
@@ -60,7 +59,6 @@ export const ActionCreators = {
     updatePlayerWaitingTurns: payload => ({ type: ActionTypes.UPDATE_PLAYER_WAITING_TURNS, payload }),
     updatePlayerBankrupt: payload => ({ type: ActionTypes.UPDATE_PLAYER_BANKRUPT, payload }),
     updatePlayerReadiness: payload => ({ type: ActionTypes.UPDATE_PLAYER_READINESS, payload }),
-    updatePlayerThrownDices: payload => ({ type: ActionTypes.UPDATE_PLAYER_THROWN_DICES, payload}),
 
     updatePlayerNewProperty: payload => ({ type: ActionTypes.UPDATE_PLAYER_NEW_PROPERTY, payload }),
     updatePlayerDeleteProperty: payload => ({ type: ActionTypes.UPDATE_PLAYER_DELETE_PROPERTY, payload }),
@@ -99,7 +97,7 @@ export default function MonopolyReducer(state = initialState, action) {
 
         // get index value of user in "players" list
         case ActionTypes.SET_MY_INDEX:
-            return { ...state, myIndex: action.payload }
+            return { ...state, myIndex: action.payload - 1 }
 
         // get current state of game - is it running yet 
         // and how much time is it to end of turn of active player and end of game
@@ -175,16 +173,6 @@ export default function MonopolyReducer(state = initialState, action) {
                     return { ...player, isReady: !player.isReady }
                 })
             }
-
-        // change player's thrown_dices status:
-        case ActionTypes.UPDATE_PLAYER_THROWN_DICES:
-            return { ...state,                 
-                players: state.players.map(player => {
-                    if (player.name !== action.payload.playerName) return player
-                    return { ...player, thrownDices: !player.thrownDices }
-                })
-            }
-
 
 
         // add property at the end of the player's properties list
@@ -288,8 +276,6 @@ export default function MonopolyReducer(state = initialState, action) {
         case ActionTypes.UPDATE_CURRENT_CARD:
             return { ...state, currentCard: { cardName: action.payload.cardName, 
                 description: action.payload.description} }
-
-
 
         default:
             return state;

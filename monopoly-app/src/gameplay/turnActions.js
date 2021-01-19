@@ -1,5 +1,5 @@
 import { UpdateActivePlayerIndex, AddNewLog, UpdatePlayerWaitingTurns } from '../services/monopolyService';
-import { setThrownDices, thrownDices, throwDicesEvent } from "./fieldActions";
+import { throwDicesEvent } from "./fieldActions";
 import { canPreventBankrupt, bankrupt } from '../components/Modals/ManageBankrupt'
 
 export const endTurnEvent = (data) =>
@@ -14,8 +14,14 @@ export const endTurnEvent = (data) =>
         bankrupt(dispatch,players[activePlayerIndex])
 
     // Throw dices if it haven't happened yet:
-    if (thrownDices === false)
-        throwDicesEvent(data);
+    //if (players[data.data.myIndex] === false) throwDicesEvent(data);
+
+
+    // Everything below will be deleted...
+
+
+
+
 
     // Update who's turn is it now:
     var nextPlayerIndex = (activePlayerIndex + 1) % players.length;
@@ -48,7 +54,6 @@ export const endTurnEvent = (data) =>
     // Beginning of new turn:
     UpdateActivePlayerIndex(dispatch, nextPlayerIndex);
     AddNewLog(dispatch, `Tura gracza ${players[nextPlayerIndex].name}.`);
-    setThrownDices(false);
 
     // Check if this player won:
     GameOver(dispatch, players, nextPlayerIndex);
