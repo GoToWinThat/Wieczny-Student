@@ -61,7 +61,7 @@ export const GetActivePlayerIndex = async (dispatch) => {
 export const UpdateActivePlayerIndex = async (dispatch, activePlayerIndex) => {
     try {
         axios.put(axiosGameURL + 'UpdatePlayerIndex', 
-            {"activePlayerIndex": activePlayerIndex}).then(
+            {"index": activePlayerIndex}).then(
             dispatch(ActionCreators.updateActivePlayerIndex({activePlayerIndex})));
     } catch { console.log("ActivePlayerIndex couldn't be updated!"); }
 }
