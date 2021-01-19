@@ -60,7 +60,7 @@ export const GetActivePlayerIndex = async (dispatch) => {
 
 export const UpdateActivePlayerIndex = async (dispatch, activePlayerIndex) => {
     try {
-        axios.put(axiosGameURL + 'UpdatePlayerIndex', 
+        axios.put(axiosGameURL + 'UpdateActivePlayerIndex', 
             {"index": activePlayerIndex}).then(
             dispatch(ActionCreators.updateActivePlayerIndex({activePlayerIndex})));
     } catch { console.log("ActivePlayerIndex couldn't be updated!"); }
@@ -89,7 +89,6 @@ export const CreatePlayer = async (dispatch, playerName, signature, color) => {
         axios.post(axiosPlayerURL + 'LogNewPlayer', 
             {"name": playerName, "signature": signature, "color": color}).then(
             tmp => dispatch(ActionCreators.setMyIndex(tmp.data)));
-        dispatch(ActionCreators.createPlayer({playerName, signature, color})); // API will send player list, so maybe it should be commented...
     } catch { console.log("Player couldn't be created!"); }
 }
 
