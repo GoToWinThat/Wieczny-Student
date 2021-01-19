@@ -25,8 +25,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             Price = 15,
                             RentCosts = new List<int> { 1, 4, 12, 36, 90 },
                             EstatePrice = 10,
-                            Mortage = 6,
-                            Purschased = false,
+                            Mortgage = 6,
+                            Purchased = false,
                             MonopolyID = 1,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
@@ -44,8 +44,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID = 3,
                             RentCosts = new List<int> { 1, 4, 12, 36, 90 },
                             EstatePrice = 10,
-                            Mortage = 6,
-                            Purschased = false,
+                            Mortgage = 6,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -61,8 +61,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID = 4,
                             RentCosts = new List<int> { 0 },
                             EstatePrice = 0,
-                            Mortage = 20,
-                            Purschased = false,
+                            Mortgage = 20,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -78,8 +78,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID = 5,
                             RentCosts = new List<int> { 0 },
                             EstatePrice = 0,
-                            Mortage = 20,
-                            Purschased = false,
+                            Mortgage = 20,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -94,8 +94,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID = 6,
                             RentCosts = new List<int> { 3, 12, 35, 90, 150 },
                             EstatePrice = 20,
-                            Mortage = 15,
-                            Purschased = false,
+                            Mortgage = 15,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -110,8 +110,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID = 7,
                             RentCosts = new List<int> { 3, 16, 44, 160, 200 },
                             EstatePrice = 20,
-                            Mortage = 20,
-                            Purschased = false,
+                            Mortgage = 20,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -128,8 +128,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID = 9,
                             RentCosts = new List<int> { 1, 6, 18, 54, 90 },
                             EstatePrice = 10,
-                            Mortage = 10,
-                            Purschased = false,
+                            Mortgage = 10,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -146,8 +146,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =11,
                             RentCosts = new List<int> { 2, 8, 20, 60, 100 },
                             EstatePrice = 10,
-                            Mortage = 12,
-                            Purschased = false,
+                            Mortgage = 12,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -162,8 +162,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =12,
                             RentCosts = new List<int> { 3, 10, 25, 70, 125 },
                             EstatePrice = 20,
-                            Mortage = 15,
-                            Purschased = false,
+                            Mortgage = 15,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -180,8 +180,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =14,
                             RentCosts = new List<int> { 1, 12, 22, 100, 120 },
                             EstatePrice = 20,
-                            Mortage = 14,
-                            Purschased = false,
+                            Mortgage = 14,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -197,8 +197,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =15,
                             RentCosts = new List<int> { 0 },
                             EstatePrice = 0,
-                            Mortage = 20,
-                            Purschased = false,
+                            Mortgage = 20,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -214,8 +214,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =17,
                             RentCosts = new List<int> { 2, 12, 22, 100, 130 },
                             EstatePrice = 20,
-                            Mortage = 14,
-                            Purschased = false,
+                            Mortgage = 14,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -229,8 +229,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =18,
                             RentCosts = new List<int> { 3, 15, 25, 100, 150 },
                             EstatePrice = 20,
-                            Mortage = 14,
-                            Purschased = false,
+                            Mortgage = 14,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -245,8 +245,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =19,
                             RentCosts = new List<int> { 3, 15, 45, 110, 180 },
                             EstatePrice = 20,
-                            Mortage = 22,
-                            Purschased = false,
+                            Mortgage = 22,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -262,8 +262,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =21,
                             RentCosts = new List<int> { 3, 15, 45, 110, 180 },
                             EstatePrice = 20,
-                            Mortage = 22,
-                            Purschased = false,
+                            Mortgage = 22,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -280,8 +280,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =24,
                             RentCosts = new List<int> { 3, 18, 50, 140, 210 },
                             EstatePrice = 20,
-                            Mortage = 25,
-                            Purschased = false,
+                            Mortgage = 25,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -297,8 +297,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =25,
                             RentCosts = new List<int> { 0 },
                             EstatePrice = 0,
-                            Mortage = 20,
-                            Purschased = false,
+                            Mortgage = 20,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -313,8 +313,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =26,
                             RentCosts = new List<int> { 3, 20, 60, 150, 230 },
                             EstatePrice = 20,
-                            Mortage = 25,
-                            Purschased = false,
+                            Mortgage = 25,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -328,8 +328,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =27,
                             RentCosts = new List<int> { 3, 14, 40, 110, 150 },
                             EstatePrice = 20,
-                            Mortage = 18,
-                            Purschased = false,
+                            Mortgage = 18,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -343,8 +343,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =28,
                             RentCosts = new List<int> { 3, 14, 40, 110, 150 },
                             EstatePrice = 20,
-                            Mortage = 18,
-                            Purschased = false,
+                            Mortgage = 18,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -358,8 +358,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =29,
                             RentCosts = new List<int> { 3, 15, 45, 120, 170 },
                             EstatePrice = 20,
-                            Mortage = 30,
-                            Purschased = false,
+                            Mortgage = 30,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -376,8 +376,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =31,
                             RentCosts = new List<int> { 5, 30, 90, 200, 280 },
                             EstatePrice = 40,
-                            Mortage = 30,
-                            Purschased = false,
+                            Mortgage = 30,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -391,8 +391,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =32,
                             RentCosts = new List<int> { 6, 38, 92, 190, 250 },
                             EstatePrice = 40,
-                            Mortage = 27,
-                            Purschased = false,
+                            Mortgage = 27,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -406,8 +406,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =33,
                             RentCosts = new List<int> { 6, 40, 95, 250, 350 },
                             EstatePrice = 40,
-                            Mortage = 27,
-                            Purschased = false,
+                            Mortgage = 27,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -423,8 +423,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =35,
                             RentCosts = new List<int> { 0 },
                             EstatePrice = 0,
-                            Mortage = 20,
-                            Purschased = false,
+                            Mortgage = 20,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -439,8 +439,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =36,
                             RentCosts = new List<int> { 0 },
                             EstatePrice = 0,
-                            Mortage = 20,
-                            Purschased = false,
+                            Mortgage = 20,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -455,8 +455,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =38,
                             RentCosts = new List<int> { 7, 30, 100, 200, 350 },
                             EstatePrice = 40,
-                            Mortage = 35,
-                            Purschased = false,
+                            Mortgage = 35,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -464,14 +464,14 @@ namespace Infrastructure.Persistance.DatabaseContext
                         },
                         new PropertyField
                         {
-                            Name = "Pracownia fizyczna nr 2 (CNT)",
+                            Name = "Biblioteka główna",
                             Color = MonopolyColor.steelblue,
                             Price = 80,
                             MonopolyID =39,
                             RentCosts = new List<int> { 10, 35, 110, 250, 400 },
                             EstatePrice = 40,
-                            Mortage = 45,
-                            Purschased = false,
+                            Mortgage = 45,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -484,60 +484,70 @@ namespace Infrastructure.Persistance.DatabaseContext
                     new GainCard 
                     { 
                         Type="Gain", 
+                        CardIdNumber=0,
                         CardName= "Pierwszeństwo w dziekanacie",
                         Description= "Masz przy sobie bardzo ważne dokumenty. Przy użyciu tej karty możesz od razu wyjść z dziekanatu nie tracąc żadnej kolejki."
                     },
                     new GainCard
                     {
                         Type = "Gain",
+                        CardIdNumber = 1,
                         CardName = "Oświecenie na konsultacjach",
                         Description = "Pokazujesz się z dobrej strony już na początku konsultacji. Przy użyciu tej karty możesz od razu z nich wyjść, nie tracąc żadnej kolejki."
                     },
                     new GainCard
                     {
                         Type = "Gain",
+                        CardIdNumber =2,
                         CardName = "Wygrana w konkursie",
                         Description = "Reprezentujesz uczelnię na konkursie i wygrywasz go. Prowadzący postanowili zaliczyć Ci cały semestr. Otrzymujesz 50 ECTS."
                     },
                     new GainCard
                     {
                         Type = "Gain",
+                        CardIdNumber =3,
                         CardName = "ECTSobranie",
                         Description = "Grozi Ci warunek, więc jak zwykle wybierasz się na poszukiwanie ECTSów w lesie. Udaje Ci się znaleźć aż 30 ECTS!"
                     },
                     new GainCard
                     {
                         Type = "Gain",
+                        CardIdNumber =4,
                         CardName = "Miss RMS / Mister RMS",
                         Description = "Zyskałaś tytuł najpiękniejszej studentki / zyskałeś tytuł najprzystojniejszego studenta! Otrzymujesz w nagrodę 10 ECTS."
                     },
                     new GainCard
                     {
                         Type = "Gain",
+                        CardIdNumber =5,
                         CardName = "Urodziny",
                         Description = "Masz urodziny i pozostali gracze życzą Ci zdania studiów. Dostajesz od każdego z nich 5 ECTS w prezencie."
                     },
                     new GainCard
                     {
                         Type = "Gain",
+                        CardIdNumber =6,
                         CardName = "Wyróżnienie przez dziekana",
                         Description = "Za wyróżnianie się w nauce dziekan uznał, że zasługujesz na 100 ECTS - właśnie tyle wpływa na Twoje konto."
                     },
                     new GainCard
                     {
                         Type = "Gain",
+                        CardIdNumber =7,
                         CardName = "Szczęśliwy traf",
                         Description = "Samorząd Wydziału zorganizował grę losową, w której do wygrania było 20 ECTS. Udało Ci się je wygrać!"
                     },
                     new GainCard
                     {
                         Type = "Gain",
+                        CardIdNumber =8,
                         CardName = "Znajomości na stołówce",
                         Description = "Znajomy pracujący na stołówce studenckiej obiecał Ci, że obsłuży Cię bez kolejki, więc nie musisz tam czekać."
                     },
                     new GainCard
                     {
                         Type = "Gain",
+                        CardIdNumber =9,
                         CardName = "O, pinć ECTSów!",
                         Description = "Idziesz sobie po korytarzu aż nagle zauważasz, że na podłodze leży 5 ECTSów. Nikogo w pobliżu nie ma, więc bierzesz je dla siebie."
                     });
@@ -549,60 +559,70 @@ namespace Infrastructure.Persistance.DatabaseContext
                     new LossCard
                     {
                         Type="Loss",
-                        CardName= "Zapomniany klucz",
+                        CardIdNumber =10,
+                        CardName = "Zapomniany klucz",
                         Description= "Prowadzący zapomniał zabrać klucza z portierni. Poprosił Cię o zejście na dół i przyniesienie go. Wracasz na pole PORTIERNIA."
                     },
                     new LossCard
                     {
                         Type = "Loss",
+                        CardIdNumber =11,
                         CardName = "Zapłata rachunków",
                         Description = "Musisz zapłacić za prąd, internet i licencje programów. Za każde posiadane pole płacisz 10 ECTS."
                     },
                     new LossCard
                     {
                         Type = "Loss",
+                        CardIdNumber =12,
                         CardName = "Warunek",
                         Description = "W tym semestrze nie szło Ci zbyt dobrze w nauce i musisz zapłacić za zaliczenie warunkowe. Płacisz 30 ECTS."
                     },
                     new LossCard
                     {
                         Type = "Loss",
+                        CardIdNumber =13,
                         CardName = "Formalności",
                         Description = "Zaszła potrzeba wyjaśnienia przez Ciebie pewnej sytuacji. Niezwłocznie się udajesz się na pole DZIEKANAT."
                     },
                     new LossCard
                     {
                         Type = "Loss",
+                        CardIdNumber =14,
                         CardName = "Douczanie się",
                         Description = "Niestety materiał na wykładzie okazał się być zbyt trudny i musisz udać się na pole KONSULTACJE."
                     },
                     new LossCard
                     {
                         Type = "Loss",
+                        CardIdNumber =15,
                         CardName = "Głód",
                         Description = "Dopadł Cię głód. Niezwłocznie udajesz się na pole STOŁÓWKA STUDENCKA."
                     },
                     new LossCard
                     {
                         Type = "Loss",
+                        CardIdNumber =16,
                         CardName = "Spłata pożyczki",
                         Description = "W poprzednim semestrze znajomy pomógł Ci, pożyczając pewną sumę ECTSów. Teraz musisz mu wszystko oddać. Płacisz 20 ECTS."
                     },
                     new LossCard
                     {
                         Type = "Loss",
+                        CardIdNumber =17,
                         CardName = "Gdybym był bogaty",
                         Description = "Uznałeś / Uznałaś, że masz za dużo ECTSów i oddajesz każdemu nietracącemu kolejki graczowi kwotę 5 ECTS."
                     },
                     new LossCard
                     {
                         Type = "Loss",
+                        CardIdNumber =18,
                         CardName = "Dziura w kieszeni",
                         Description = "Niedawno zarobione pieniądze wkładasz do kieszeni. Niestety ta okazuje się posiadać dziurę w sobie. Tracisz 5 ECTS."
                     },
                     new LossCard
                     {
                         Type = "Loss",
+                        CardIdNumber =19,
                         CardName = "Spóźnienie",
                         Description = "Zajęcia trwały zbyt długo i odjechał Ci autobus. Tracisz kolejkę."                   
                     }
@@ -610,75 +630,102 @@ namespace Infrastructure.Persistance.DatabaseContext
             }
             if(!context.Players.Any())
             {
+                //imie dla testow
                 context.Players.AddRange(
                     new Player
                     {
                         Cash = 1000,
-                        Signature="0000",
-                        Color=MonopolyColor.blue,
-                        Position=0,
-                        IsInJail=false,
-                        TurnsToWait=0,
-                        IsBrankrupt=false,
-                        IsLogged=false,
+                        Signature = "0000",
+                        Color = "red",
+                        Position = 0,
+                        Name = "Artur",
+                        IsInJail = false,
+                        TurnsToWait = 0,
+                        IsBankrupt = false,
+                        IsLogged = false,
                     },
                     new Player
                     {
                         Cash = 1000,
                         Signature = "1111",
-                        Color = MonopolyColor.red,
+                        Color = "blue",
                         Position = 0,
+                        Name = "Artur",
                         IsInJail = false,
                         TurnsToWait = 0,
-                        IsBrankrupt = false,
+                        IsBankrupt = false,
                         IsLogged = false
                     },
                     new Player
                     {
                         Cash = 1000,
                         Signature = "2222",
-                        Color = MonopolyColor.orange,
+                        Color = "prpl",
                         Position = 0,
+                        Name = "Artur",
                         IsInJail = false,
                         TurnsToWait = 0,
-                        IsBrankrupt = false,
+                        IsBankrupt = false,
                         IsLogged = false
                     },
                     new Player
                     {
                         Cash = 1000,
                         Signature = "3333",
-                        Color = MonopolyColor.green,
+                        Color = "nie",
                         Position = 0,
+                        Name = "Artur",
                         IsInJail = false,
                         TurnsToWait = 0,
-                        IsBrankrupt = false,
+                        IsBankrupt = false,
                         IsLogged = false
                     }
                     );
             }
-            context.GameInfo.Add(new GameInfo { ActivePlayerIndex = 1 }); ;
-            context.Dices.Add(new Dices { DiceValues = new List<int> { 1, 1 } });
-            await context.SaveChangesAsync();
-            if(context.PropertyFieldInfos.Any())
-            {
 
-                 for(int k=1;k<= context.PropertyFieldInfos.Count();k++)
-                 {
-                     var curr = context.PropertyFieldInfos.SingleOrDefault(i=>i.Id==k);
-                     curr.PropertyFieldId = curr.PropertyField.Id;
-                 }
+           /* if (!context.GameInfo.Any())
+            {
+                context.GameInfo.Add(new GameInfo { ActivePlayerIndex = 0, GameStarted = false }); ;
+            }*/
+            if (!context.Dices.Any())
+            {
+                context.Dices.Add(new Dices { DiceValues = new List<int> { 1, 1 } });
+            }
+            if(!context.Logs.Any())
+            {
+                context.Logs.Add(new Log { LogInfo = "Zaczynamy gre" });
             }
 
 
+           /* await context.SaveChangesAsync();
+            if(context.PropertyFieldInfos.Any())
+            {
+                if(context.GameInfo.FirstOrDefault().GameStarted==false)
+                {
+                    for (int k = 1; k <= context.PropertyFieldInfos.Count(); k++)
+                    {
+                        var curr = context.PropertyFieldInfos.SingleOrDefault(p => p.Id == k);
+                        curr.PropertyFieldId = curr.PropertyField.Id;
+                        curr.Player = context.Players.FirstOrDefault();
+                        curr.PlayerId= context.Players.FirstOrDefault().Id;
+                    }
+                }
+            }*/
+           /* if(context.GameInfo.Any())
+            {
+                context.GameInfo.FirstOrDefault().GameStarted = true;
+            }*/
+
             await context.SaveChangesAsync();
             //Do testowania
-            if (context.Players.Any())
+            /*if (context.Players.Any())
             {
                 context.Cards.First().Player= context.Players.First();
                 context.Cards.OrderBy(c=>c.Id).Last().Player = context.Players.First();
-            }
+            }*/
             //Do testowania
+
+
             await context.SaveChangesAsync();
         }
     }

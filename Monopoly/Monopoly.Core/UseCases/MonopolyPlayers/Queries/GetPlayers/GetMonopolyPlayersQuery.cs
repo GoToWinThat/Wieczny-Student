@@ -25,13 +25,12 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Queries.GetPlayers
         }
         public async Task<PlayersVm> Handle(GetMonopolyPlayersQuery request, CancellationToken cancellationToken)
         {
-            var MonopolyPlayers1 = await _context.Players.ProjectTo<PlayerDto>(_mapper.ConfigurationProvider)
-                    .OrderBy(t => t.Name)
-                    .ToListAsync(cancellationToken);
             return new PlayersVm
             {
-                MonopolyPlayers = MonopolyPlayers1
-            };
+                MonopolyPlayers = await _context.Players.ProjectTo<PlayerDto>(_mapper.ConfigurationProvider)
+                    .OrderBy(t => t.Name)
+                    .ToListAsync(cancellationToken)
+        };
         }
     }
 }

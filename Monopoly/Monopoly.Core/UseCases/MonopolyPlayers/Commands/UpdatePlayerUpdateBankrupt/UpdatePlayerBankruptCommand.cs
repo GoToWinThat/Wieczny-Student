@@ -33,7 +33,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerUpdateBank
                 throw new NotFoundException(nameof(Player), request.Name);
             }
 
-            entity.IsBrankrupt = !entity.IsBrankrupt;
+            entity.IsBankrupt = !entity.IsBankrupt;
 
             await _context.SaveChangesAsync(cancellationToken);
             return Unit.Value;

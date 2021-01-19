@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Monopoly.Core.UseCases.MonopolyPlayers.Commands.DeleteLoggedPlayer;
 using Monopoly.Core.UseCases.MonopolyPlayers.Commands.LogNewPlayer;
 using Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerAddEventCard;
 using Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerCash;
@@ -34,19 +33,11 @@ namespace Monopoly.WebApi.Controllers
 
         [HttpPost]
         [Route("LogNewPlayer")]
-        public async Task<ActionResult> LogNewPlayer(LogNewPlayerCommand command)
+        public async Task<ActionResult<int>> LogNewPlayer(LogNewPlayerCommand command)
         {
-            await Mediator.Send(command);
-            return NoContent();
+            return await Mediator.Send(command);
         }
 
-        [HttpDelete]
-        [Route("DeleteLoggedPlayer")]
-        public async Task<ActionResult> DeleteLoggedPlayer(DeleteLoggedPlayerCommand command)
-        {
-            await Mediator.Send(command);
-            return NoContent();
-        }
 
         [HttpPut]
         [Route("UpdatePlayerNewProperty")]
@@ -62,14 +53,14 @@ namespace Monopoly.WebApi.Controllers
             await Mediator.Send(command);
             return NoContent();
         }
-        [HttpDelete]
+        [HttpPut]
         [Route("UpdatePlayerExpandProperty")]
         public async Task<ActionResult> UpdatePlayerExpandProperty(UpdatePlayerExpandPropertyCommand command)
         {
             await Mediator.Send(command);
             return NoContent();
         }
-        [HttpDelete]
+        [HttpPut]
         [Route("UpdatePlayerMortgageProperty")]
         public async Task<ActionResult> UpdatePlayerMortgageProperty(UpdatePlayerMortgagePropertyCommand command)
         {
@@ -79,21 +70,21 @@ namespace Monopoly.WebApi.Controllers
 
         [HttpPut]
         [Route("UpdatePlayerAddEventCard")]
-        public async Task<ActionResult> UpdatePlayerBankrupt(UpdatePlayerAddEventCardCommand command)
+        public async Task<ActionResult> UpdatePlayerAddEventCard(UpdatePlayerAddEventCardCommand command)
         {
             await Mediator.Send(command);
             return NoContent();
         }
         [HttpDelete]
         [Route("UpdatePlayerDeleteEventCard")]
-        public async Task<ActionResult> UpdatePlayeraDeleteEventCard(UpdatePlayerDeleteEventCardCommand command)
+        public async Task<ActionResult> UpdatePlayerDeleteEventCard(UpdatePlayerDeleteEventCardCommand command)
         {
             await Mediator.Send(command);
             return NoContent();
         }
         [HttpPut]
-        [Route("UpdatePlayerWaitingsTurns")]
-        public async Task<ActionResult> UpdatePlayerBankrupt(UpdatePlayerWaitingsTurnsCommand command)
+        [Route("UpdatePlayerWaitingTurns")]
+        public async Task<ActionResult> UpdatePlayerWaitingTurns(UpdatePlayerWaitingTurnsCommand command)
         {
             await Mediator.Send(command);
             return NoContent();
