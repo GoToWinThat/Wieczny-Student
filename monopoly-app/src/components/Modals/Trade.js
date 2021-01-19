@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import TradeSection from "./TradeSection";
 import {Modal, Button} from 'react-bootstrap';
 import { UpdatePlayerDeleteProperty, UpdatePlayerCash, UpdatePlayerDeleteEventCard,
-  UpdatePlayerAddEventCard, UpdatePlayerNewProperty, AddNewLog } from '../../services/monopolyService';
+  UpdatePlayerAddEventCard, UpdatePlayerNewProperty } from '../../services/monopolyService';
 
 function Trade(props) {
   const dispatch = props.data.dispatch;
@@ -21,7 +21,7 @@ function Trade(props) {
   const [transactionState, setTransactionState] = useState([]);
 
   //Add transaction to transactionState based on types
-  const addTransaction = (trans) => 
+  const addTransaction = (trans) =>
   {
     let add = true;
     transactionState.forEach(element => {
@@ -30,20 +30,20 @@ function Trade(props) {
         setTransactionState(transactionState.filter(t => t !== element));
         element.type !== "cash" ? add = false : add = true;
       }
-      return null; 
+      return null;
     });
     if(add) setTransactionState(oldArray => [...oldArray, trans])
   }
 
-  const nextPlayer = () => 
+  const nextPlayer = () =>
   {
     setTradePlayerIdx((tradePlayerIdx+1)%otherPlayers.length)
   }
 
-  const previousPlayer = () => 
+  const previousPlayer = () =>
   {
     let len = otherPlayers.length
-    setTradePlayerIdx( 
+    setTradePlayerIdx(
       tradePlayerIdx === 0
       ? len-1
       : (tradePlayerIdx-1))
@@ -56,33 +56,33 @@ function Trade(props) {
   }
 
   //Execute all transaction and update store
-  const exchange = () => 
+  const exchange = () =>
   {
     if (transactionState.length > 0)
-      AddNewLog(dispatch, `Doszło do wymiany między ${activePlayer.name} i ${otherPlayers[tradePlayerIdx].name}:`);
+      //AddNewLog(dispatch, `Doszło do wymiany między ${activePlayer.name} i ${otherPlayers[tradePlayerIdx].name}:`);
     transactionState.forEach(t =>{
-      
+
       let secondPlayer = undefined;
-      t.playerName === activePlayer.name 
+      t.playerName === activePlayer.name
       ? secondPlayer = otherPlayers[tradePlayerIdx] : secondPlayer = activePlayer
 
-      if(t.type === "cash") 
+      if(t.type === "cash")
       {
         UpdatePlayerCash(dispatch,t.playerName,-t.item);
         UpdatePlayerCash(dispatch,secondPlayer.name,t.item);
-        AddNewLog(dispatch, `- ${secondPlayer.name} otrzymał ${t.item} ECTS`);
+        //AddNewLog(dispatch, `- ${secondPlayer.name} otrzymał ${t.item} ECTS`);
       }
-      else if(t.type === "property") 
+      else if(t.type === "property")
       {
         UpdatePlayerDeleteProperty(dispatch,t.playerName,t.item);
         UpdatePlayerNewProperty(dispatch,secondPlayer.name,t.item);
-        AddNewLog(dispatch, `- ${secondPlayer.name} posiada teraz pole ${data.fields[t.item].name}`);
+        //AddNewLog(dispatch, `- ${secondPlayer.name} posiada teraz pole ${data.fields[t.item].name}`);
       }
       else //if(t.type === "card")
       {
         UpdatePlayerDeleteEventCard(dispatch,t.playerName,t.item);
         UpdatePlayerAddEventCard(dispatch,secondPlayer.name,t.item)
-        AddNewLog(dispatch, `- ${secondPlayer.name} posiada teraz kartę ${data.cards[t.item].cardName}`);
+        //AddNewLog(dispatch, `- ${secondPlayer.name} posiada teraz kartę ${data.cards[t.item].cardName}`);
       }
     })
     closeWindow()
@@ -104,19 +104,19 @@ function Trade(props) {
           <tbody>
             <tr className="align-top">
               <th className="tradePlayerColumn">
-                <TradeSection 
-                  data={data} 
-                  activePlayer={activePlayer} 
+                <TradeSection
+                  data={data}
+                  activePlayer={activePlayer}
                   changable={false}
                   addTransaction={addTransaction}/>
               </th>
               <th className="tradeArrowColumn">&#x21c4;</th>
               <th className="tradePlayerColumn">
-                <TradeSection 
-                  data={data} 
-                  activePlayer={otherPlayers[tradePlayerIdx]} 
-                  changable={true} 
-                  previousPlayer={previousPlayer} 
+                <TradeSection
+                  data={data}
+                  activePlayer={otherPlayers[tradePlayerIdx]}
+                  changable={true}
+                  previousPlayer={previousPlayer}
                   nextPlayer={nextPlayer}
                   addTransaction={addTransaction}/>
               </th>
