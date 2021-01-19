@@ -13,7 +13,6 @@ namespace Monopoly.Core.MonopolyAI
     {
         private static IApplicationDbContext _context;
         private static List<int> BotPlayersIDs = new List<int>();
-
         public static void ProcessBot(int index, CancellationToken cancellationToken)
         {
             var players = _context.Players.ToList();

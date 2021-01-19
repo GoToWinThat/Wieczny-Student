@@ -10,15 +10,15 @@ namespace Monopoly.WebApi.Hubs
     {
         public Task GetActivePlayerIndex(string message)
         {
-            return Clients.Others.SendAsync("GetActivePlayerIndex", message);
+            return Clients.All.SendAsync("GetActivePlayerIndex", message);
         }
         public Task GetPlayers(string message)
         {
-            return Clients.Others.SendAsync("GetPlayers", message);
+            return Clients.All.SendAsync("GetPlayers", message);
         }
         public Task GetDices(string message)
         {
-            return Clients.Others.SendAsync("GetDices", message);
+            return Clients.All.SendAsync("GetDices", message);
         }
         public Task GetLogs(string message)
         {

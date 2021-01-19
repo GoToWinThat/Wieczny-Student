@@ -55,6 +55,7 @@ namespace Monopoly.WebApi.Controllers
         public async Task<ActionResult> UpdateActivePlayerIndex(UpdateActivePlayerIndexCommand command)
         {
             await Mediator.Send(command);
+            await Hub.Clients.All.SendCoreAsync("GetActivePlayerIndex", new object[] { "GetActivePlayerIndex" });
             return NoContent();
         }
         [HttpGet]
@@ -68,14 +69,13 @@ namespace Monopoly.WebApi.Controllers
         public async Task<ActionResult> UpdateDices(UpdateDicesCommand command)
         {
            await Mediator.Send(command);
-            return NoContent();
+           await Hub.Clients.All.SendCoreAsync("GetDices", new object[] { "GetDices" });
+           return NoContent();
         }
         [HttpGet]
         [Route("Logs")]
         public async Task<ActionResult<LogsVm>> GetLogs()
-        {
-            
-            
+        {          
             return await Mediator.Send(new GetLogsQuery());
         }
         [HttpPost]
@@ -83,6 +83,7 @@ namespace Monopoly.WebApi.Controllers
         public async Task<ActionResult> AddLog(AddLogCommand command)
         {
             await Mediator.Send(command);
+            await Hub.Clients.All.SendCoreAsync("GetLogs", new object[] { "GetLogs" });
             return NoContent();
         }
         [HttpGet]
@@ -97,6 +98,7 @@ namespace Monopoly.WebApi.Controllers
         public async Task<ActionResult> UpdatePlayerReadiness(UpdatePlayerReadinessCommand command)
         {
             await Mediator.Send(command);
+            await Hub.Clients.All.SendCoreAsync("GetPlayers", new object[] { "GetPlayers" });
             return NoContent();
         }
     }

@@ -21,6 +21,7 @@ namespace Monopoly.WebApi.Controllers
         public async Task<ActionResult> UpdatePlayerPosition(UpdatePlayerPositionCommand command)
         {
             await Mediator.Send(command);
+            await Hub.Clients.All.SendCoreAsync("GetPlayers", new object[] { "GetPlayers" });
             return NoContent();
         }
         [HttpPut]
@@ -28,6 +29,7 @@ namespace Monopoly.WebApi.Controllers
         public async Task<ActionResult> UpdatePlayerCash(UpdatePlayerCashCommand command)
         {
             await Mediator.Send(command);
+            await Hub.Clients.All.SendCoreAsync("GetPlayers", new object[] { "GetPlayers" });
             return NoContent();
         }
 
@@ -35,6 +37,7 @@ namespace Monopoly.WebApi.Controllers
         [Route("LogNewPlayer")]
         public async Task<ActionResult<int>> LogNewPlayer(LogNewPlayerCommand command)
         {
+            await Hub.Clients.All.SendCoreAsync("GetPlayers", new object[] { "GetPlayers" });
             return await Mediator.Send(command);
         }
 
@@ -44,6 +47,7 @@ namespace Monopoly.WebApi.Controllers
         public async Task<ActionResult> UpdatePlayerNewProperty(UpdatePlayerNewPropertyCommand command)
         {
             await Mediator.Send(command);
+            await Hub.Clients.All.SendCoreAsync("GetPlayers", new object[] { "GetPlayers" });
             return NoContent();
         }
         [HttpDelete]
@@ -51,6 +55,7 @@ namespace Monopoly.WebApi.Controllers
         public async Task<ActionResult> UpdatePlayerDeleteProperty(UpdatePlayerDeletePropertyCommand command)
         {
             await Mediator.Send(command);
+            await Hub.Clients.All.SendCoreAsync("GetPlayers", new object[] { "GetPlayers" });
             return NoContent();
         }
         [HttpPut]
@@ -58,6 +63,7 @@ namespace Monopoly.WebApi.Controllers
         public async Task<ActionResult> UpdatePlayerExpandProperty(UpdatePlayerExpandPropertyCommand command)
         {
             await Mediator.Send(command);
+            await Hub.Clients.All.SendCoreAsync("GetPlayers", new object[] { "GetPlayers" });
             return NoContent();
         }
         [HttpPut]
@@ -65,6 +71,7 @@ namespace Monopoly.WebApi.Controllers
         public async Task<ActionResult> UpdatePlayerMortgageProperty(UpdatePlayerMortgagePropertyCommand command)
         {
             await Mediator.Send(command);
+            await Hub.Clients.All.SendCoreAsync("GetPlayers", new object[] { "GetPlayers" });
             return NoContent();
         }
 
@@ -73,6 +80,7 @@ namespace Monopoly.WebApi.Controllers
         public async Task<ActionResult> UpdatePlayerAddEventCard(UpdatePlayerAddEventCardCommand command)
         {
             await Mediator.Send(command);
+            await Hub.Clients.All.SendCoreAsync("GetPlayers", new object[] { "GetPlayers" });
             return NoContent();
         }
         [HttpDelete]
@@ -80,6 +88,7 @@ namespace Monopoly.WebApi.Controllers
         public async Task<ActionResult> UpdatePlayerDeleteEventCard(UpdatePlayerDeleteEventCardCommand command)
         {
             await Mediator.Send(command);
+            await Hub.Clients.All.SendCoreAsync("GetPlayers", new object[] { "GetPlayers" });
             return NoContent();
         }
         [HttpPut]
@@ -87,6 +96,7 @@ namespace Monopoly.WebApi.Controllers
         public async Task<ActionResult> UpdatePlayerWaitingTurns(UpdatePlayerWaitingTurnsCommand command)
         {
             await Mediator.Send(command);
+            await Hub.Clients.All.SendCoreAsync("GetPlayers", new object[] { "GetPlayers" });
             return NoContent();
         }
 
@@ -95,6 +105,7 @@ namespace Monopoly.WebApi.Controllers
         public async Task<ActionResult> UpdatePlayerBankrupt(UpdatePlayerBankruptCommand command)
         {
             await Mediator.Send(command);
+            await Hub.Clients.All.SendCoreAsync("GetPlayers", new object[] { "GetPlayers" });
             return NoContent();
         }
     }

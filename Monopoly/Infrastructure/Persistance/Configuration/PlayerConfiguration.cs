@@ -12,22 +12,15 @@ namespace Infrastructure.Persistance.Configuration
     {
         public void Configure(EntityTypeBuilder<Player> builder)
         {
-            //Player with propertyinfos
             builder
                 .HasMany(o => o.PropertyFieldInfos)
                 .WithOne(p => p.Player)
                 .HasForeignKey(p => p.PlayerId)
                 .OnDelete(DeleteBehavior.SetNull);
 
-            //Player with cards
             builder
                 .HasMany(o => o.Cards)
                 .WithMany(p => p.Players);
-
-
-            builder.Property(p => p.Signature)
-                .HasMaxLength(40)
-                .IsRequired();
         }
     }
 }
