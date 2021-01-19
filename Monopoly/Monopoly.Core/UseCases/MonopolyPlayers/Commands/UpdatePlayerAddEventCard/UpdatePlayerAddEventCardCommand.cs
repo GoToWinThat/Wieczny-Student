@@ -4,10 +4,8 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Monopoly.Core.Base.Exceptions;
 using Monopoly.Core.Base.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -39,7 +37,15 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerAddEventCa
                 throw new NotFoundException(nameof(Card), request.CardId);
             }
 
-            entityPlayer.Cards.Add(entityCard);
+            if (entityPlayer.Cards==null)
+            {
+                entityPlayer.Cards = new List<Card> { entityCard };
+            }
+            else
+            {
+                entityPlayer.Cards.Add(entityCard);
+            }
+
 
             await _context.SaveChangesAsync(cancellationToken);
             return Unit.Value;

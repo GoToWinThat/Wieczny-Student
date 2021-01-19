@@ -1,6 +1,5 @@
 ﻿using Domain.Entities.Cards;
 using Domain.Entities.Game;
-using Domain.Enums;
 using System.Collections.Generic;
 
 namespace Domain.Entities
@@ -10,14 +9,16 @@ namespace Domain.Entities
         public int Id { get; set; }
         public int Cash { get; set; }
         public string Signature { get; set; } 
-        public MonopolyColor Color { get; set; }
+        public string Color { get; set; }
         public string Name { get; set; }
-        public ICollection<PropertyFieldInfo> PropertyFieldInfos { get; set; }
-        public ICollection<Card> Cards { get; set; }
         public int Position { get; set; }
-        public bool IsInJail { get; set; }
         public int TurnsToWait { get; set; }
+        public bool IsInJail { get; set; }
         public bool IsBankrupt { get; set; }
         public bool IsLogged { get; set; }
+        public bool IsReady { get; set; }
+        public List<int> ThrownDices { get; set; }
+        public ICollection<PropertyFieldInfo> PropertyFieldInfos { get; set; }
+        public ICollection<Card> Cards { get; set; }
     }
 }

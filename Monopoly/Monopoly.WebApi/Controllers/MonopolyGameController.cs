@@ -4,6 +4,7 @@ using Monopoly.Core.UseCases.MonopolyCards.Queries.GetLossCards;
 using Monopoly.Core.UseCases.MonopolyDices.Commands.UpdateDices;
 using Monopoly.Core.UseCases.MonopolyDices.Queries.GetDices;
 using Monopoly.Core.UseCases.MonopolyFields.Queries.GetFields;
+using Monopoly.Core.UseCases.MonopolyGame.GetGameState;
 using Monopoly.Core.UseCases.MonopolyLogs.Commands.AddLog;
 using Monopoly.Core.UseCases.MonopolyLogs.Queries.GetLogs;
 using Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdateActivePlayerIndex;
@@ -46,14 +47,13 @@ namespace Monopoly.WebApi.Controllers
         public async Task<ActionResult<int>> GetActivePlayerIndex()
         {
             int playerIndex = await Mediator.Send(new GetActivePlayerIndexQuery());
-            await Hub.Clients.All.SendCoreAsync("ActivePlayerIndexMessage", new object[] { playerIndex });
             return playerIndex;
         }
         [HttpPut]
         [Route("UpdatePlayerIndex")]
-        public async Task<ActionResult> UpdateActivePlayerIndex(int index)
+        public async Task<ActionResult> UpdateActivePlayerIndex(UpdateActivePlayerIndexCommand command)
         {
-            await Mediator.Send(new UpdateActivePlayerIndexCommand { Index=index});
+            await Mediator.Send(command);
             return NoContent();
         }
         [HttpGet]
@@ -74,6 +74,7 @@ namespace Monopoly.WebApi.Controllers
         public async Task<ActionResult<LogsVm>> GetLogs()
         {
             
+            
             return await Mediator.Send(new GetLogsQuery());
         }
         [HttpPost]
@@ -82,6 +83,12 @@ namespace Monopoly.WebApi.Controllers
         {
             await Mediator.Send(command);
             return NoContent();
+        }
+        [HttpGet]
+        [Route("GameState")]
+        public async Task<ActionResult<GameStateVm>> GetGameState()
+        {
+            return await Mediator.Send(new GetGameStateQuery());
         }
     }
 }

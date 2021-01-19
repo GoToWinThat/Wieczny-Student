@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Monopoly.Core.UseCases.MonopolyPlayers.Commands.DeleteLoggedPlayer;
 using Monopoly.Core.UseCases.MonopolyPlayers.Commands.LogNewPlayer;
 using Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerAddEventCard;
 using Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerCash;
@@ -34,19 +33,11 @@ namespace Monopoly.WebApi.Controllers
 
         [HttpPost]
         [Route("LogNewPlayer")]
-        public async Task<ActionResult> LogNewPlayer(LogNewPlayerCommand command)
+        public async Task<ActionResult<int>> LogNewPlayer(LogNewPlayerCommand command)
         {
-            await Mediator.Send(command);
-            return NoContent();
+            return await Mediator.Send(command);
         }
 
-        [HttpDelete]
-        [Route("DeleteLoggedPlayer")]
-        public async Task<ActionResult> DeleteLoggedPlayer(DeleteLoggedPlayerCommand command)
-        {
-            await Mediator.Send(command);
-            return NoContent();
-        }
 
         [HttpPut]
         [Route("UpdatePlayerNewProperty")]
@@ -92,7 +83,7 @@ namespace Monopoly.WebApi.Controllers
             return NoContent();
         }
         [HttpPut]
-        [Route("UpdatePlayerWaitingsTurns")]
+        [Route("UpdatePlayerWaitingTurns")]
         public async Task<ActionResult> UpdatePlayerWaitingTurns(UpdatePlayerWaitingTurnsCommand command)
         {
             await Mediator.Send(command);

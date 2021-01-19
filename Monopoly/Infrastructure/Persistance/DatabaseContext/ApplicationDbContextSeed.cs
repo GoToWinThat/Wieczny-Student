@@ -25,8 +25,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             Price = 15,
                             RentCosts = new List<int> { 1, 4, 12, 36, 90 },
                             EstatePrice = 10,
-                            Mortage = 6,
-                            Purschased = false,
+                            Mortgage = 6,
+                            Purchased = false,
                             MonopolyID = 1,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
@@ -44,8 +44,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID = 3,
                             RentCosts = new List<int> { 1, 4, 12, 36, 90 },
                             EstatePrice = 10,
-                            Mortage = 6,
-                            Purschased = false,
+                            Mortgage = 6,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -61,8 +61,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID = 4,
                             RentCosts = new List<int> { 0 },
                             EstatePrice = 0,
-                            Mortage = 20,
-                            Purschased = false,
+                            Mortgage = 20,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -78,8 +78,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID = 5,
                             RentCosts = new List<int> { 0 },
                             EstatePrice = 0,
-                            Mortage = 20,
-                            Purschased = false,
+                            Mortgage = 20,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -94,8 +94,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID = 6,
                             RentCosts = new List<int> { 3, 12, 35, 90, 150 },
                             EstatePrice = 20,
-                            Mortage = 15,
-                            Purschased = false,
+                            Mortgage = 15,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -110,8 +110,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID = 7,
                             RentCosts = new List<int> { 3, 16, 44, 160, 200 },
                             EstatePrice = 20,
-                            Mortage = 20,
-                            Purschased = false,
+                            Mortgage = 20,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -128,8 +128,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID = 9,
                             RentCosts = new List<int> { 1, 6, 18, 54, 90 },
                             EstatePrice = 10,
-                            Mortage = 10,
-                            Purschased = false,
+                            Mortgage = 10,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -146,8 +146,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =11,
                             RentCosts = new List<int> { 2, 8, 20, 60, 100 },
                             EstatePrice = 10,
-                            Mortage = 12,
-                            Purschased = false,
+                            Mortgage = 12,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -162,8 +162,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =12,
                             RentCosts = new List<int> { 3, 10, 25, 70, 125 },
                             EstatePrice = 20,
-                            Mortage = 15,
-                            Purschased = false,
+                            Mortgage = 15,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -180,8 +180,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =14,
                             RentCosts = new List<int> { 1, 12, 22, 100, 120 },
                             EstatePrice = 20,
-                            Mortage = 14,
-                            Purschased = false,
+                            Mortgage = 14,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -197,8 +197,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =15,
                             RentCosts = new List<int> { 0 },
                             EstatePrice = 0,
-                            Mortage = 20,
-                            Purschased = false,
+                            Mortgage = 20,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -214,8 +214,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =17,
                             RentCosts = new List<int> { 2, 12, 22, 100, 130 },
                             EstatePrice = 20,
-                            Mortage = 14,
-                            Purschased = false,
+                            Mortgage = 14,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -229,8 +229,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =18,
                             RentCosts = new List<int> { 3, 15, 25, 100, 150 },
                             EstatePrice = 20,
-                            Mortage = 14,
-                            Purschased = false,
+                            Mortgage = 14,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -245,8 +245,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =19,
                             RentCosts = new List<int> { 3, 15, 45, 110, 180 },
                             EstatePrice = 20,
-                            Mortage = 22,
-                            Purschased = false,
+                            Mortgage = 22,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -262,8 +262,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =21,
                             RentCosts = new List<int> { 3, 15, 45, 110, 180 },
                             EstatePrice = 20,
-                            Mortage = 22,
-                            Purschased = false,
+                            Mortgage = 22,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -280,8 +280,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =24,
                             RentCosts = new List<int> { 3, 18, 50, 140, 210 },
                             EstatePrice = 20,
-                            Mortage = 25,
-                            Purschased = false,
+                            Mortgage = 25,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -297,8 +297,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =25,
                             RentCosts = new List<int> { 0 },
                             EstatePrice = 0,
-                            Mortage = 20,
-                            Purschased = false,
+                            Mortgage = 20,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -313,8 +313,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =26,
                             RentCosts = new List<int> { 3, 20, 60, 150, 230 },
                             EstatePrice = 20,
-                            Mortage = 25,
-                            Purschased = false,
+                            Mortgage = 25,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -328,8 +328,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =27,
                             RentCosts = new List<int> { 3, 14, 40, 110, 150 },
                             EstatePrice = 20,
-                            Mortage = 18,
-                            Purschased = false,
+                            Mortgage = 18,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -343,8 +343,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =28,
                             RentCosts = new List<int> { 3, 14, 40, 110, 150 },
                             EstatePrice = 20,
-                            Mortage = 18,
-                            Purschased = false,
+                            Mortgage = 18,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -358,8 +358,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =29,
                             RentCosts = new List<int> { 3, 15, 45, 120, 170 },
                             EstatePrice = 20,
-                            Mortage = 30,
-                            Purschased = false,
+                            Mortgage = 30,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -376,8 +376,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =31,
                             RentCosts = new List<int> { 5, 30, 90, 200, 280 },
                             EstatePrice = 40,
-                            Mortage = 30,
-                            Purschased = false,
+                            Mortgage = 30,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -391,8 +391,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =32,
                             RentCosts = new List<int> { 6, 38, 92, 190, 250 },
                             EstatePrice = 40,
-                            Mortage = 27,
-                            Purschased = false,
+                            Mortgage = 27,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -406,8 +406,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =33,
                             RentCosts = new List<int> { 6, 40, 95, 250, 350 },
                             EstatePrice = 40,
-                            Mortage = 27,
-                            Purschased = false,
+                            Mortgage = 27,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -423,8 +423,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =35,
                             RentCosts = new List<int> { 0 },
                             EstatePrice = 0,
-                            Mortage = 20,
-                            Purschased = false,
+                            Mortgage = 20,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -439,8 +439,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =36,
                             RentCosts = new List<int> { 0 },
                             EstatePrice = 0,
-                            Mortage = 20,
-                            Purschased = false,
+                            Mortgage = 20,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -455,8 +455,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                             MonopolyID =38,
                             RentCosts = new List<int> { 7, 30, 100, 200, 350 },
                             EstatePrice = 40,
-                            Mortage = 35,
-                            Purschased = false,
+                            Mortgage = 35,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -464,14 +464,14 @@ namespace Infrastructure.Persistance.DatabaseContext
                         },
                         new PropertyField
                         {
-                            Name = "Pracownia fizyczna nr 2 (CNT)",
+                            Name = "Biblioteka główna",
                             Color = MonopolyColor.steelblue,
                             Price = 80,
                             MonopolyID =39,
                             RentCosts = new List<int> { 10, 35, 110, 250, 400 },
                             EstatePrice = 40,
-                            Mortage = 45,
-                            Purschased = false,
+                            Mortgage = 45,
+                            Purchased = false,
                             PropertyFieldInfo = new PropertyFieldInfo
                             {
                                 EstateLevel = 0,
@@ -635,20 +635,20 @@ namespace Infrastructure.Persistance.DatabaseContext
                     new Player
                     {
                         Cash = 1000,
-                        Signature="0000",
-                        Color=MonopolyColor.blue,
-                        Position=0,
-                        Name="Artur",
-                        IsInJail=false,
-                        TurnsToWait=0,
-                        IsBankrupt=false,
-                        IsLogged=false,
+                        Signature = "0000",
+                        Color = "red",
+                        Position = 0,
+                        Name = "Artur",
+                        IsInJail = false,
+                        TurnsToWait = 0,
+                        IsBankrupt = false,
+                        IsLogged = false,
                     },
                     new Player
                     {
                         Cash = 1000,
                         Signature = "1111",
-                        Color = MonopolyColor.red,
+                        Color = "blue",
                         Position = 0,
                         Name = "Artur",
                         IsInJail = false,
@@ -660,7 +660,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                     {
                         Cash = 1000,
                         Signature = "2222",
-                        Color = MonopolyColor.orange,
+                        Color = "prpl",
                         Position = 0,
                         Name = "Artur",
                         IsInJail = false,
@@ -672,7 +672,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                     {
                         Cash = 1000,
                         Signature = "3333",
-                        Color = MonopolyColor.green,
+                        Color = "nie",
                         Position = 0,
                         Name = "Artur",
                         IsInJail = false,
@@ -683,10 +683,10 @@ namespace Infrastructure.Persistance.DatabaseContext
                     );
             }
 
-            if (!context.GameInfo.Any())
+           /* if (!context.GameInfo.Any())
             {
                 context.GameInfo.Add(new GameInfo { ActivePlayerIndex = 0, GameStarted = false }); ;
-            }
+            }*/
             if (!context.Dices.Any())
             {
                 context.Dices.Add(new Dices { DiceValues = new List<int> { 1, 1 } });
@@ -697,7 +697,7 @@ namespace Infrastructure.Persistance.DatabaseContext
             }
 
 
-            await context.SaveChangesAsync();
+           /* await context.SaveChangesAsync();
             if(context.PropertyFieldInfos.Any())
             {
                 if(context.GameInfo.FirstOrDefault().GameStarted==false)
@@ -706,23 +706,23 @@ namespace Infrastructure.Persistance.DatabaseContext
                     {
                         var curr = context.PropertyFieldInfos.SingleOrDefault(p => p.Id == k);
                         curr.PropertyFieldId = curr.PropertyField.Id;
-                        /*curr.Player = context.Players.FirstOrDefault();
-                        curr.PlayerId= context.Players.FirstOrDefault().Id;*/
+                        curr.Player = context.Players.FirstOrDefault();
+                        curr.PlayerId= context.Players.FirstOrDefault().Id;
                     }
                 }
-            }
-            if(context.GameInfo.Any())
+            }*/
+           /* if(context.GameInfo.Any())
             {
                 context.GameInfo.FirstOrDefault().GameStarted = true;
-            }
+            }*/
 
             await context.SaveChangesAsync();
             //Do testowania
-            if (context.Players.Any())
+            /*if (context.Players.Any())
             {
                 context.Cards.First().Player= context.Players.First();
                 context.Cards.OrderBy(c=>c.Id).Last().Player = context.Players.First();
-            }
+            }*/
             //Do testowania
 
 

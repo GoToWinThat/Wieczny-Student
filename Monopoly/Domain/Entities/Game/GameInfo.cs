@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Domain.Entities.Game
+﻿namespace Domain.Entities.Game
 {
     public class GameInfo
     {
         public int Id { get; set; }
         public int ActivePlayerIndex { get; set; }
-        public bool GameStarted { get; set; }
+        public int TurnClock { get; set; }
+        public int GameClock { get; set; }
+        public string GameState{ get; set; }
     }
 }

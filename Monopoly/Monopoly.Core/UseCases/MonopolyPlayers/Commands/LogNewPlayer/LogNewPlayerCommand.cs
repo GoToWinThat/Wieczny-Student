@@ -1,25 +1,21 @@
 ﻿using Domain.Entities;
-using Domain.Enums;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Monopoly.Core.Base.Exceptions;
 using Monopoly.Core.Base.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.LogNewPlayer
 {
-    public class LogNewPlayerCommand : IRequest
+    public class LogNewPlayerCommand : IRequest<int>
     {
-        public string Name { get; set; }//artur
-        public string Signature { get; set; }//1
-        public MonopolyColor Color { get; set; }//red
+        public string Name { get; set; }
+        public string Signature { get; set; }
+        public string Color { get; set; }
     }
-    public class LogNewPlayerCommandHandler : IRequestHandler<LogNewPlayerCommand>
+    public class LogNewPlayerCommandHandler : IRequestHandler<LogNewPlayerCommand,int>
     {
         private IApplicationDbContext _context;
 
@@ -27,9 +23,9 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.LogNewPlayer
         {
             _context = context;
         }
-        public async Task<Unit> Handle(LogNewPlayerCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(LogNewPlayerCommand request, CancellationToken cancellationToken)
         {
-            var entity = await _context.Players.Where(p => p.IsLogged == false).FirstAsync(cancellationToken: cancellationToken);
+            var entity = await _context.Players.Where(p => p.IsLogged == false).FirstAsync(cancellationToken);
 
             if (entity == null)
             {
@@ -42,7 +38,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.LogNewPlayer
             entity.IsLogged = true;
 
             await _context.SaveChangesAsync(cancellationToken);
-            return Unit.Value;
+            return entity.Id;
         }
     }
 }

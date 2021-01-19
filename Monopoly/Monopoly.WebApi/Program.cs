@@ -26,7 +26,7 @@ namespace Monopoly.WebApi
                     {
                         context.Database.Migrate();
                     }
-                    await ApplicationDbContextSeed.SeedSampleDataAsync(context);
+                   // await ApplicationDbContextSeed.SeedSampleDataAsync(context);
                 }
                 catch (Exception ex)
                 {

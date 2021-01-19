@@ -3,10 +3,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Monopoly.Core.Base.Exceptions;
 using Monopoly.Core.Base.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,7 +24,8 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerMortgagePr
         }
         public async Task<Unit> Handle(UpdatePlayerMortgagePropertyCommand request, CancellationToken cancellationToken)
         {
-            var entityFields = await _context.PropertyFieldInfos.Where(p => p.PropertyField.MonopolyID == request.FieldId)
+            var entityFields = await _context.PropertyFieldInfos
+                .Where(p => p.PropertyField.MonopolyID == request.FieldId)
                 .Where(p => p.Player.Name == request.Name).FirstAsync();
 
 

@@ -1,10 +1,5 @@
 ﻿using Domain.Entities.Game;
 using Monopoly.Core.Base.Mappings;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Monopoly.Core.UseCases.MonopolyLogs.Queries.GetLogs
 {

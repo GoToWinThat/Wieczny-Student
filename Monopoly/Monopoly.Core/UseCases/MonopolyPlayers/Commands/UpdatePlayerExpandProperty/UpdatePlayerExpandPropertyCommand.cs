@@ -1,13 +1,9 @@
-﻿using Domain.Entities;
-using Domain.Entities.Game;
+﻿using Domain.Entities.Game;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Monopoly.Core.Base.Exceptions;
 using Monopoly.Core.Base.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -29,17 +25,24 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerExpandProp
         }
         public async Task<Unit> Handle(UpdatePlayerExpandPropertyCommand request, CancellationToken cancellationToken)
         {
-            var entityFields = await _context.PropertyFieldInfos.Where(p => p.PropertyField.MonopolyID == request.FieldId)
-                .Where(p=>p.Player.Name==request.Name).FirstAsync();
+            var entityFields = await _context.PropertyFieldInfos
+                .Where(p => p.PropertyField.MonopolyID == request.FieldId)
+                .Where(p=>p.Player.Name==request.Name)
+                .FirstAsync(cancellationToken);
 
             if (entityFields == null)
             {
                 throw new NotFoundException(nameof(PropertyFieldInfo), request.FieldId);
             }
-            entityFields.EstateLevel += request.DeltaEstateLevel;
 
+            entityFields.EstateLevel += request.DeltaEstateLevel;
+            if(entityFields.EstateLevel<0)
+            {
+                entityFields.EstateLevel = 0;
+            }
 
             await _context.SaveChangesAsync(cancellationToken);
+
             return Unit.Value;
         }
     }

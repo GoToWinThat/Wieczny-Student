@@ -3,10 +3,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Monopoly.Core.Base.Exceptions;
 using Monopoly.Core.Base.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -35,7 +32,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerPosition
                 throw new NotFoundException(nameof(Player), request.ActivePlayerIndex + 1);
             }
 
-            entity.Position += request.DeltaPosition;
+            entity.Position = (entity.Position+request.DeltaPosition)%40;
 
             await _context.SaveChangesAsync(cancellationToken);
             return Unit.Value;

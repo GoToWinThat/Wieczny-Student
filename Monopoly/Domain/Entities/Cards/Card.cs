@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Domain.Entities.Cards
 {
@@ -13,7 +9,6 @@ namespace Domain.Entities.Cards
         public string Type { get; set; }
         public string CardName { get; set; }
         public string Description { get; set; }
-        public int? PlayerId { get; set; }
-        public Player Player { get; set; }
+        public ICollection<Player> Players { get; set; }
     }
 }
