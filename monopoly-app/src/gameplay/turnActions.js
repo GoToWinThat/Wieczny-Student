@@ -1,5 +1,4 @@
-import { UpdateActivePlayerIndex, AddNewLog, UpdatePlayerWaitingTurns } from '../services/monopolyService';
-import { throwDicesEvent } from "./fieldActions";
+import { UpdateActivePlayerIndex, UpdatePlayerWaitingTurns } from '../services/monopolyService';
 import { canPreventBankrupt, bankrupt } from '../components/Modals/ManageBankrupt'
 
 export const endTurnEvent = (data) =>
@@ -31,16 +30,16 @@ export const endTurnEvent = (data) =>
         if (players[nextPlayerIndex].isBankrupt === false) // so he has to wait only few turns, not forever
         {
             // Add log about necessity of waiting:
-            AddNewLog(dispatch, `Tura gracza ${players[nextPlayerIndex].name}.`);
-            AddNewLog(dispatch, `Gracz ${players[nextPlayerIndex].name} czeka`
-                +` ${sayItWell(waitingArray[nextPlayerIndex])}.`);
+            // AddNewLog(dispatch, `Tura gracza ${players[nextPlayerIndex].name}.`);
+            // AddNewLog(dispatch, `Gracz ${players[nextPlayerIndex].name} czeka`
+            //     +` ${sayItWell(waitingArray[nextPlayerIndex])}.`);
 
             // Update API:
-            if (players[nextPlayerIndex].turnsToWait === 1) 
+            if (players[nextPlayerIndex].turnsToWait === 1)
                 UpdatePlayerWaitingTurns(dispatch, players[nextPlayerIndex].name, -1, false);
-            else 
+            else
                 UpdatePlayerWaitingTurns(dispatch, players[nextPlayerIndex].name, -1, players[nextPlayerIndex].isInJail);
-            
+
             // Update local temporary data:
             waitingArray[nextPlayerIndex]--;
         }
@@ -51,7 +50,7 @@ export const endTurnEvent = (data) =>
 
     // Beginning of new turn:
     UpdateActivePlayerIndex(dispatch, nextPlayerIndex);
-    AddNewLog(dispatch, `Tura gracza ${players[nextPlayerIndex].name}.`);
+    //AddNewLog(dispatch, `Tura gracza ${players[nextPlayerIndex].name}.`);
 
     // Check if this player won:
     GameOver(dispatch, players, nextPlayerIndex);
@@ -61,7 +60,7 @@ export const endTurnEvent = (data) =>
 function returnWaitingArray(players)
 {
     let tmp = [];
-    for (let i = 0; i < players.length; i++) 
+    for (let i = 0; i < players.length; i++)
         tmp.push(players[i].turnsToWait);
     return tmp;
 }
@@ -70,13 +69,13 @@ function returnWaitingArray(players)
 function GameOver(dispatch, players, nextPlayerIndex)
 {
     let tmp = 0;
-    for (let i = 0; i < players.length; i++) 
-        if (players[i].cash >= 0) 
+    for (let i = 0; i < players.length; i++)
+        if (players[i].cash >= 0)
             tmp++;
-    
+
     if (tmp === 1)
     {
-        AddNewLog(dispatch, `Wygrywa gracz ${players[nextPlayerIndex].name}.`);
+        //AddNewLog(dispatch, `Wygrywa gracz ${players[nextPlayerIndex].name}.`);
         // change "gameOver" to "true", block all buttons, etc.
     }
 }

@@ -1,5 +1,5 @@
-import { UpdatePlayerBankrupt, UpdatePlayerDeleteProperty, 
-    UpdatePlayerDeleteEventCard, AddNewLog, UpdatePlayerExpandProperty, 
+import { UpdatePlayerBankrupt, UpdatePlayerDeleteProperty,
+    UpdatePlayerDeleteEventCard, UpdatePlayerExpandProperty,
     UpdatePlayerCash, UpdatePlayerMortgageProperty } from "../../services/monopolyService";
 import { endTurnEvent } from "../../gameplay/turnActions";
 import { hasAnyComputer, hasAnyProperties } from "./ManageCheck"
@@ -10,7 +10,7 @@ export const surrender = (dispatch,activePlayer,data) =>
     endTurnEvent(data)
 }
 
-export const bankrupt = (dispatch,activePlayer) => 
+export const bankrupt = (dispatch,activePlayer) =>
 {
     // Removing properties and cards:
     for (let i = 0; i < activePlayer.properties.length; i++)
@@ -18,11 +18,11 @@ export const bankrupt = (dispatch,activePlayer) =>
     for (let i = 0; i < activePlayer.eventCards.length; i++)
         UpdatePlayerDeleteEventCard(dispatch, activePlayer.name, activePlayer.eventCards[i].cardID);
 
-    AddNewLog(dispatch,`${activePlayer.name} bankrutuje!`)
+    //AddNewLog(dispatch,`${activePlayer.name} bankrutuje!`)
     UpdatePlayerBankrupt(dispatch, activePlayer.name);
 }
 
-export const canPreventBankrupt = (dispatch,activePlayer,fields) => 
+export const canPreventBankrupt = (dispatch,activePlayer,fields) =>
 {
     var cash = activePlayer.cash;
     if(hasAnyComputer(activePlayer)) cash = sellComputers(dispatch,activePlayer,fields,cash);
@@ -47,8 +47,8 @@ const isMortgageEnough = (activePlayer,fields) =>
     else return true;
 }
 
-const sellComputers = (dispatch,activePlayer,fields,cash) => 
-{   
+const sellComputers = (dispatch,activePlayer,fields,cash) =>
+{
     activePlayer.properties.forEach(field => {
         for (let i = 0; i < field.estateLevel; i++) {
             if(cash < 0) {
@@ -63,7 +63,7 @@ const sellComputers = (dispatch,activePlayer,fields,cash) =>
     return cash;
 }
 
-const sellFields = (dispatch,activePlayer,fields,cash) => 
+const sellFields = (dispatch,activePlayer,fields,cash) =>
 {
     activePlayer.properties.forEach(field => {
 
@@ -77,7 +77,7 @@ const sellFields = (dispatch,activePlayer,fields,cash) =>
     return cash;
 }
 
-const mortgageFields = (dispatch,activePlayer,fields,cash) => 
+const mortgageFields = (dispatch,activePlayer,fields,cash) =>
 {
     activePlayer.properties.forEach(field => {
 

@@ -1,18 +1,18 @@
 import "../../styles/Modals.css";
 import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { UpdatePlayerNewProperty, UpdatePlayerCash, AddNewLog } from '../../services/monopolyService';
+import { UpdatePlayerNewProperty, UpdatePlayerCash} from '../../services/monopolyService';
 
 function Buy(props) {
   const activePlayer = props.data.players[props.data.activePlayerIndex];
   const currentField = props.data.fields[activePlayer.position];
   const dispatch = props.data.dispatch;
 
-  const buyProperty = () => 
+  const buyProperty = () =>
   {
     UpdatePlayerNewProperty(dispatch, activePlayer.name, currentField.fieldID);
     UpdatePlayerCash(dispatch, activePlayer.name, -currentField.price);
-    AddNewLog(dispatch, `${activePlayer.name} kupuje ${currentField.name} za ${currentField.price} ECTS.`);
+    //AddNewLog(dispatch, `${activePlayer.name} kupuje ${currentField.name} za ${currentField.price} ECTS.`);
     props.onHide();
   }
 
@@ -39,7 +39,7 @@ function Buy(props) {
               <span style={{ color: 'red', fontWeight: 'bold'}}>&nbsp;{currentField.price} ECTS</span>
               <span>?</span>
             </span>
-          </div> 
+          </div>
           <Button className="confirmButton" onClick={buyProperty}
             onMouseDown={(e) => e.preventDefault()}>Potwierdź</Button>
         </div>

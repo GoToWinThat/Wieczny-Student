@@ -1,5 +1,5 @@
-import { AddNewLog, UpdateDices, UpdatePlayerPosition, UpdatePlayerCash,
-    UpdatePlayerWaitingTurns, UpdatePlayerAddEventCard, 
+import { UpdateDices, UpdatePlayerPosition, UpdatePlayerCash,
+    UpdatePlayerWaitingTurns, UpdatePlayerAddEventCard,
     UpdatePlayerDeleteEventCard, UpdateCurrentEventCard } from '../services/monopolyService';
 
 
@@ -30,14 +30,14 @@ export const throwDicesEvent = (data) =>
     // Adding new logs:
     let newPosition = (activePlayer.position + numberOnDices) % fields.length;
     let newField = fields[newPosition];
-    AddNewLog(dispatch, `${activePlayer.name} wyrzuca ${sayItWell(numberOnDices)}.`);
-    AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${newField.name}.`);
+    //AddNewLog(dispatch, `${activePlayer.name} wyrzuca ${sayItWell(numberOnDices)}.`);
+    //AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${newField.name}.`);
 
     // Updating cash if it is time for it:
     if (newPosition < activePlayer.position) // for example if player is on 35 and then on 1
     {
         UpdatePlayerCash(dispatch, activePlayer.name, 30);
-        AddNewLog(dispatch, `${activePlayer.name} przechodzi przez portiernię. Otrzymuje 30 ECTS.`)
+        //AddNewLog(dispatch, `${activePlayer.name} przechodzi przez portiernię. Otrzymuje 30 ECTS.`)
     }
 
     // Specific field action:
@@ -69,12 +69,12 @@ function dealWithNewField(newField, numberOnDices, data)
                         if (activePlayer.eventCards[i].cardID === 1)
                         {
                             UpdatePlayerDeleteEventCard(dispatch, activePlayer.name, 1);
-                            AddNewLog(dispatch, `${activePlayer.name} używa karty ${gainCards[1].cardName.toUpperCase()}!`);
+                            //AddNewLog(dispatch, `${activePlayer.name} używa karty ${gainCards[1].cardName.toUpperCase()}!`);
                             return;
                         }
                     }
                     UpdatePlayerWaitingTurns(dispatch, activePlayer.name, 2, true);
-                    AddNewLog(dispatch, `${activePlayer.name} traci 2 kolejki i dostęp do telefonu!`);
+                    //AddNewLog(dispatch, `${activePlayer.name} traci 2 kolejki i dostęp do telefonu!`);
                     return;
 
                 case "Stołówka studencka":
@@ -83,12 +83,12 @@ function dealWithNewField(newField, numberOnDices, data)
                         if (activePlayer.eventCards[i].cardID === 8)
                         {
                             UpdatePlayerDeleteEventCard(dispatch, activePlayer.name, 8);
-                            AddNewLog(dispatch, `${activePlayer.name} używa karty ${gainCards[8].cardName.toUpperCase()}!`);
+                            //AddNewLog(dispatch, `${activePlayer.name} używa karty ${gainCards[8].cardName.toUpperCase()}!`);
                             return;
                         }
                     }
                     UpdatePlayerWaitingTurns(dispatch, activePlayer.name, 2, false);
-                    AddNewLog(dispatch, `${activePlayer.name} traci 2 kolejki!`);
+                    //AddNewLog(dispatch, `${activePlayer.name} traci 2 kolejki!`);
                     return;
 
                 case "Dziekanat":
@@ -97,12 +97,12 @@ function dealWithNewField(newField, numberOnDices, data)
                         if (activePlayer.eventCards[i].cardID === 0)
                         {
                             UpdatePlayerDeleteEventCard(dispatch, activePlayer.name, 0);
-                            AddNewLog(dispatch, `${activePlayer.name} używa karty ${gainCards[0].cardName.toUpperCase()}!`);
+                            //AddNewLog(dispatch, `${activePlayer.name} używa karty ${gainCards[0].cardName.toUpperCase()}!`);
                             return;
                         }
                     }
                     UpdatePlayerWaitingTurns(dispatch, activePlayer.name, 3, true);
-                    AddNewLog(dispatch, `${activePlayer.name} traci 3 kolejki i dostęp do telefonu!`);
+                    //AddNewLog(dispatch, `${activePlayer.name} traci 3 kolejki i dostęp do telefonu!`);
                     return;
 
                 default:
@@ -128,8 +128,8 @@ function dealWithNewField(newField, numberOnDices, data)
                         let cost = newField.rentCosts[players[i].properties[j].estateLevel];
                         UpdatePlayerCash(dispatch, activePlayer.name, -cost);
                         UpdatePlayerCash(dispatch, players[i].name, cost);
-                        AddNewLog(dispatch, `${activePlayer.name} płaci graczowi ${players[i].name}`
-                        + ` kwotę ${cost} ECTS.`);
+                        // AddNewLog(dispatch, `${activePlayer.name} płaci graczowi ${players[i].name}`
+                        // + ` kwotę ${cost} ECTS.`);
                         break;
                     }
                 }
@@ -168,8 +168,8 @@ function dealWithNewField(newField, numberOnDices, data)
                         let cost = numberOnDices * Math.pow(3, ownedCompanies - 1);
                         UpdatePlayerCash(dispatch, activePlayer.name, -cost);
                         UpdatePlayerCash(dispatch, players[i].name, cost);
-                        AddNewLog(dispatch, `${activePlayer.name} płaci graczowi ${players[i].name}`
-                        + ` kwotę ${cost} ECTS.`);
+                        // AddNewLog(dispatch, `${activePlayer.name} płaci graczowi ${players[i].name}`
+                        // + ` kwotę ${cost} ECTS.`);
                         break;
                     }
                 }
@@ -184,15 +184,15 @@ function dealWithNewField(newField, numberOnDices, data)
             {
                 case "Karta zysku":
                     card = gainCards[Math.floor(Math.random() * gainCards.length)];
-                    AddNewLog(dispatch, `${activePlayer.name} otrzymuje kartę`
-                    + ` ${card.cardName.toUpperCase()}.`);
+                    // AddNewLog(dispatch, `${activePlayer.name} otrzymuje kartę`
+                    // + ` ${card.cardName.toUpperCase()}.`);
                     dealWithEventCard(data, card, numberOnDices);
                     return;
 
                 case "Karta straty":
                     card = lossCards[Math.floor(Math.random() * lossCards.length)];
-                    AddNewLog(dispatch, `${activePlayer.name} otrzymuje kartę`
-                    + ` ${card.cardName.toUpperCase()}.`);
+                    // AddNewLog(dispatch, `${activePlayer.name} otrzymuje kartę`
+                    // + ` ${card.cardName.toUpperCase()}.`);
                     dealWithEventCard(data, card, numberOnDices);
                     return;
 
@@ -227,7 +227,7 @@ function dealWithEventCard(data, card, numberOnDices)
             {
                 if (activePlayer.eventCards[i].cardID === 0)
                 {
-                    AddNewLog(dispatch, `${activePlayer.name} wymienia duplikat na 20 ECTS!`);
+                    //AddNewLog(dispatch, `${activePlayer.name} wymienia duplikat na 20 ECTS!`);
                     UpdatePlayerCash(dispatch, activePlayer.name, 20);
                     return;
                 }
@@ -240,7 +240,7 @@ function dealWithEventCard(data, card, numberOnDices)
             {
                 if (activePlayer.eventCards[i].cardID === 1)
                 {
-                    AddNewLog(dispatch, `${activePlayer.name} wymienia duplikat na 20 ECTS!`);
+                    //AddNewLog(dispatch, `${activePlayer.name} wymienia duplikat na 20 ECTS!`);
                     UpdatePlayerCash(dispatch, activePlayer.name, 20);
                     return;
                 }
@@ -284,7 +284,7 @@ function dealWithEventCard(data, card, numberOnDices)
             {
                 if (activePlayer.eventCards[i].cardID === 8)
                 {
-                    AddNewLog(dispatch, `${activePlayer.name} wymienia duplikat na 20 ECTS!`);
+                    //AddNewLog(dispatch, `${activePlayer.name} wymienia duplikat na 20 ECTS!`);
                     UpdatePlayerCash(dispatch, activePlayer.name, 20);
                     return;
                 }
@@ -304,7 +304,7 @@ function dealWithEventCard(data, card, numberOnDices)
                 currentPosition = (activePlayer.position + numberOnDices) % fields.length;
                 UpdatePlayerPosition(dispatch, activePlayerIndex, newPosition - currentPosition);
                 anotherNewField = fields[newPosition];
-                AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
+                //AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
                 dealWithNewField(anotherNewField, 0, data);
             }, 1000)
             return;
@@ -324,8 +324,8 @@ function dealWithEventCard(data, card, numberOnDices)
                 currentPosition = (activePlayer.position + numberOnDices) % fields.length;
                 UpdatePlayerPosition(dispatch, activePlayerIndex, newPosition - currentPosition);
                 anotherNewField = fields[newPosition];
-                AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
-                dealWithNewField(anotherNewField, 0, data); 
+                //AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
+                dealWithNewField(anotherNewField, 0, data);
             }, 1000)
             return;
 
@@ -335,7 +335,7 @@ function dealWithEventCard(data, card, numberOnDices)
                 currentPosition = (activePlayer.position + numberOnDices) % fields.length;
                 UpdatePlayerPosition(dispatch, activePlayerIndex, newPosition - currentPosition);
                 anotherNewField = fields[newPosition];
-                AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
+                //AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
                 dealWithNewField(anotherNewField, 0, data);
             }, 1000)
             return;
@@ -346,7 +346,7 @@ function dealWithEventCard(data, card, numberOnDices)
                 currentPosition = (activePlayer.position + numberOnDices) % fields.length;
                 UpdatePlayerPosition(dispatch, activePlayerIndex, newPosition - currentPosition);
                 anotherNewField = fields[newPosition];
-                AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
+                //AddNewLog(dispatch, `${activePlayer.name} ląduje na polu ${anotherNewField.name}.`);
                 dealWithNewField(anotherNewField, 0, data);
             }, 1000)
             return;
