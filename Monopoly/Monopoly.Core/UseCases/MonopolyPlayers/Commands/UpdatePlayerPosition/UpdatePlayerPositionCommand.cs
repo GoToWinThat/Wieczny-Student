@@ -36,7 +36,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerPosition
 
             entity.Position = (entity.Position+request.DeltaPosition)%40;
 
-            MonopolyAI.MonopolyAI.TriggedByNewPostion(entity.Position);
+            //MonopolyAI.MonopolyAI.TriggedByNewPostion(entity.Position);
 
             await _context.SaveChangesAsync(cancellationToken);
             return Unit.Value;

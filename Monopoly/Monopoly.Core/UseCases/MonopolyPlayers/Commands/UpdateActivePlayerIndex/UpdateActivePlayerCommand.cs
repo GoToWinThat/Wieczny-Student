@@ -34,7 +34,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdateActivePlayerInde
             }
 
             entity.ActivePlayerIndex = request.Index;
-            MonopolyAI.MonopolyAI.ProcessBot(entity.ActivePlayerIndex,cancellationToken);
+            //MonopolyAI.MonopolyAI.ProcessBot(entity.ActivePlayerIndex,cancellationToken);
 
             await _context.SaveChangesAsync(cancellationToken);
             return Unit.Value;

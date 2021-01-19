@@ -51,7 +51,7 @@ namespace Monopoly.WebApi.Controllers
             return playerIndex;
         }
         [HttpPut]
-        [Route("UpdatePlayerIndex")]
+        [Route("UpdateActivePlayerIndex")]
         public async Task<ActionResult> UpdateActivePlayerIndex(UpdateActivePlayerIndexCommand command)
         {
             await Mediator.Send(command);

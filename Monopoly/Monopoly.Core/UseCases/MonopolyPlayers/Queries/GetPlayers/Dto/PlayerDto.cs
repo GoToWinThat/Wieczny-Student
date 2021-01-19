@@ -9,6 +9,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Queries.GetPlayers.Dto
 {
     public class PlayerDto : IMapFrom<Player>
     {
+        public int Id { get; set; }
         public int Cash { get; set; }
         public string Signature { get; set; }
         public string Color { get; set; }
@@ -26,6 +27,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Queries.GetPlayers.Dto
         public static void Mapping(MappingProfile profile)
         {
             profile.CreateMap<Player, PlayerDto>()
+                .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
                 .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name))
                 .ForMember(d => d.Cash, opt => opt.MapFrom(s => s.Cash))
                 .ForMember(d => d.Color, opt => opt.MapFrom(s => s.Color))
