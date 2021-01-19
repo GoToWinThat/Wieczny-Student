@@ -18,8 +18,6 @@ export const ActionTypes = {
     SET_DICES: 'SET_DICES',
     UPDATE_DICES: 'UPDATE_DICES',
 
-    CREATE_PLAYER: 'CREATE_PLAYER', 
-
     UPDATE_PLAYER_CASH: 'UPDATE_PLAYER_CASH',
     UPDATE_PLAYER_POSITION: 'UPDATE_PLAYER_POSITION',
     UPDATE_PLAYER_WAITING_TURNS: 'UPDATE_PLAYER_WAITING_TURNS',
@@ -57,8 +55,6 @@ export const ActionCreators = {
     setDices: payload => ({ type: ActionTypes.SET_DICES, payload }),
     updateDices: payload => ({ type: ActionTypes.UPDATE_DICES, payload }),
 
-    createPlayer: payload => ({ type: ActionTypes.CREATE_PLAYER, payload }),
-
     updatePlayerCash: payload => ({ type: ActionTypes.UPDATE_PLAYER_CASH, payload }),
     updatePlayerPosition: payload => ({ type: ActionTypes.UPDATE_PLAYER_POSITION, payload }),
     updatePlayerWaitingTurns: payload => ({ type: ActionTypes.UPDATE_PLAYER_WAITING_TURNS, payload }),
@@ -89,15 +85,15 @@ export default function MonopolyReducer(state = initialState, action) {
 
         // get all gain cards and set them in "gainCards" list
         case ActionTypes.SET_GAINCARDS:
-            return { ...state, gainCards: [...action.payload.gainCards] }
+            return { ...state, gainCards: [...action.payload.gainCards].sort((a,b) => a.cardID - b.cardID) }
 
         // get all loss cards and set them in "lossCards" list
         case ActionTypes.SET_LOSSCARDS:
-            return { ...state, lossCards: [...action.payload.lossCards] }
+            return { ...state, lossCards: [...action.payload.lossCards].sort((a,b) => a.cardID - b.cardID) }
 
         // get all the players and set them in "players" list
         case ActionTypes.SET_PLAYERS:
-            return { ...state, players: [...action.payload.monopolyPlayers] }
+            return { ...state, players: [...action.payload.monopolyPlayers].sort((a,b) => a.id - b.id) }
 
 
 
@@ -130,27 +126,6 @@ export default function MonopolyReducer(state = initialState, action) {
         // update dices:
         case ActionTypes.UPDATE_DICES:
             return { ...state, dices: action.payload.dices }
-
-
-
-        // add player at the end of the list
-        case ActionTypes.CREATE_PLAYER:
-            return { ...state, players: [...state.players, 
-                {
-                    "name": action.payload.playerName,
-                    "cash": 500,
-                    "signature": action.payload.signature,
-                    "color": action.payload.color,
-                    "properties": [],
-                    "eventCards": [],
-                    "position": 0,
-                    "isInJail": false,
-                    "turnsToWait": 0,
-                    "isBankrupt": false,
-                    "isReady": false,
-                    "isLogged": true
-                }
-            ]}
 
 
 
