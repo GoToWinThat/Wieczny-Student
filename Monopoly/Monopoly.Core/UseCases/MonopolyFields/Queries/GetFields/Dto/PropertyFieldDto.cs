@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Enums;
 using Monopoly.Core.Base.Mappings;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -20,11 +21,11 @@ namespace Monopoly.Core.UseCases.MonopolyFields.Queries.GetFields.Dto
         {
             profile.CreateMap<PropertyField, PropertyFieldDto>()
                 .ForMember(d => d.Type, opt => opt.MapFrom(s => s.Type))
-                .ForMember(d => d.FieldID, opt => opt.MapFrom(s => s.MonopolyID))
+                 .ForMember(d => d.FieldID, opt => opt.MapFrom(s => s.MonopolyID))
                 .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name))
                 .ForMember(d => d.Color, opt => opt.MapFrom(s => s.Color))
                 .ForMember(d => d.Price, opt => opt.MapFrom(s => s.Price))
-                .ForMember(d => d.Mortage, opt => opt.MapFrom(s => s.Mortgage))
+                .ForMember(d => d.Mortage, opt => opt.MapFrom(s => s.Mortage))
                 .ForMember(d => d.EstatePrice, opt => opt.MapFrom(s => s.EstatePrice))
                 .ForMember(d => d.RentCosts, opt => opt.MapFrom(s => s.RentCosts));
         }

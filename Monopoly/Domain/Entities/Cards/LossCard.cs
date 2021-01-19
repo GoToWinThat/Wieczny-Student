@@ -1,4 +1,12 @@
-﻿namespace Domain.Entities.Cards
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Domain.Entities.Cards
 {
-    public class LossCard:Card{}
+    public class LossCard:Card
+    {
+    }
 }

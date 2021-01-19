@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Enums;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Monopoly.Core.Base.Exceptions;
@@ -10,23 +11,21 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerPosition
+namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.DeleteLoggedPlayer
 {
-    
-     public class UpdatePlayerPositionCommand : IRequest
-     {
+    public class DeleteLoggedPlayerCommand : IRequest
+    {
         public string Name { get; set; }
-        public int DeltaPosition { get; set; }
     }
-    public class UpdatePlayerPositionCommandHandler : IRequestHandler<UpdatePlayerPositionCommand>
+    public class DeleteLoggedPlayerCommandHandler : IRequestHandler<DeleteLoggedPlayerCommand>
     {
         private IApplicationDbContext _context;
 
-        public UpdatePlayerPositionCommandHandler(IApplicationDbContext context)
+        public DeleteLoggedPlayerCommandHandler(IApplicationDbContext context)
         {
             _context = context;
         }
-        public async Task<Unit> Handle(UpdatePlayerPositionCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteLoggedPlayerCommand request, CancellationToken cancellationToken)
         {
             var entity = await _context.Players.Where(p => p.Name == request.Name).FirstAsync();
 
@@ -35,7 +34,17 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerPosition
                 throw new NotFoundException(nameof(Player), request.Name);
             }
 
-            entity.Position += request.DeltaPosition;
+            entity = new Player
+            {
+                Cash = 1000,
+                Signature = "0000",
+                Color = MonopolyColor.blue,
+                Position = 0,
+                IsInJail = false,
+                TurnsToWait = 0,
+                IsBrankrupt = false,
+                IsLogged = false,
+            };
 
             await _context.SaveChangesAsync(cancellationToken);
             return Unit.Value;

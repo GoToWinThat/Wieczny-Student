@@ -12,22 +12,22 @@ namespace Domain.Entities
         public int Price { get; set; }
         public List<int> RentCosts { get; set; }
         public int EstatePrice { get; set; }
-        public int Mortgage { get; set; }
-        public int PropertyFieldInfoId { get; set; }
+        public int Mortage { get; set; }
+        public int PropertyFieldInfoRef { get; set; }
         public PropertyFieldInfo PropertyFieldInfo { get; set; }
 
-        private bool _purchased;
-        public bool Purchased
+        private bool _purschased;
+        public bool Purschased
         {
-            get => _purchased;
+            get => _purschased;
             set
             {
-                if (value == true && _purchased == false)
+                if (value == true && _purschased == false)
                 {
                     DomainEvents.Add(new PropertyFieldPurschasedEvent(this));
                 }
 
-                _purchased = value;
+                _purschased = value;
             }
         }
 

@@ -11,7 +11,7 @@ namespace Monopoly.Core.UseCases.MonopolyCards.Queries.GetGainCards
         public static void Mapping (MappingProfile profile)
         {
             profile.CreateMap<GainCard, GainCardDto>()
-                .ForMember(d => d.CardID, opt => opt.MapFrom(s => s.CardIdNumber))
+                .ForMember(d => d.CardID, opt => opt.MapFrom(s => s.Id))
                 .ForMember(d => d.CardName, opt => opt.MapFrom(s => s.CardName))
                 .ForMember(d => d.Description, opt => opt.MapFrom(s => s.Description));
         }

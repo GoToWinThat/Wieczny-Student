@@ -36,11 +36,8 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerNewPropert
             {
                 throw new NotFoundException(nameof(PropertyFieldInfo), request.FieldId);
             }
-            if(entityFields.Player==null && entityFields.PlayerId==null)
-            {
-                entityFields.Player = entityPlayer;
-                entityFields.PlayerId = entityPlayer.Id;
-            }
+
+            entityFields.Player = entityPlayer;
 
             await _context.SaveChangesAsync(cancellationToken);
             return Unit.Value;

@@ -12,7 +12,7 @@ namespace Infrastructure.Persistance.Configuration
             builder
                 .HasOne(a => a.PropertyField)
                 .WithOne(b => b.PropertyFieldInfo)
-                .HasForeignKey<PropertyFieldInfo>(c => c.PropertyFieldId);
+                .HasForeignKey<PropertyField>(p => p.PropertyFieldInfoRef);
         }
     }
 }
