@@ -6,12 +6,9 @@ import { AddNewLog, UpdateDices, UpdatePlayerPosition, UpdatePlayerCash,
 // Throwing dices:
 export const throwDicesEvent = (data) =>
 {
-    // Important parameters:
+    // Parameters:
     const activePlayerIndex = data.data.activePlayerIndex;
-    const activePlayer = data.data.players[activePlayerIndex];
-    const fields = data.data.fields;
     const dispatch = data.data.dispatch;
-    const sayItWell = (number) => (number < 5) ? `${number} oczka` : `${number} oczek`;
 
     // Updating dices:
     let newDiceState = [Math.floor(Math.random() * 6) + 1, Math.floor(Math.random() * 6) + 1];
@@ -20,6 +17,15 @@ export const throwDicesEvent = (data) =>
     // Updating player position:
     let numberOnDices = newDiceState[0] + newDiceState[1];
     UpdatePlayerPosition(dispatch, activePlayerIndex, numberOnDices);
+
+    return; // The lines below will be deleted - they are in API now...
+
+
+
+
+    const activePlayer = data.data.players[activePlayerIndex];
+    const fields = data.data.fields;
+    const sayItWell = (number) => (number < 5) ? `${number} oczka` : `${number} oczek`;
 
     // Adding new logs:
     let newPosition = (activePlayer.position + numberOnDices) % fields.length;

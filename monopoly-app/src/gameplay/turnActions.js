@@ -4,24 +4,22 @@ import { canPreventBankrupt, bankrupt } from '../components/Modals/ManageBankrup
 
 export const endTurnEvent = (data) =>
 {
+    // IMPORTANT: PROBABLY WHOLE FILE WILL BE IN API!
+
+    const myIndex = data.data.myIndex;
     const activePlayerIndex = data.data.activePlayerIndex;
     const players = data.data.players;
     const dispatch = data.data.dispatch;
+    const fields = data.data.fields;
     const sayItWell = (number) => (number === 1) ? `ostatnią kolejkę` : `jeszcze ${number} kolejki`;
 
     //Check if player is bancrupt
-    if(!canPreventBankrupt(dispatch,players[activePlayerIndex],data.data.fields)) 
-        bankrupt(dispatch,players[activePlayerIndex])
+    if (myIndex === activePlayerIndex)
+        if(!canPreventBankrupt(dispatch, players[myIndex], fields)) 
+            bankrupt(dispatch, players[myIndex])
 
     // Throw dices if it haven't happened yet:
-    //if (players[data.data.myIndex] === false) throwDicesEvent(data);
-
-
-    // Everything below will be deleted...
-
-
-
-
+    //if (players[data.data.myIndex].thrownDices === false) throwDicesEvent(data);
 
     // Update who's turn is it now:
     var nextPlayerIndex = (activePlayerIndex + 1) % players.length;

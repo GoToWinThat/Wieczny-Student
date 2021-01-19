@@ -14,7 +14,7 @@ class Clock extends Component {
       this.resetClock = this.resetClock.bind(this);
     }
   
-    secondsToTime(secs){
+    secondsToTime(secs) {
       let hours = Math.floor(secs / (60 * 60));
   
       let divisor_for_minutes = secs % (60 * 60);
@@ -36,6 +36,7 @@ class Clock extends Component {
         else this.setState({ time: this.secondsToTime(secondsForAction), seconds: secondsForAction });
         
         this.startTimer();
+        //useEffect(() => {this.resetClock()}, [this.props.data.data.activePlayerIndex])
     }
 
     startTimer() {
@@ -46,17 +47,13 @@ class Clock extends Component {
     
     countDown() {
         // Remove one second, set state so a re-render happens.
-        let seconds = this.state.seconds - 1;
-        this.setState({
-            time: this.secondsToTime(seconds),
-            seconds: seconds,
-        });
-        
-        // Check if we're at zero.
-        if (seconds === 0) 
+        if (this.state.seconds > 0) 
         {
-            if (this.props.typeOfClock === "turnClock") this.resetClock();
-            else clearInterval(this.timer);
+            let seconds = this.state.seconds - 1;
+            this.setState({
+                time: this.secondsToTime(seconds),
+                seconds: seconds,
+            });
         }
     }
 
@@ -65,14 +62,14 @@ class Clock extends Component {
             time: this.secondsToTime(secondsForAction),
             seconds: secondsForAction,
         });
-        this.props.endTurnEvent();
     }
     
     render() {
         if (this.props.typeOfClock === "turnClock")
             return(
-                <Button id="endTurnButton" onClick={this.resetClock} onMouseDown={(e) => e.preventDefault()}
-                    disabled={this.props.data.data.myIndex !== this.props.data.data.activePlayerIndex}>
+                <Button id="endTurnButton" onClick={() => this.props.endTurnEvent()} onMouseDown={(e) => e.preventDefault()}
+                    //disabled={this.props.data.myIndex !== this.props.data.activePlayerIndex}
+                    >
                     <span>Zakończ turę [{this.state.time.m * 60 + this.state.time.s}s]</span>
                 </Button>    
             );

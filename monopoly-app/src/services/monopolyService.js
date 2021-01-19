@@ -128,7 +128,7 @@ export const UpdatePlayerBankrupt = async (dispatch, playerName) => {
 
 export const UpdatePlayerReadiness = async (dispatch, playerName) => {
     try {
-        axios.put(axiosPlayerURL + 'UpdatePlayerReadiness', 
+        axios.put(axiosGameURL + 'UpdatePlayerReadiness', 
             {"name": playerName}).then(
             dispatch(ActionCreators.updatePlayerReadiness({playerName})));
     } catch { console.log("Player's Readiness Status couldn't be updated!"); }
