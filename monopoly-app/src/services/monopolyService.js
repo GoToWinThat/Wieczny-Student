@@ -87,7 +87,7 @@ export const UpdateDices = async (dispatch, dices) => {
 export const CreatePlayer = async (dispatch, playerName, signature, color) => {
     try {
         axios.post(axiosPlayerURL + 'LogNewPlayer', 
-            {"name": playerName, "signature": signature, "color": "black"}).then(
+            {"name": playerName, "signature": signature, "color": color}).then(
             tmp => dispatch(ActionCreators.setMyIndex(tmp.data)));
         dispatch(ActionCreators.createPlayer({playerName, signature, color})); // API will send player list, so maybe it should be commented...
     } catch { console.log("Player couldn't be created!"); }
@@ -182,7 +182,7 @@ export const UpdatePlayerMortgageProperty = async (dispatch, playerName, fieldID
 export const UpdatePlayerAddEventCard = async (dispatch, playerName, cardID) => {
     try {
         axios.put(axiosPlayerURL + 'UpdatePlayerAddEventCard', 
-            {"playerName": playerName, "cardID": cardID}).then(
+            {"name": playerName, "cardID": cardID}).then(
             dispatch(ActionCreators.updatePlayerAddEventCard({playerName, cardID})));
     } catch { console.log("Player couldn't get new event card!"); }
 }
@@ -190,7 +190,7 @@ export const UpdatePlayerAddEventCard = async (dispatch, playerName, cardID) => 
 export const UpdatePlayerDeleteEventCard = async (dispatch, playerName, cardID) => {
     try {
         axios.delete(axiosPlayerURL + 'UpdatePlayerDeleteEventCard', 
-            {"playerName": playerName, "cardID": cardID}).then(
+            {"name": playerName, "cardID": cardID}).then(
             dispatch(ActionCreators.updatePlayerDeleteEventCard({playerName, cardID})));
     } catch { console.log("Player couldn't delete event card!"); }
 }
