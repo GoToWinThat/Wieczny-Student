@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Pawns from './Pawns.js'
+import Pawns from '../Pawns.js'
 
 class CornerField extends Component {
     constructor(props){

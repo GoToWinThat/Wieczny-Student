@@ -1,11 +1,11 @@
 import React from "react"
 import { Toast } from 'react-bootstrap'
-import '../../styles/EventCardPopover.css'
+import '../styles/EventCardPopover.css'
 import { useSelector, useDispatch } from 'react-redux'
-import { UpdateCurrentEventCard } from '../../services/monopolyService'
+import { UpdateCurrentEventCard } from '../services/monopolyService'
 
 
-export const CardPopover = () =>
+export const EventCardPopover = () =>
 {
     const currentCard = useSelector(state => state.monopolyReducer.currentCard);
     const dispatch = useDispatch();

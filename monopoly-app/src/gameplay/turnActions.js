@@ -1,6 +1,6 @@
 import { UpdateActivePlayerIndex, AddNewLog, UpdatePlayerWaitingTurns } from '../services/monopolyService';
 import { setThrownDices, thrownDices, throwDicesEvent } from "./fieldActions";
-import { canPreventBankrupt, bankrupt } from '../components/ActionPanel/ManageFunctions/ManageBankrupt'
+import { canPreventBankrupt, bankrupt } from '../components/Modals/ManageBankrupt'
 
 export const endTurnEvent = (data) =>
 {

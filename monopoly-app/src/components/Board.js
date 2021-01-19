@@ -1,4 +1,4 @@
-import Field from './Field'
+import Field from './Fields/Field'
 import '../styles/Board.css'
 import { BoardCenter } from './BoardCenter';
 

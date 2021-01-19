@@ -1,9 +1,9 @@
 import "../../styles/ActionPanel.css";
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
-import { generateTableOfFields } from "./ManageFunctions/ManageTable";
+import { generateTableOfFields } from "./ManageTable";
 import "../../styles/Modals.css";
-import {surrender} from './ManageFunctions/ManageBankrupt'
+import {surrender} from './ManageBankrupt'
 
 
 function Manage(props) {

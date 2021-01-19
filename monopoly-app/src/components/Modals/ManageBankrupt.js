@@ -1,7 +1,7 @@
 import { UpdatePlayerBankrupt, UpdatePlayerDeleteProperty, 
     UpdatePlayerDeleteEventCard, AddNewLog, UpdatePlayerExpandProperty, 
-    UpdatePlayerCash, UpdatePlayerMortgageProperty } from "../../../services/monopolyService";
-import { endTurnEvent } from "../../../gameplay/turnActions";
+    UpdatePlayerCash, UpdatePlayerMortgageProperty } from "../../services/monopolyService";
+import { endTurnEvent } from "../../gameplay/turnActions";
 import { hasAnyComputer, hasAnyProperties } from "./ManageCheck"
 
 export const surrender = (dispatch,activePlayer,data) =>

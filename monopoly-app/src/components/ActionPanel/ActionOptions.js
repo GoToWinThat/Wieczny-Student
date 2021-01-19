@@ -1,9 +1,9 @@
 import React, { useState,useEffect } from 'react';
 import "../../styles/ActionPanel.css";
-import Buy from './Buy'
-import Manage from './Manage'
+import Buy from '../Modals/Buy'
+import Manage from '../Modals/Manage'
 import ButtonPanel from './ButtonPanel'
-import Trade from './Trade'
+import Trade from '../Modals/Trade'
 
 function ActionOptions(props) 
 {

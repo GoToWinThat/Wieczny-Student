@@ -3,7 +3,7 @@ import CornerField from './CornerField'
 import PropertyField from './PropertyField'
 import EventField from './EventField'
 import CompanyField from './CompanyField'
-import '../styles/Field.css'
+import '../../styles/Field.css'
 
 class Field extends Component {
     render() {

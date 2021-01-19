@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {Popover, OverlayTrigger } from 'react-bootstrap'
 import FieldIsBought from './FieldIsBought'
-import Pawns from './Pawns.js'
-import PopoverEstateLevel from './PopoverEstateLevel'
+import Pawns from '../Pawns.js'
+import PopoverEstateLevel from '../PopoverEstateLevel'
 
 class PropertyField extends Component {
     constructor(props){

@@ -4,7 +4,7 @@ import {
   UpdatePlayerMortgageProperty,
   UpdatePlayerCash,
   AddNewLog,
-} from "../../../services/monopolyService";
+} from "../../services/monopolyService";
 
 // Selling owned property:
 export const sellProperty = (fieldId, activePlayer, fields, dispatch) => {

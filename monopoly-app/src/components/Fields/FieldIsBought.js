@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../styles/FieldIsBought.css'
+import '../../styles/FieldIsBought.css'
 
 class FieldIsBought extends Component {
     render() {
