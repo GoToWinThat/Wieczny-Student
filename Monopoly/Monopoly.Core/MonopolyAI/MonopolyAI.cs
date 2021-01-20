@@ -6,6 +6,7 @@ using System.Threading;
 using Domain.Enums;
 using Domain.Entities.Game;
 using Domain.Entities.Cards;
+using System.Collections.Generic;
 
 namespace Monopoly.Core.MonopolyAI
 {
@@ -31,6 +32,8 @@ namespace Monopoly.Core.MonopolyAI
 
         public static void NewPositionAction(Player player, IApplicationDbContext _context, CancellationToken cancellationToken)
         {
+            
+            _context.SaveChangesAsync(cancellationToken);
             // New field:
             var newField = _context.MonopolyFields.Where(field => field.MonopolyID == player.Position).ToList()[0];
             MonopolyFieldType newFieldType = newField.Type;
@@ -45,53 +48,75 @@ namespace Monopoly.Core.MonopolyAI
                 _context.Logs.Add(new Log { LogInfo = $"{player.Name} przechodzi przez portiernię. Otrzymuje 30 ECTS." });
             }
 
-            return;
 
             // Specific field action:
             switch (newFieldType)
             {
                 case MonopolyFieldType.corner:
+                    //tu
                     switch (newFieldName)
                     {
                         case "Konsultacje":
-                            for (int i = 0; i < player.Cards.ToList().Count; i++)
+                            if (player.Cards != null)
                             {
-                                if(player.Cards.ToList().ElementAt(i).CardIdNumber == 1)
+                                for (int i = 0; i < player.Cards.ToList().Count; i++)
                                 {
-                                    _context.Logs.Add(new Log {
-                                        LogInfo = $"{player.Name} używa karty ${player.Cards.ToList().ElementAt(i).CardName.ToUpper()}" });
-                                    player.Cards.Remove(player.Cards.ElementAt(i));
-                                    break;
+                                    if (player.Cards.ToList().ElementAt(i).CardIdNumber == 1)
+                                    {
+                                        var xd = player.Cards.ToList();
+                                        _context.Logs.Add(new Log
+                                        {
+                                            LogInfo = $"{player.Name} używa karty ${player.Cards.ToList().ElementAt(i).CardName.ToUpper()}"
+                                        });
+                                        player.Cards.ToList().Remove(player.Cards.ElementAt(i));
+                                        break;
+
+                                    }
                                 }
                             }
+                           
                             player.TurnsToWait += 2;
                             _context.Logs.Add(new Log { LogInfo = $"{player.Name} traci 2 kolejki i dostęp do telefonu!" });
                             break;
 
                         case "Stołówka studencka":
-                            for (int i = 0; i < player.Cards.ToList().Count; i++)
+                            if(player.Cards != null)
                             {
-                                if(player.Cards.ToList().ElementAt(i).CardIdNumber == 8)
+                                for (int i = 0; i < player.Cards.ToList().Count; i++)
                                 {
-                                    _context.Logs.Add(new Log { 
-                                        LogInfo = $"{player.Name} używa karty ${player.Cards.ToList().ToList().ElementAt(i).CardName.ToUpper()}" });
-                                    player.Cards.Remove(player.Cards.ToList().ElementAt(i));
+                                    if (player.Cards.ToList().ElementAt(i).CardIdNumber == 8)
+                                    {
+                                        _context.Logs.Add(new Log
+                                        {
+                                            LogInfo = $"{player.Name} używa karty ${player.Cards.ToList().ToList().ElementAt(i).CardName.ToUpper()}"
+                                        });
+                                        player.Cards.Remove(player.Cards.ToList().ElementAt(i));
+                                        break;
+                                    }
                                 }
                             }
+                            
                             player.TurnsToWait += 2;
                             _context.Logs.Add(new Log { LogInfo = $"{player.Name} traci 2 kolejki!" });
                             break;
 
                         case "Dziekanat":
-                            for (int i = 0; i < player.Cards.ToList().Count; i++)
+                            if (player.Cards != null)
                             {
-                                if (player.Cards.ToList().ElementAt(i).CardIdNumber == 8)
+                                for (int i = 0; i < player.Cards.ToList().Count; i++)
                                 {
-                                    _context.Logs.Add(new Log { 
-                                        LogInfo = $"{player.Name} używa karty ${player.Cards.ToList().ElementAt(i).CardName.ToUpper()}" });
-                                    player.Cards.ToList().Remove(player.Cards.ToList().ElementAt(i));
+                                    if (player.Cards.ToList().ElementAt(i).CardIdNumber == 8)
+                                    {
+                                        _context.Logs.Add(new Log
+                                        {
+                                            LogInfo = $"{player.Name} używa karty ${player.Cards.ToList().ElementAt(i).CardName.ToUpper()}"
+                                        });
+                                        player.Cards.ToList().Remove(player.Cards.ToList().ElementAt(i));
+                                        break;
+                                    }
                                 }
                             }
+                            
                             player.TurnsToWait += 3;
                             _context.Logs.Add(new Log { 
                                 LogInfo = $"{player.Name} traci 3 kolejki i dostęp do telefonu!" });
@@ -107,6 +132,7 @@ namespace Monopoly.Core.MonopolyAI
                     {
                         if (p == player) continue;
 
+                        //po tym 
                         foreach(PropertyFieldInfo property in p.PropertyFieldInfos.ToList())
                         {
                             if(property.PropertyFieldId == newFieldID)
@@ -160,14 +186,18 @@ namespace Monopoly.Core.MonopolyAI
                     switch (newFieldName)
                     {
                         case "Karta zysku":
-                            card = _context.GainCards.ToList().ElementAt(rand.Next(0, _context.GainCards.ToList().Count()));
+                            //card = _context.GainCards.ToList().ElementAt(rand.Next(0, _context.GainCards.ToList().Count()));
+                            card = _context.GainCards.ToList().ElementAt(1);
                             _context.Logs.Add(new Log { 
                                 LogInfo = $"{player.Name} otrzymuję kartę ${card.CardName.ToUpper()}." });
+
+                           
                             DealWithEventCard(player, _context, cancellationToken, card);
                             break;
 
                         case "Karta straty":
-                            card = _context.LossCards.ToList().ElementAt(rand.Next(0, _context.LossCards.ToList().Count()));
+                            //card = _context.LossCards.ToList().ElementAt(rand.Next(0, _context.LossCards.ToList().Count()));
+                            card = _context.LossCards.ToList().ElementAt(0);
                             _context.Logs.Add(new Log { 
                                 LogInfo = $"{player.Name} otrzymuję kartę ${card.CardName.ToUpper()}." });
                             DealWithEventCard(player, _context, cancellationToken, card);
@@ -201,17 +231,27 @@ namespace Monopoly.Core.MonopolyAI
                     break;
 
                 case "Oświecenie na konsultacjach":
-                    foreach (Card element in activePlayer.Cards.ToList())
+                    if(activePlayer.Cards != null)
                     {
-                        if (element.CardIdNumber == 1)
+                        foreach (Card element in activePlayer.Cards.ToList())
                         {
-                            _context.Logs.Add(new Log {
-                                LogInfo = $"{activePlayer.Name} wymienia duplikat na 20 ECTS!" });
-                            activePlayer.Cash += 20;
-                            break;
+                            if (element.CardIdNumber == 1)
+                            {
+                                _context.Logs.Add(new Log
+                                {
+                                    LogInfo = $"{activePlayer.Name} wymienia duplikat na 20 ECTS!"
+                                });
+                                activePlayer.Cash += 20;
+                                break;
+                            }
                         }
+                        activePlayer.Cards.Add(card);
                     }
-                    activePlayer.Cards.Add(card);
+                    else
+                    {
+                        activePlayer.Cards = new List<Card> { card };
+                    }
+
                     break;
 
                 case "Wygrana w konkursie":
