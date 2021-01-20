@@ -11,6 +11,7 @@ export const Config = () => {
     const [confirmed, setConfirmed] = useState(false)
 
     const players = useSelector(state => state.monopolyReducer.players);
+    const hubID = useSelector(state => state.monopolyReducer.hubID);
     const dispatch = useDispatch();
     try { useEffect(() => { GetPlayers(dispatch); }, [dispatch]); } 
     catch { console.log("Couldn't call function GetPlayers in Config.js!"); }
@@ -21,7 +22,7 @@ export const Config = () => {
     }
 
     const isMyNickUnavailable = () => { return players.filter((player) => player.name === nickname).length > 0 }
-    const NewPlayer = () => { CreatePlayer(dispatch, nickname, signature, color); setConfirmed(true); }
+    const NewPlayer = () => { CreatePlayer(dispatch, nickname, signature, color, hubID); setConfirmed(true); }
     const GetReady = () => { UpdatePlayerReadiness(dispatch, nickname); }
 
     return(

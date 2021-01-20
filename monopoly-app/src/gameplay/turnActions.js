@@ -6,10 +6,13 @@ export const endTurnEvent = (data) =>
     // IMPORTANT: PROBABLY WHOLE FILE WILL BE IN API!
 
     const myIndex = data.data.myIndex;
-    const activePlayerIndex = data.data.activePlayerIndex;
-    const players = data.data.players;
     const dispatch = data.data.dispatch;
-    const fields = data.data.fields;
+
+
+    UpdateActivePlayerIndex(dispatch, myIndex);
+
+    return;
+    
     const sayItWell = (number) => (number === 1) ? `ostatnią kolejkę` : `jeszcze ${number} kolejki`;
 
     //Check if player is bancrupt
@@ -19,6 +22,10 @@ export const endTurnEvent = (data) =>
 
     // Throw dices if it haven't happened yet:
     //if (players[data.data.myIndex].thrownDices === false) throwDicesEvent(data);
+
+    const activePlayerIndex = data.data.activePlayerIndex;
+    const players = data.data.players;
+    const fields = data.data.fields;
 
     // Update who's turn is it now:
     var nextPlayerIndex = (activePlayerIndex + 1) % players.length;

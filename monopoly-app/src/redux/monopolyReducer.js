@@ -1,7 +1,7 @@
 const initialState = { monopolyFields: [], gainCards: [], 
     lossCards: [], players: [], dices: [], activePlayerIndex: null, 
     logs: [], myIndex: 0, gameState: "config", turnClock: 30, gameClock: 1200,
-    currentCard: { cardName: "", description: ""}, 
+    currentCard: { cardName: "", description: ""}, hubID: null,
     trade: { status: false, fromID: null, directID: null, transaction: [] } }
 
 export const ActionTypes = { 
@@ -35,6 +35,8 @@ export const ActionTypes = {
 
     SET_TRADE: 'SET_TRADE',
     ADD_TRADE: 'ADD_TRADE',
+
+    SET_HUB_ID: 'SET_HUB_ID',
 
     SET_LOGS: 'SET_LOGS',
     ADD_NEW_LOG: 'ADD_NEW_LOG',
@@ -74,6 +76,8 @@ export const ActionCreators = {
 
     setTrade: payload => ({ type: ActionTypes.SET_TRADE, payload }),
     addTrade: payload => ({ type: ActionTypes.ADD_TRADE, payload }),
+
+    setHubID: payload => ({ type: ActionTypes.SET_HUB_ID, payload }),
 
     setLogs: payload => ({ type: ActionTypes.SET_LOGS, payload }),
     addNewLog: payload => ({ type: ActionTypes.ADD_NEW_LOG, payload }),
@@ -273,6 +277,8 @@ export default function MonopolyReducer(state = initialState, action) {
         case ActionTypes.ADD_TRADE:
             return { ...state, trade: action.payload.trade }
 
+        case ActionTypes.SET_HUB_ID:
+            return { ...state, hubID: action.payload }
 
 
         // get all logs and set them in "logs" list    

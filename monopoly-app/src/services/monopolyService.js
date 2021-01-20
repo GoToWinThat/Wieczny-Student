@@ -84,10 +84,11 @@ export const UpdateDices = async (dispatch, dices) => {
 
 
 
-export const CreatePlayer = async (dispatch, playerName, signature, color) => {
+export const CreatePlayer = async (dispatch, playerName, signature, color, hubID) => {
     try {
         axios.post(axiosPlayerURL + 'LogNewPlayer', 
-            {"name": playerName, "signature": signature, "color": color}).then(
+            {"name": playerName, "signature": signature, "color": color, 
+            "hubConnectionID": hubID}).then(
             tmp => dispatch(ActionCreators.setMyIndex(tmp.data)));
     } catch { console.log("Player couldn't be created!"); }
 }
@@ -218,6 +219,7 @@ export const AddTrade = async (dispatch, trade) => {
     } catch { console.log("Current Trade State couldn't be updated!"); }
 }
 
+export const SetHubId = async (dispatch, hubID) => { dispatch(ActionCreators.setHubID(hubID)); }
 
 
 // LOCAL:

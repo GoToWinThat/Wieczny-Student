@@ -1,11 +1,11 @@
 import { JsonHubProtocol, HubConnectionState, HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
-import { GetPlayers, GetLogs, GetActivePlayerIndex, GetDices, GetGameState, GetTrade } from '../../services/monopolyService';
+import { GetPlayers, GetLogs, GetActivePlayerIndex, GetDices, GetGameState, GetTrade, SetHubId } from '../../services/monopolyService';
   
   
 const startSignalRConnection = async connection => {
   try 
   {
-    await connection.start();
+    await connection.start().then(()=>connection.invoke('GetId'));
     console.assert(connection.state === HubConnectionState.Connected);
     console.log('SignalR connection established');
   } catch (err) 
@@ -47,6 +47,7 @@ export const SignalRHubConfiguration = (connectionHub, dispatch) =>
   connection.on('GetActivePlayerIndex', () => { GetActivePlayerIndex(dispatch); });
   connection.on('GetGameState', () => { GetGameState(dispatch); });
   connection.on('GetTrade', () => { GetTrade(dispatch); })
+  connection.on('GetId', (receivedMessage) => { SetHubId(dispatch, receivedMessage); });
 
   startSignalRConnection(connection);
 
