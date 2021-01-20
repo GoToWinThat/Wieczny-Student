@@ -2,7 +2,7 @@ import React, { useState, useEffect,useSelector } from "react";
 import { Button } from "react-bootstrap";
 import "../../styles/GameClock.css";
 
-var secondsForAction = 5;
+var secondsForAction = 30;
 
 const TurnClock = (props) => {
 
@@ -57,7 +57,7 @@ const TurnClock = (props) => {
       id="endTurnButton"
       onClick={() => props.endTurnEvent()}
       onMouseDown={(e) => e.preventDefault()}
-      disabled={props.myIndex !== props.activePlayerIndex}
+      //disabled={props.myIndex !== props.activePlayerIndex}
     >
       <span>Zakończ turę [{time.m * 60 + time.s}s]</span>
     </Button>

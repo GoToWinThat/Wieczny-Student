@@ -25,7 +25,9 @@ export const bankrupt = (dispatch,activePlayer) =>
 export const canPreventBankrupt = (dispatch,activePlayer,fields) =>
 {
     var cash = activePlayer.cash;
+    if(cash >= 0 ) return true;
     if(hasAnyComputer(activePlayer)) cash = sellComputers(dispatch,activePlayer,fields,cash);
+    if(cash >= 0 ) return true;
     if(hasAnyProperties(activePlayer)) {
         if(isMortgageEnough(activePlayer,fields)) cash = mortgageFields(dispatch,activePlayer,fields,cash);
         else cash = sellFields(dispatch,activePlayer,fields,cash);

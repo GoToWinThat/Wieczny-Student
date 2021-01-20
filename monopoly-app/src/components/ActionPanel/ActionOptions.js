@@ -4,6 +4,7 @@ import Buy from '../Modals/Buy'
 import Manage from '../Modals/Manage'
 import ButtonPanel from './ButtonPanel'
 import Trade from '../Modals/Trade'
+import TradeOfert from '../Modals/TradeOfert'
 
 function ActionOptions(props) 
 {
@@ -35,6 +36,7 @@ function ActionOptions(props)
             <Buy data={props.data} onHide={closeView} show={showBuy}/>
             <Manage data={props.data} onHide={closeView} show={showManage}/>
             <Trade data={props.data} onHide={closeView} show={showTrade}/>
+            <TradeOfert data={props.data}/>
         </div>)
 
 }

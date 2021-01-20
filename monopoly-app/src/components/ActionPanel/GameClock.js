@@ -12,7 +12,7 @@ const GameClock = () => {
     const timer = setInterval(() => {
       setSeconds((prevTime) => {
         setTime(secondsToTime(prevTime - 1));
-        return prevTime - 1;
+        return prevTime <= 1 ? prevTime : prevTime - 1;
       });
     }, 1000);
     return () => {

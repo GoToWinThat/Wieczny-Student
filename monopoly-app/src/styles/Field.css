@@ -1,5 +1,5 @@
 /* Rotating fields */
-.card-top { flex-direction: column-reverse !important; }
+.card-top { flex-direction: column-reverse !important;}
 .card-botom { flex-direction: column !important; }
 .card-left { flex-direction: row-reverse !important; }
 .card-right { flex-direction: row !important; }

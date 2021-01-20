@@ -9,8 +9,8 @@ function TradeSection(props) {
     {
         if(props.activePlayer.cash > target.value)
         {
-        setInputcash(target.value);
-        selectItem("cash",target.value);
+            setInputcash(target.value);
+            selectItem("cash",target.value);
         }
         else  
         {
@@ -18,6 +18,8 @@ function TradeSection(props) {
             selectItem("cash",props.activePlayer.cash);
         }
     }
+
+
 
     //Adding selected item to transactions in Trade function
     const selectItem = (type,obj) =>
@@ -30,13 +32,13 @@ function TradeSection(props) {
         let id = ""
         type === "cash" ? id = `${type}${props.activePlayer.name}` : id = `${type}${props.activePlayer.name}${item}`
         
-        props.addTransaction({id: id, type: type,playerName: props.activePlayer.name, item: item})
+        props.addTransaction({id: id, type: type,playerId: props.activePlayer.id, item: item})
     }
 
     //Creating header with player name
     const header = () => 
     {
-        if(props.changable === true)
+        if(props.changable === true &&  !props.isBlocked)
         {
             return(
                 <div className="playerNameWithArrows">
@@ -60,12 +62,12 @@ function TradeSection(props) {
         props.activePlayer.properties.map( pField => 
         {
             let field = props.data.fields[pField.fieldID]
-            let disabledInput = false;
+            let disabledInput = props.isBlocked;
             if(pField.mortgaged === true || pField.estateLevel > 0) disabledInput = true;
             
             fieldsList.push(
                 <div className="d-flex" key={pField.fieldID}>
-                    <input type='checkbox' onChange={() => selectItem("property",field)} disabled={disabledInput}/>
+                    <input type='checkbox' checked={isChecked(field.fieldID,true)} onChange={() => selectItem("property",field)} disabled={disabledInput}/>
                     <div className="propertyBox" style={{background: field.color}}/>
                     <span>{field.name}</span>
                     <br/>
@@ -90,7 +92,7 @@ function TradeSection(props) {
             idx++;
             cardsList.push(
                 <div className="d-flex" key={idx}>
-                    <input type="checkbox" onChange={() => selectItem("card",card)}/>
+                    <input type="checkbox"  checked={isChecked(card.cardID,false)} onChange={() => selectItem("card",card)} disabled={props.isBlocked}/>
                     <span>{card.cardName}</span>
                     <br/>
                 </div>
@@ -101,8 +103,33 @@ function TradeSection(props) {
         return cardsList;
     }
 
+    const isChecked = (id,isField) => 
+    {
+        //debugger;
+        if(props.checked !== undefined)
+        {
+            let state = false;
+            props.checked.forEach( trans => 
+            {
+                if(isField)
+                {
+                    
+                    if(trans.playerId === props.activePlayer.id && trans.value === id && trans.type === "property")
+                    state = true;
+                }
+                else
+                {
+                    if(trans.playerId === props.activePlayer.id && trans.value === id && trans.type === "card")
+                    state = true;
+                }
+            }) 
+            return state;
+        }
+    }
+
     const listAll = () => 
     {
+
         if(props.activePlayer.eventCards.length === 0 && props.activePlayer.properties.length === 0)
             return(<p className="noProperties text-secondary">Gracz nie posiada żadnych kart i nieruchomości.</p>);
         else 
@@ -115,7 +142,7 @@ function TradeSection(props) {
             <p className="h6 col" >{props.activePlayer.cash} ECTS</p>
             {listAll()}
             <div className="tradeCashChangeDiv">
-                <input type="text" value={inputcash} onChange={handleChange}/>
+                <input type="text" value={inputcash} disabled={props.isBlocked} onChange={handleChange}/>
                 <span> ECTS</span>
             </div>
         </div>
