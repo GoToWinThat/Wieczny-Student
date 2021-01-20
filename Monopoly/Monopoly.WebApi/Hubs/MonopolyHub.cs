@@ -29,7 +29,7 @@ namespace Monopoly.WebApi.Hubs
         {
             return Clients.Caller.SendAsync("GetId",Context.ConnectionId);
         }
-        public override Task OnDisconnectedAsync(Exception exception)
+       /* public override Task OnDisconnectedAsync(Exception exception)
         {
             var player = _context.Players.Where(p => p.HubConnectionId == Context.ConnectionId).FirstOrDefault();
             player.HubConnectionId = "";
@@ -38,7 +38,7 @@ namespace Monopoly.WebApi.Hubs
             _context.SaveChangesAsync(token);
             ConnectedUser.Ids.Remove(Context.ConnectionId);
             return base.OnDisconnectedAsync(exception);
-        }
+        }*/
         public Task GetActivePlayerIndex(string message)
         {
             return Clients.All.SendAsync("GetActivePlayerIndex", message);
