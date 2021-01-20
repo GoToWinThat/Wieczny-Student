@@ -26,7 +26,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerNewPropert
         public async Task<Unit> Handle(UpdatePlayerNewPropertyCommand request, CancellationToken cancellationToken)
         {
             var entityPlayer = await _context.Players.Where(p => p.Name == request.Name).FirstAsync();
-            var entityFields = await _context.PropertyFieldInfos.Where(p => p.PropertyField.MonopolyID == request.FieldId).FirstAsync();
+            var entityFields = await _context.PropertyFieldInfos.Include(pp => pp.PropertyField).Where(p => p.PropertyField.MonopolyID == request.FieldId).FirstAsync();
             
             if (entityPlayer == null)
             {
@@ -41,6 +41,12 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerNewPropert
                 entityFields.Player = entityPlayer;
                 entityFields.PlayerId = entityPlayer.Id;
             }
+
+            _context.Logs.Add(new Log
+            {
+                LogInfo = $"{entityPlayer.Name} kupuje " +
+               $"{entityFields.PropertyField.Name} za {entityFields.PropertyField.Price} ECTS."
+            });
 
             await _context.SaveChangesAsync(cancellationToken);
             return Unit.Value;

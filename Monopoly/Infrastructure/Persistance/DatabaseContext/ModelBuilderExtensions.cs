@@ -458,7 +458,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                     Id = 1,
                     EstateLevel = 0,
                     Mortgaged = false,
-                    PropertyFieldId = 2
+                    PropertyFieldId = 7
                 },
                 new PropertyFieldInfo
                 {
