@@ -27,7 +27,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdateActivePlayerInde
         }
         public async Task<Tuple<bool,bool>> Handle(UpdateActivePlayerIndexCommand request, CancellationToken cancellationToken)
         {
-            var entity = await _context.GameInfo.FirstOrDefaultAsync();
+            var entity = await _context.GameInfo.FirstOrDefaultAsync(cancellationToken);
             var players = await _context.Players.ToListAsync(cancellationToken);
 
             if (entity == null)
@@ -51,7 +51,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdateActivePlayerInde
                 isGameOver = true;
             }
             //Zapisujemy
-            await _context.SaveChangesAsync(cancellationToken);
+           // await _context.SaveChangesAsync(cancellationToken);
 
             //Lokalne index nastepnego gracza w kolejce
             int nextPlayerIndex = (request.Index + 1) % 4;
@@ -59,13 +59,16 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdateActivePlayerInde
             while (true)
             {
                 //Sprawdzamy kolejnego gracza
-                var player = await _context.Players.Where(p => p.Id == nextPlayerIndex).FirstOrDefaultAsync();
+                var player = await _context.Players.Where(p => p.Id == nextPlayerIndex+1).FirstOrDefaultAsync(cancellationToken);
                 //Jezeli moze grac
                 if (player.TurnsToWait == 0)
                 {
                     //I jest graczem to gramy dalej
                     if (player.IsLogged == true)
                     {
+                        var entityLoop = await _context.GameInfo.FirstOrDefaultAsync(cancellationToken);
+                        entityLoop.ActivePlayerIndex = nextPlayerIndex;
+                        await _context.SaveChangesAsync(cancellationToken);
                         return new Tuple<bool, bool>(wasBotPlaying, isGameOver);
                     }
                     //Jezeli jest botem
@@ -79,9 +82,9 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdateActivePlayerInde
                         //Podnosimy indeks
                         nextPlayerIndex = (nextPlayerIndex + 1) % 4;
                         //Zapisujemy go w bazie
-                        var entityLoop = await _context.GameInfo.FirstOrDefaultAsync();
-                        entityLoop.ActivePlayerIndex = nextPlayerIndex;
-                        await _context.SaveChangesAsync(cancellationToken);
+                        
+
+
                         //Kolejna pętla
                         continue;
                     }
@@ -97,10 +100,6 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdateActivePlayerInde
                     }
                     //Podnosimy indeks
                     nextPlayerIndex = (nextPlayerIndex + 1) % 4;
-                    //Zapisujemy go w bazie
-                    var entityLoop = await _context.GameInfo.FirstOrDefaultAsync();
-                    entityLoop.ActivePlayerIndex = nextPlayerIndex;
-                    await _context.SaveChangesAsync(cancellationToken);
                 }
             }
         }
