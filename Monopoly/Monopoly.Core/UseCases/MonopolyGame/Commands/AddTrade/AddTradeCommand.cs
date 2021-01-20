@@ -12,12 +12,10 @@ namespace Monopoly.Core.UseCases.MonopolyGame.Commands.AddTrade
 {
     public class AddTradeCommand : IRequest
     {
-        public int Id { get; set; }
         public int FromId { get; set; }
         public int DirectId { get; set; }
-        public string Status { get; set; }
-        public string Type { get; set; }
-        public int Value { get; set; }
+        public bool Status { get; set; }
+        public string Transaction { get; set; }
     }
     public class AddTradeCommandHandler : IRequestHandler<AddTradeCommand>
     {
@@ -37,8 +35,7 @@ namespace Monopoly.Core.UseCases.MonopolyGame.Commands.AddTrade
                     FromId=request.FromId,
                     DirectId=request.FromId,
                     Status=request.Status,
-                    Type=request.Type,
-                    Value=request.Value
+                    Transaction=request.Transaction
                 });
             }
             else

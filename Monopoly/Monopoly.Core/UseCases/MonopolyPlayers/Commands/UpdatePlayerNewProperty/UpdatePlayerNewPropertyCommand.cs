@@ -27,7 +27,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerNewPropert
         {
             var entityPlayer = await _context.Players.Where(p => p.Name == request.Name).FirstAsync();
             var entityFields = await _context.PropertyFieldInfos.Include(pp => pp.PropertyField).Where(p => p.PropertyField.MonopolyID == request.FieldId).FirstAsync();
-            
+
             if (entityPlayer == null)
             {
                 throw new NotFoundException(nameof(Player), request.Name);

@@ -16,7 +16,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                 new Player
                 {
                     Id = 1,
-                    HubConnectionId="",
+                    HubConnectionId = "",
                     Cash = 500,
                     Signature = "",
                     Color = "",
@@ -30,7 +30,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                 new Player
                 {
                     Id = 2,
-                    HubConnectionId ="",
+                    HubConnectionId = "",
                     Cash = 500,
                     Signature = "",
                     Color = "",
@@ -44,7 +44,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                 new Player
                 {
                     Id = 3,
-                    HubConnectionId ="",
+                    HubConnectionId = "",
                     Cash = 500,
                     Signature = "",
                     Color = "",
@@ -58,7 +58,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                 new Player
                 {
                     Id = 4,
-                    HubConnectionId ="",
+                    HubConnectionId = "",
                     Cash = 500,
                     Signature = "",
                     Color = "",
@@ -458,14 +458,14 @@ namespace Infrastructure.Persistance.DatabaseContext
                     Id = 1,
                     EstateLevel = 0,
                     Mortgaged = false,
-                    PropertyFieldId = 7
+                    PropertyFieldId = 2
                 },
                 new PropertyFieldInfo
                 {
                     Id = 2,
                     EstateLevel = 0,
                     Mortgaged = false,
-                    PropertyFieldId = 3
+                    PropertyFieldId = 4
                 },
                 new PropertyFieldInfo
                 {
@@ -514,7 +514,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                     Id = 9,
                     EstateLevel = 0,
                     Mortgaged = false,
-                    PropertyFieldId = 12
+                    PropertyFieldId = 13
                 },
                 new PropertyFieldInfo
                 {
@@ -522,7 +522,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                     EstateLevel = 0,
                     Mortgaged = false,
                     PropertyFieldId = 15
-                }, 
+                },
                 new PropertyFieldInfo
                 {
                     Id = 11,
@@ -641,6 +641,13 @@ namespace Infrastructure.Persistance.DatabaseContext
                     EstateLevel = 0,
                     Mortgaged = false,
                     PropertyFieldId = 39
+                },
+                new PropertyFieldInfo
+                {
+                    Id = 28,
+                    EstateLevel = 0,
+                    Mortgaged = false,
+                    PropertyFieldId = 40
                 });
             #endregion PropertyFieldInfo
             #region SingleData

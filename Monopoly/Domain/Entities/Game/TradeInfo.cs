@@ -11,8 +11,7 @@ namespace Domain.Entities.Game
         public int Id { get; set; }
         public int FromId { get; set; }
         public int DirectId {get;set;}
-        public string Status { get; set; }
-        public string Type { get; set; }
-        public int Value { get; set; }
+        public bool Status { get; set; }
+        public string Transaction { get; set; }
     }
 }
