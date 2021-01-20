@@ -2,7 +2,7 @@ import React, { useState, useEffect,useSelector } from "react";
 import { Button } from "react-bootstrap";
 import "../../styles/GameClock.css";
 
-var secondsForAction = 30;
+var secondsForAction = 500;
 
 const TurnClock = (props) => {
 

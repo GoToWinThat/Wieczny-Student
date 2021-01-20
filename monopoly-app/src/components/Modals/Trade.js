@@ -55,34 +55,6 @@ function Trade(props) {
     props.onHide();
   };
 
-  // //Execute all transaction and update store
-  // const exchange = () => {
-  //   if (transactionState.length > 0)
-  //     //AddNewLog(dispatch, `Doszło do wymiany między ${activePlayer.name} i ${otherPlayers[tradePlayerIdx].name}:`);
-  //     transactionState.forEach((t) => {
-  //       let secondPlayer = undefined;
-  //       t.playerName === activePlayer.name
-  //         ? (secondPlayer = otherPlayers[tradePlayerIdx])
-  //         : (secondPlayer = activePlayer);
-
-  //       if (t.type === "cash") {
-  //         UpdatePlayerCash(dispatch, t.playerName, -t.item);
-  //         UpdatePlayerCash(dispatch, secondPlayer.name, t.item);
-  //         //AddNewLog(dispatch, `- ${secondPlayer.name} otrzymał ${t.item} ECTS`);
-  //       } else if (t.type === "property") {
-  //         UpdatePlayerDeleteProperty(dispatch, t.playerName, t.item);
-  //         UpdatePlayerNewProperty(dispatch, secondPlayer.name, t.item);
-  //         //AddNewLog(dispatch, `- ${secondPlayer.name} posiada teraz pole ${data.fields[t.item].name}`);
-  //       } //if(t.type === "card")
-  //       else {
-  //         UpdatePlayerDeleteEventCard(dispatch, t.playerName, t.item);
-  //         UpdatePlayerAddEventCard(dispatch, secondPlayer.name, t.item);
-  //         //AddNewLog(dispatch, `- ${secondPlayer.name} posiada teraz kartę ${data.cards[t.item].cardName}`);
-  //       }
-  //     });
-  //   closeWindow();
-  // };
-
   useEffect(() => {
     if(!trade.status) setIsBlocked(false);
     props.onHide();
@@ -95,17 +67,17 @@ function Trade(props) {
       status: true,
       fromID: activePlayer.id - 1,
       directID: otherPlayers[tradePlayerIdx].id-1,
-      transaction: [],
+      transaction: "",
     };
-    transactionState.forEach(trans =>
-      {
-        let tab = json.transaction;
-        let row = {playerId: trans.playerId, type: trans.type, value: trans.item};
-        tab.push(row);
-        json.transaction = tab;
-        console.log(trans.item);
-    });
-
+    // transactionState.forEach(trans =>
+    //   {
+    //     let tab = json.transaction;
+    //     let row = {playerId: trans.playerId, type: trans.type, value: trans.item};
+    //     tab.push(row);
+    //     json.transaction = tab;
+    //     console.log(trans.item);
+    // });
+    debugger;
     AddTrade(dispatch,json);
   };
 

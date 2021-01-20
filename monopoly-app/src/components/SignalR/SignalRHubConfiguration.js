@@ -46,7 +46,7 @@ export const SignalRHubConfiguration = (connectionHub, dispatch) =>
   connection.on('GetLogs', () => { GetLogs(dispatch); });
   connection.on('GetActivePlayerIndex', () => { GetActivePlayerIndex(dispatch); });
   connection.on('GetGameState', () => { GetGameState(dispatch); });
-  connection.on('GetTrade', () => { GetTrade(dispatch); })
+  connection.on('GetTrade', () => { console.log("Trade Work"); GetTrade(dispatch);  })
   connection.on('GetId', (receivedMessage) => { SetHubId(dispatch, receivedMessage); });
 
   startSignalRConnection(connection);

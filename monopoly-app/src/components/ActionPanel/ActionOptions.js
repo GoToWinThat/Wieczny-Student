@@ -36,7 +36,7 @@ function ActionOptions(props)
             <Buy data={props.data} onHide={closeView} show={showBuy}/>
             <Manage data={props.data} onHide={closeView} show={showManage}/>
             <Trade data={props.data} onHide={closeView} show={showTrade}/>
-            <TradeOfert data={props.data}/>
+            <TradeOfert data={props.data} myIndex={props.data.myIndex}/>
         </div>)
 
 }
