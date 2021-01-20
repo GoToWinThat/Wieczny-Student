@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Domain.Entities.Static_Data;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Monopoly.Core.Base.Interfaces;
 using System.Threading;

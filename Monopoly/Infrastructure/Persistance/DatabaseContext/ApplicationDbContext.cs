@@ -31,6 +31,7 @@ namespace Infrastructure.Persistance.DatabaseContext
         public DbSet<GameInfo> GameInfo { get; set; }
         public DbSet<Dices> Dices { get ; set; }
         public DbSet<Log> Logs { get; set; }
+        public DbSet<TradeInfo> TradeInfos { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {

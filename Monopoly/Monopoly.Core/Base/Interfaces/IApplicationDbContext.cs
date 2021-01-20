@@ -25,6 +25,7 @@ namespace Monopoly.Core.Base.Interfaces
         public DbSet<GameInfo> GameInfo { get; set; }
         public DbSet<Dices> Dices { get; set; }
         public DbSet<Log> Logs { get; set; }
+        public DbSet<TradeInfo> TradeInfos { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }

@@ -3,14 +3,10 @@ using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Monopoly.Core.Base.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Monopoly.Core.UseCases.MonopolyGame.GetGameState
+namespace Monopoly.Core.UseCases.MonopolyGame.Queries.GetGameState
 {
     public class GetGameStateQuery : IRequest<GameStateVm> { }
     public class GetGameStateQueryHandler : IRequestHandler<GetGameStateQuery, GameStateVm>

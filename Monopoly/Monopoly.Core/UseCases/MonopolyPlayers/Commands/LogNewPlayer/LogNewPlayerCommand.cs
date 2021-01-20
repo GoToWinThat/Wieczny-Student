@@ -12,6 +12,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.LogNewPlayer
     public class LogNewPlayerCommand : IRequest<int>
     {
         public string Name { get; set; }
+        public string HubConnectionId { get; set; }
         public string Signature { get; set; }
         public string Color { get; set; }
     }
@@ -33,6 +34,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.LogNewPlayer
             }
 
             entity.Name = request.Name;
+            entity.HubConnectionId = request.HubConnectionId;
             entity.Signature = request.Signature;
             entity.Color = request.Color;
             entity.IsLogged = true;

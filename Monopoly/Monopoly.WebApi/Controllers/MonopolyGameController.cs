@@ -3,14 +3,17 @@ using Monopoly.Core.UseCases.MonopolyCards.Queries.GetGainCards;
 using Monopoly.Core.UseCases.MonopolyCards.Queries.GetLossCards;
 using Monopoly.Core.UseCases.MonopolyDices.Commands.UpdateDices;
 using Monopoly.Core.UseCases.MonopolyDices.Queries.GetDices;
+using Monopoly.Core.UseCases.MonopolyDices.Queries.GetTrade;
 using Monopoly.Core.UseCases.MonopolyFields.Queries.GetFields;
-using Monopoly.Core.UseCases.MonopolyGame.GetGameState;
+using Monopoly.Core.UseCases.MonopolyGame.Commands.AddTrade;
+using Monopoly.Core.UseCases.MonopolyGame.Queries.GetGameState;
 using Monopoly.Core.UseCases.MonopolyLogs.Commands.AddLog;
 using Monopoly.Core.UseCases.MonopolyLogs.Queries.GetLogs;
 using Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdateActivePlayerIndex;
 using Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerReadiness;
 using Monopoly.Core.UseCases.MonopolyPlayers.Queries.GetActivePlayer;
 using Monopoly.Core.UseCases.MonopolyPlayers.Queries.GetPlayers;
+using System;
 using System.Threading.Tasks;
 
 namespace Monopoly.WebApi.Controllers
@@ -54,8 +57,27 @@ namespace Monopoly.WebApi.Controllers
         [Route("UpdateActivePlayerIndex")]
         public async Task<ActionResult> UpdateActivePlayerIndex(UpdateActivePlayerIndexCommand command)
         {
-            await Mediator.Send(command);
-            await Hub.Clients.All.SendCoreAsync("GetActivePlayerIndex", new object[] { "GetActivePlayerIndex" });
+            Tuple<bool, bool> result = await Mediator.Send(command);
+            //Jezeli skonczyl sie czas to koniec gry
+            if (result.Item2)
+            {
+                await Hub.Clients.All.SendCoreAsync("GetGameState", new object[] { "GetGameState" });
+            }
+            else
+            {
+                //Jezeli grał bot aktualizujemy
+                if (result.Item1)
+                {
+                    await Hub.Clients.All.SendCoreAsync("GetDices", new object[] { "GetDices" });
+                    await Hub.Clients.All.SendCoreAsync("GetPlayers", new object[] { "GetPlayers" });
+                    await Hub.Clients.All.SendCoreAsync("GetGameState", new object[] { "GetGameState" });
+                    await Hub.Clients.All.SendCoreAsync("GetActivePlayerIndex", new object[] { "GetActivePlayerIndex" });
+                }
+                else
+                {
+                    await Hub.Clients.All.SendCoreAsync("GetActivePlayerIndex", new object[] { "GetActivePlayerIndex" });
+                }
+            }
             return NoContent();
         }
         [HttpGet]
@@ -97,9 +119,29 @@ namespace Monopoly.WebApi.Controllers
         [Route("UpdatePlayerReadiness")]
         public async Task<ActionResult> UpdatePlayerReadiness(UpdatePlayerReadinessCommand command)
         {
-            await Mediator.Send(command);
+            var isGameStarted = await Mediator.Send(command);
             await Hub.Clients.All.SendCoreAsync("GetPlayers", new object[] { "GetPlayers" });
+            if(isGameStarted==true)
+            {
+                await Hub.Clients.All.SendCoreAsync("GetGameState", new object[] { "GetGameState" });
+            }
             return NoContent();
+        }
+
+        [HttpPost]
+        [Route("AddTrade")]
+        public async Task<ActionResult> AddTrade(AddTradeCommand command)
+        {
+            //TODO notify proper client
+            await Mediator.Send(command);
+            return NoContent();
+        }
+        [HttpGet]
+        [Route("GetTrade")]
+        public async Task<ActionResult<TradeVm>> GetTrade()
+        {
+            //Todo: query need to search for corret trade
+            return await Mediator.Send(new GetTradeQuery());
         }
     }
 }

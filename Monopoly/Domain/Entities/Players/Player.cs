@@ -7,6 +7,7 @@ namespace Domain.Entities
     public class Player
     {
         public int Id { get; set; }
+        public string HubConnectionId { get; set; }
         public int Cash { get; set; }
         public string Signature { get; set; } 
         public string Color { get; set; }

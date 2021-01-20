@@ -37,8 +37,9 @@ namespace Monopoly.WebApi.Controllers
         [Route("LogNewPlayer")]
         public async Task<ActionResult<int>> LogNewPlayer(LogNewPlayerCommand command)
         {
+            int addedPlayerIndex= await Mediator.Send(command);
             await Hub.Clients.All.SendCoreAsync("GetPlayers", new object[] { "GetPlayers" });
-            return await Mediator.Send(command);
+            return addedPlayerIndex;
         }
 
 
@@ -104,8 +105,15 @@ namespace Monopoly.WebApi.Controllers
         [Route("UpdatePlayerBankrupt")]
         public async Task<ActionResult> UpdatePlayerBankrupt(UpdatePlayerBankruptCommand command)
         {
-            await Mediator.Send(command);
-            await Hub.Clients.All.SendCoreAsync("GetPlayers", new object[] { "GetPlayers" });
+            var isGameOver = await Mediator.Send(command);
+            if (isGameOver == true)
+            {
+                await Hub.Clients.All.SendCoreAsync("GetGameState", new object[] { "GetGameState" });
+            }
+            else
+            {
+                await Hub.Clients.All.SendCoreAsync("GetPlayers", new object[] { "GetPlayers" });
+            }
             return NoContent();
         }
     }

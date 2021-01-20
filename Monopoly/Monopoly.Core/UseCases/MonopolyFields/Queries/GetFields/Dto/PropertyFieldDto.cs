@@ -14,7 +14,7 @@ namespace Monopoly.Core.UseCases.MonopolyFields.Queries.GetFields.Dto
         [JsonProperty(Order = -6)]
         public int EstatePrice { get; set; }
         [JsonProperty(Order = -5)]
-        public int Mortage { get; set; }
+        public int Mortgage { get; set; }
 
         public static void Mapping(MappingProfile profile)
         {
@@ -24,7 +24,7 @@ namespace Monopoly.Core.UseCases.MonopolyFields.Queries.GetFields.Dto
                 .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name))
                 .ForMember(d => d.Color, opt => opt.MapFrom(s => s.Color))
                 .ForMember(d => d.Price, opt => opt.MapFrom(s => s.Price))
-                .ForMember(d => d.Mortage, opt => opt.MapFrom(s => s.Mortgage))
+                .ForMember(d => d.Mortgage, opt => opt.MapFrom(s => s.Mortgage))
                 .ForMember(d => d.EstatePrice, opt => opt.MapFrom(s => s.EstatePrice))
                 .ForMember(d => d.RentCosts, opt => opt.MapFrom(s => s.RentCosts));
         }

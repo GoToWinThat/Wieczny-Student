@@ -16,6 +16,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                 new Player
                 {
                     Id = 1,
+                    HubConnectionId="",
                     Cash = 500,
                     Signature = "",
                     Color = "",
@@ -29,6 +30,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                 new Player
                 {
                     Id = 2,
+                    HubConnectionId ="",
                     Cash = 500,
                     Signature = "",
                     Color = "",
@@ -42,6 +44,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                 new Player
                 {
                     Id = 3,
+                    HubConnectionId ="",
                     Cash = 500,
                     Signature = "",
                     Color = "",
@@ -55,6 +58,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                 new Player
                 {
                     Id = 4,
+                    HubConnectionId ="",
                     Cash = 500,
                     Signature = "",
                     Color = "",
@@ -99,7 +103,7 @@ namespace Infrastructure.Persistance.DatabaseContext
                     Id = 5,
                     Name = "Winda",
                     Type = MonopolyFieldType.company,
-                    Color = MonopolyColor.lightpink,
+                    Color = MonopolyColor.orange,
                     Price = 40,
                     MonopolyID = 4,
                     RentCosts = new List<int> { 0 },
@@ -419,8 +423,8 @@ namespace Infrastructure.Persistance.DatabaseContext
                 new PropertyField
                 {
                     Id = 40,
-                    Name = "Pracownia fizyczna nr 2 (CNT)",
-                    Color = MonopolyColor.steelblue,
+                    Name = "Biblioteka główna",
+                    Color = MonopolyColor.sandybrown,
                     Price = 80,
                     MonopolyID = 39,
                     RentCosts = new List<int> { 10, 35, 110, 250, 400 },
@@ -639,9 +643,9 @@ namespace Infrastructure.Persistance.DatabaseContext
                 });
             #endregion PropertyFieldInfo
             #region SingleData
-            modelBuilder.Entity<GameInfo>().HasData(new GameInfo { Id = 1, ActivePlayerIndex = 0, GameState = "waiting" });
+            modelBuilder.Entity<GameInfo>().HasData(new GameInfo { Id = 1, ActivePlayerIndex = 0, GameState = "config" });
             modelBuilder.Entity<Dices>().HasData(new Dices { Id = 1, DiceValues = new List<int> { 1, 1 } });
-            modelBuilder.Entity<Log>().HasData(new Log { Id = 1, LogInfo = "Zaczynamy gre" });
+            modelBuilder.Entity<Log>().HasData(new Log { Id = 1, LogInfo = "Gra rozpoczyna się!" });
             #endregion SingleData
             #region LossCard
             modelBuilder.Entity<LossCard>().HasData(
