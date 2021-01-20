@@ -53,12 +53,12 @@ export const buyHouse = (dispatch, activePlayer, fields, idx) => {
     // Add new log about expanding property:
     // AddNewLog(
     //   dispatch,
-      `${activePlayer.name} rozbudowuje ${
-        fields[activePlayer.properties[idx].fieldID].name
-      }.` +
-        ` - aktualny poziom: ${showEstateLevel(
-          activePlayer.properties[idx].estateLevel + 1
-        )}`
+      // `${activePlayer.name} rozbudowuje ${
+      //   fields[activePlayer.properties[idx].fieldID].name
+      // }.` +
+      //   ` - aktualny poziom: ${showEstateLevel(
+      //     activePlayer.properties[idx].estateLevel + 1
+      //   )}`
     //);
 
     // Expand property, decrement cash:
