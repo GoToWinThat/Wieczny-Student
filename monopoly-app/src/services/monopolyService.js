@@ -187,7 +187,15 @@ export const UpdatePlayerDeleteEventCard = async (dispatch, playerName, cardID) 
     } catch { console.log("Player couldn't delete event card!"); }
 }
 
-
+export const AddTrade = async (dispatch, trade) => {
+    try {
+        console.log(trade)
+        debugger
+        axios.post(axiosGameURL + 'AddTrade',
+        {"fromId":trade.fromId,"directId":trade.directId,"status":trade.status,"transaction":trade.transaction})
+        .then(dispatch(ActionCreators.addTrade(trade)));
+    } catch { console.log("Current Trade State couldn't be updated!"); }
+}
 
 export const GetLogs = async (dispatch) => {
     try {
@@ -212,12 +220,7 @@ export const GetTrade = async (dispatch) => {
     } catch { console.log("Current Trade State couldn't be set!"); }
 }
 
-export const AddTrade = async (dispatch, trade) => {
-    try {
-        axios.post(axiosGameURL + 'AddTrade').then(
-            dispatch(ActionCreators.addTrade({trade})));
-    } catch { console.log("Current Trade State couldn't be updated!"); }
-}
+
 
 export const SetHubId = async (dispatch, hubID) => { dispatch(ActionCreators.setHubID(hubID)); }
 

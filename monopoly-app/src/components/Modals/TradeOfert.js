@@ -17,7 +17,7 @@ function TradeOfert(props) {
   const data = { fields: props.data.fields, cards: props.data.gainCards };
    const activePlayer = props.data.players.filter(player => player.id===trade.fromID+1)[0]
     const tradePlayers = props.data.players.filter(player => player.id===trade.directID+1)[0]
-
+    const myIndex = props.myIndex;
   const [show, setShow] = useState(false);
 
 
@@ -43,7 +43,7 @@ function TradeOfert(props) {
             firstPlayer = tradePlayers;
             secondPlayer = activePlayer;
           }
-
+          
         if (t.type === "cash") {
           UpdatePlayerCash(dispatch, firstPlayer.name, -t.value);
           UpdatePlayerCash(dispatch, secondPlayer.name, t.value);
@@ -63,9 +63,9 @@ function TradeOfert(props) {
         status: false,
         fromID: -1,
         directID: -1,
-        transaction: [],
+        transaction: "",
       };
-      debugger;
+      
       AddTrade(dispatch,json);
       setShow(false);
       
@@ -76,7 +76,7 @@ function TradeOfert(props) {
         status: false,
         fromID: -1,
         directID: -1,
-        transaction: [],
+        transaction: "",
       };
       AddTrade(dispatch,json);
     setShow(false);
@@ -108,7 +108,7 @@ function TradeOfert(props) {
                   changable={false}
                   //addTransaction={addTransaction}
                   isBlocked={true}
-                  checked={trade.transaction}
+                  //checked={trade.transaction}
                 />
               </th>
               <th className="tradeArrowColumn">&#x21c4;</th>
@@ -119,7 +119,7 @@ function TradeOfert(props) {
                   //addTransaction={addTransaction}
                   changable={false}
                   isBlocked={true}
-                  checked={trade.transaction}
+                  //checked={trade.transaction}
                 />
               </th>
             </tr>

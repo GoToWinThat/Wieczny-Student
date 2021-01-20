@@ -1,5 +1,5 @@
 import "../../styles/ActionPanel.css";
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 
 function TradeSection(props) {
 
@@ -19,6 +19,16 @@ function TradeSection(props) {
         }
     }
 
+    // useEffect(() => {
+    //     if(props.checked !== undefined)
+    //     {
+    //         props.checked.forEach( trans => 
+    //         {
+    //            if(trans.type === "cash" && trans.playerId === props.activePlayer.id)
+    //             setInputcash(trans.value);
+    //         }) 
+    //     }
+    // }, [])
 
 
     //Adding selected item to transactions in Trade function
@@ -135,6 +145,7 @@ function TradeSection(props) {
         else 
             return(<>{createListOfFields()}{createListOfCards()}</>);
     }
+
 
     return(
         <div>
