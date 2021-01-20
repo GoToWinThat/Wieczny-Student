@@ -216,7 +216,7 @@ export const AddNewLog = async (dispatch, newLog) => {
 export const GetTrade = async (dispatch) => {
     try {
         axios.get(axiosGameURL + 'GetTrade').then(
-            tmp => dispatch(ActionCreators.setTrade(tmp.data)));
+            tmp => {console.log(tmp.data); dispatch(ActionCreators.setTrade(tmp.data.toString() ))});
     } catch { console.log("Current Trade State couldn't be set!"); }
 }
 

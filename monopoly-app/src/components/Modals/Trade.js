@@ -12,6 +12,8 @@ import {
 } from "../../services/monopolyService";
 
 function Trade(props) {
+  debugger;
+
   const dispatch = props.data.dispatch;
   const data = { fields: props.data.fields, cards: props.data.gainCards };
   const activePlayer = props.data.players[props.data.activePlayerIndex];
@@ -69,14 +71,11 @@ function Trade(props) {
       directID: otherPlayers[tradePlayerIdx].id-1,
       transaction: "",
     };
-    // transactionState.forEach(trans =>
-    //   {
-    //     let tab = json.transaction;
-    //     let row = {playerId: trans.playerId, type: trans.type, value: trans.item};
-    //     tab.push(row);
-    //     json.transaction = tab;
-    //     console.log(trans.item);
-    // });
+ 
+    let strtab = "";
+    //{playerId: trans.playerId, type: trans.type, value: trans.item} 2:property:4|1:property:15|
+    transactionState.forEach(trans => strtab += `${trans.playerId}:${trans.type}:${trans.item}|`);
+    json.transaction = strtab;
     debugger;
     AddTrade(dispatch,json);
   };

@@ -2,7 +2,7 @@ const initialState = { monopolyFields: [], gainCards: [],
     lossCards: [], players: [], dices: [], activePlayerIndex: null, 
     logs: [], myIndex: 0, gameState: "config", turnClock: 30, gameClock: 1200,
     currentCard: { cardName: "", description: ""}, hubID: null,
-    trade: { status: false, fromID: null, directID: null, transaction: [] } }
+    trade: ""  }//{ status: false, fromID: null, directID: null, transaction: [] }
 
 export const ActionTypes = { 
     SET_FIELDS: 'SET_FIELDS', 
@@ -272,7 +272,7 @@ export default function MonopolyReducer(state = initialState, action) {
 
         
         case ActionTypes.SET_TRADE:
-            return { ...state, trade: action.payload.trade }
+            return { ...state, trade: action.payload}
 
         case ActionTypes.ADD_TRADE:
             return { ...state, trade: action.payload.trade }

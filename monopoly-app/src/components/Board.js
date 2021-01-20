@@ -4,7 +4,7 @@ import { BoardCenter } from './BoardCenter';
 
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { GetFields, GetPlayers, GetGainCards, GetLossCards,
+import { GetFields, GetPlayers, GetGainCards, GetLossCards,GetTrade,
     GetActivePlayerIndex, GetLogs } from '../services/monopolyService';
 
 export const Board = () => {
@@ -25,6 +25,7 @@ export const Board = () => {
             GetGainCards(dispatch);
             GetLossCards(dispatch);
             GetActivePlayerIndex(dispatch);
+            GetTrade(dispatch);
             GetLogs(dispatch);
         }, [dispatch]);
     } catch { console.log("Couldn't call function useEffect() in Board.js!"); }

@@ -12,6 +12,7 @@ import {
 } from "../../services/monopolyService";
 
 function TradeOfert(props) {
+    debugger;
     const trade = props.data.trade; 
   const dispatch = props.data.dispatch;
   const data = { fields: props.data.fields, cards: props.data.gainCards };
@@ -29,9 +30,18 @@ function TradeOfert(props) {
 
   const exchange = () => {
 
-    if (trade.transaction.length > 0)
+   //trade.transaction
+   let arr = trade.transaction;
+   let doubleArr = [];
+   arr.forEach(el => doubleArr.push(el.split(":")))
+   let transaction =[];
+   doubleArr.forEach(el => {if(el[0] !== "")transaction.push({playerId: el[0], type: el[1], value: el[2]})})
+
+   
+
+    if (transaction.length > 0)
       //AddNewLog(dispatch, `Doszło do wymiany między ${activePlayer.name} i ${otherPlayers[tradePlayerIdx].name}:`);
-      trade.transaction.forEach((t) => {
+      transaction.forEach((t) => {
           let secondPlayer = undefined;
           let firstPlayer = undefined;
           if( t.playerId === activePlayer.id)
