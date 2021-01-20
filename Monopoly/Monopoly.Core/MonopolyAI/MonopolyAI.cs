@@ -323,8 +323,8 @@ namespace Monopoly.Core.MonopolyAI
                 // LOSS CARDS:
                 case "Zapomniany klucz":
                     activePlayer.Position = 0;
-                    _context.Logs.Add(new Log {
-                        LogInfo = $"{activePlayer.Name} ląduje na polu Portiernia." });
+                    //_context.Logs.Add(new Log {
+                    //    LogInfo = $"{activePlayer.Name} ląduje na polu Portiernia." });
                     NewPositionAction(activePlayer, _context, cancellationToken);
                     break;
 
@@ -341,23 +341,23 @@ namespace Monopoly.Core.MonopolyAI
 
                 case "Formalności":
                     activePlayer.Position = 30;
-                    _context.Logs.Add(new Log {
-                        LogInfo = $"{activePlayer.Name} ląduje na polu Dziekanat." });
+                    //_context.Logs.Add(new Log {
+                    //    LogInfo = $"{activePlayer.Name} ląduje na polu Dziekanat." });
                     NewPositionAction(activePlayer, _context, cancellationToken);
                     break;
 
                 case "Douczanie się":
                     activePlayer.Position = 10;
-                    _context.Logs.Add(new Log {
-                        LogInfo = $"{ activePlayer.Name} ląduje na polu Konsulatacje." });
+                    //_context.Logs.Add(new Log {
+                    //    LogInfo = $"{ activePlayer.Name} ląduje na polu Konsulatacje." });
                     NewPositionAction(activePlayer, _context, cancellationToken);
                     break;
 
                 case "Głód":
                     activePlayer.Position = 20;
-                    _context.Logs.Add(new Log {
-                        LogInfo = $"{ activePlayer.Name} ląduje na polu Stołówka."
-                    });
+                    //_context.Logs.Add(new Log {
+                    //    LogInfo = $"{ activePlayer.Name} ląduje na polu Stołówka."
+                    //});
                     NewPositionAction(activePlayer, _context, cancellationToken);
                     break;
 
