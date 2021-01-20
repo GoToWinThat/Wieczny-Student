@@ -13,16 +13,16 @@ namespace Monopoly.Core.MonopolyAI
 {
     public static class MonopolyAI
     {
-        public static void ProcessBot(int playerIndex, IApplicationDbContext _context, CancellationToken cancellationToken)
-        {
-            AutoThrow(playerIndex, _context, cancellationToken);
+        //public static void ProcessBot(int playerIndex, IApplicationDbContext _context, CancellationToken cancellationToken)
+        //{
+        //    AutoThrow(playerIndex, _context, cancellationToken);
 
-            // Buying, etc.
-        }
+        //    // Buying, etc.
+        //}
 
-        public static void AutoThrow(int playerIndex, IApplicationDbContext _context, CancellationToken cancellationToken)
+        public static void AutoThrow(Player player, IApplicationDbContext _context, CancellationToken cancellationToken)
         {
-            var player = _context.Players.Where(p => p.Id == playerIndex).ToList()[0];
+            //var player = _context.Players.Where(p => p.Id == playerIndex).ToList()[0];
 
             // Throwing dices:
             var rand = new Random();
@@ -36,6 +36,8 @@ namespace Monopoly.Core.MonopolyAI
 
             _context.SaveChangesAsync(cancellationToken);
             NewPositionAction(player, _context, cancellationToken);
+
+            _context.SaveChangesAsync(cancellationToken);
         }
 
         public static void NewPositionAction(Player player, IApplicationDbContext _context, CancellationToken cancellationToken)

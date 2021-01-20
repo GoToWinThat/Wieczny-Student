@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using Monopoly.Core.Base.Exceptions;
 using Monopoly.Core.Base.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,10 +24,10 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdateActivePlayerInde
         {
             _context = context;
         }
-        public async Task<Tuple<bool,bool>> Handle(UpdateActivePlayerIndexCommand request, CancellationToken cancellationToken)
+        public async Task<Tuple<bool, bool>> Handle(UpdateActivePlayerIndexCommand request, CancellationToken cancellationToken)
         {
             var entity = await _context.GameInfo.FirstOrDefaultAsync();
-            var players = await _context.Players.ToListAsync(cancellationToken);
+            var players = await _context.Players.OrderBy(p => p.Id).ToListAsync(cancellationToken);
 
             if (entity == null)
             {
@@ -41,13 +40,61 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdateActivePlayerInde
 
             bool isGameOver = false;
             bool wasBotPlaying = false;
-            entity.ActivePlayerIndex = (request.Index + 1) % 4;
+
+            int index = (request.Index + 1) % 4;
+            bool isOver = false;
+
+            var activePlayer = await _context.Players
+                .Include(s => s.PropertyFieldInfos)
+                .Include(p => p.Cards)
+                .Where(p => p.Id == request.Index + 1)
+                .FirstAsync();
+
+            if (!activePlayer.ThrownDices)
+            {
+                MonopolyAI.MonopolyAI.AutoThrow(activePlayer, _context, cancellationToken);
+            }
+
+            while (isOver == false)
+            {
+                foreach (var p in players)
+                {
+                    if (p.Id == (index + 1))
+                    {
+                        if (p.IsBankrupt == true)
+                        {
+                            index = (index + 1) % 4;
+                            continue;
+                        }
+                        if (p.TurnsToWait > 0)
+                        {
+                            p.TurnsToWait = p.TurnsToWait - 1;
+                            if (p.TurnsToWait - 1 == 0)
+                            {
+                                p.IsInJail = false;
+                            }
+                            index = (index + 1) % 4;
+                            continue;
+                        }
+                        if (p.IsBankrupt == false && p.TurnsToWait == 0 && p.IsLogged == true)
+                        {
+                            entity.ActivePlayerIndex = (index) % 4;
+                            isOver = true;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
 
             foreach (var p in players)
             {
                 p.ThrownDices = false;
             }
-            if(entity.GameState == MonopolyGameData.GameStates[2])
+            if (entity.GameState == MonopolyGameData.GameStates[2])
             {
                 isGameOver = true;
             }

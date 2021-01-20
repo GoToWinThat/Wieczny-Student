@@ -38,6 +38,7 @@ namespace Monopoly.Core.UseCases.MonopolyDices.Commands.UpdateDices
             var players = _context.Players;
             var index = _context.GameInfo.FirstOrDefault().ActivePlayerIndex;
             var player = players.Where(p => p.Id == index + 1).First();
+            player.ThrownDices = true;
 
             _context.Logs.Add(new Log { LogInfo = $"{player.Name} wyrzuca {entity.DiceValues[0] + entity.DiceValues[1]}" });
 
