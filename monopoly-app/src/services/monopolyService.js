@@ -60,7 +60,7 @@ export const GetActivePlayerIndex = async (dispatch) => {
 
 export const UpdateActivePlayerIndex = async (dispatch, activePlayerIndex) => {
     try {
-        axios.put(axiosGameURL + 'UpdateActivePlayerIndex', 
+        axios.put(axiosGameURL + 'UpdateActivePlayerIndex',
             {"index": activePlayerIndex}).then(
             dispatch(ActionCreators.updateActivePlayerIndex({activePlayerIndex})));
     } catch { console.log("ActivePlayerIndex couldn't be updated!"); }
@@ -86,8 +86,8 @@ export const UpdateDices = async (dispatch, dices) => {
 
 export const CreatePlayer = async (dispatch, playerName, signature, color, hubID) => {
     try {
-        axios.post(axiosPlayerURL + 'LogNewPlayer', 
-            {"name": playerName, "signature": signature, "color": color, 
+        axios.post(axiosPlayerURL + 'LogNewPlayer',
+            {"name": playerName, "signature": signature, "color": color,
             "hubConnectionID": hubID}).then(
             tmp => dispatch(ActionCreators.setMyIndex(tmp.data)));
     } catch { console.log("Player couldn't be created!"); }
@@ -97,7 +97,7 @@ export const CreatePlayer = async (dispatch, playerName, signature, color, hubID
 
 export const UpdatePlayerPosition = async (dispatch, activePlayerIndex, deltaPosition) => {
     try {
-        axios.put(axiosPlayerURL + 'UpdatePlayerPosition', 
+        axios.put(axiosPlayerURL + 'UpdatePlayerPosition',
             {"activePlayerIndex": activePlayerIndex, "deltaPosition": deltaPosition}).then(
             dispatch(ActionCreators.updatePlayerPosition({activePlayerIndex, deltaPosition})));
     } catch { console.log("Player's position couldn't be updated!"); }
@@ -105,7 +105,7 @@ export const UpdatePlayerPosition = async (dispatch, activePlayerIndex, deltaPos
 
 export const UpdatePlayerCash = async (dispatch, playerName, deltaCash) => {
     try {
-        axios.put(axiosPlayerURL + 'UpdatePlayerCash', 
+        axios.put(axiosPlayerURL + 'UpdatePlayerCash',
             {"name": playerName, "deltaCash": deltaCash}).then(
             dispatch(ActionCreators.updatePlayerCash({playerName, deltaCash})));
     } catch { console.log("Player's cash couldn't be updated!"); }
@@ -113,7 +113,7 @@ export const UpdatePlayerCash = async (dispatch, playerName, deltaCash) => {
 
 export const UpdatePlayerWaitingTurns = async (dispatch, playerName, deltaTurns, isInJail) => {
     try {
-        axios.put(axiosPlayerURL + 'UpdatePlayerWaitingTurns', 
+        axios.put(axiosPlayerURL + 'UpdatePlayerWaitingTurns',
             {"name": playerName, "deltaTurns": deltaTurns, "isInJail": isInJail}).then(
             dispatch(ActionCreators.updatePlayerWaitingTurns({playerName, deltaTurns, isInJail})));
     } catch { console.log("Player's Waiting Turns couldn't be updated!"); }
@@ -121,7 +121,7 @@ export const UpdatePlayerWaitingTurns = async (dispatch, playerName, deltaTurns,
 
 export const UpdatePlayerBankrupt = async (dispatch, playerName) => {
     try {
-        axios.put(axiosPlayerURL + 'UpdatePlayerBankrupt', 
+        axios.put(axiosPlayerURL + 'UpdatePlayerBankrupt',
             {"name": playerName}).then(
             dispatch(ActionCreators.updatePlayerBankrupt({playerName})));
     } catch { console.log("Player's Bankrupt Status couldn't be updated!"); }
@@ -129,7 +129,7 @@ export const UpdatePlayerBankrupt = async (dispatch, playerName) => {
 
 export const UpdatePlayerReadiness = async (dispatch, playerName) => {
     try {
-        axios.put(axiosGameURL + 'UpdatePlayerReadiness', 
+        axios.put(axiosGameURL + 'UpdatePlayerReadiness',
             {"name": playerName}).then(
             dispatch(ActionCreators.updatePlayerReadiness({playerName})));
     } catch { console.log("Player's Readiness Status couldn't be updated!"); }
@@ -139,7 +139,7 @@ export const UpdatePlayerReadiness = async (dispatch, playerName) => {
 
 export const UpdatePlayerNewProperty = async (dispatch, playerName, fieldID) => {
     try {
-        axios.put(axiosPlayerURL + 'UpdatePlayerNewProperty', 
+        axios.put(axiosPlayerURL + 'UpdatePlayerNewProperty',
             {"name": playerName, "fieldID": fieldID}).then(
             dispatch(ActionCreators.updatePlayerNewProperty({playerName, fieldID})));
     } catch { console.log("Player couldn't buy new property!"); }
@@ -147,15 +147,15 @@ export const UpdatePlayerNewProperty = async (dispatch, playerName, fieldID) => 
 
 export const UpdatePlayerDeleteProperty = async (dispatch, playerName, fieldID) => {
     try {
-        axios.delete(axiosPlayerURL + 'UpdatePlayerDeleteProperty', 
-            {"name": playerName, "fieldID": fieldID}).then(
+        axios.delete(axiosPlayerURL + 'UpdatePlayerDeleteProperty', {
+            data:{"name": playerName, "fieldID": fieldID}}).then(
             dispatch(ActionCreators.updatePlayerDeleteProperty({playerName, fieldID})));
     } catch { console.log("Player couldn't get rid of his property!"); }
 }
 
 export const UpdatePlayerExpandProperty = async (dispatch, playerName, fieldID, deltaEstateLevel) => {
     try {
-        axios.put(axiosPlayerURL + 'UpdatePlayerNewProperty', 
+        axios.put(axiosPlayerURL + 'UpdatePlayerNewProperty',
             {"name": playerName, "fieldID": fieldID, "deltaEstateLevel": deltaEstateLevel}).then(
             dispatch(ActionCreators.updatePlayerExpandProperty({playerName, fieldID, deltaEstateLevel})));
     } catch { console.log("Player's property couldn't be expanded / reduced!");}
@@ -163,7 +163,7 @@ export const UpdatePlayerExpandProperty = async (dispatch, playerName, fieldID, 
 
 export const UpdatePlayerMortgageProperty = async (dispatch, playerName, fieldID) => {
     try {
-        axios.put(axiosPlayerURL + 'UpdatePlayerNewProperty', 
+        axios.put(axiosPlayerURL + 'UpdatePlayerMortgageProperty',
             {"name": playerName, "fieldID": fieldID}).then(
             dispatch(ActionCreators.updatePlayerMortgageProperty({playerName, fieldID})));
     } catch { console.log("Player's property couldn't be mortgaged / unmortgaged!"); }
@@ -173,7 +173,7 @@ export const UpdatePlayerMortgageProperty = async (dispatch, playerName, fieldID
 
 export const UpdatePlayerAddEventCard = async (dispatch, playerName, cardID) => {
     try {
-        axios.put(axiosPlayerURL + 'UpdatePlayerAddEventCard', 
+        axios.put(axiosPlayerURL + 'UpdatePlayerAddEventCard',
             {"name": playerName, "cardID": cardID}).then(
             dispatch(ActionCreators.updatePlayerAddEventCard({playerName, cardID})));
     } catch { console.log("Player couldn't get new event card!"); }
@@ -181,8 +181,8 @@ export const UpdatePlayerAddEventCard = async (dispatch, playerName, cardID) => 
 
 export const UpdatePlayerDeleteEventCard = async (dispatch, playerName, cardID) => {
     try {
-        axios.delete(axiosPlayerURL + 'UpdatePlayerDeleteEventCard', 
-            {"name": playerName, "cardID": cardID}).then(
+        axios.delete(axiosPlayerURL + 'UpdatePlayerDeleteEventCard', {
+            data:{"name": playerName, "cardID": cardID}}).then(
             dispatch(ActionCreators.updatePlayerDeleteEventCard({playerName, cardID})));
     } catch { console.log("Player couldn't delete event card!"); }
 }

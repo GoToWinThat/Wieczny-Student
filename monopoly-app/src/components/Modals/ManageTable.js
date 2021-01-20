@@ -8,22 +8,22 @@ const createHouses = (activePlayer,idx) =>
     var array = [];
     let field = activePlayer.properties[idx];
     if (field.estateLevel > 3)
-        array.push( <img key={field.fieldID} className="houses" src={`/Assets/Houses/server.svg`} alt="server"/>); 
-    else 
+        array.push( <img key={field.fieldID} className="houses" src={`/Assets/Houses/server.svg`} alt="server"/>);
+    else
     {
-        for (var j = 0; j < field.estateLevel; j++) 
+        for (var j = 0; j < field.estateLevel; j++)
             array.push( <img key={j} className="houses" src={`/Assets/Houses/computer.svg`} alt="computer"/>);
     }
     return array;
-} 
+}
 
-const mortgageButtonColor = (activePlayer,idx) => 
+const mortgageButtonColor = (activePlayer,idx) =>
 {
     if (activePlayer.properties[idx].mortgaged) return "success";
     else return "danger";
 }
 
-const fieldNameColor = (activePlayer,idx, color) => 
+const fieldNameColor = (activePlayer,idx, color) =>
 {
     let field = activePlayer.properties[idx];
     if (field.mortgaged) return 'gray';
@@ -61,7 +61,7 @@ export const generateTableOfFields = (dispatch,activePlayer,fields,properties) =
                   activePlayer.properties[idx2].estateLevel === 4 ||
                   activePlayer.cash < field.estatePrice ||
                   activePlayer.properties[idx2].mortgaged === true ||
-                  !hasAllPropertiesFromThisColor(field, fields, properties) || 
+                  !hasAllPropertiesFromThisColor(field, fields, properties) ||
                   isAnyPropertyFromThisColorMortgaged(field, fields, properties, activePlayer) === true
                 }
                 onMouseDown={(e) => e.preventDefault()}
@@ -95,9 +95,9 @@ export const generateTableOfFields = (dispatch,activePlayer,fields,properties) =
                   fields,
                   properties,
                   activePlayer
-                ) === true || 
+                ) === true ||
                 (activePlayer.cash < field.mortgage  &&  activePlayer.properties[idx2].mortgaged === true)}
-                onMouseDown={(e) => e.preventDefault()}> 
+                onMouseDown={(e) => e.preventDefault()}>
                 {field.mortgage} ECTS
             </Button>
           </td>
