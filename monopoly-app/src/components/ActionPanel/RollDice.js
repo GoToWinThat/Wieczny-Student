@@ -20,7 +20,7 @@ export const RollDice = (data) => {
 
     return (
         <div className="rollDiceComponent">
-            <Button id="throwDicesButton" //disabled={thrownDices || myIndex !== activePlayerIndex} 
+            <Button id="throwDicesButton" disabled={thrownDices || myIndex !== activePlayerIndex}
             onClick={() => throwDicesEvent(data)} onMouseDown={(e) => e.preventDefault()}>Rzuć kośćmi</Button>
             <div className="diceImages">
                 <img className="diceImg" src={`/Assets/Dice/dice${dices[0]}.png`} alt="firstdice"/>

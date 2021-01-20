@@ -9,15 +9,16 @@ export const endTurnEvent = (data) =>
     const dispatch = data.data.dispatch;
 
 
+    if (data.data.activePlayerIndex == data.data.myIndex)
     UpdateActivePlayerIndex(dispatch, myIndex);
 
     return;
-    
+
     const sayItWell = (number) => (number === 1) ? `ostatnią kolejkę` : `jeszcze ${number} kolejki`;
 
     //Check if player is bancrupt
     if (myIndex === activePlayerIndex)
-        if(!canPreventBankrupt(dispatch, players[myIndex], fields)) 
+        if(!canPreventBankrupt(dispatch, players[myIndex], fields))
             bankrupt(dispatch, players[myIndex])
 
     // Throw dices if it haven't happened yet:
