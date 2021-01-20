@@ -204,6 +204,22 @@ export const AddNewLog = async (dispatch, newLog) => {
 
 
 
+export const GetTrade = async (dispatch) => {
+    try {
+        axios.get(axiosGameURL + 'GetTrade').then(
+            tmp => dispatch(ActionCreators.setTrade(tmp.data)));
+    } catch { console.log("Current Trade State couldn't be set!"); }
+}
+
+export const AddTrade = async (dispatch, trade) => {
+    try {
+        axios.post(axiosGameURL + 'AddTrade').then(
+            dispatch(ActionCreators.addTrade({trade})));
+    } catch { console.log("Current Trade State couldn't be updated!"); }
+}
+
+
+
 // LOCAL:
 export const UpdateCurrentEventCard = async (dispatch, eventCard) => {
     try { dispatch(ActionCreators.updateCurrentEventCard(
