@@ -1,6 +1,10 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Infrastructure.Persistance.Configuration
 {
@@ -11,10 +15,12 @@ namespace Infrastructure.Persistance.Configuration
             builder
                 .HasMany(o => o.PropertyFieldInfos)
                 .WithOne(p => p.Player)
-                .HasForeignKey(p => p.PlayerId);
-            builder.Property(p => p.Nick)
-                .HasMaxLength(40)
-                .IsRequired();
+                .HasForeignKey(p => p.PlayerId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            builder
+                .HasMany(o => o.Cards)
+                .WithMany(p => p.Players);
         }
     }
 }

@@ -8,9 +8,6 @@ namespace Infrastructure.Persistance.Configuration
     {
         public void Configure(EntityTypeBuilder<EventField> builder)
         {
-            builder.Property(t => t.Name)
-                .HasMaxLength(50)
-                .IsRequired();
         }
     }
 }

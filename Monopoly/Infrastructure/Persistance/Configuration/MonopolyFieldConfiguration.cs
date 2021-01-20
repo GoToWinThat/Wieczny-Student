@@ -8,9 +8,6 @@ namespace Infrastructure.Persistance.Configuration
     {
         public void Configure(EntityTypeBuilder<MonopolyField> builder)
         {
-            builder.Property(t => t.Name)
-                .HasMaxLength(200)
-                .IsRequired();
         }
     }
 }

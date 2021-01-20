@@ -13,12 +13,12 @@ using Monopoly.Core.UseCases.MonopolyFields.Queries.GetFields.Dto;
 namespace Monopoly.Core.UseCases.MonopolyFields.Queries.GetFields
 {
     public class GetMonopolyFieldsQuery : IRequest<FieldsVm> {}
-    public class GetTodosQueryHandler : IRequestHandler<GetMonopolyFieldsQuery, FieldsVm>
+    public class GetMonopolyFieldsQueryHandler : IRequestHandler<GetMonopolyFieldsQuery, FieldsVm>
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
 
-        public GetTodosQueryHandler(IApplicationDbContext context, IMapper mapper)
+        public GetMonopolyFieldsQueryHandler(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -26,7 +26,7 @@ namespace Monopoly.Core.UseCases.MonopolyFields.Queries.GetFields
 
         public async Task<FieldsVm> Handle(GetMonopolyFieldsQuery request, CancellationToken cancellationToken)
         {
-            return new FieldsVm
+          return new FieldsVm
             {
                 MonopolyFields = await GetFields(cancellationToken)
             };

@@ -4,6 +4,6 @@ namespace Domain.Entities
 {
     public class CornerField : MonopolyField
     {
-        public CornerField() { Type = MonopolyFieldType.Corner; }
+        public CornerField() { Type = MonopolyFieldType.corner; }
     }
 }

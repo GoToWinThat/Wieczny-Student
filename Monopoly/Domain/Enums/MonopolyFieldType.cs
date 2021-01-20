@@ -2,8 +2,9 @@
 {
     public enum MonopolyFieldType
     {
-        Property,
-        Event,
-        Corner,
+        property,
+        @event,
+        corner,
+        company
     }
 }
