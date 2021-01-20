@@ -27,7 +27,7 @@ namespace Monopoly.Core.UseCases.MonopolyDices.Queries.GetTrade
         public async Task<TradeVm> Handle(GetTradeQuery request, CancellationToken cancellationToken)
         {
             return await _context.TradeInfos.ProjectTo<TradeVm>(_mapper.ConfigurationProvider)
-                    .FirstOrDefaultAsync(cancellationToken);
+                    .LastOrDefaultAsync(cancellationToken);
         }
     }
 

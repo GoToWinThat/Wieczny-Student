@@ -132,15 +132,14 @@ namespace Monopoly.WebApi.Controllers
         [Route("AddTrade")]
         public async Task<ActionResult> AddTrade(AddTradeCommand command)
         {
-            //TODO notify proper client
             await Mediator.Send(command);
+            await Hub.Clients.All.SendCoreAsync("GetTrade", new object[] { "GetTrade" });
             return NoContent();
         }
         [HttpGet]
         [Route("GetTrade")]
         public async Task<ActionResult<TradeVm>> GetTrade()
         {
-            //Todo: query need to search for corret trade
             return await Mediator.Send(new GetTradeQuery());
         }
     }
