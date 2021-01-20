@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Monopoly.Core.Base.Exceptions;
 using Monopoly.Core.Base.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,6 +25,7 @@ namespace Monopoly.Core.UseCases.MonopolyDices.Commands.UpdateDices
         public async Task<Unit> Handle(UpdateDicesCommand request, CancellationToken cancellationToken)
         {
             var entity = await _context.Dices.FirstOrDefaultAsync();
+
             //zmiana na danym graczu propercji throwndices na true
 
             if (entity == null)
@@ -32,6 +34,12 @@ namespace Monopoly.Core.UseCases.MonopolyDices.Commands.UpdateDices
             }
 
             entity.DiceValues = request.Dices;
+
+            var players = _context.Players;
+            var index = _context.GameInfo.FirstOrDefault().ActivePlayerIndex;
+            var player = players.Where(p => p.Id == index + 1).First();
+
+            _context.Logs.Add(new Log { LogInfo = $"{player.Name} wyrzuca {entity.DiceValues[0] + entity.DiceValues[1]}" });
 
             await _context.SaveChangesAsync(cancellationToken);
             return Unit.Value;

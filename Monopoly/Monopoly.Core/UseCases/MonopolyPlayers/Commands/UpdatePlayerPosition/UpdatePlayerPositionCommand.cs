@@ -25,9 +25,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerPosition
         }
         public async Task<Unit> Handle(UpdatePlayerPositionCommand request, CancellationToken cancellationToken)
         {
-            var entity = await _context.Players.Where(p => p.Id == request.ActivePlayerIndex+1).FirstAsync();
-
- 
+            var entity = await _context.Players.Include(s => s.PropertyFieldInfos).Include(p => p.Cards).Where(p => p.Id == request.ActivePlayerIndex + 1).FirstAsync();
 
             if (entity == null)
             {

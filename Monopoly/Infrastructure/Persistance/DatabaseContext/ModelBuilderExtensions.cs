@@ -467,197 +467,200 @@ namespace Infrastructure.Persistance.DatabaseContext
                         new CornerField { Id = 31, Name = "Dziekanat", Color = MonopolyColor.seagreen, MonopolyID = 30 });
 
 
+            #region PropertyFieldInfo
             modelBuilder.Entity<PropertyFieldInfo>().HasData(
-                new PropertyFieldInfo 
-                { 
-                    Id=2,
-                    EstateLevel=0,
-                    Mortgaged=false,
-                    PropertyFieldId=2
+                new PropertyFieldInfo
+                {
+                    Id = 1,
+                    EstateLevel = 0,
+                    Mortgaged = false,
+                    PropertyFieldId = 2
                 },
-                new PropertyFieldInfo 
-                { 
-                    Id=4,
-                    EstateLevel=0,
-                    Mortgaged=false,
-                    PropertyFieldId=2
+                new PropertyFieldInfo
+                {
+                    Id = 2,
+                    EstateLevel = 0,
+                    Mortgaged = false,
+                    PropertyFieldId = 3
                 },
-                new PropertyFieldInfo 
-                { 
-                    Id=5,
-                    EstateLevel=0,
-                    Mortgaged=false,
-                    PropertyFieldId=2
+                new PropertyFieldInfo
+                {
+                    Id = 3,
+                    EstateLevel = 0,
+                    Mortgaged = false,
+                    PropertyFieldId = 5
                 },
-                new PropertyFieldInfo 
-                { 
-                    Id=6,
-                    EstateLevel=0,
-                    Mortgaged=false,
-                    PropertyFieldId=2
+                new PropertyFieldInfo
+                {
+                    Id = 4,
+                    EstateLevel = 0,
+                    Mortgaged = false,
+                    PropertyFieldId = 6
+                },
+                new PropertyFieldInfo
+                {
+                    Id = 5,
+                    EstateLevel = 0,
+                    Mortgaged = false,
+                    PropertyFieldId = 7
+                },
+                new PropertyFieldInfo
+                {
+                    Id = 6,
+                    EstateLevel = 0,
+                    Mortgaged = false,
+                    PropertyFieldId = 8
                 },
                 new PropertyFieldInfo
                 {
                     Id = 7,
                     EstateLevel = 0,
                     Mortgaged = false,
-                    PropertyFieldId = 2
+                    PropertyFieldId = 10
                 },
                 new PropertyFieldInfo
                 {
                     Id = 8,
                     EstateLevel = 0,
                     Mortgaged = false,
-                    PropertyFieldId = 2
+                    PropertyFieldId = 12
+                },
+                new PropertyFieldInfo
+                {
+                    Id = 9,
+                    EstateLevel = 0,
+                    Mortgaged = false,
+                    PropertyFieldId = 12
                 },
                 new PropertyFieldInfo
                 {
                     Id = 10,
                     EstateLevel = 0,
                     Mortgaged = false,
-                    PropertyFieldId = 2
+                    PropertyFieldId = 15
+                },
+                new PropertyFieldInfo
+                {
+                    Id = 11,
+                    EstateLevel = 0,
+                    Mortgaged = false,
+                    PropertyFieldId = 16
                 },
                 new PropertyFieldInfo
                 {
                     Id = 12,
                     EstateLevel = 0,
                     Mortgaged = false,
-                    PropertyFieldId = 2
+                    PropertyFieldId = 18
                 },
                 new PropertyFieldInfo
                 {
                     Id = 13,
                     EstateLevel = 0,
                     Mortgaged = false,
-                    PropertyFieldId = 2
+                    PropertyFieldId = 19
+                },
+                new PropertyFieldInfo
+                {
+                    Id = 14,
+                    EstateLevel = 0,
+                    Mortgaged = false,
+                    PropertyFieldId = 20
                 },
                 new PropertyFieldInfo
                 {
                     Id = 15,
                     EstateLevel = 0,
                     Mortgaged = false,
-                    PropertyFieldId = 2
-                }, new PropertyFieldInfo
+                    PropertyFieldId = 22
+                },
+                new PropertyFieldInfo
                 {
                     Id = 16,
                     EstateLevel = 0,
                     Mortgaged = false,
-                    PropertyFieldId = 2
+                    PropertyFieldId = 25
+                },
+                new PropertyFieldInfo
+                {
+                    Id = 17,
+                    EstateLevel = 0,
+                    Mortgaged = false,
+                    PropertyFieldId = 26
                 },
                 new PropertyFieldInfo
                 {
                     Id = 18,
                     EstateLevel = 0,
                     Mortgaged = false,
-                    PropertyFieldId = 2
+                    PropertyFieldId = 27
                 },
                 new PropertyFieldInfo
                 {
                     Id = 19,
                     EstateLevel = 0,
                     Mortgaged = false,
-                    PropertyFieldId = 2
+                    PropertyFieldId = 28
                 },
                 new PropertyFieldInfo
                 {
                     Id = 20,
                     EstateLevel = 0,
                     Mortgaged = false,
-                    PropertyFieldId = 2
+                    PropertyFieldId = 29
+                },
+                new PropertyFieldInfo
+                {
+                    Id = 21,
+                    EstateLevel = 0,
+                    Mortgaged = false,
+                    PropertyFieldId = 30
                 },
                 new PropertyFieldInfo
                 {
                     Id = 22,
                     EstateLevel = 0,
                     Mortgaged = false,
-                    PropertyFieldId = 2
+                    PropertyFieldId = 32
+                },
+                new PropertyFieldInfo
+                {
+                    Id = 23,
+                    EstateLevel = 0,
+                    Mortgaged = false,
+                    PropertyFieldId = 33
+                },
+                new PropertyFieldInfo
+                {
+                    Id = 24,
+                    EstateLevel = 0,
+                    Mortgaged = false,
+                    PropertyFieldId = 34
                 },
                 new PropertyFieldInfo
                 {
                     Id = 25,
                     EstateLevel = 0,
                     Mortgaged = false,
-                    PropertyFieldId = 2
+                    PropertyFieldId = 36
                 },
                 new PropertyFieldInfo
                 {
                     Id = 26,
                     EstateLevel = 0,
                     Mortgaged = false,
-                    PropertyFieldId = 2
+                    PropertyFieldId = 37
                 },
                 new PropertyFieldInfo
                 {
                     Id = 27,
                     EstateLevel = 0,
                     Mortgaged = false,
-                    PropertyFieldId = 2
-                },
-                new PropertyFieldInfo
-                {
-                    Id = 28,
-                    EstateLevel = 0,
-                    Mortgaged = false,
-                    PropertyFieldId = 2
-                },
-                new PropertyFieldInfo
-                {
-                    Id = 29,
-                    EstateLevel = 0,
-                    Mortgaged = false,
-                    PropertyFieldId = 2
-                },
-                new PropertyFieldInfo
-                {
-                    Id = 30,
-                    EstateLevel = 0,
-                    Mortgaged = false,
-                    PropertyFieldId = 2
-                },
-                new PropertyFieldInfo
-                {
-                    Id = 32,
-                    EstateLevel = 0,
-                    Mortgaged = false,
-                    PropertyFieldId = 2
-                },
-                new PropertyFieldInfo
-                {
-                    Id = 33,
-                    EstateLevel = 0,
-                    Mortgaged = false,
-                    PropertyFieldId = 2
-                },
-                new PropertyFieldInfo
-                {
-                    Id = 34,
-                    EstateLevel = 0,
-                    Mortgaged = false,
-                    PropertyFieldId = 2
-                },
-                new PropertyFieldInfo
-                {
-                    Id = 36,
-                    EstateLevel = 0,
-                    Mortgaged = false,
-                    PropertyFieldId = 2
-                },
-                new PropertyFieldInfo
-                {
-                    Id = 37,
-                    EstateLevel = 0,
-                    Mortgaged = false,
-                    PropertyFieldId = 2
-                },
-                new PropertyFieldInfo
-                {
-                    Id = 39,
-                    EstateLevel = 0,
-                    Mortgaged = false,
-                    PropertyFieldId = 2
+                    PropertyFieldId = 39
                 });
+            #endregion PropertyFieldInfo
 
-             modelBuilder.Entity<GameInfo>().HasData(new GameInfo { Id=1,ActivePlayerIndex = 0, GameState = "waiting" });
+            modelBuilder.Entity<GameInfo>().HasData(new GameInfo { Id=1,ActivePlayerIndex = 0, GameState = "waiting" });
            modelBuilder.Entity<Dices>().HasData(new Dices { Id = 1, DiceValues = new List<int> { 1, 1 } });
              modelBuilder.Entity<Log>().HasData(new Log { Id = 1, LogInfo = "Zaczynamy gre" });
              modelBuilder.Entity<LossCard>().HasData(

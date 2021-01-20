@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Entities.Game;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Monopoly.Core.Base.Exceptions;
@@ -31,6 +32,8 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerUpdateBank
             }
 
             entity.IsBankrupt = !entity.IsBankrupt;
+
+            _context.Logs.Add(new Log { LogInfo = $"{entity.Name} bankrutuje !" });
 
             await _context.SaveChangesAsync(cancellationToken);
             return Unit.Value;

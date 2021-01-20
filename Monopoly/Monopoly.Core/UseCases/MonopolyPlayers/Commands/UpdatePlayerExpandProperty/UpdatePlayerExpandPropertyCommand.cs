@@ -25,7 +25,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerExpandProp
         }
         public async Task<Unit> Handle(UpdatePlayerExpandPropertyCommand request, CancellationToken cancellationToken)
         {
-            var entityFields = await _context.PropertyFieldInfos
+            var entityFields = await _context.PropertyFieldInfos.Include(pp => pp.PropertyField)
                 .Where(p => p.PropertyField.MonopolyID == request.FieldId)
                 .Where(p=>p.Player.Name==request.Name)
                 .FirstAsync(cancellationToken);
@@ -40,6 +40,14 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerExpandProp
             {
                 entityFields.EstateLevel = 0;
             }
+
+            var players = _context.Players;
+            var index = _context.GameInfo.FirstOrDefault().ActivePlayerIndex;
+            var player = players.Where(p => p.Id == index + 1).First();
+            if (request.DeltaEstateLevel > 0)
+                _context.Logs.Add(new Log { LogInfo = $"{player.Name} rozbudowuje {entityFields.PropertyField.Name}" });
+            else
+                _context.Logs.Add(new Log { LogInfo = $"{player.Name} demontowuje {entityFields.PropertyField.Name}" });
 
             await _context.SaveChangesAsync(cancellationToken);
 
