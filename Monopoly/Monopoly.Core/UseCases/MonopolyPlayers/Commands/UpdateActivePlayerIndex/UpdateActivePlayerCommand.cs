@@ -38,10 +38,11 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdateActivePlayerInde
             {
                 throw new NotFoundException(nameof(Player), request.Index);
             }
-            //Zerujemy kostki, ustawiamy indeks, sprawdzamy stan gry
+
             bool isGameOver = false;
             bool wasBotPlaying = false;
             entity.ActivePlayerIndex = (request.Index + 1) % 4;
+
             foreach (var p in players)
             {
                 p.ThrownDices = false;
@@ -50,61 +51,9 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdateActivePlayerInde
             {
                 isGameOver = true;
             }
-            //Zapisujemy
+
             await _context.SaveChangesAsync(cancellationToken);
-
-            //Lokalne index nastepnego gracza w kolejce
-            int nextPlayerIndex = (request.Index + 1) % 4;
-
             return new Tuple<bool, bool>(wasBotPlaying, isGameOver);
-
-            while (true)
-            {
-                //Sprawdzamy kolejnego gracza
-                var player = await _context.Players.Where(p => p.Id == nextPlayerIndex).FirstOrDefaultAsync();
-                //Jezeli moze grac
-                if (player.TurnsToWait == 0)
-                {
-                    //I jest graczem to gramy dalej
-                    if (player.IsLogged == true)
-                    {
-                        return new Tuple<bool, bool>(wasBotPlaying, isGameOver);
-                    }
-                    //Jezeli jest botem
-                    else
-                    {
-                        //To rozgrywamy ture botem AI:
-                        //Tutaj wstawic bota:
-
-                        //Ustawiamy flage, że grał bot:
-                        wasBotPlaying = true;
-                        //Podnosimy indeks
-                        nextPlayerIndex = (nextPlayerIndex + 1) % 4;
-                        //Zapisujemy go w bazie
-                        var entityLoop = await _context.GameInfo.FirstOrDefaultAsync();
-                        entityLoop.ActivePlayerIndex = nextPlayerIndex;
-                        await _context.SaveChangesAsync(cancellationToken);
-                        //Kolejna pętla
-                        continue;
-                    }
-                }
-                //Gracz siedzi w wiezeniu
-                else
-                {
-                    //Zmiejszamy jego wyrok i sprawdzamy czy wychodzi
-                    player.TurnsToWait -= 1;
-                    if(player.TurnsToWait==0)
-                    {
-                        player.IsInJail = false;
-                    }
-                    //Podnosimy indeks
-                    nextPlayerIndex = (nextPlayerIndex + 1) % 4;
-                    //Zapisujemy go w bazie
-                    var entityLoop = await _context.GameInfo.FirstOrDefaultAsync();
-                    entityLoop.ActivePlayerIndex = nextPlayerIndex;
-                    await _context.SaveChangesAsync(cancellationToken);
-                }
-            }
         }
     }
 }

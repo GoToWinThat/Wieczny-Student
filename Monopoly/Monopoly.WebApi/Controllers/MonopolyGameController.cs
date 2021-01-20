@@ -78,6 +78,7 @@ namespace Monopoly.WebApi.Controllers
                     await Hub.Clients.All.SendCoreAsync("GetActivePlayerIndex", new object[] { "GetActivePlayerIndex" });
                 }
             }
+            await Hub.Clients.All.SendCoreAsync("GetLogs", new object[] { "GetLogs" });
             return NoContent();
         }
         [HttpGet]
@@ -92,6 +93,7 @@ namespace Monopoly.WebApi.Controllers
         {
            await Mediator.Send(command);
            await Hub.Clients.All.SendCoreAsync("GetDices", new object[] { "GetDices" });
+           await Hub.Clients.All.SendCoreAsync("GetLogs", new object[] { "GetLogs" });
            return NoContent();
         }
         [HttpGet]
@@ -125,6 +127,7 @@ namespace Monopoly.WebApi.Controllers
             {
                 await Hub.Clients.All.SendCoreAsync("GetGameState", new object[] { "GetGameState" });
             }
+            await Hub.Clients.All.SendCoreAsync("GetLogs", new object[] { "GetLogs" });
             return NoContent();
         }
 
@@ -134,6 +137,7 @@ namespace Monopoly.WebApi.Controllers
         {
             await Mediator.Send(command);
             await Hub.Clients.All.SendCoreAsync("GetTrade", new object[] { "GetTrade" });
+            await Hub.Clients.All.SendCoreAsync("GetLogs", new object[] { "GetLogs" });
             return NoContent();
         }
         [HttpGet]
