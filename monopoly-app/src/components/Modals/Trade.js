@@ -11,6 +11,12 @@ function Trade(props) {
   const activePlayer = props.data.players[props.data.activePlayerIndex];
   const otherPlayers = [];
 
+
+  
+  const trade = props.data.trade;   // ACTUAL TRANSACTION STATE
+
+
+
   props.data.players.map(player => {
     if(player.name !== activePlayer.name && player.isBankrupt !== true)
       otherPlayers.push(player);

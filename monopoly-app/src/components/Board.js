@@ -14,6 +14,7 @@ export const Board = () => {
     const players = useSelector(state => state.monopolyReducer.players);
     const activePlayerIndex = useSelector(state => state.monopolyReducer.activePlayerIndex);
     const myIndex = useSelector(state => state.monopolyReducer.myIndex);
+    const trade = useSelector(state => state.monopolyReducer.trade);
     const logs = useSelector(state => state.monopolyReducer.logs);
     const dispatch = useDispatch();
 
@@ -34,7 +35,8 @@ export const Board = () => {
 
     return (
         <div className="board">
-            <BoardCenter data={{fields, gainCards, lossCards, players, activePlayerIndex, myIndex, logs, dispatch}}/>
+            <BoardCenter data={{fields, gainCards, lossCards, players, 
+                activePlayerIndex, myIndex, logs, trade, dispatch}}/>
             <div className="row row-top">
                 <div className="col-2 card-deck"><Field players={players} data={fields[20]}/></div>
                 <div className="col card-deck"><Field players={players} rotate="card-top" data={fields[21]}/></div>

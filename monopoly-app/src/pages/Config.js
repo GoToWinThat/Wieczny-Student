@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
 import { Button, FormGroup, Form, FormControl, FormLabel } from 'react-bootstrap'
 import { GetPlayers, CreatePlayer, UpdatePlayerReadiness } from '../services/monopolyService'
 import { useSelector, useDispatch } from 'react-redux'
 import '../styles/Config.css'
 
 export const Config = () => {
-    const history = useHistory()
     const [nickname , setNickname] = useState("")
     const [color, setColor] = useState("#000000")
     const [signature, setSignature] = useState("")
-    const [confirmed, setConfirmed] = useState(false);
+    const [confirmed, setConfirmed] = useState(false)
 
     const players = useSelector(state => state.monopolyReducer.players);
     const dispatch = useDispatch();
@@ -23,21 +21,8 @@ export const Config = () => {
     }
 
     const isMyNickUnavailable = () => { return players.filter((player) => player.name === nickname).length > 0 }
-
-    const NewPlayer = () => {
-        CreatePlayer(dispatch, nickname, signature, color);
-        //setTimeout(() => 
-        //    GetPlayers(dispatch), 1000); // temporary solution; API should send new list after each update
-        setConfirmed(true);
-    }
-
-    const GetReady = () => {
-        UpdatePlayerReadiness(dispatch, nickname);
-
-        // if all players are ready, API sends gameState="running" 
-        // and the line below is called...
-        //history.push({ pathname: "/game" })
-    }
+    const NewPlayer = () => { CreatePlayer(dispatch, nickname, signature, color); setConfirmed(true); }
+    const GetReady = () => { UpdatePlayerReadiness(dispatch, nickname); }
 
     return(
         <div id="config-form">
