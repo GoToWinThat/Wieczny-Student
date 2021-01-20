@@ -13,27 +13,33 @@ namespace Monopoly.Core.MonopolyAI
 {
     public static class MonopolyAI
     {
-        /*
-        private static List<int> BotPlayersIDs = new List<int>();
-
-        public static void ProcessBot(int index, CancellationToken cancellationToken)
+        public static void ProcessBot(int playerIndex, IApplicationDbContext _context, CancellationToken cancellationToken)
         {
-            var players = _context.Players.ToList();
-            var fields = _context.MonopolyFields.ToList();
-           
-            
+            AutoThrow(playerIndex, _context, cancellationToken);
 
-            var dices = _context.Dices.FirstOrDefault();
+            // Buying, etc.
+        }
 
+        public static void AutoThrow(int playerIndex, IApplicationDbContext _context, CancellationToken cancellationToken)
+        {
+            var player = _context.Players.Where(p => p.Id == playerIndex).ToList()[0];
+
+            // Throwing dices:
+            var rand = new Random();
+            int firstNumber = rand.Next(1, 7);
+            int secondNumber = rand.Next(1, 7);
+            var dices = _context.Dices.First();
+            dices.DiceValues = new List<int> { firstNumber, secondNumber };
+
+            // Moving pawn:
+            player.Position = (player.Position + firstNumber + secondNumber) % 40;
 
             _context.SaveChangesAsync(cancellationToken);
-            TriggedByNewPostion(index);
+            NewPositionAction(player, _context, cancellationToken);
         }
-        */
 
         public static void NewPositionAction(Player player, IApplicationDbContext _context, CancellationToken cancellationToken)
         {
-            
             _context.SaveChangesAsync(cancellationToken);
             // New field:
             var newField = _context.MonopolyFields.Where(field => field.MonopolyID == player.Position).ToList()[0];
