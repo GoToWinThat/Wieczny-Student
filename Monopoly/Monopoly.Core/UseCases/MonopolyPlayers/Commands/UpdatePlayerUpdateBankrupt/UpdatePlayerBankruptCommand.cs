@@ -55,8 +55,12 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerUpdateBank
             {
                 var gameInfo = await _context.GameInfo.FirstAsync(cancellationToken);
                 gameInfo.GameState = MonopolyGameData.GameStates[2];
-                await _context.SaveChangesAsync(cancellationToken);
                 isGameOver = true;
+                await _context.SaveChangesAsync(cancellationToken);
+
+                var winner = players.Where(p => p.IsBankrupt == false).First();
+                _context.Logs.Add(new Log { LogInfo = $"Wygrywa gracz {winner.Name}!" });
+                await _context.SaveChangesAsync(cancellationToken);
             }
             return isGameOver;
         }

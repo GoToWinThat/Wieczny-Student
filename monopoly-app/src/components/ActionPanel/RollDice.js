@@ -11,6 +11,7 @@ export const RollDice = (data) => {
     const myIndex = data.data.myIndex;
     const dispatch = data.data.dispatch;
     const thrownDices = data.data.players[myIndex].thrownDices;
+    const gameState = data.data.gameState;
 
     try { useEffect(() => { GetDices(dispatch); }, [dispatch]); } catch {
         console.log("Couldn't call function useEffect() in RollDice.js!"); }
@@ -20,7 +21,7 @@ export const RollDice = (data) => {
 
     return (
         <div className="rollDiceComponent">
-            <Button id="throwDicesButton" disabled={thrownDices || myIndex !== activePlayerIndex}
+            <Button id="throwDicesButton" disabled={thrownDices || myIndex !== activePlayerIndex || (gameState.gameState != "running")}
             onClick={() => throwDicesEvent(data)} onMouseDown={(e) => e.preventDefault()}>Rzuć kośćmi</Button>
             <div className="diceImages">
                 <img className="diceImg" src={`/Assets/Dice/dice${dices[0]}.png`} alt="firstdice"/>

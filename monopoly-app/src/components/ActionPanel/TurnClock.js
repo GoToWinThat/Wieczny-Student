@@ -5,7 +5,6 @@ import "../../styles/GameClock.css";
 var secondsForAction = 30;
 
 const TurnClock = (props) => {
-
   const [time, setTime] = useState({});
   const [seconds, setSeconds] = useState(secondsForAction);
 
@@ -57,7 +56,8 @@ const TurnClock = (props) => {
       id="endTurnButton"
       onClick={() => props.endTurnEvent()}
       onMouseDown={(e) => e.preventDefault()}
-      disabled={props.myIndex !== props.activePlayerIndex}
+      disabled={props.myIndex !== props.activePlayerIndex
+            || (props.gameState.gameState != "running")}
     >
       <span>Zakończ turę [{time.m * 60 + time.s}s]</span>
     </Button>

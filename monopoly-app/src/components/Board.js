@@ -16,6 +16,7 @@ export const Board = () => {
     const myIndex = useSelector(state => state.monopolyReducer.myIndex);
     const trade = useSelector(state => state.monopolyReducer.trade);
     const logs = useSelector(state => state.monopolyReducer.logs);
+    const gameState = useSelector(state => state.monopolyReducer.gameState);
     const dispatch = useDispatch();
 
     try {
@@ -32,12 +33,12 @@ export const Board = () => {
 
     // Eliminate problem with empty lists (it can be too early to render board):
     if (fields.length === 0 || players.length === 0 || gainCards.length === 0 
-        || lossCards.length === 0 || activePlayerIndex === null) return null;
+        || lossCards.length === 0 || activePlayerIndex === null || gameState === null) return null;
 
     return (
         <div className="board">
             <BoardCenter data={{fields, gainCards, lossCards, players, 
-                activePlayerIndex, myIndex, logs, trade, dispatch}}/>
+                activePlayerIndex, myIndex, logs, trade, gameState, dispatch}}/>
             <div className="row row-top">
                 <div className="col-2 card-deck"><Field players={players} data={fields[20]}/></div>
                 <div className="col card-deck"><Field players={players} rotate="card-top" data={fields[21]}/></div>

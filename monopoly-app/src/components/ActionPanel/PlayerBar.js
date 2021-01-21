@@ -11,6 +11,7 @@ export const PlayerBar = (data) => {
     const fields = data.data.fields;
     const cards = data.data.gainCards;
     const myIndex = data.data.myIndex;
+    const gameState = data.data.gameState;
 
     let idx = -1;
     return (
@@ -18,7 +19,7 @@ export const PlayerBar = (data) => {
             <div className="playerBarInnerDiv">
                 { players.map(pl => <PlayerBox key={pl.name} player={pl} isActive={++idx === activePlayerIndex} cards={cards} fields={fields}/>) }
             </div>
-            <TurnClock activePlayerIndex={activePlayerIndex} typeOfClock="turnClock" endTurnEvent={() => endTurnEvent(data)}  myIndex={myIndex}/>
+            <TurnClock activePlayerIndex={activePlayerIndex} gameState={gameState} typeOfClock="turnClock" endTurnEvent={() => endTurnEvent(data)}  myIndex={myIndex}/>
         </div>
     );
 }
