@@ -16,6 +16,7 @@ namespace Monopoly.Core.GameClock
         static System.Timers.Timer timerclock;
         static IApplicationDbContext _context;
         static CancellationToken _cancellationToken;
+        public static bool gameEnded = false;
 
         public static void SetGameTimer(IApplicationDbContext context, CancellationToken cancellationToken)
         {
@@ -27,11 +28,9 @@ namespace Monopoly.Core.GameClock
             timerclock.Enabled = true;
         }
 
-        private async static void OnTimedEvent(Object source, ElapsedEventArgs e)
+        private static void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
-            var gameInfo = _context.GameInfo.First();
-            gameInfo.GameState = MonopolyGameData.GameStates[2];
-            await _context.SaveChangesAsync(_cancellationToken);     
+            gameEnded = true;
         }
     }
 }

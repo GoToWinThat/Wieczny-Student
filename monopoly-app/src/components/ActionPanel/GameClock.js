@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../../styles/GameClock.css";
 import { EndGameEvent } from '../../gameplay/turnActions'
 import { useSelector, useDispatch } from 'react-redux';
-var secondsForGame = 20;//60 * 20;
+var secondsForGame = 60 * 20;
 
 const GameClock = () => {
 

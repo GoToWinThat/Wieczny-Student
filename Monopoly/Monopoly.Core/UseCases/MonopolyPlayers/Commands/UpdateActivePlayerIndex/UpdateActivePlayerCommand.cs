@@ -5,6 +5,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Monopoly.Core.Base.Exceptions;
 using Monopoly.Core.Base.Interfaces;
+using Monopoly.Core.GameClock;
 using System;
 using System.Linq;
 using System.Threading;
@@ -50,14 +51,14 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdateActivePlayerInde
                 .Where(p => p.Id == request.Index + 1)
                 .FirstAsync();
 
-            if (!activePlayer.ThrownDices && activePlayer.IsBankrupt==false)
+            if (!activePlayer.ThrownDices && activePlayer.IsBankrupt == false)
             {
                 MonopolyAI.MonopolyAI.AutoThrow(activePlayer, _context, cancellationToken);
             }
             var counter = 0;
-            foreach(var p in players)
+            foreach (var p in players)
             {
-                if(p.IsBankrupt==false)
+                if (p.IsBankrupt == false)
                 {
                     counter++;
                 }
@@ -77,7 +78,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdateActivePlayerInde
                         {
                             _context.Logs.Add(new Log { LogInfo = $"Tura gracza {p.Name}." });
                             if (p.TurnsToWait == 1) _context.Logs.Add(new Log { LogInfo = $"Gracz {p.Name} czeka ostatnią kolejkę." });
-                            else _context.Logs.Add(new Log { LogInfo = $"Gracz {p.Name} czeka jeszcze {p.TurnsToWait} kolejki" });
+                            else _context.Logs.Add(new Log { LogInfo = $"Gracz {p.Name} czeka jeszcze {p.TurnsToWait} kolejki." });
                             if (p.TurnsToWait - 1 == 0)
                             {
                                 p.IsInJail = false;
@@ -105,8 +106,9 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdateActivePlayerInde
             {
                 p.ThrownDices = false;
             }
-            if (entity.GameState == MonopolyGameData.GameStates[2])
+            if (GameTimer.gameEnded == true)
             {
+                entity.GameState = MonopolyGameData.GameStates[2];
                 isGameOver = true;
             }
 

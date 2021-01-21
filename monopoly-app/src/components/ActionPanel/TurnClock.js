@@ -13,7 +13,7 @@ const TurnClock = (props) => {
     const timer = setInterval(() => {
       setSeconds((prevTime) => {
         setTime(secondsToTime(prevTime - 1));
-        return prevTime - 1;
+        return prevTime <= 0 ? prevTime : prevTime - 1;
       });
     }, 1000);
     return () => {
