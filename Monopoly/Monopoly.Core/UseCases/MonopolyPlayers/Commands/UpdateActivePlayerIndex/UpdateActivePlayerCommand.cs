@@ -62,7 +62,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdateActivePlayerInde
                     counter++;
                 }
             }
-            while (isOver == false && entity.GameState== MonopolyGameData.GameStates[2]&&counter>=2)
+            while (isOver == false && entity.GameState == MonopolyGameData.GameStates[1])
             {
                 foreach (var p in players)
                 {

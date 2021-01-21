@@ -73,6 +73,7 @@ namespace Monopoly.WebApi.Controllers
                 }
                
             }
+            await Hub.Clients.All.SendCoreAsync("GetDices", new object[] { "GetDices" });
             await Hub.Clients.All.SendCoreAsync("GetLogs", new object[] { "GetLogs" });
             await Hub.Clients.All.SendCoreAsync("GetActivePlayerIndex", new object[] { "GetActivePlayerIndex" });
             await Hub.Clients.All.SendCoreAsync("GetPlayers", new object[] { "GetPlayers" });
