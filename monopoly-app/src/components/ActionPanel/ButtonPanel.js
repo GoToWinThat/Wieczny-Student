@@ -8,7 +8,7 @@ function ButtonPanel(props)
       <ButtonGroup>
         <Button id="buyButton" onClick={() => props.openView('buy')}
           disabled={(isAbleToBuy(props.data) === false)
-            || (props.data.players[props.data.myIndex].thrownDices === true)
+            || (props.data.players[props.data.myIndex].thrownDices === false)
             || (props.data.activePlayerIndex !== props.data.myIndex)}
           onMouseDown={(e) => e.preventDefault()}>Kup</Button>
         <Button id="manageButton" onClick={() => props.openView('manage')}
