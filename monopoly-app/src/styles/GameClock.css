@@ -1,0 +1,23 @@
+/* Main clock displayed in the screen corner */
+#gameClock
+{
+    background-color: blueviolet;
+    color: azure;
+
+    top: 0;
+    right: 0;
+    z-index: 5;
+    position: absolute;
+}
+
+@media(orientation: portrait) 
+{
+    #gameClock { border-radius: 2vw; padding: 1vw; margin: 1vw; font-size: 4vw; }
+}
+
+@media(orientation: landscape)
+{
+    #gameClock { border-radius: 2vh; padding: 1vh; margin: 1vh; font-size: 4vh; }
+}
+
+#gameClock p { margin: 0; }

@@ -1,0 +1,68 @@
+/* Popover which is displayed after standing on event field */
+.popover-card-alert 
+{
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+}
+.popover-card-alert .toast-header
+{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.popover-card-alert .toast-body
+{
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.popover-card-alert .card-popover { height: 90%; width: 90%; }
+.popover-card-alert .card-body 
+{
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media(orientation: portrait) 
+{
+  .toast { max-width: 40vw; }
+  .popover-toast-card-alert { width: 40vw; height: 60vw; }
+
+  .popover-card-alert .toast-header { height: 5vw; font-size: 2.5vw; }
+  .popover-card-alert .toast-header .close { font-size: 2.2vw !important; }
+
+  .popover-card-alert .toast-body { width: 40vw; height: 55vw; }
+  .popover-card-alert .card-title { font-size: 3.5vw; font-weight: bold; }
+  .popover-card-alert .card-text { font-size: 3vw; }
+}
+@media(orientation: landscape) and (max-height: 600px) 
+{ 
+  .toast { max-width: 40vh; }
+  .popover-toast-card-alert { width: 40vh; height: 60vh; }
+
+  .popover-card-alert .toast-header { height: 5vh; font-size: 2.5vh; }
+  .popover-card-alert .toast-header .close { font-size: 2.2vh !important; }
+
+  .popover-card-alert .toast-body { width: 40vh; height: 55vh; }
+  .popover-card-alert .card-title { font-size: 3.5vh; font-weight: bold; }
+  .popover-card-alert .card-text { font-size: 3vh; }
+}
+@media(orientation: landscape) and (min-height: 600px) /* mainly PCs */
+{
+  .toast { max-width: 30vh; }
+  .popover-toast-card-alert { width: 30vh; height: 45vh; }
+
+  .popover-card-alert .toast-header { height: 4.5vh; font-size: 1.8vh; }
+  .popover-card-alert .toast-header .close { font-size: 1.6vh !important; }
+
+  .popover-card-alert .toast-body { width: 30vh; height: 40.5vh; }
+  .popover-card-alert .card-title { font-size: 2.25vh; font-weight: bold; }
+  .popover-card-alert .card-text { font-size: 2vh; }
+}

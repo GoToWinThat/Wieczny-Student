@@ -1,0 +1,184 @@
+/* General */
+#config-form
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+@media(orientation: portrait)
+{
+    #config-form { width: 90vw; height: 90vh; margin: 5vh 0; }
+}
+@media(orientation: landscape) and (max-height: 600px) 
+{
+    #config-form { width: 90vw; height: 90vh; margin: 5vh 0; max-width: 70vh; }
+}
+@media(orientation: landscape) and (min-height: 600px) 
+{
+    #config-form { width: 90vw; height: 90vh; margin: 5vh 0; max-width: 70vh; }
+}
+
+/* Players in session */
+#currentPlayersList 
+{ 
+    width: 100%; 
+    margin: auto 0; 
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-around; 
+}
+#currentPlayersList div { display: flex; flex-direction: column; width: 23%; }
+#currentPlayers p { padding: 0; }
+@media(orientation: portrait) 
+{
+    #currentPlayers 
+    { 
+        height: 25vw; 
+        border: 0.1vw solid black; 
+        display: flex;
+        flex-direction: column;
+    }
+    #currentPlayersList div *:nth-child(1) { font-size: 9vw; line-height: 80%; }
+    #currentPlayersList div *:nth-child(2) { font-size: 4vw; }
+    #currentPlayersTitle 
+    { 
+        font-size: 4vw; 
+        font-weight: bold; 
+        margin: 0; 
+        border-bottom: 0.1vw solid black; 
+    }
+    #noPlayersSubtitle { font-size: 3.5vw; bottom: 0; margin: auto 0; }
+}
+@media(orientation: landscape) and (max-height: 600px) 
+{
+    #currentPlayers 
+    { 
+        height: 20vh; 
+        border: 0.1vh solid black; 
+        display: flex;
+        flex-direction: column;
+    }
+    #currentPlayersList div *:nth-child(1) { font-size: 5vh; line-height: 80%; }
+    #currentPlayersList div *:nth-child(2) { font-size: 3vh; }
+    #currentPlayersTitle 
+    { 
+        font-size: 4vh; 
+        font-weight: bold; 
+        margin: 0; 
+        border-bottom: 0.1vh solid black; 
+    }
+    #noPlayersSubtitle { font-size: 3.5vh; bottom: 0; margin: auto 0; }
+}
+@media(orientation: landscape) and (min-height: 600px) 
+{
+    #currentPlayers 
+    { 
+        height: 20vh; 
+        border: 0.1vh solid black; 
+        display: flex;
+        flex-direction: column;
+    }
+    #currentPlayersList div *:nth-child(1) { font-size: 5vh; line-height: 80%; }
+    #currentPlayersList div *:nth-child(2) { font-size: 3vh; }
+    #currentPlayersTitle 
+    { 
+        font-size: 4vh; 
+        font-weight: bold; 
+        margin: 0; 
+        border-bottom: 0.1vh solid black; 
+    }
+    #noPlayersSubtitle { font-size: 3.5vh; bottom: 0; margin: auto 0; }
+}
+
+/* Form */
+#config-form form
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+#config-form form input[type="text"], 
+#config-form form input[type="color"] 
+{ 
+    width: 60%; margin: 0 auto; 
+}
+#config-form .form-group { margin-bottom: 0; }
+
+@media(orientation: portrait)
+{
+    #config-form form { height: 50vh; font-size: 3vw; }
+    #config-form label { margin-bottom: 1vw; }
+    #config-form form input[type="text"], 
+    #config-form form input[type="color"] 
+    { 
+        width: 60%; 
+        margin: 0 auto; 
+        font-size: 3vw; 
+        height: 5vw; 
+        padding: 0 1vw;
+    }
+    #config-form form input[type="radio"]
+    {
+        margin-top: 10%;
+        margin-right: 1vw;
+        height: 2vw;
+    } 
+    #config-form .form-check-inline { font-size: 5vw; }
+}
+@media(orientation: landscape) and (max-height: 600px) 
+{
+    #config-form form { height: 50vh; font-size: 3vh; }
+    #config-form label { margin-bottom: 1vh; }
+    #config-form form input[type="text"], 
+    #config-form form input[type="color"] 
+    { 
+        width: 60%; 
+        margin: 0 auto; 
+        font-size: 3vh; 
+        height: 5vh; 
+        padding: 0 1vh;
+    }
+    #config-form form input[type="radio"]
+    {
+        margin-top: 10%;
+        margin-right: 1vh;
+        height: 2vh;
+    } 
+    #config-form .form-check-inline { font-size: 5vh; }
+}
+@media(orientation: landscape) and (min-height: 600px) 
+{
+    #config-form form { height: 50vh; font-size: 3vh; }
+    #config-form label { margin-bottom: 1vh; }
+    #config-form form input[type="text"], 
+    #config-form form input[type="color"] 
+    { 
+        width: 60%; 
+        margin: 0 auto; 
+        font-size: 3vh; 
+        height: 5vh; 
+        padding: 0 1vh;
+    }
+    #config-form form input[type="radio"]
+    {
+        margin-top: 10%;
+        margin-right: 1vh;
+        height: 2vh;
+    } 
+    #config-form .form-check-inline { font-size: 5vh; }
+}
+
+/* Buttons */
+#config-form button { margin: 0 auto; width: fit-content; height: fit-content; }
+@media(orientation: portrait)
+{
+    #config-form button { font-size: 3vw; padding: 1vw; }
+}
+@media(orientation: landscape) and (max-height: 600px) 
+{
+    #config-form button { font-size: 3vh; padding: 1vh; }
+}
+@media(orientation: landscape) and (min-height: 600px) 
+{
+    #config-form button { font-size: 3vh; padding: 1vh; }
+}
