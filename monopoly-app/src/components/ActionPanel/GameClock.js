@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/GameClock.css";
-
-var secondsForGame = 60 * 20;
+import {EndGameEvent} from '../../gameplay/turnActions'
+import { useSelector, useDispatch } from 'react-redux';
+var secondsForGame = 20;//60 * 20;
 
 const GameClock = () => {
+
+  const players = useSelector(state => state.monopolyReducer.players);
+  const fields = useSelector(state => state.monopolyReducer.monopolyFields);
+  const dispatch = useDispatch();
+  const activePlayerIndex = useSelector(state => state.monopolyReducer.activePlayerIndex);
+  const myIndex = useSelector(state => state.monopolyReducer.myIndex);
+
   const [time, setTime] = useState({});
   const [seconds, setSeconds] = useState(secondsForGame);
+  const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
     setTime(secondsToTime(secondsForGame));
@@ -37,6 +46,14 @@ const GameClock = () => {
     return obj;
   };
 
+ 
+  if(seconds<=1 && !gameOver && activePlayerIndex === myIndex)
+  {
+    debugger;
+    setGameOver(true);
+    EndGameEvent(players,fields,dispatch);
+  }
+  
   return (
     <div id="gameClock">
       <p>
