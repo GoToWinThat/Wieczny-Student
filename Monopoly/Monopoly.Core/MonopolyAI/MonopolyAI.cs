@@ -28,6 +28,14 @@ namespace Monopoly.Core.MonopolyAI
             int secondNumber = rand.Next(1, 7);
             var dices = _context.Dices.First();
             dices.DiceValues = new List<int> { firstNumber, secondNumber };
+            _context.Logs.Add(new Log { LogInfo = $"{player.Name} wyrzuca {firstNumber + secondNumber} oczek." });
+
+            // Reward for lap:
+            if (player.Position + firstNumber + secondNumber >= 40)
+            {
+                player.Cash += 30;
+                _context.Logs.Add(new Log { LogInfo = $"{player.Name} przechodzi przez portiernię. Otrzymuje 30 ECTS." });
+            }
 
             // Moving pawn:
             player.Position = (player.Position + firstNumber + secondNumber) % 40;

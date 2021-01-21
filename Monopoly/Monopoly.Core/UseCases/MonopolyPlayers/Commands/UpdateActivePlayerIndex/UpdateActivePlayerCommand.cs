@@ -68,16 +68,20 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdateActivePlayerInde
                         }
                         if (p.TurnsToWait > 0)
                         {
-                            p.TurnsToWait = p.TurnsToWait - 1;
+                            _context.Logs.Add(new Log { LogInfo = $"Tura gracza {p.Name}." });
+                            if (p.TurnsToWait == 1) _context.Logs.Add(new Log { LogInfo = $"Gracz {p.Name} czeka ostatnią kolejkę." });
+                            else _context.Logs.Add(new Log { LogInfo = $"Gracz {p.Name} czeka jeszcze {p.TurnsToWait} kolejki" });
                             if (p.TurnsToWait - 1 == 0)
                             {
                                 p.IsInJail = false;
                             }
+                            p.TurnsToWait = p.TurnsToWait - 1;
                             index = (index + 1) % 4;
                             continue;
                         }
                         if (p.IsBankrupt == false && p.TurnsToWait == 0 && p.IsLogged == true)
                         {
+                            _context.Logs.Add(new Log { LogInfo = $"Tura gracza {p.Name}." });
                             entity.ActivePlayerIndex = (index) % 4;
                             isOver = true;
                             break;

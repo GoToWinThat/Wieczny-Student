@@ -32,9 +32,9 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerUpdateBank
                 throw new NotFoundException(nameof(Player), request.Name);
             }
 
-            entity.IsBankrupt = !entity.IsBankrupt;
+            entity.IsBankrupt = true;
 
-            _context.Logs.Add(new Log { LogInfo = $"{entity.Name} bankrutuje !" });
+            _context.Logs.Add(new Log { LogInfo = $"{entity.Name} bankrutuje!" });
 
             await _context.SaveChangesAsync(cancellationToken);
             return await CheckEndGame(cancellationToken);
@@ -55,6 +55,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerUpdateBank
             {
                 var gameInfo = await _context.GameInfo.FirstAsync(cancellationToken);
                 gameInfo.GameState = MonopolyGameData.GameStates[2];
+                await _context.SaveChangesAsync(cancellationToken);
                 isGameOver = true;
             }
             return isGameOver;
