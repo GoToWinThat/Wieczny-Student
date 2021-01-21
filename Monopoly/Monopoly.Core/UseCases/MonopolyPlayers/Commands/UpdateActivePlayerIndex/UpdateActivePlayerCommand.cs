@@ -87,6 +87,12 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdateActivePlayerInde
                             index = (index + 1) % 4;
                             continue;
                         }
+                        if (p.IsLogged == false) // bot
+                        {
+                            MonopolyAI.MonopolyAI.AutoThrow(p, _context, cancellationToken);
+                            index = (index + 1) % 4;
+                            continue;
+                        }
                         if (p.IsBankrupt == false && p.TurnsToWait == 0 && p.IsLogged == true)
                         {
                             _context.Logs.Add(new Log { LogInfo = $"Tura gracza {p.Name}." });

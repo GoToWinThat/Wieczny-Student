@@ -3,6 +3,8 @@ import { ActionCreators } from "../redux/monopolyReducer";
 import * as axios from 'axios';
 const axiosGameURL = 'https://localhost:44358/api/monopolygame/';
 const axiosPlayerURL = 'https://localhost:44358/api/monopolyplayer/';
+//const axiosGameURL = 'https://monopolyapi.azurewebsites.net/api/monopolygame/';
+//const axiosPlayerURL = 'https://monopolyapi.azurewebsites.net/api/monopolyplayer/';
 
 export const GetFields = async (dispatch) => {
     try {
@@ -155,7 +157,7 @@ export const UpdatePlayerDeleteProperty = async (dispatch, playerName, fieldID) 
 
 export const UpdatePlayerExpandProperty = async (dispatch, playerName, fieldID, deltaEstateLevel) => {
     try {
-        axios.put(axiosPlayerURL + 'UpdatePlayerNewProperty',
+        axios.put(axiosPlayerURL + 'UpdatePlayerExpandProperty',
             {"name": playerName, "fieldID": fieldID, "deltaEstateLevel": deltaEstateLevel}).then(
             dispatch(ActionCreators.updatePlayerExpandProperty({playerName, fieldID, deltaEstateLevel})));
     } catch { console.log("Player's property couldn't be expanded / reduced!");}

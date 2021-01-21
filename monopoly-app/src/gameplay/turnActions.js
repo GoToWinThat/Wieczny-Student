@@ -38,7 +38,7 @@ export const EndGameEvent = (players,fields,dispatch) => {
             winner = player;
         }
     })
-    AddNewLog(dispatch, `Wygrał ${winner.name} z wynikiem ${highestScore}`)
+    AddNewLog(dispatch, `Wygrywa gracz ${winner.name}!`)
   }
 
   const playersTotalCash = (player,fields) => {

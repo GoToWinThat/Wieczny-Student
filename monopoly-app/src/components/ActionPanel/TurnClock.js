@@ -13,7 +13,7 @@ const TurnClock = (props) => {
     const timer = setInterval(() => {
       setSeconds((prevTime) => {
         setTime(secondsToTime(prevTime - 1));
-        return prevTime <= 0 ? prevTime : prevTime - 1;
+        return prevTime <= 1 ? prevTime : prevTime - 1;
       });
     }, 1000);
     return () => {
@@ -22,7 +22,7 @@ const TurnClock = (props) => {
   }, []);
 
   useEffect(() => {
-      if(seconds <= 0) props.endTurnEvent();
+      if(seconds <= 1) props.endTurnEvent();
   }, [seconds])
 
   useEffect(() => {

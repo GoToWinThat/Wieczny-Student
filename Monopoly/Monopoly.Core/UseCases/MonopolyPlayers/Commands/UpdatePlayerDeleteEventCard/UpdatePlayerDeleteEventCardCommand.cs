@@ -25,7 +25,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerDeleteEven
         }
         public async Task<Unit> Handle(UpdatePlayerDeleteEventCardCommand request, CancellationToken cancellationToken)
         {
-            var entityPlayer = await _context.Players.Where(p => p.Name == request.Name).FirstAsync();
+            var entityPlayer = await _context.Players.Include(p => p.Cards).Where(p => p.Name == request.Name).FirstAsync();
             var entityCard = await _context.Cards.Where(p => p.CardIdNumber == request.CardId).FirstAsync();
 
             if (entityPlayer == null)
@@ -33,6 +33,11 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerDeleteEven
                 throw new NotFoundException(nameof(Player), request.Name);
             }
             if (entityCard == null)
+            {
+                throw new NotFoundException(nameof(Card), request.CardId);
+            }
+
+            if (entityPlayer.Cards == null)
             {
                 throw new NotFoundException(nameof(Card), request.CardId);
             }
