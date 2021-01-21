@@ -42,7 +42,7 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdatePlayerMortgagePr
             if (entityFields.Mortgaged)
                 _context.Logs.Add(new Log { LogInfo = $"{player.Name} oddaje {entityFields.PropertyField.Name} pod zastaw za {entityFields.PropertyField.Mortgage} ECTS." });
             else
-                _context.Logs.Add(new Log { LogInfo = $"{player.Name} odkupuje {entityFields.PropertyField.Name} odkupuję od banku za {entityFields.PropertyField.Mortgage} ECTS." });
+                _context.Logs.Add(new Log { LogInfo = $"{player.Name} odkupuje {entityFields.PropertyField.Name} od banku za {entityFields.PropertyField.Mortgage} ECTS." });
 
             await _context.SaveChangesAsync(cancellationToken);
             return Unit.Value;

@@ -1,7 +1,7 @@
 import "../../styles/Modals.css";
 import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { UpdatePlayerNewProperty, UpdatePlayerCash} from '../../services/monopolyService';
+import { UpdatePlayerNewProperty, UpdatePlayerCash, AddNewLog } from '../../services/monopolyService';
 
 function Buy(props) {
   const activePlayer = props.data.players[props.data.activePlayerIndex];
@@ -12,7 +12,7 @@ function Buy(props) {
   {
     UpdatePlayerNewProperty(dispatch, activePlayer.name, currentField.fieldID);
     UpdatePlayerCash(dispatch, activePlayer.name, -currentField.price);
-    //AddNewLog(dispatch, `${activePlayer.name} kupuje ${currentField.name} za ${currentField.price} ECTS.`);
+    AddNewLog(dispatch, `${activePlayer.name} kupuje ${currentField.name} za ${currentField.price} ECTS.`);
     props.onHide();
   }
 

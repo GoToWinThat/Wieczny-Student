@@ -2,7 +2,8 @@ import {
   UpdatePlayerExpandProperty,
   UpdatePlayerDeleteProperty,
   UpdatePlayerMortgageProperty,
-  UpdatePlayerCash
+  UpdatePlayerCash,
+  AddNewLog
 } from "../../services/monopolyService";
 
 // Selling owned property:
@@ -10,10 +11,7 @@ export const sellProperty = (fieldId, activePlayer, fields, dispatch) => {
   let currentField = fields[fieldId];
   UpdatePlayerDeleteProperty(dispatch, activePlayer.name, fieldId);
   UpdatePlayerCash(dispatch, activePlayer.name, parseInt(currentField.price));
-  // AddNewLog(
-  //   dispatch,
-  //   `${activePlayer.name} sprzedaje ${currentField.name} za ${currentField.price} ECTS.`
-  // );
+  AddNewLog(dispatch, `${activePlayer.name} sprzedaje ${currentField.name} za ${currentField.price} ECTS.`);
 };
 
 // Mortgaging / unmortgaging owned property:

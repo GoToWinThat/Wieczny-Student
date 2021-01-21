@@ -22,8 +22,6 @@ namespace Monopoly.Core.MonopolyAI
 
         public static void AutoThrow(Player player, IApplicationDbContext _context, CancellationToken cancellationToken)
         {
-            //var player = _context.Players.Where(p => p.Id == playerIndex).ToList()[0];
-
             // Throwing dices:
             var rand = new Random();
             int firstNumber = rand.Next(1, 7);
@@ -42,6 +40,8 @@ namespace Monopoly.Core.MonopolyAI
 
         public static void NewPositionAction(Player player, IApplicationDbContext _context, CancellationToken cancellationToken)
         {
+            var dicesCount = _context.Dices.FirstOrDefault().DiceValues[0] + _context.Dices.FirstOrDefault().DiceValues[1];
+
             _context.SaveChangesAsync(cancellationToken);
             // New field:
             var newField = _context.MonopolyFields.Where(field => field.MonopolyID == player.Position).ToList()[0];
@@ -51,16 +51,8 @@ namespace Monopoly.Core.MonopolyAI
 
             _context.Logs.Add(new Log
             {
-                LogInfo = $"{player.Name} stanął na polu {newFieldName}"
+                LogInfo = $"{player.Name} ląduje na polu {newFieldName}."
             });
-
-            // Reward for this lap:
-            var dicesCount = _context.Dices.FirstOrDefault().DiceValues[0] + _context.Dices.FirstOrDefault().DiceValues[1];
-            if (player.Position < dicesCount) // THIS IF-STATEMENT NEEDS IS NOT PERFECT (BUGGY IN EVENTS)
-            {
-                player.Cash += 30;
-                _context.Logs.Add(new Log { LogInfo = $"{player.Name} przechodzi przez portiernię. Otrzymuje 30 ECTS." });
-            }
 
 
             // Specific field action:
@@ -80,7 +72,7 @@ namespace Monopoly.Core.MonopolyAI
                                         
                                         _context.Logs.Add(new Log
                                         {
-                                            LogInfo = $"{player.Name} używa karty {player.Cards.ElementAt(i).CardName.ToUpper()}"
+                                            LogInfo = $"{player.Name} używa karty {player.Cards.ElementAt(i).CardName.ToUpper()}."
                                         });
                                         player.Cards.Remove(player.Cards.ElementAt(i));
                                         return;
@@ -103,7 +95,7 @@ namespace Monopoly.Core.MonopolyAI
                                     {
                                         _context.Logs.Add(new Log
                                         {
-                                            LogInfo = $"{player.Name} używa karty {player.Cards.ToList().ToList().ElementAt(i).CardName.ToUpper()}"
+                                            LogInfo = $"{player.Name} używa karty {player.Cards.ToList().ToList().ElementAt(i).CardName.ToUpper()}."
                                         });
                                         player.Cards.Remove(player.Cards.ElementAt(i));
                                         return;
@@ -120,11 +112,11 @@ namespace Monopoly.Core.MonopolyAI
                             {
                                 for (int i = 0; i < player.Cards.ToList().Count; i++)
                                 {
-                                    if (player.Cards.ElementAt(i).CardIdNumber == 8)
+                                    if (player.Cards.ElementAt(i).CardIdNumber == 0)
                                     {
                                         _context.Logs.Add(new Log
                                         {
-                                            LogInfo = $"{player.Name} używa karty {player.Cards.ElementAt(i).CardName.ToUpper()}"
+                                            LogInfo = $"{player.Name} używa karty {player.Cards.ElementAt(i).CardName.ToUpper()}."
                                         });
                                         player.Cards.Remove(player.Cards.ElementAt(i));
                                         return;
@@ -158,7 +150,7 @@ namespace Monopoly.Core.MonopolyAI
                                 player.Cash -= cost;
                                 p.Cash += cost;
                                 _context.Logs.Add(new Log { 
-                                    LogInfo = $"{player.Name} płaci graczowi {p.Name} kwotę {cost} ECTS !" });
+                                    LogInfo = $"{player.Name} płaci graczowi {p.Name} kwotę {cost} ECTS." });
                             }
                         }
 
@@ -236,17 +228,26 @@ namespace Monopoly.Core.MonopolyAI
             {
                 // GAIN CARDS:
                 case "Pierwszeństwo w dziekanacie":
-                    foreach (Card element in activePlayer.Cards.ToList())
+                    if (activePlayer.Cards != null)
                     {
-                        if (element.CardIdNumber == 0)
+                        foreach (Card element in activePlayer.Cards.ToList())
                         {
-                            _context.Logs.Add(new Log {
-                                LogInfo = $"{activePlayer.Name} wymienia duplikat na 20 ECTS!" });
-                            activePlayer.Cash += 20;
-                            break;
+                            if (element.CardIdNumber == 0)
+                            {
+                                _context.Logs.Add(new Log
+                                {
+                                    LogInfo = $"{activePlayer.Name} wymienia duplikat na 20 ECTS!"
+                                });
+                                activePlayer.Cash += 20;
+                                break;
+                            }
                         }
+                        activePlayer.Cards.Add(card);
                     }
-                    activePlayer.Cards.Add(card);
+                    else
+                    {
+                        activePlayer.Cards = new List<Card> { card };
+                    }
                     break;
 
                 case "Oświecenie na konsultacjach":
@@ -305,17 +306,26 @@ namespace Monopoly.Core.MonopolyAI
                     break;
 
                 case "Znajomości na stołówce":
-                    foreach (Card element in activePlayer.Cards.ToList())
+                    if (activePlayer.Cards != null)
                     {
-                        if (element.CardIdNumber == 1)
+                        foreach (Card element in activePlayer.Cards.ToList())
                         {
-                            _context.Logs.Add(new Log {
-                                LogInfo = $"{activePlayer.Name} wymienia duplikat na 20 ECTS!" });
-                            activePlayer.Cash += 20;
-                            break;
+                            if (element.CardIdNumber == 1)
+                            {
+                                _context.Logs.Add(new Log
+                                {
+                                    LogInfo = $"{activePlayer.Name} wymienia duplikat na 20 ECTS!"
+                                });
+                                activePlayer.Cash += 20;
+                                break;
+                            }
                         }
+                        activePlayer.Cards.Add(card);
                     }
-                    activePlayer.Cards.Add(card);
+                    else
+                    {
+                        activePlayer.Cards = new List<Card> { card };
+                    }
                     break;
 
                 case "O, pinć ECTSów!":

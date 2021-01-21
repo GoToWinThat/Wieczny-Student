@@ -40,7 +40,16 @@ namespace Monopoly.Core.UseCases.MonopolyDices.Commands.UpdateDices
             var player = players.Where(p => p.Id == index + 1).First();
             player.ThrownDices = true;
 
-            _context.Logs.Add(new Log { LogInfo = $"{player.Name} wyrzuca {entity.DiceValues[0] + entity.DiceValues[1]}" });
+            // Reward for this lap:
+            var dicesCount = entity.DiceValues[0] + entity.DiceValues[1];
+            if (player.Position + dicesCount >= 40)
+            {
+                player.Cash += 30;
+                _context.Logs.Add(new Log { LogInfo = $"{player.Name} przechodzi przez portiernię. Otrzymuje 30 ECTS." });
+            }
+
+            // New log:
+            _context.Logs.Add(new Log { LogInfo = $"{player.Name} wyrzuca {entity.DiceValues[0] + entity.DiceValues[1]} oczek." });
 
             await _context.SaveChangesAsync(cancellationToken);
             return Unit.Value;

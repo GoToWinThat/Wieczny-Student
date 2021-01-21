@@ -59,7 +59,7 @@ function Trade(props) {
   const exchange = () => 
   {
     if (transactionState.length > 0)
-      //AddNewLog(dispatch, `Doszło do wymiany między ${activePlayer.name} i ${otherPlayers[tradePlayerIdx].name}:`);
+      AddNewLog(dispatch, `Doszło do wymiany między ${activePlayer.name} i ${otherPlayers[tradePlayerIdx].name}.`);
     transactionState.forEach(t =>{
       
       let secondPlayer = undefined;
@@ -69,19 +69,19 @@ function Trade(props) {
       if(t.type === "cash") 
       {
         UpdatePlayerCash(dispatch,t.playerName,-t.item);
-        UpdatePlayerCash(dispatch,secondPlayer.name,t.item);
+        setTimeout(() => UpdatePlayerCash(dispatch,secondPlayer.name,t.item), 300);
         //AddNewLog(dispatch, `- ${secondPlayer.name} otrzymał ${t.item} ECTS`);
       }
       else if(t.type === "property") 
       {
         UpdatePlayerDeleteProperty(dispatch,t.playerName,t.item);
-        UpdatePlayerNewProperty(dispatch,secondPlayer.name,t.item);
+        setTimeout(() => UpdatePlayerNewProperty(dispatch,secondPlayer.name,t.item), 300);
         //AddNewLog(dispatch, `- ${secondPlayer.name} posiada teraz pole ${data.fields[t.item].name}`);
       }
       else //if(t.type === "card")
       {
         UpdatePlayerDeleteEventCard(dispatch,t.playerName,t.item);
-        UpdatePlayerAddEventCard(dispatch,secondPlayer.name,t.item)
+        setTimeout(() => UpdatePlayerAddEventCard(dispatch,secondPlayer.name,t.item), 300);
         //AddNewLog(dispatch, `- ${secondPlayer.name} posiada teraz kartę ${data.cards[t.item].cardName}`);
       }
     })
