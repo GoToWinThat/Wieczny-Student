@@ -6,8 +6,8 @@ import { hasAnyComputer, hasAnyProperties } from "./ManageCheck"
 
 export const surrender = (dispatch,activePlayer,data) =>
 {
-    bankrupt(dispatch,activePlayer)
-    endTurnEvent(data)
+    bankrupt(dispatch,activePlayer);
+    setTimeout(() => endTurnEvent(data), 1000);
 }
 
 export const bankrupt = (dispatch,activePlayer) =>
