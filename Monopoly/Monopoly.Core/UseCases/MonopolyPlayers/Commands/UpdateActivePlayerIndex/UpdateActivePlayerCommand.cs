@@ -50,12 +50,19 @@ namespace Monopoly.Core.UseCases.MonopolyPlayers.Commands.UpdateActivePlayerInde
                 .Where(p => p.Id == request.Index + 1)
                 .FirstAsync();
 
-            if (!activePlayer.ThrownDices)
+            if (!activePlayer.ThrownDices && activePlayer.IsBankrupt==false)
             {
                 MonopolyAI.MonopolyAI.AutoThrow(activePlayer, _context, cancellationToken);
             }
-
-            while (isOver == false)
+            var counter = 0;
+            foreach(var p in players)
+            {
+                if(p.IsBankrupt==false)
+                {
+                    counter++;
+                }
+            }
+            while (isOver == false && entity.GameState== MonopolyGameData.GameStates[2]&&counter>=2)
             {
                 foreach (var p in players)
                 {
