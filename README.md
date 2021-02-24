@@ -46,7 +46,7 @@ npm install npm@latest -g
 
 1. Clone the repo
 ```sh
-git clone https://github.com/your_username_/Project-Name.git
+git clone https://github.com/GoToWinThat/Wieczny-Student.git
 ```
 2. Install NPM packages in monopoly-app directory
 ```sh
