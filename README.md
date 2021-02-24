@@ -91,7 +91,7 @@ To-do list:
 * Addnig AI to play against real players
 
 ## Status
-Project is in project. We already created first version but we need to improve both client and server code for better performence and add more features from actuall game.
+Project is in progress. We already created first version but we need to improve both client and server code for better performence and add more features from actuall game.
 
 ## License
 Distributed under the MIT License.
