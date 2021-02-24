@@ -17,7 +17,7 @@ Wieczny Student is monopoly game created under university project related to our
 ## General info
 Online Monopoly game created using .NET 5.0 and React 17 and other libraries. Current version is available to launch on localhost, both server and client, but we launched it on portal.azure.com (not available now)
 
-### Screecshots
+### Screenshots
 <img src="/screenshots/Logging.png" alt="First screenshot"> <img src="/screenshots/Board.png" alt="Second screenshot">
 ## Technologies and libraries
 * ASP.NET Core 5
