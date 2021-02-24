@@ -97,4 +97,9 @@ Project is in progress. We already created first version but we need to improve 
 Distributed under the MIT License.
 
 ## Contact
-Created by [@mazela](artur.mazela@gmail.com) - feel free to contact me!
+Created by:
+[@mazela](artur.mazela@gmail.com)
+[@kudzia](artur.mazela@gmail.com)
+[@momot](artur.mazela@gmail.com)
+[@matula](artur.mazela@gmail.com)
+Feel free to contact us!
